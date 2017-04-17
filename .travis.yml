@@ -1,9 +1,13 @@
 language: node_js
-
 node_js:
-  - "6"
-
+- '6'
 before_script:
-  - npm install -g gulp
-
+- npm install -g gulp
 script: gulp
+deploy:
+  provider: heroku
+  api_key:
+    secure: AHj5o5Bd9sJmPF5xytKiDjG2skEcxJgSTWzwRDe0ZyiyICwCytD28M8g+1pvEfEi7Be13I2xfjxtZPSMPTP/CJn2TgZrVPXUSOefzszZVDVdBXXrUQHxzPXFJAb4DWCCi747Wj15kQRNhQT3p3QaMCyzhyznOrD8iEAA2ijIx98CDxH+BjKlyerAGr6Qm90hJ7hn8bwwG4PNK7JXgk8YYEXKx9u33Xzk2QQ7c1dHoILMf31GUgFKPi6RnpEU/w53i1PZVI/APuONsuFjKqc9559UBjfmcggPmDBz2tlK0QAaAnnRtCL9XWO49i4CDHjDu342FFJkzCHN7x0QlWSeCZUQWVroqXtn88LkAW4ts1Q/o4H4VzygV+7WoFK13Vvd9mv0Sd8+UHBuUHE4u/PEizTgeu88idEXYc1fOJAPDB/WWrmSXkPvaLO8CGDaHjhijll+4A8i8SmiIRB/9dFMtTotMX2isn9anWfFlNaSUlhYkLweQqi/yT67VyzWVOCclk7iNCxLskHk0ZUUf8LcziFjxPkXKxrBMI0NHguQbU7FD5VNsI7HIJiajWXi1k435rpjWVRNBjq/R1AKYz7AqRMbpeOb/x18AEOmiXmCFaIC2bakeFXECcUOTIahGjXTlHhj0YduUo3S4GUGGUNkRRpLigHljr+g/AkZzZn/vtM=
+  app: CSE112-0x13
+  on:
+    repo: ericluo05/CSE112-0x13
