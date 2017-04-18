@@ -1,9 +1,10 @@
 define({ "api": [
   {
     "type": "get",
-    "url": "/foo",
-    "title": "checks if input is baz",
-    "name": "Foo_Check",
+    "url": "/foo?bar",
+    "title": "",
+    "name": "FooTest",
+    "group": "Foo",
     "parameter": {
       "fields": {
         "Parameter": [
@@ -24,15 +25,14 @@ define({ "api": [
             "group": "Success 200",
             "type": "Boolean",
             "optional": false,
-            "field": "parameter",
-            "description": "<p>is 'baz'</p>"
+            "field": "textOutput",
+            "description": "<p>whether bar is 'baz'</p>"
           }
         ]
       }
     },
     "version": "0.0.0",
     "filename": "routes/foo.js",
-    "group": "C__Users_eric__Desktop_CSE112_0x13_routes_foo_js",
-    "groupTitle": "C__Users_eric__Desktop_CSE112_0x13_routes_foo_js"
+    "groupTitle": "Foo"
   }
 ] });
