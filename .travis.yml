@@ -12,4 +12,4 @@ deploy:
   on:
     repo: ericluo05/CSE112-0x13
 notifications:
-  email: false
+  email: true
