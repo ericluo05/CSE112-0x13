@@ -17,7 +17,7 @@ describe('Foo Tests', function() {
 
         it('return false for non string input', function() {
             request(url, function(error, response, body){
-                assert.equal(response.body, 'false');
+                assert.equal(response.body, 'false\n');
             });
         });
     });
@@ -33,7 +33,7 @@ describe('Foo Tests', function() {
 
         it('return false', function() {
             request(url, function(error, response, body){
-                assert.equal(response.body, 'false');
+                assert.equal(response.body, 'false\n');
             });
         });
     });
@@ -49,7 +49,7 @@ describe('Foo Tests', function() {
 
         it('return true', function() {
             request(url, function(error, response, body){
-                assert.equal(response.body, 'true');
+                assert.equal(response.body, 'true\n');
             });
         });
     });

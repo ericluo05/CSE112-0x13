@@ -20,12 +20,12 @@ router.get('/', function(req, res, next)
    if (foo(req.query.bar))
    {
       res.writeHead(200, {'Content-Type': 'text/plain'});
-      res.end('true');
+      res.end('true\n');
    }
    else
    {
      res.writeHead(200, {'Content-Type': 'text/plain'});
-     res.end('false');
+     res.end('false\n');
    }
 });
 module.exports = router;
