@@ -1,19 +1,21 @@
 var express = require('express');
 var router = express.Router();
 
+
 function foo(bar)
 {
     return (bar === 'baz');
 }
 
 /**
- * @api {get} /foo?bar
- * @apiName FooTest
+ * @api {get} /foo?bar fooMethod
+ * @apiName bar
  * @apiGroup Foo
  *
  * @apiParam {String} bar just some input.
  *
  * @apiSuccess {Boolean} textOutput whether bar is 'baz'
+ *
  */
 router.get('/', function(req, res, next)
 {
