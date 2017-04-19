@@ -17,16 +17,15 @@ function foo(bar)
  */
 router.get('/', function(req, res, next)
 {
-
    if (foo(req.query.bar))
    {
       res.writeHead(200, {'Content-Type': 'text/plain'});
-      res.end('true\n');
+      res.end('true');
    }
    else
    {
      res.writeHead(200, {'Content-Type': 'text/plain'});
-     res.end('false\n');
+     res.end('false');
    }
 });
 module.exports = router;
