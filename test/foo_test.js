@@ -1,6 +1,6 @@
 var assert = require('assert');
 var request = require('request');
-var foo = require('../routes/foo');
+var foo = require('../calls/fooAPI');
 
 
 describe('Foo Tests', function() {
@@ -12,7 +12,7 @@ describe('Foo Tests', function() {
     });
     
     describe('bar = bar', function() {
-        it('returns bar', function() {
+        it('returns false', function() {
             assert.equal(false, foo.foo('bar'));
         });
         

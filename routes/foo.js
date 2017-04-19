@@ -1,10 +1,8 @@
 var express = require('express');
+var fooAPI = require('../calls/fooAPI')
 var router = express.Router();
 
-function foo(bar)
-{
-    return (bar === 'baz');
-}
+
 
 /**
  * @api {get} /foo?bar
@@ -17,7 +15,7 @@ function foo(bar)
  */
 router.get('/', function(req, res, next)
 {
-   if (foo(req.query.bar))
+   if (fooAPI.foo(req.query.bar))
    {
       res.writeHead(200, {'Content-Type': 'text/plain'});
       res.end('true');
@@ -28,5 +26,5 @@ router.get('/', function(req, res, next)
      res.end('false');
    }
 });
-module.exports = {router, foo};
+module.exports = router;
 
