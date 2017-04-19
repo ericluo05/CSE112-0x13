@@ -39,7 +39,7 @@ describe('Foo Tests', function() {
     });
 
     describe('URL Requests For bar = "baz"', function() {
-        var url = "https://team0x13.herokuapp.com/foo?bar=foo";
+        var url = "https://team0x13.herokuapp.com/foo?bar=baz";
 
         it('returns status 200', function() {
             request(url, function(error, response, body){
