@@ -21,11 +21,8 @@ router.get('/', function(req, res, next)
     }
     else
     {
-        res.json({'Error': 'CC or Number not provided'});
+        res.json({'isValid': 'false', 'E.164 Format': 'NA', 'Error': 'CC or Number not provided'});
     }
-
-
-
 });
 
 /**
@@ -34,13 +31,30 @@ router.get('/', function(req, res, next)
 * number: phone number
  *
  * Returns
- * {boolean} isValid  - phone number is valid or not
- * {boolean} E.164 Format  - correctly formatted phone number, or NA
+ * {string} isValid  - phone number is valid or not
+ * {string} E.164 Format  - correctly formatted phone number, or NA
 **/
 function isValidPhoneNumber(cc, number)
 {
+    if((typeof cc !==  'string') && (typeof number !== 'string'))
+        return {'isValid': 'false', 'E.164 Format': 'NA', 'Error': 'Data type error'};
 
-    return {'isValid': 'maybe?', 'E.164 Format': '+??? ??? ??? ????'};
+    //note: don't parse cc to int, because parseInt has undesired parsing behaviors
+    var valid = 'maybe';
+    if(cc === '1')
+    {
+        valid = handlePhone_US(number);
+    }
+    else if( cc === '86')
+    {
+        valid = handlePhone_China(number);
+    }
+    else if( cc === '52')
+    {
+        valid = handlePhone_Mexico(number);
+    }
+
+    return {'isValid': valid, 'E.164 Format': '+??? ??? ??? ????'};
 }
 
 /**
@@ -50,6 +64,23 @@ function isValidPhoneNumber(cc, number)
 function formatPhoneNumber(cc, number)
 {
 
+    return '+??? ??? ??? ????';
+}
+
+function handlePhone_US(number)
+{
+    return false;
+}
+
+function handlePhone_China(number)
+{
+    return false;
+}
+
+
+function handlePhone_Mexico(number)
+{
+    return false;
 }
 
 module.exports = router;
