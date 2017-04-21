@@ -15,15 +15,14 @@ var router = express.Router();
  */
 router.get('/', function(req, res, next)
 {
-   /* if (req.query.cc && req.query.number)
+    if (req.query.cc && req.query.number)
     {
         res.json(isValidPhoneNumber(req.query.cc, req.query.number));
     }
     else
     {
         res.json({'isValid': 'false', 'E.164 Format': 'NA', 'Error': 'CC or Number not provided'});
-    }*/
-    res.json({'OS': process.platform});
+    }
 });
 
 /**
@@ -85,4 +84,3 @@ function handlePhone_Mexico(number)
 }
 
 module.exports = router;
-
