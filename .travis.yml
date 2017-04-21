@@ -1,8 +1,11 @@
 language: node_js
 node_js:
 - '6'
+cache: yarn
 before_script:
 - npm install -g gulp
+- npm start &
+- sleep 10
 script: gulp
 deploy:
   provider: heroku
