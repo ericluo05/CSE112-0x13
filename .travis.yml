@@ -5,7 +5,7 @@ cache: yarn
 before_script:
 - npm install -g gulp
 - npm start &
-- sleep 10
+- sleep 3
 script: gulp
 deploy:
   provider: heroku
