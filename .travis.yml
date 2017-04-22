@@ -2,13 +2,31 @@ language: node_js
 node_js:
 - '6'
 cache: yarn
+sudo: required
+os: linux
+dist: trusty
+addons:
+  apt:
+    packages:
+      - oracle-java8-set-default
 before_script:
+- chmod 777 ./drivers/selenium/chrome/linux32/chromedriver
 - npm install -g gulp
-- npm install -g nightwatch
+- export CHROME_BIN=/usr/bin/google-chrome
+- export DISPLAY=:99.0
+- sh -e /etc/init.d/xvfb start
+- sudo apt-get update
+- sudo apt-get install -y libappindicator1 fonts-liberation
+- wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+- sudo dpkg -i google-chrome*.deb
 - npm start &
 - sleep 3
-script: 
-- gulp
+
+script:
+- jdk_switcher use oraclejdk8
+- nightwatch
+after_script:
+  - pkill node
 
 deploy:
   provider: heroku
