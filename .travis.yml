@@ -4,9 +4,12 @@ node_js:
 cache: yarn
 before_script:
 - npm install -g gulp
+- npm install -g nightwatch
 - npm start &
 - sleep 3
-script: gulp
+script: 
+- gulp
+
 deploy:
   provider: heroku
   api_key:

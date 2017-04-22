@@ -1,5 +1,4 @@
 var assert = require('assert');
-var request = require('request');
 var foo = require('../calls/fooAPI');
 
 
