@@ -2,13 +2,21 @@ language: node_js
 node_js:
 - '6'
 cache: yarn
+addons:
+  apt:
+    packages:
+      - oracle-java8-set-default
 before_script:
 - npm install -g gulp
 - npm install -g nightwatch
 - npm start &
 - sleep 3
-script: 
+
+script:
 - gulp
+- nightwatch
+after_script:
+  - pkill node
 
 deploy:
   provider: heroku
