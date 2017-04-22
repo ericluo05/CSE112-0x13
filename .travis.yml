@@ -5,28 +5,22 @@ cache: yarn
 sudo: required
 os: linux
 dist: trusty
-addons:
-  apt:
-    packages:
-      - oracle-java8-set-default
-before_script:
-- wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
-- sudo dpkg -i google-chrome*.deb
-- sleep 3
-- bash
-- jdk_switcher use oraclejdk8
-- sudo apt-get install -f
-- npm install -g gulp
-- export CHROME_BIN=/usr/bin/google-chrome
-- export DISPLAY=:99.0
-- sh -e /etc/init.d/xvfb start
-- sudo apt-get update
-- sudo apt-get install -y libappindicator1 fonts-liberation
+before_install:
+- if [ "$TRAVIS_OS_NAME" == "linux" ]; then export CHROME_BIN=/usr/bin/google-chrome; fi
+- if [ "$TRAVIS_OS_NAME" == "linux" ]; then export DISPLAY=:99.0; fi
+- if [ "$TRAVIS_OS_NAME" == "linux" ]; then sh -e /etc/init.d/xvfb start; fi
+- if [ "$TRAVIS_OS_NAME" == "linux" ]; then sudo apt-get update ; fi
+- if [ "$TRAVIS_OS_NAME" == "linux" ]; then sudo apt-get install -y libappindicator1 fonts-liberation; fi
+- if [ "$TRAVIS_OS_NAME" == "linux" ]; then wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb; fi
+- if [ "$TRAVIS_OS_NAME" == "linux" ]; then sudo dpkg -i google-chrome*.deb; fi
 
+before_script:
+- npm install -g gulp
 - npm start &
 - sleep 3
 
 script:
+- jdk_switcher use oraclejdk8
 - nightwatch
 after_script:
 - pkill node
@@ -39,4 +33,4 @@ deploy:
   on:
     repo: ericluo05/CSE112-0x13
 notifications:
-  email: true
+  email: false
