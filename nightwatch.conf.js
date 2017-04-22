@@ -1,5 +1,5 @@
 module.exports = (function (settings) {
- 
+
   //Setting chromedriver path at runtime to run on different architectures
   if (process.platform === "darwin") {
     settings.selenium.cli_args["webdriver.chrome.driver"] = "./drivers/selenium/chrome/mac64/chromedriver";
@@ -11,5 +11,5 @@ module.exports = (function (settings) {
     settings.selenium.cli_args["webdriver.chrome.driver"] = "./drivers/selenium/chrome/linux32/chromedriver";
   }
   return settings;
- 
+
 })(require('./nightwatch.json'));
