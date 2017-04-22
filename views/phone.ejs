@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Phone Validation</title>
+    <!--link rel='stylesheet' href='/stylesheets/pvstyle.css' /-->
+    <link rel="stylesheet" href="/stylesheets/bulma.min.css" />
+</head>
+<body>
+<div class="columns is-mobile" style="margin-top:10px">
+    <div class="column is-three-quarters is-offset-1">
+        <h1 class="title">isValidPhone</h1>
+        <form class="control" id="isValidPhone" method ="POST" action ="/phone/isValidPhone">
+            <div class="field is-horizontal">
+                <div class="field-label">
+                    <label class="label">Phone No.</label>
+                </div>
+                <div class="field-body">
+                    <div class="field">
+                        <p class="control is-expanded">
+                            <input class="input" type="tel" name="country_code_0" placeholder="Country Code" required>
+                        </p>
+                    </div>
+                    <div class="field">
+                        <p class="control select is-expanded">
+                            <select name="country_code_1" required>
+                                <option disabled selected value>Select a Country</option>
+                                <option value="1">US</option>
+                                <option value="52">Mexico</option>
+                                <option value="86">China</option>
+                            </select>
+                        </p>
+                    </div>
+                    <div class="field">
+                        <p class="control">
+                            <input class="input" type="tel" name="number" placeholder="Number" required>
+                        </p>
+                    </div>
+                    <div class="field">
+                        <p class="control">
+                            <button class="button is- primary" type="submit">Validate</button>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </form>
+        <br><br>
+        <h1 class="title">formatPhone</h1>
+        <form class="control" id="formatPhone">
+            <div class="field is-horizontal">
+                <div class="field-label">
+                    <label class="label">Phone No.</label>
+                </div>
+                <div class="field-body">
+                    <div class="field is-grouped">
+                        <p class="control is-expanded">
+                            <input class="input" type="tel" placeholder="Number" required>
+                        </p>
+                    </div>
+                    <div class="field">
+                        <p class="control">
+                            <button class="button is-primary" type="submit">Format</button>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+</body>
+</html>

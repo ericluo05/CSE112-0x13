@@ -14,14 +14,27 @@ var router = express.Router();
  */
 router.get('/', function(req, res, next)
 {
-    if (req.query.cc && req.query.number)
-    {
-        res.json(isValidPhoneNumber(req.query.cc, req.query.number));
+    res.render('phone', { title: 'Team 0x13' });
+    // if (req.query.cc && req.query.number)
+    // {
+    //     res.json(isValidPhoneNumber(req.query.cc, req.query.number));
+    // }
+    // else
+    // {
+    //     res.json({'isValid': 'false', 'E.164 Format': 'NA', 'Error': 'CC or Number not provided'});
+    // }
+});
+
+router.post('/phone',function (req,res) {
+    var phoneNumber = {
+        country_code_0: req.body.country_code_0,
+        country_code_1: req.body.country_code_1,
+        number: req.body.number
     }
-    else
-    {
-        res.json({'isValid': 'false', 'E.164 Format': 'NA', 'Error': 'CC or Number not provided'});
-    }
+
+    // console.log(phoneNumber);
+    process.stdout.write(phoneNumber);
+    
 });
 
 /**
