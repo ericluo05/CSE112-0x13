@@ -1,5 +1,4 @@
 var express = require('express');
-var fooAPI = require('../calls/fooAPI')
 var router = express.Router();
 
 /**
@@ -53,19 +52,15 @@ function isValidPhoneNumber(cc, number)
     {
         valid = handlePhone_Mexico(number);
     }
+    else
+    {
+    	valid = handlePhone_General(number);
+
+    }
 
     return {'isValid': valid, 'E.164 Format': '+??? ??? ??? ????'};
 }
 
-/**
- * cc: country code
- * number: phone number
- **/
-function formatPhoneNumber(cc, number)
-{
-
-    return '+??? ??? ??? ????';
-}
 
 function handlePhone_US(number)
 {
@@ -81,6 +76,23 @@ function handlePhone_China(number)
 function handlePhone_Mexico(number)
 {
     return false;
+}
+
+
+function handlePhone_General(number)
+{
+	return false;
+}
+
+
+/**
+ * cc: country code
+ * number: phone number
+ **/
+function formatPhoneNumber(cc, number)
+{
+
+    return '+??? ??? ??? ????';
 }
 
 module.exports = router;
