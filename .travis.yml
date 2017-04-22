@@ -2,13 +2,28 @@ language: node_js
 node_js:
 - '6'
 cache: yarn
+sudo: required
+os: linux
+dist: trusty
+before_install:
+- if [ "$TRAVIS_OS_NAME" == "linux" ]; then export CHROME_BIN=/usr/bin/google-chrome; fi
+- if [ "$TRAVIS_OS_NAME" == "linux" ]; then export DISPLAY=:99.0; fi
+- if [ "$TRAVIS_OS_NAME" == "linux" ]; then sh -e /etc/init.d/xvfb start; fi
+- if [ "$TRAVIS_OS_NAME" == "linux" ]; then sudo apt-get update ; fi
+- if [ "$TRAVIS_OS_NAME" == "linux" ]; then sudo apt-get install -y libappindicator1 fonts-liberation; fi
+- if [ "$TRAVIS_OS_NAME" == "linux" ]; then wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb; fi
+- if [ "$TRAVIS_OS_NAME" == "linux" ]; then sudo dpkg -i google-chrome*.deb; fi
+
 before_script:
 - npm install -g gulp
-- npm install -g nightwatch
 - npm start &
 - sleep 3
-script: 
-- gulp
+
+script:
+- jdk_switcher use oraclejdk8
+- nightwatch
+after_script:
+- pkill node
 
 deploy:
   provider: heroku
@@ -18,4 +33,4 @@ deploy:
   on:
     repo: ericluo05/CSE112-0x13
 notifications:
-  email: true
+  email: false
