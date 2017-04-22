@@ -3,6 +3,7 @@ node_js:
 - '6'
 cache: yarn
 sudo: required
+os: linux
 dist: trusty
 addons:
   apt:
@@ -20,8 +21,6 @@ before_script:
 - sudo dpkg -i google-chrome*.deb
 - npm start &
 - sleep 3
-before_install:
-- export CHROME_BIN=/usr/bin/google-chrome
 
 script:
 - jdk_switcher use oraclejdk8
