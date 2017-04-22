@@ -10,6 +10,7 @@ addons:
     packages:
       - oracle-java8-set-default
 before_script:
+- apt-get install -f
 - chmod 777 ./drivers/selenium/chrome/linux32/chromedriver
 - npm install -g gulp
 - export CHROME_BIN=/usr/bin/google-chrome
