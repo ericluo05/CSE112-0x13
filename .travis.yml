@@ -10,10 +10,12 @@ addons:
     packages:
       - oracle-java8-set-default
 before_script:
+- wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+- sudo dpkg -i google-chrome*.deb
+- sleep 3
+- bash
 - jdk_switcher use oraclejdk8
 - sudo apt-get install -f
-- chmod 777 ./drivers/selenium/chrome/linux32/chromedriver
-- chmod 777 ./drivers/selenium/chrome/linux64/chromedriver
 - npm install -g gulp
 - export CHROME_BIN=/usr/bin/google-chrome
 - export DISPLAY=:99.0
@@ -28,10 +30,6 @@ script:
 - nightwatch
 after_script:
 - pkill node
-before_install:
-- wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
-- sudo dpkg -i google-chrome*.deb
-- sleep 3
 
 deploy:
   provider: heroku
