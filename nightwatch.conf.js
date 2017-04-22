@@ -8,7 +8,7 @@ module.exports = (function (settings) {
     settings.selenium.cli_args["webdriver.chrome.driver"] = "./drivers/selenium/chrome/win32/chromedriver.exe";
   }
   else if (process.platform === "linux" ) {
-    settings.selenium.cli_args["webdriver.chrome.driver"] = "./drivers/selenium/chrome/linux64/chromedriver";
+    settings.selenium.cli_args["webdriver.chrome.driver"] = "./drivers/selenium/chrome/linux32/chromedriver";
   }
   return settings;
 
