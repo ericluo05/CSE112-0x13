@@ -55,7 +55,6 @@ function isValidPhoneNumber(cc, number)
     else
     {
     	valid = handlePhone_General(number);
-
     }
 
     return {'isValid': valid, 'E.164 Format': '+??? ??? ??? ????'};
@@ -72,9 +71,30 @@ function handlePhone_China(number)
     return false;
 }
 
-
+/**
+ * Parameters
+ * number: phone number
+ *
+ * Returns
+ * {string} isValid  - phone number is valid or not
+**/
 function handlePhone_Mexico(number)
 {
+    var MEX_AREA_CODE = ['55', '81', '33', '656', '614', '999', '222', '442', '449', '664', '844', '833', '686', '667', '722', '998', '871', '744', '444', '833', '477', '961', '662', '229', '443'];
+    var DIGIT_AFTER_PREFIX = 10;
+    var firstTwo = number.substring(0, 2);
+    var firstThree = number.substring(0, 3);
+    if (number.length != DIGIT_AFTER_PREFIX)
+        return false;
+    for (int i = 0; i < MEX_AREA_CODE.length; ++i)
+    {
+        if (MEX_AREA_CODE[i].length === firstThree.legnth)
+            if (MEX_AREA_CODE[i] === firstThree)
+                return true;
+        else 
+            if (MEX_AREA_CODE[i] === firstTwo)
+                return true;
+    } 
     return false;
 }
 
