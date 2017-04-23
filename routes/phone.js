@@ -14,10 +14,10 @@ var router = express.Router();
  */
 router.get('/', function(req, res, next)
 {
-    res.render('phone', { title: 'Team 0x13' });
+    res.render('phone', { title: 'Team 0x13 ' });
 });
 
-router.post('/',function (req,res) {
+router.post('/isValidPhone',function (req,res) {
     var phoneNumber = {
         country_code_0: req.body.country_code_0,
         country_code_1: req.body.country_code_1,
@@ -33,6 +33,12 @@ router.post('/',function (req,res) {
          res.json({'isValid': 'false', 'E.164 Format': 'NA'});
      }
 });
+
+router.post('/format', function(req, res, next)
+{
+    res.json({'E.164 Format': 'Some kind of format here'});
+});
+
 
 /**
  * Parameters
