@@ -1,0 +1,69 @@
+{
+  "52" : {
+    "Countries" : ["Mexico"],
+    "Special_All" : {
+      "Valid_Length" : ["3"],
+      "Cases" : ["Special_1"],
+      "Special_1" : {
+        "Length" : 3,
+        "Number" : ["020", "030", "031", "040", "050", "060", "065", "066",
+                    "070", "071", "072", "080", "090", "911"],
+        "Display_Format" : {
+          "E.164" : "+?????",
+          "International" : "+?? ???",
+          "Domestic" : {
+            "Normal" : ["???"]
+          }
+        }
+      },
+      "Error" : "Number not valid"
+    },
+    "Special_Some" : {
+      "Valid_Length" : [],
+      "Cases" : [],
+      "Error" : "NOT REACHABLE"
+    },
+    "Valid_Length" : ["10"],
+    "10" : {
+      "Countries" : ["Mexico"],
+      "Mexico" : {
+        "Areas" : ["Area_1", "Area_2"],
+        "Area_1" : {
+          "Area_Code" : ["55", "81", "33"],
+          "Area_Code_Length" : 2,
+          "Suffix" : "????????",
+          "Display_Format" : {
+            "E.164" : "+????????????",
+            "International" : "+??(??)????????",
+            "Domestic" : {
+              "Normal" : ["?? ???? ????",
+                          "?? ???? ?? ??"],
+              "Domestic Long Distance" : ["(01) ?? ???? ????", 
+                                          "(01 ??) ???? ????"],
+              "To Cellphone from landline in same city" : [ "(044)?? ???? ????"]
+            }
+          }
+        },
+        "Area_2" : {
+          "Area_Code" : ["222", "229", "442", "443", "444", "449", "477", "614",
+                         "656", "662", "664", "667", "686", "722", "744", "833",
+                         "844", "871", "961", "998", "999"],
+          "Area_Code_Length" : 3,
+          "Suffix" : "???????",
+          "Display_Format" : {
+            "E.164" : "+????????????",
+            "International" : "+??(???)???????",
+            "Domestic" : {
+              "Normal" : ["??? ??? ????",
+                          "??? ??? ?? ??"],
+              "Domestic Long Distance" : ["(01) ??? ??? ????", 
+                                          "(01 ???) ??? ????"],
+              "To Cellphone from landline in same city" : [ "(044)??? ??? ????"]
+            }
+          }
+        }
+      }
+    },
+    "Error" : "City Code Not Valid"
+  }
+}
