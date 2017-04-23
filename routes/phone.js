@@ -17,6 +17,7 @@ router.get('/', function(req, res, next)
     res.render('phone', { title: 'Team 0x13' });
 });
 
+router.post('/',function (req,res) {
     var phoneNumber = {
         country_code_0: req.body.country_code_0,
         country_code_1: req.body.country_code_1,
