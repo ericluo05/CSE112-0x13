@@ -134,10 +134,10 @@ function handlePhone_Mexico(number)
     for (var i = 0; i < MEX_AREA_CODE.length; ++i)
     {
         if (MEX_AREA_CODE[i].length === firstThree.legnth)
-            if (MEX_AREA_CODE[i] === firstThree)
+            if (MEX_AREA_CODE[i].localeCompare(firstThree) == 0) 
                 return true;
         else 
-            if (MEX_AREA_CODE[i] === firstTwo)
+            if (MEX_AREA_CODE[i].localeCompare(firstTwo) == 0)
                 return true;
     } 
     return false;
