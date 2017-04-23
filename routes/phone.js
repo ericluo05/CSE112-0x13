@@ -131,7 +131,7 @@ function handlePhone_Mexico(number)
     var firstThree = number.substring(0, 3);
     if (number.length != DIGIT_AFTER_PREFIX)
         return false;
-    for (int i = 0; i < MEX_AREA_CODE.length; ++i)
+    for (var i = 0; i < MEX_AREA_CODE.length; ++i)
     {
         if (MEX_AREA_CODE[i].length === firstThree.legnth)
             if (MEX_AREA_CODE[i] === firstThree)
