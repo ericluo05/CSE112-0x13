@@ -1,25 +1,46 @@
 {
   "1" : {
-    "Countries" : ["United States", "Canada"],
     "Special_All" : {
+      "Countries" : ["United States", "Canada"],
       "Valid_Length" : ["3"],
-      "Cases" : ["Special_1"],
-      "Special_1" : {
-        "Valid_Length" : "3",
-        "Number" : ["211", "311", "411", "511", "611", "711", "811", "911"],
-        "Display_Format" : {
-          "E.164" : "+????",
-          "International" : "+? ???",
-          "Domestic" : {
-            "Normal" : ["???"]
+      "3" : {
+        "Areas" : ["Area_1"],
+        "Area_1" : {
+          "Prefix" : ["211", "311", "411", "511", "611", "711", "811", "911"],
+          "Prefix_Regex" : [],
+          "Prefix_Length" : 3,
+          "Suffix" : [""],
+          "Suffix_Regex" : [],
+          "Display_Format" : {
+            "E.164" : "+????",
+            "International" : "+? ???",
+            "Domestic" : {
+              "Normal" : ["???"]
+            }
           }
-        }
-      }
+        },
+        "Error" : "CC_1 Error(SP3): Invalid 3 digit number"
+      },
+      "Error" : "CC_1 Error(SP): SHOULD NOT BE REACHABLE"
     },
     "Special_Some" : {
-      "Valid_Length" : ["3"],
-      "Cases" : [],
-      "Error" : "Number not valid"
+      "Valid_Length" : ["5"],
+      "5" : {
+        "Areas" : ["Area_1"],
+        "Area_1" : {
+          "Countries" : ["Test Only"],
+          "Prefix" : ["X22"],
+          "Prefix_Regex" : ["X3?"],
+          "Prefix_Length" : 3,
+          "Suffix" : [],
+          "Suffix_Regex" : ["2?"],
+          "Display_Format" : {
+            "Test" : "Only"
+          }
+        },
+        "Error" : "Test Only ERROR"
+      },
+      "Error" : "CC_1 Error(SS): SHOULD NOT BE REACHABLE"
     },
     "Valid_Length" : ["10"],
     "10" : {
@@ -27,7 +48,7 @@
       "United States" : {
         "Areas" : ["Area_1"],
         "Area_1" : {
-          "Area_Code" :
+          "Prefix" :
             [ "907","205","251","256","334","479","501","870","480","520","602",
               "623","928","209","213","310","323","408","415","510","530","559",
               "562","619","626","650","661","707","714","760","805","818","831",
@@ -50,8 +71,10 @@
               "713","806","817","830","903","915","936","940","956","972","979",
               "435","801","276","434","540","703","757","804","802","206","253",
               "360","425","509","262","414","608","715","920","304","307"],
-          "Area_Code_Length" : 3,
-          "Suffix" : "???????",
+          "Prefix_Regex" : [],
+          "Prefix_Length" : 3,
+          "Suffix" : [],
+          "Suffix_Regex" : ["???????"],
           "Display_Format" : {
             "E.164" : "+???????????",
             "International" : "+?(???)???-????",
@@ -64,9 +87,11 @@
       "Canada" : {
         "Areas" : ["Area_1"],
         "Area_1" : {
-          "Area_Code" : [ "403"],
-          "Area_Code_Length" : 3,
-          "Suffix" : "???????",
+          "Prefix" : [ "403"],
+          "Prefix_Regex" : [],
+          "Prefix_Length" : 3,
+          "Suffix" : [],
+          "Suffix_Regex" : ["???????"],
           "Display_Format" : {
             "E.164" : "+???????????",
             "International" : "+?(???)???-????",
@@ -77,6 +102,7 @@
         }
       },
       "Error" : "Area Code Not Valid"
-    }
+    },
+    "Error" : "CC_1 Error(Last): Invalid Number"
   }
 }
