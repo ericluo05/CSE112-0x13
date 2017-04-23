@@ -34,9 +34,13 @@ router.post('/isValidPhone',function (req,res) {
      }
 });
 
-router.post('/format', function(req, res, next)
+router.post('/format', function(req, res)
 {
-    res.json({'E.164 Format': 'Some kind of format here'});
+    if(req.body.formatName)
+        res.json({'E.164 Format': 'Some kind of format here'});
+    else
+        res.json({'E.164 Format': 'not available'});
+
 });
 
 
