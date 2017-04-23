@@ -74,7 +74,6 @@ function isValidPhoneNumber(cc, number)
     if(cc === '1')
     {
         valid = handlePhone_US(number);
-        console.log("Result from handling " + number + " is " + valid);
     }
     else if( cc === '86')
     {
@@ -106,7 +105,6 @@ function handlePhone_US(number)
        return false;
     var areaCode = number.substring(0,3);
     areaCode = parseInt(areaCode);
-    console.log("US - areaCode is:" + areaCode);
     if(US_AREA_CODE.indexOf(areaCode) == -1)
        return false;
     else
