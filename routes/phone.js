@@ -101,11 +101,11 @@ var US_AREA_CODE = [201, 202, 203, 204, 205, 206, 207, 208, 209, 210, 211, 212, 
 //input number is a string that contains only 0-9 , checking that it contains non digit chars is done in isValidPhone
 function handlePhone_US(number)
 {
-    if( number.length != 10)
+    if( number.length !== 10)
        return false;
     var areaCode = number.substring(0,3);
-    areaCode = parseInt(areaCode);
-    if(US_AREA_CODE.indexOf(areaCode) == -1)
+    areaCode = parseInt(areaCode, 10);
+    if(US_AREA_CODE.indexOf(areaCode) === -1)
        return false;
     else
        return true;
