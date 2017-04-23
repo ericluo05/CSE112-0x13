@@ -85,11 +85,7 @@ function isValidPhoneNumber(cc, number)
     }
     else
     {
-<<<<<<< HEAD
     	valid = handlePhone_General(number);
-=======
-    	 valid = handlePhone_General(number);
->>>>>>> 46540761ef98718768db6a51dd871985b277f596
     }
 
     if(valid)
