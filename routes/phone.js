@@ -15,26 +15,22 @@ var router = express.Router();
 router.get('/', function(req, res, next)
 {
     res.render('phone', { title: 'Team 0x13' });
-    // if (req.query.cc && req.query.number)
-    // {
-    //     res.json(isValidPhoneNumber(req.query.cc, req.query.number));
-    // }
-    // else
-    // {
-    //     res.json({'isValid': 'false', 'E.164 Format': 'NA', 'Error': 'CC or Number not provided'});
-    // }
 });
 
-router.post('/phone',function (req,res) {
     var phoneNumber = {
         country_code_0: req.body.country_code_0,
         country_code_1: req.body.country_code_1,
         number: req.body.number
     }
 
-    // console.log(phoneNumber);
-    process.stdout.write(phoneNumber);
-    
+    if (req.body.country_code_0 && req.body.number)
+     {
+         res.json(isValidPhoneNumber(req.query.cc, req.query.number));
+     }
+     else
+     {
+         res.json({'isValid': 'false', 'E.164 Format': 'NA'});
+     }
 });
 
 /**
@@ -49,7 +45,7 @@ router.post('/phone',function (req,res) {
 function isValidPhoneNumber(cc, number)
 {
     if((typeof cc !==  'string') && (typeof number !== 'string'))
-        return {'isValid': 'false', 'E.164 Format': 'NA', 'Error': 'Data type error'};
+        return {'isValid': 'false', 'E.164 Format': 'NA'};
 
     //note: don't parse cc to int, because parseInt has undesired parsing behaviors
     var valid = 'maybe';
