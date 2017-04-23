@@ -1,4 +1,4 @@
-module.exports = (function (settings) {
+module.exports = function (settings) {
 
   //Setting chromedriver path at runtime to run on different architectures
   if (process.platform === "darwin") {
@@ -12,4 +12,4 @@ module.exports = (function (settings) {
   }
   return settings;
 
-})(require('./nightwatch.json'));
+}(require('./nightwatch.json'));
