@@ -13,21 +13,20 @@ var phoneGeneral = require('./phone_general');
  * @apiSuccess {Boolean} textOutput whether bar is 'baz'
  *
  */
-router.get('/', function(req, res, next)
-{
+router.get('/', function (req, res, next) {
     res.render('phone', { title: 'Team 0x13 ' });
 });
 
-router.post('/isValidPhone',function (req,res) {
+router.post('/isValidPhone', function (req, res) {
     var phoneNumber = {
-        country_code_0: req.body.country_code_0,
-        country_code_1: req.body.country_code_1,
-        number: req.body.number
-    }
+        country_code_0: req.query.country_code_0,
+        country_code_1: req.query.country_code_1,
+        number: req.query.number
+    };
 
-    if (req.body.country_code_1 && req.body.number)
+    if (req.query.country_code_1 && req.query.number)
      {
-         res.json(isValidPhoneNumber(req.body.country_code_1, req.body.number));
+         res.json(isValidPhoneNumber(req.query.country_code_1, req.query.number));
      }
      else
      {
@@ -37,10 +36,10 @@ router.post('/isValidPhone',function (req,res) {
 
 router.post('/format', function(req, res)
 {
-    if(req.body.formatName)
+    if(req.query.number)
         res.json({'E.164 Format': 'Some kind of format here'});
     else
-        res.json({'E.164 Format': 'not available'});
+        res.json({'E.164 Format': 'not available', 'Error': 'number is not present'});
 
 });
 
@@ -51,7 +50,7 @@ router.post('/format', function(req, res)
 * number: phone number
  *
  * Returns
- * {string} isValid  - phone number is valid or not
+ * {bool} isValid  - phone number is valid or not
  * {string} E.164 Format  - correctly formatted phone number, or NA
 **/
 function isValidPhoneNumber(cc, number)
@@ -140,12 +139,12 @@ function handlePhone_Mexico(number)
     for (var i = 0; i < MEX_AREA_CODE.length; ++i)
     {
         if (MEX_AREA_CODE[i].length === firstThree.legnth)
-            if (MEX_AREA_CODE[i].localeCompare(firstThree) == 0) 
+            if (MEX_AREA_CODE[i].localeCompare(firstThree) == 0)
                 return true;
-        else 
+        else
             if (MEX_AREA_CODE[i].localeCompare(firstTwo) == 0)
                 return true;
-    } 
+    }
     return false;
 }
 

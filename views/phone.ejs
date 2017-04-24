@@ -7,10 +7,11 @@
     <link rel="stylesheet" href="/stylesheets/bulma.min.css" />
 </head>
 <body>
+<b id="ResultText"> Result Here: No response yet </b><br>
 <div class="columns is-mobile" style="margin-top:10px">
     <div class="column is-three-quarters is-offset-1">
         <h1 class="title">isValidPhone</h1>
-        <form class="control" id="isValidPhone" method ="POST" action ="/phone/isValidPhone">
+        <form class="control" id="isValidPhone", action="javascript:validatePhone()">
             <div class="field is-horizontal">
                 <div class="field-label">
                     <label class="label">Phone No.</label>
@@ -23,7 +24,7 @@
                     </div>
                     <div class="field">
                         <p class="control select is-expanded">
-                            <select name="country_code_1" required>
+                            <select name="country_code_1" id = "cc1" required>
                                 <option disabled selected value>Select a Country</option>
                                 <option value="1">US</option>
                                 <option value="52">Mexico</option>
@@ -33,7 +34,7 @@
                     </div>
                     <div class="field">
                         <p class="control">
-                            <input class="input" type="tel" name="number" placeholder="Number" required>
+                            <input class="input" type="tel" name="number" id="number" placeholder="Number" required>
                         </p>
                     </div>
                     <div class="field">
@@ -46,7 +47,7 @@
         </form>
         <br><br>
         <h1 class="title">formatPhone</h1>
-        <form class="control" id="formatPhone"  method ="POST" action ="/phone/format">
+        <form class="control" id="formatPhone"  action="javascript:formatPhone()">
             <div class="field is-horizontal">
                 <div class="field-label">
                     <label class="label">Phone No.</label>
@@ -54,7 +55,7 @@
                 <div class="field-body">
                     <div class="field is-grouped">
                         <p class="control is-expanded">
-                            <input class="input" name ="formatName" type="tel" placeholder="Number" required>
+                            <input class="input" name ="formatName" id = "telnum" type="tel" placeholder="Number" required>
                         </p>
                     </div>
                     <div class="field">
@@ -67,5 +68,6 @@
         </form>
     </div>
 </div>
+<script src="js/validatePhone.js"></script>
 </body>
 </html>
