@@ -61,7 +61,7 @@ function isValidPhone(CC, PN) {
  **/
 function checkVL(PN, data) {
   var PN_Length = PN.length.toString();
-  console.log(data["Valid_Length"]===["10"]);
+  //console.log(data["Valid_Length"]===["10"]);
 
   // Check if data contain matching length
   if (data["Valid_Length"].indexOf(PN_Length) < 0)
