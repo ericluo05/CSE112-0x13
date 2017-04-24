@@ -1,5 +1,6 @@
 var express = require('express');
 var router = express.Router();
+var phoneGeneral = require('./phone_general');
 
 /**
  * @api {get} /phone  Respond with whether the number is valid or not, also formats it
@@ -117,7 +118,8 @@ function handlePhone_US(number)
 
 function handlePhone_China(number)
 {
-    return false;
+    var result = phoneGeneral.isValidPhone("86", number);
+    return result["Valid"];
 }
 
 /**
@@ -160,8 +162,11 @@ function handlePhone_General(number)
  **/
 function formatPhoneNumber(cc, number)
 {
+  if (number.length === 11)
+    return '+?? ???????????';
+  return '+?? ??? ???????';
 
-    return '+??? ??? ??? ????';
+  //return '+??? ??? ??? ????';
 }
 
 module.exports = router;
