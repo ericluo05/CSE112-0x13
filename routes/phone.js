@@ -30,7 +30,7 @@ router.post('/isValidPhone',function (req,res) {
      }
      else
      {
-         res.json({'isValid': 'false', 'E.164 Format': 'NA'});
+         res.json({'isValid': false, 'E.164 Format': 'NA'});
      }
 });
 
@@ -56,21 +56,21 @@ router.post('/format', function(req, res)
 function isValidPhoneNumber(cc, number)
 {
     if((typeof cc !==  'string') && (typeof number !== 'string'))
-        return {'isValid': 'false', 'E.164 Format': 'NA', "Error": "CC or nubmer is not a string"};
+        return {'isValid': false, 'E.164 Format': 'NA', "Error": "CC or nubmer is not a string"};
 
     var i, length, c;
     for(i = 0, len = cc.length; i < len; ++i )
     {
        c = cc.charCodeAt(i);
        if(!(c > 47 && c < 58)) //contains non-alpha. char
-          return {'isValid': 'false', 'E.164 Format': 'NA', "Error": "CC Contains invalid character"};
+          return {'isValid': false, 'E.164 Format': 'NA', "Error": "CC Contains invalid character"};
     }
 
     for(i = 0, len = number.length; i < len; ++i )
     {
        c = number.charCodeAt(i);
        if(!(c > 47 && c < 58)) //contains non-alpha. char
-          return {'isValid': 'false4', 'E.164 Format': 'NA', "Error": "Number Contains invalid character"};
+          return {'isValid': false, 'E.164 Format': 'NA', "Error": "Number Contains invalid character"};
     }
 
     var valid = 'N/A';
