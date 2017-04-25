@@ -20,7 +20,9 @@ function validatePhone()
 
 function formatPhone()
 {
-  var number = document.getElementById("telnum").value;
+  var ccEle = document.getElementById("cc1");
+  var cc = ccEle.options[ccEle.selectedIndex].value;
+  var number = document.getElementById("number").value;
   var result = document.getElementById("ResultText");
   var xhttp = new XMLHttpRequest();
   xhttp.onreadystatechange = function() {
@@ -29,7 +31,7 @@ function formatPhone()
     }
   };
 
-  var request = "/phone/format?number="+number;
+  var request = "/phone/format?cc="+cc+"&number="+number;
   xhttp.open("POST", request, true);
   xhttp.send();
 

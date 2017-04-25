@@ -36,10 +36,16 @@ router.post('/isValidPhone', function (req, res) {
 
 router.post('/format', function(req, res)
 {
-    if(req.query.number)
-        res.json({'E.164 Format': 'Some kind of format here'});
+    if(req.query.cc && req.query.number)
+    {
+        res.json(phoneGeneral.formatPhoneNumber(req.query.cc,
+                                                req.query.number));
+    }
     else
-        res.json({'E.164 Format': 'not available', 'Error': 'number is not present'});
+        res.json({
+          'E.164 Format': 'not available',
+          'Error': 'number is not present'
+        });
 
 });
 
