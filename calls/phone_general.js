@@ -5,7 +5,7 @@ function handleError(msg) {
 }
 
 function handleSuccess(countries, fmt) {
-  return { "isValid" : true, "E.164 Format" : fmt["E.164"] };
+  return { "isValid" : true, "Format" : fmt["Domestic"]["Normal"] };
   //return {  "Valid" : true, "Countries" : countries, "Format" : fmt };
 }
 
@@ -192,6 +192,19 @@ function formatPhoneNumber(cc, number)
   var validJSON = isValidPhoneNumber(cc, number);
   if ( validJSON.isValid )
   {
+    var formattedNumber = validJSON['Format'];
+    var i = 0;
+    for (var j = 0; j < formattedNumber.length; ++j) {
+      if (formattedNumber[j] != '?')
+        continue;
+      formattedNumber = formattedNumber.substr(0, j) + number[i]
+        + formattedNumber.substr(j+1);
+      ++i;
+    }
+    validJSON['Format'] = formattedNumber;
+    return validJSON;
+
+    /*
       if ( cc === '1')
       {
           var formattedNumber = "(";
@@ -201,6 +214,7 @@ function formatPhoneNumber(cc, number)
           return {'isValid': true, 'Format': formattedNumber}
       }
         return {'isValid': true, 'Format': 'Not yet implemented'}
+    */
   }
   return {'isValid': false}
 }
