@@ -21,6 +21,7 @@ before_script:
 
 script:
 - jdk_switcher use oraclejdk8
+- npm test
 - nightwatch
 after_script:
 - pkill node

@@ -10,7 +10,12 @@ function validatePhone() {
     if (numOnly.test(number.toString())){
         xhttp.onreadystatechange = function () {
             if (this.readyState === 4 && this.status === 200) {
-                result.innerHTML = this.responseText;
+                var data = this.responseText;
+                var jsonRes = JSON.parse(data);
+                if(jsonRes["isValid"])
+                    result.innerHTML = "Phone number is valid!";
+                else
+                    result.innerHTML = "Phone number is invalid!";
             }
         };
     }
@@ -34,7 +39,12 @@ function formatPhone() {
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function () {
         if (this.readyState === 4 && this.status === 200) {
-            result.innerHTML = this.responseText;
+            var data = this.responseText;
+            var jsonRes = JSON.parse(data);
+            if(jsonRes["isValid"])
+                result.innerHTML = "Formatted Number: " + jsonRes["Format"];
+            else
+                result.innerHTML = "Your number is invalid!";
         }
     };
 
