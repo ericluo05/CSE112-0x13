@@ -1,4 +1,4 @@
-var data_g = require('./PhoneData.json');
+var data_g = require('../data/PhoneData.json');
 
 function handleError(msg) {
   return {  "isValid" : false, "Error" : msg  };
@@ -43,7 +43,7 @@ function isValidPhone(CC, PN) {
     return result;
 
   return handleError(data_g[CC]["Error"]);
-  
+
 }
 
 /**
@@ -53,7 +53,7 @@ function isValidPhone(CC, PN) {
  *
  * Usage: Check PN by first checking if its length is valid, then check
  *        further by using data on its length
- * 
+ *
  * Returns
  * {bool} "isValid": validity of PN
  * {string} "E.164 Format" : E.164 Format of PN (Unformatted PN)
@@ -74,7 +74,7 @@ function checkVL(PN, data) {
   for (var index_c in data_l["Countries"]) {
     var country = data_l["Countries"][index_c];
     var data_c = data_l[country];
-    
+
     // Check all possibilities of PN_Length in current country
     for (index_a in data_c["Areas"]) {
       var area = data_c["Areas"][index_a];
@@ -110,7 +110,7 @@ function checkVL(PN, data) {
           return handleError("Error: Invalid digits in " + PNSuffix);
         }
       }
-      
+
       // Check Error
       if ("Error" in data_a)
         return handleError(data_a["Error"]);
@@ -196,10 +196,78 @@ function formatPhoneNumber(cc, number)
   //return '+??? ??? ??? ????';
 }
 
-module.exports = {isValidPhone, 
+/**
+ * Parameters
+* cc: country code
+* number: phone number
+ *
+ * Returns
+ * {bool} isValid  - phone number is valid or not
+ * {string} E.164 Format  - correctly formatted phone number, or NA
+**/
+function isValidPhoneNumber(cc, number)
+{
+    if((typeof cc !==  'string') && (typeof number !== 'string'))
+        return {'isValid': false, 'E.164 Format': 'NA', "Error": "CC or nubmer is not a string"};
+
+    var i, length, c;
+    for(i = 0, len = cc.length; i < len; ++i )
+    {
+       c = cc.charCodeAt(i);
+       if(!(c > 47 && c < 58)) //contains non-alpha. char
+          return {'isValid': false, 'E.164 Format': 'NA', "Error": "CC Contains invalid character"};
+    }
+
+    for(i = 0, len = number.length; i < len; ++i )
+    {
+       c = number.charCodeAt(i);
+       if(!(c > 47 && c < 58)) //contains non-alpha. char
+          return {'isValid': false, 'E.164 Format': 'NA', "Error": "Number Contains invalid character"};
+    }
+
+    /* retval format:
+     * {  "isValid" : boolean,
+     *    "E.164 Format" : "+?*", // Only when isValid
+     *    "Error" : "*"           // Only when !isValid
+     * }
+     */
+    var retval = isValidPhone(cc, number);
+    // Format phone number if necessary here before returning
+    return retval;
+
+    /*
+    var valid = 'N/A';
+    var format = '+??? ??? ??? ????';
+    if(cc === '1')
+    {
+        valid = phoneGeneral.handlePhone_US(number);
+    }
+    else if( cc === '86')
+    {
+        valid = phoneGeneral.handlePhone_China(number);
+    }
+    else if( cc === '52')
+    {
+        valid = phoneGeneral.handlePhone_Mexico(number);
+    }
+    else
+    {
+    	valid = phoneGeneral.handlePhone_General(number);
+    }
+
+    if(valid)
+        return {'isValid': true, 'E.164 Format': phoneGeneral.formatPhoneNumber(cc, number)};
+    else
+        return {'isValid': false, 'E.164 Format': 'NA'};
+    */
+
+}
+
+module.exports = {isValidPhone,
                   handlePhone_US,
                   handlePhone_Mexico,
                   handlePhone_China,
                   handlePhone_General,
-                  formatPhoneNumber
+                  formatPhoneNumber,
+                  isValidPhoneNumber
                   };

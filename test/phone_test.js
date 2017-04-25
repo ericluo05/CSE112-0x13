@@ -1,5 +1,5 @@
 var assert = require('assert');
-var phoneGeneral = require('../routes/phone_general');
+var phoneGeneral = require('../calls/phone_general');
 
 var TestNumbers = {
   "United States" : {
@@ -51,7 +51,7 @@ var TestNumbers = {
 describe('Phone Number Test', function() {
 
   for (country in TestNumbers) {
-      
+
     describe(country, function() {
       var data_c = TestNumbers[country];
 
@@ -77,5 +77,3 @@ describe('Phone Number Test', function() {
     });
   }
 });
-
-
