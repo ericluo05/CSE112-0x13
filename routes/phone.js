@@ -18,15 +18,10 @@ router.get('/', function (req, res, next) {
 });
 
 router.post('/isValidPhone', function (req, res) {
-    var phoneNumber = {
-        country_code_0: req.query.country_code_0,
-        country_code_1: req.query.country_code_1,
-        number: req.query.number
-    };
 
-    if (req.query.country_code_1 && req.query.number)
+    if (req.query.cc && req.query.number)
      {
-         res.json(phoneGeneral.isValidPhoneNumber(req.query.country_code_1, req.query.number));
+         res.json(phoneGeneral.isValidPhoneNumber(req.query.cc, req.query.number));
      }
      else
      {
@@ -34,14 +29,18 @@ router.post('/isValidPhone', function (req, res) {
      }
 });
 
+/*
+*   returns - if number is valid, {isValid : bool, Format: string}
+*  if number is not valid {isValid: false}
+*
+*/
+
 router.post('/format', function(req, res)
 {
-    if(req.query.number)
-        res.json({'E.164 Format': 'Some kind of format here'});
+    if(req.query.cc && req.query.number)
+        res.json(phoneGeneral.formatPhoneNumber(req.query.cc, req.query.number));
     else
-        res.json({'E.164 Format': 'not available', 'Error': 'number is not present'});
-
+      res.json({'isValid': false, 'Error': 'cc or number missing'});
 });
-
 
 module.exports = router;

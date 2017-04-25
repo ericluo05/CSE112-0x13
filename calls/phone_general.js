@@ -189,11 +189,20 @@ function handlePhone_General(number)
  **/
 function formatPhoneNumber(cc, number)
 {
-  if (number.length === 11)
-    return '+?? ???????????';
-  return '+?? ??? ???????';
-
-  //return '+??? ??? ??? ????';
+  var validJSON = isValidPhoneNumber(cc, number);
+  if ( validJSON.isValid )
+  {
+      if ( cc === '1')
+      {
+          var formattedNumber = "(";
+          formattedNumber += number.substring(0,3) +")";
+          formattedNumber += number.substring(3,6) +"-";
+          formattedNumber += number.substring(6,10);
+          return {'isValid': true, 'Format': formattedNumber}
+      }
+        return {'isValid': true, 'Format': 'Not yet implemented'}
+  }
+  return {'isValid': false}
 }
 
 /**
@@ -203,7 +212,8 @@ function formatPhoneNumber(cc, number)
  *
  * Returns
  * {bool} isValid  - phone number is valid or not
- * {string} E.164 Format  - correctly formatted phone number, or NA
+ * {string} E.164 Format  - correctly formatted phone number if phone number is valid
+ * {string} Error - error msg if exist
 **/
 function isValidPhoneNumber(cc, number)
 {
