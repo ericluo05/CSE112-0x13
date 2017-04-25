@@ -1,13 +1,14 @@
 define({
-  "name": "",
+  "name": "CSE 112 TEAM 0x13",
   "version": "0.0.0",
-  "description": "",
+  "description": "Team Documentation Page",
+  "title": "Team 0x13 Documentation Page",
   "sampleUrl": false,
   "defaultVersion": "0.0.0",
   "apidoc": "0.3.0",
   "generator": {
     "name": "apidoc",
-    "time": "2017-04-21T04:56:30.446Z",
+    "time": "2017-04-25T21:00:38.219Z",
     "url": "http://apidocjs.com",
     "version": "0.17.5"
   }

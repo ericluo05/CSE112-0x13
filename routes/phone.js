@@ -2,21 +2,27 @@ var express = require('express');
 var router = express.Router();
 var phoneGeneral = require('../calls/phone_general');
 
-/**
- * @api {get} /phone  Respond with whether the number is valid or not, also formats it
- * @apiName ???
- * @apiGroup ???
- *
- * @apiParam {String} cc countryCode without + in front .
- * @apiParam {String} number Phone number.
- *
- * @apiSuccess {Boolean} textOutput whether bar is 'baz'
- *
- */
+
+
+
 router.get('/', function (req, res, next) {
     res.render('phone', { title: 'Team 0x13 ' });
 });
 
+
+/**
+ * @api {get} /phone PhoneValidator
+ * @apiName phoneValid
+ * @apiGroup PhoneApps
+ *
+ * @apiDescription Respond with whether the number is valid or not, also formats it
+ *
+ * @apiParam {String} cc countryCode without + in front .
+ * @apiParam {String} number Phone number.
+ *
+ * @apiSuccess {String} FormatedPhone a string that is the formatted version of the passed in number
+ * @apiSuccess {Boolean} isPhoneValid Whether the number is valid or not
+ */
 router.post('/isValidPhone', function (req, res) {
 
     if (req.query.cc && req.query.number)
@@ -25,15 +31,25 @@ router.post('/isValidPhone', function (req, res) {
      }
      else
      {
-         res.json({'isValid': false, 'E.164 Format': 'NA'});
+         res.json({'isPhoneValid': false, 'E.164 Format': 'NA'});
      }
 });
 
-/*
-*   returns - if number is valid, {isValid : bool, Format: string}
-*  if number is not valid {isValid: false}
-*
-*/
+
+
+/**
+ * @api {get} /phone PhoneFormatter
+ * @apiName phoneFormat
+ * @apiGroup PhoneApps
+ *
+ * @apiDescription Formats a number
+ *
+ * @apiParam {String} cc countryCode without + in front .
+ * @apiParam {String} number Phone number.
+ *
+ * @apiSuccess {String} FormatedPhone a string that is the formatted version of the passed in number if isPhoneValid is false this returns an error.
+ * @apiSuccess {Boolean} isPhoneValid Whether the number is valid or not.
+ */
 
 router.post('/format', function(req, res)
 {
