@@ -83,3 +83,8 @@ $RECYCLE.BIN/
 
 # Windows shortcuts
 *.lnk
+
+#Webstorm config files
+.idea
+
+reports/
