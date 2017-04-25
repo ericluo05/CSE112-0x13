@@ -5,7 +5,7 @@ function validatePhone() {
     var result =   document.getElementById("ResultText");
     var xhttp = new XMLHttpRequest();
 
-    var numOnly = /^\d+$/g; // regex used to check if the phone number is numeric only
+    var numOnly = /^\d/g; // regex used to check if the phone number is numeric only
 
     if (numOnly.test(number.toString())){
         xhttp.onreadystatechange = function () {
