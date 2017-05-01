@@ -30,7 +30,7 @@
         "path" : ""
       },
       "desiredCapabilities": {
-        "browserName": "safari",
+        "browserName": "firefox",
         "marionette": true
       }
     },
@@ -41,7 +41,7 @@
       }
     },
 
-    "gecko" : {
+    "firefox" : {
       "desiredCapabilities": {
         "browserName":"Firefox"
       }
