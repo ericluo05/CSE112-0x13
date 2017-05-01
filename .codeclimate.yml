@@ -11,6 +11,7 @@ ratings:
   paths:
   - calls/**
   - public/**
+  - test/**
   - views/**
   - routes/**
 exclude_paths:
