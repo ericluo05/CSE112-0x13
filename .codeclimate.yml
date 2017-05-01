@@ -16,3 +16,4 @@ ratings:
   - routes/**
 exclude_paths:
 - doc/**/
+- data/**
