@@ -88,3 +88,7 @@ $RECYCLE.BIN/
 .idea
 
 reports/
+
+#Test Coverage files
+.nyc_output/*
+coverage/*

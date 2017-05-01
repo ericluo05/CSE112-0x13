@@ -25,12 +25,12 @@ before_script:
 script:
 - jdk_switcher use oraclejdk8
 - npm test
-- nightwatch
+- npm run e2e
 after_script:
 - pkill node
 after_success:
   - npm install -g codeclimate-test-reporter
-  - codeclimate-test-reporter < lcov.info
+  - codeclimate-test-reporter < coverage/lcov.info
 deploy:
   provider: heroku
   api_key:

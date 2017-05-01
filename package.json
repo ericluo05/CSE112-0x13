@@ -4,8 +4,8 @@
   "private": true,
   "scripts": {
     "start": "node ./bin/www",
-    "test": "mocha",
-	"e2e" : "nightwatch"
+    "test": "nyc mocha",
+    "e2e": "nightwatch"
   },
   "dependencies": {
     "body-parser": "~1.17.1",
@@ -20,7 +20,12 @@
     "jshint": "^2.9.4",
     "mocha": "^3.2.0",
     "morgan": "~1.8.1",
-    "serve-favicon": "~2.4.2",
-    "nightwatch": "^0.9.14"
+    "nightwatch": "^0.9.14",
+    "serve-favicon": "~2.4.2"
+  },
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "istanbul": "^0.4.5",
+    "nyc": "^10.3.0"
   }
 }
