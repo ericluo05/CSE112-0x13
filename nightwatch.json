@@ -14,7 +14,8 @@
     "cli_args" : {
       "webdriver.chrome.driver" : "",
       "webdriver.gecko.driver" : "",
-      "webdriver.edge.driver" : ""
+      "webdriver.edge.driver" : "",
+      "webdriver.safari.driver" : ""
     }
   },
 
@@ -29,7 +30,7 @@
         "path" : ""
       },
       "desiredCapabilities": {
-        "browserName": "chrome",
+        "browserName": "safari",
         "marionette": true
       }
     },
@@ -40,15 +41,21 @@
       }
     },
 
+    "gecko" : {
+      "desiredCapabilities": {
+        "browserName":"Firefox"
+      }
+    },
+
     "edge" : {
       "desiredCapabilities": {
         "browserName": "MicrosoftEdge"
       }
     },
 
-    "firefox" : {
+    "safari" : {
       "desiredCapabilities": {
-        "browserName":"Firefox"
+        "browserName":"Safari"
       }
     }
   }

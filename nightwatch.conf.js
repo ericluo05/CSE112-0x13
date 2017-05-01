@@ -4,6 +4,7 @@ module.exports = function (settings) {
   if (process.platform === "darwin") {
     settings.selenium.cli_args["webdriver.chrome.driver"] = "./drivers/selenium/chrome/mac64/chromedriver";
     settings.selenium.cli_args["webdriver.gecko.driver"] = "./drivers/selenium/firefox/mac64/geckodriver";
+    settings.selenium.cli_args["webdriver.safari.driver"] = "/usr/bin/safaridriver";
   }
   else if (process.platform === "win32" || process.platform === "win64") {
     settings.selenium.cli_args["webdriver.chrome.driver"] = "./drivers/selenium/chrome/win32/chromedriver.exe";
