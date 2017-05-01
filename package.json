@@ -4,8 +4,8 @@
   "private": true,
   "scripts": {
     "start": "node ./bin/www",
-    "test": "nyc  --reporter=lcov  mocha",
-	"cover": "istanbul check-cover _mocha",
+    "test": "nyc --reporter=lcov mocha",
+	"coverage": "nyc report",
     "e2e": "nightwatch",
 	"sendCoverage" : "codeclimate-test-reporter < coverage/lcov.info"
   },
