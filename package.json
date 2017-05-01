@@ -4,8 +4,19 @@
   "private": true,
   "scripts": {
     "start": "node ./bin/www",
-    "test": "nyc mocha",
-    "e2e": "nightwatch"
+    "test": "nyc  --reporter=lcov  mocha",
+	"cover": "istanbul check-cover _mocha",
+    "e2e": "nightwatch",
+	"sendCoverage" : "codeclimate-test-reporter < coverage/lcov.info"
+  },
+  "nyc": {
+    "exclude": [
+      "node_modules",
+      "bin",
+      "coverage",
+      "test/fixtures/coverage.js",
+      "test/build/*"
+    ]
   },
   "dependencies": {
     "body-parser": "~1.17.1",
@@ -13,19 +24,18 @@
     "debug": "~2.6.3",
     "ejs": "~2.5.6",
     "express": "~4.15.2",
-    "gulp": "^3.9.1",
     "gulp-apidoc": "^0.2.6",
     "gulp-jshint": "^2.0.4",
     "gulp-mocha": "^4.3.0",
     "jshint": "^2.9.4",
-    "mocha": "^3.2.0",
     "morgan": "~1.8.1",
-    "nightwatch": "^0.9.14",
     "serve-favicon": "~2.4.2"
   },
   "devDependencies": {
+    "mocha": "^3.2.0",
     "gulp": "^3.9.1",
     "istanbul": "^0.4.5",
-    "nyc": "^10.3.0"
+    "nyc": "^10.3.0",
+	"nightwatch": "^0.9.14"
   }
 }

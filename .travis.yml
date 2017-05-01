@@ -43,5 +43,5 @@ notifications:
   slack:
     rooms:
       - team19-0x13:WRjeky69LMpBdaajFINEwCTP#travisci
-    on_success: change
+    on_success: always
     on_failure: always
