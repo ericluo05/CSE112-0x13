@@ -30,14 +30,14 @@
         "path" : ""
       },
       "desiredCapabilities": {
-        "browserName": "chrome",
+        "browserName": "safari",
         "marionette": true
       }
     },
 
-    "chrome" : {
+    "safari" : {
       "desiredCapabilities": {
-        "browserName": "chrome"
+        "browserName":"Safari"
       }
     }
   }
