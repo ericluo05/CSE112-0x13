@@ -1,0 +1,4 @@
+**/*.js
+!routes/*.js
+!test/*.js
+!calls/*.js
