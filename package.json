@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": " node app.js",
+    "start": " node ./bin/www",
     "test": "nyc --reporter=lcov mocha",
     "coverage": "nyc report",
     "e2e": "nightwatch",
