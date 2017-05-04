@@ -12,7 +12,7 @@
     "log_path" : "",
     "port" : 4444,
     "cli_args" : {
-      "webdriver.edge.driver" : "./drivers/selenium/edge/MicrosoftWebDriver.exe",
+      "webdriver.edge.driver" : "./drivers/selenium/edge/MicrosoftWebDriver.exe"
     }
   },
 
@@ -33,7 +33,8 @@
 
     "MicrosoftEdge" : {
       "desiredCapabilities": {
-        "browserName": "MicrosoftEdge"
+        "browserName":"MicrosoftEdge",
+		"javascriptEnabled": true
       }
     }
   }

@@ -7,6 +7,7 @@ module.exports = function(settings) {
   } else if (process.platform === 'win32' || process.platform === 'win64') {
     settings.selenium.cli_args['webdriver.chrome.driver'] = './drivers/selenium/chrome/win32/chromedriver.exe';
     settings.selenium.cli_args['webdriver.gecko.driver'] = './drivers/selenium/firefox/win32/geckodriver.exe';
+    settings.selenium.cli_args['webdriver.edge.driver'] = './drivers/selenium/edge/MicrosoftWebDriver.exe';
   } else if (process.platform === 'linux' ) {
     settings.selenium.cli_args['webdriver.chrome.driver'] = './drivers/selenium/chrome/linux64/chromedriver';
     settings.selenium.cli_args['webdriver.gecko.driver'] = './drivers/selenium/firefox/linux64/geckodriver';
