@@ -11,7 +11,13 @@ ratings:
   paths:
   - calls/**
   - public/**
+  - test/**
   - views/**
   - routes/**
 exclude_paths:
 - doc/**/
+- data/**
+- ./*.js
+- ./routes/phone.js
+- ./test/phone_test.js
+- ./calls/phone_general.js
