@@ -12,10 +12,7 @@
     "log_path" : "",
     "port" : 4444,
     "cli_args" : {
-      "webdriver.chrome.driver" : "",
-      "webdriver.gecko.driver" : "./drivers/selenium/firefox/win32/geckodriver.exe",
-      "webdriver.edge.driver" : "",
-      "webdriver.safari.driver" : ""
+      "webdriver.ie.driver" : ""
     }
   },
 
@@ -30,14 +27,14 @@
         "path" : ""
       },
       "desiredCapabilities": {
-        "browserName": "firefox",
-        "marionette": true
+        "browserName": "InternetExplorer"
       }
     },
 
-    "firefox" : {
+    "InternetExplorer" : {
       "desiredCapabilities": {
-        "browserName":"Firefox"
+        "browserName":"InternetExplorer",
+		"javascriptEnabled": true
       }
     }
   }
