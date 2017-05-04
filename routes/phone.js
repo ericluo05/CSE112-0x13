@@ -11,7 +11,7 @@ router.get('/', function (req, res, next) {
 
 
 /**
- * @api {get} /phone PhoneValidator
+ * @api {get} /phone/isValidPhone PhoneValidator
  * @apiName phoneValid
  * @apiGroup PhoneApps
  *
@@ -38,7 +38,7 @@ router.post('/isValidPhone', function (req, res) {
 
 
 /**
- * @api {get} /phone PhoneFormatter
+ * @api {get} /phone/format PhoneFormatter
  * @apiName phoneFormat
  * @apiGroup PhoneApps
  *

@@ -37,7 +37,7 @@ define({ "api": [
   },
   {
     "type": "get",
-    "url": "/phone",
+    "url": "/phone/format",
     "title": "PhoneFormatter",
     "name": "phoneFormat",
     "group": "PhoneApps",
@@ -88,7 +88,7 @@ define({ "api": [
   },
   {
     "type": "get",
-    "url": "/phone",
+    "url": "/phone/isValidPhone",
     "title": "PhoneValidator",
     "name": "phoneValid",
     "group": "PhoneApps",

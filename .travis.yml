@@ -5,6 +5,10 @@ cache: yarn
 sudo: required
 os: linux
 dist: trusty
+addons:
+    code_climate:
+        repo_token: 4d53c65fda9dd3b1fbdfc7eb366d294fb37e5b457a4770eacbb41bc8fa74f370
+    firefox: "49.0"
 before_install:
 - if [ "$TRAVIS_OS_NAME" == "linux" ]; then export CHROME_BIN=/usr/bin/google-chrome; fi
 - if [ "$TRAVIS_OS_NAME" == "linux" ]; then export DISPLAY=:99.0; fi
@@ -21,11 +25,13 @@ before_script:
 
 script:
 - jdk_switcher use oraclejdk8
-- npm test
-- nightwatch
+- gulp
+- npm run e2e
 after_script:
 - pkill node
-
+after_success:
+  - npm install -g codeclimate-test-reporter
+  - codeclimate-test-reporter < coverage/lcov.info
 deploy:
   provider: heroku
   api_key:
@@ -35,3 +41,8 @@ deploy:
     repo: ericluo05/CSE112-0x13
 notifications:
   email: false
+  slack:
+    rooms:
+      - team19-0x13:WRjeky69LMpBdaajFINEwCTP#travisci
+    on_success: always
+    on_failure: always

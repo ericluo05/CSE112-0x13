@@ -1,6 +1,6 @@
-var express = require('express');
-var fooAPI = require('../calls/fooAPI')
-var router = express.Router();
+let express = require('express');
+var fooAPI = require('../calls/fooAPI');
+let router = express.Router();
 
 
 function foo(bar)

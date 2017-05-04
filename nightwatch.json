@@ -14,7 +14,8 @@
     "cli_args" : {
       "webdriver.chrome.driver" : "",
       "webdriver.gecko.driver" : "",
-      "webdriver.edge.driver" : ""
+      "webdriver.edge.driver" : "",
+      "webdriver.safari.driver" : ""
     }
   },
 
@@ -37,12 +38,6 @@
     "chrome" : {
       "desiredCapabilities": {
         "browserName": "chrome"
-      }
-    },
-
-    "edge" : {
-      "desiredCapabilities": {
-        "browserName": "MicrosoftEdge"
       }
     }
   }
