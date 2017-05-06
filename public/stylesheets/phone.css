@@ -1,0 +1,105 @@
+body{
+    background: url('../image/phone.jpg');
+    background-size: cover;                     
+    background-repeat: no-repeat;
+    background-position: top left; 
+}
+.container{
+    margin: 100px auto;
+    text-align: center;
+    border:1px solid black;
+    background-color: white;
+    opacity: 0.93;
+    display: table;
+    
+}
+
+/* text inside placeholder*/
+::-webkit-input-placeholder{
+    color:darkgray;
+}
+h1{
+    font-size: 20px;
+}
+
+select{
+    color: white;
+}
+
+.waves-effect.waves-teal-lighten-5.waves-ripple {
+    background-color: blue;
+}
+
+
+#number:focus{
+  border-bottom: 1px solid orange;
+  box-shadow: 0 1px 0 0 orange;  
+}
+#telnum:focus {
+  border-bottom: 1px solid orange;
+  box-shadow: 0 1px 0 0 orange;
+}
+
+#vselector{
+    margin: 0px 20px 0px 0px;
+    display: inline-block;
+}
+#vinput{
+    margin: 0px 20px 0px 0px;
+    display: inline-block;
+}
+#validbtn{
+    margin: 0px 20px 0px 0px;
+    margin: 10px auto;
+    display: inline-block;
+
+}
+
+#fselector{
+    margin: 0px 20px 0px 0px;
+    display: inline-block;
+}
+#finput{
+    margin: 0px 20px 0px 0px;
+    display: inline-block;    
+}
+#formatbtn{
+    margin: 0px 20px 0px 0px;
+    margin: 10px auto;
+    display: inline-block;
+}
+
+#res{
+    margin: 10px auto;
+    display: inline-block;
+    padding: 0em 10em 0 10em;
+    border: 2px solid orange;
+    text-align: center;
+}
+
+@media (max-width: 700px) {
+
+    #vselector{
+        display:inline-block;
+    }
+    #vinput{
+        display:inline-block;
+    }
+    #validbtn{
+        margin: 10px auto;
+        display: block;
+    }
+
+    #fselector{
+        display:inline-block;
+    }
+    #finput{
+        display:inline-block;
+    }
+    #formatbtn{
+        margin: 10px auto;
+        display: block;
+    }
+
+}
+        
