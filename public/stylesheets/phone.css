@@ -20,12 +20,30 @@ body{
 }
 h1{
     font-size: 20px;
+    color: black !important;
 }
 
 select{
     color: white;
 }
 
+.navteam{
+    font-size: 20px;
+}
+#teamname{
+    margin-left: 20px;
+    margin-right:15px;
+}
+#gitlogo{
+    margin-left: 15px;
+    margin-right: 20px;
+}
+.alignleft {
+	float: left;
+}
+.alignright {
+	float: right;
+}
 .waves-effect.waves-teal-lighten-5.waves-ripple {
     background-color: blue;
 }
@@ -100,6 +118,6 @@ select{
         margin: 10px auto;
         display: block;
     }
-
+    
 }
         
