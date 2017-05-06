@@ -32,12 +32,12 @@ select{
 
 
 #number:focus{
-  border-bottom: 1px solid orange;
-  box-shadow: 0 1px 0 0 orange;  
+  border-bottom: 1px solid teal;
+  box-shadow: 0 1px 0 0 teal;  
 }
 #telnum:focus {
-  border-bottom: 1px solid orange;
-  box-shadow: 0 1px 0 0 orange;
+  border-bottom: 1px solid teal;
+  box-shadow: 0 1px 0 0 teal;
 }
 
 #vselector{
@@ -73,7 +73,7 @@ select{
     margin: 10px auto;
     display: inline-block;
     padding: 0em 10em 0 10em;
-    border: 2px solid orange;
+    border: 2px solid teal;
     text-align: center;
 }
 
