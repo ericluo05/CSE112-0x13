@@ -8,8 +8,8 @@
     "coverage": "nyc report",
     "e2e": "nightwatch",
     "e2e_firefox": "nightwatch --config nightwatch_firefox.json",
-	"e2e_edge": "nightwatch --config nightwatch_edge.json",
-	"e2e_ie": "nightwatch --config nightwatch_ie.json",
+    "e2e_edge": "nightwatch --config nightwatch_edge.json",
+    "e2e_ie": "nightwatch --config nightwatch_ie.json",
     "e2e_safari": "nightwatch --config nightwatch_safari.json",
     "sendCoverage": "codeclimate-test-reporter < coverage/lcov.info",
     "eslint": "eslint --fix ./*.js"
@@ -37,6 +37,7 @@
     "serve-favicon": "~2.4.2"
   },
   "devDependencies": {
+    "babel-preset-env": "^1.4.0",
     "eslint": "^3.19.0",
     "eslint-config-google": "^0.7.1",
     "gulp": "^3.9.1",
