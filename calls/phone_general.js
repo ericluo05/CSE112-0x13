@@ -147,5 +147,4 @@ function formatPhoneNumber(cc, number)
     return {'isValid': false}
 }
 
-
 module.exports = { isValidPhone, formatPhoneNumber };
