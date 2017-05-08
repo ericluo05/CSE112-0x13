@@ -69,7 +69,7 @@ module.exports = {
         // 'dot-location': 0,
         // 'dot-notation': 0,
         // 'eqeqeq': 0,
-        'guard-for-in': 2,
+       // 'guard-for-in': 2,
         // 'no-alert': 0,
         'no-caller': 2,
         // 'no-case-declarations': 2, // eslint:recommended
@@ -166,7 +166,7 @@ module.exports = {
         'array-bracket-spacing': [2, 'never'],
         // 'block-spacing': 0,
         'brace-style': 2,
-        'camelcase': [2, {properties: 'never'}],
+       // 'camelcase': [2, {properties: 'never'}],
         'comma-dangle': [2, 'always-multiline'],
         'comma-spacing': 2,
         'comma-style': 2,
@@ -191,7 +191,7 @@ module.exports = {
         // 'lines-around-directive': 0,
         // 'max-depth': 0,
         'max-len': [2, {
-            code: 80,
+            code: 100,
             tabWidth: 2,
             ignoreUrls: true,
             ignorePattern: '^goog\.(module|require)',
@@ -203,7 +203,7 @@ module.exports = {
         // 'max-statements': 0,
         // 'multiline-ternary': 0,
         // operator appearing at the end of the line.
-        'new-cap': 2,
+        // 'new-cap': 2,
         // 'new-parens': 0,
         // 'newline-after-var': 0,
         // 'newline-before-return': 0,

@@ -99,20 +99,21 @@ let ValidNumberTest = {
 };
 
 describe('Phone Number Test', function() {
+  let country;
   for (country in ValidNumberTest) {
     describe(country, function() {
       let data_c = ValidNumberTest[country];
 
       for (validity in data_c) {
-        var data_v = data_c[validity];
+        let data_v = data_c[validity];
 
         describe(validity, function() {
           let expected = data_v['Expected'];
           let cases = data_v['Cases'];
 
           for (let index_c = 0; index_c < cases.length; ++index_c) {
-            var CC = cases[index_c][0];
-            var PN = cases[index_c][1];
+            let CC = cases[index_c][0];
+            let PN = cases[index_c][1];
             let PN_f = '+' + CC + '\t' + PN;
 
             describe(PN_f + ':', function() {
