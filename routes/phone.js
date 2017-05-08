@@ -40,7 +40,8 @@ router.post('/isValidPhone', function(req, res) {
  * @apiParam {String} cc countryCode without + in front .
  * @apiParam {String} number Phone number.
  *
- * @apiSuccess {String} FormatedPhone a string that is the formatted version of the passed in number if isPhoneValid is false this returns an error.
+ * @apiSuccess {String} FormatedPhone a string that is the formatted version of the passed in
+ *     number if isPhoneValid is false this returns an error.
  * @apiSuccess {Boolean} isPhoneValid Whether the number is valid or not.
  */
 
