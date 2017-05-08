@@ -2,10 +2,10 @@ let assert = require('assert');
 let phoneGeneral = require('../calls/phone_general');
 
 let ValidNumberTest = {
-  'United States' : {
-    'Valid Numbers' : {
-      'Expected' : true,
-      'Cases' : [
+  'United States': {
+    'Valid Numbers': {
+      'Expected': true,
+      'Cases': [
                   ['1', '8581234567'],
                   ['1', '5101234567'],
                   ['1', '9259876543'],
@@ -14,19 +14,19 @@ let ValidNumberTest = {
                   ['1', '7757591094'],
                 ],
     },
-    'Invalid Numbers' : {
-      'Expected' : false,
-      'Cases' : [
+    'Invalid Numbers': {
+      'Expected': false,
+      'Cases': [
                   ['1', '85859876543'],
                   ['1', '510876543'],
                   ['1', '4311987653'],
                 ],
     },
   },
-  'Mexico' : {
-    'Valid Numbers' : {
-      'Expected' : true,
-      'Cases' : [
+  'Mexico': {
+    'Valid Numbers': {
+      'Expected': true,
+      'Cases': [
                   ['52', '020'],
                   ['52', '072'],
                   ['52', '5512345678'],
@@ -38,9 +38,9 @@ let ValidNumberTest = {
                   ['52', '7222375091'],
                 ],
     },
-    'Invalid Numbers' : {
-      'Expected' : false,
-      'Cases' : [
+    'Invalid Numbers': {
+      'Expected': false,
+      'Cases': [
                   ['52', '021'],
                   ['52', '0201'],
                   ['52', '1234567890'],
@@ -50,10 +50,10 @@ let ValidNumberTest = {
                 ],
     },
   },
-  'China' : {
-    'Valid Numbers' : {
-      'Expected' : true,
-      'Cases' : [
+  'China': {
+    'Valid Numbers': {
+      'Expected': true,
+      'Cases': [
                   ['86', '110'],
                   ['86', '119'],
                   ['86', '12300'],
@@ -75,9 +75,9 @@ let ValidNumberTest = {
                   ['86', '17162849240'],
                 ],
     },
-    'Invalid Numbers' : {
-      'Expected' : false,
-      'Cases' : [
+    'Invalid Numbers': {
+      'Expected': false,
+      'Cases': [
                   ['86', '111'],
                   ['86', '121'],
                   ['86', '12411'],
@@ -99,7 +99,6 @@ let ValidNumberTest = {
 };
 
 describe('Phone Number Test', function() {
-
   for (country in ValidNumberTest) {
     describe(country, function() {
       let data_c = ValidNumberTest[country];
@@ -131,46 +130,43 @@ describe('Phone Number Test', function() {
     describe('Invalid Phone Number', function() {
         it('Expected: 9991231-34 to be invalid phone number', function() {
             let res = phoneGeneral.isValidPhone('1', '9991231-34');
-            assert.equal(false,res['isValid']);
+            assert.equal(false, res['isValid']);
         });
 
         it('Expected: CC=1 Areacode = 999 be invalid', function() {
             let res = phoneGeneral.isValidPhone('1', '9991231-34');
-            assert.equal('Area Code Not Valid',res['Error']);
+            assert.equal('Area Code Not Valid', res['Error']);
         });
 
         it('Expected: CC=9 tobe invalid', function() {
             let res = phoneGeneral.isValidPhone('9', '9991231-34');
-            assert.equal('Unable to find info with Country Code: 9',res['Error']);
+            assert.equal('Unable to find info with Country Code: 9', res['Error']);
         });
 
         it('Expected Error: Area Code Not valid', function() {
             let res = phoneGeneral.isValidPhone('1', '5691231234');
-            assert.equal('Area Code Not Valid',res['Error']);
+            assert.equal('Area Code Not Valid', res['Error']);
         });
 
         it('Expected Error: Invalid Number', function() {
             let res = phoneGeneral.isValidPhone('1', '56212312345');
-            assert.equal('CC_1 Error(Last): Invalid Number',res['Error']);
+            assert.equal('CC_1 Error(Last): Invalid Number', res['Error']);
         });
     });
-
-
 });
 
 describe('Format Phone', function() {
     describe('US', function() {
         it('Expected: (562)213-1234', function() {
-            let res = phoneGeneral.formatPhoneNumber('1','5622131234');
-            assert.equal('(562)213-1234',res['Format']);
+            let res = phoneGeneral.formatPhoneNumber('1', '5622131234');
+            assert.equal('(562)213-1234', res['Format']);
         });
 
         it('Invalid CC', function() {
-            let res = phoneGeneral.formatPhoneNumber('15','9992131234');
-            assert.equal(false,res['isValid']);
+            let res = phoneGeneral.formatPhoneNumber('15', '9992131234');
+            assert.equal(false, res['isValid']);
         });
     });
-
 });
 
 

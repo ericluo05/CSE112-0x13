@@ -22,9 +22,9 @@ router.get('/', function(req, res, next) {
  * @apiSuccess {Boolean} isPhoneValid Whether the number is valid or not
  */
 router.post('/isValidPhone', function(req, res) {
-    if (req.query.cc && req.query.number)     {
+    if (req.query.cc && req.query.number) {
          res.json(phoneGeneral.isValidPhone(req.query.cc, req.query.number));
-     }     else     {
+     } else {
          res.json({'isPhoneValid': false, 'E.164 Format': 'NA'});
      }
 });
@@ -44,7 +44,7 @@ router.post('/isValidPhone', function(req, res) {
  * @apiSuccess {Boolean} isPhoneValid Whether the number is valid or not.
  */
 
-router.post('/format', function(req, res){
+router.post('/format', function(req, res) {
     if(req.query.cc && req.query.number)
         res.json(phoneGeneral.formatPhoneNumber(req.query.cc, req.query.number));
     else
