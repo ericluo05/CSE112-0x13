@@ -38,6 +38,7 @@ gulp.task('lint', () => {
 /**
 * CSS Lint Checker using StyleLint
 */
+gulp.task('stylelint', function lintCssTask() {
   const gulpStylelint = require('gulp-stylelint');
   return gulp
     .src('public/stylesheets/*.css')
@@ -71,4 +72,5 @@ gulp.task('apidoc', function(done){
 
 //gulp.task('default', ['mocha', 'apidoc']);
 //gulp.task('default', ['lint', 'mocha', 'apidoc']);
+gulp.task('default', ['stylelint']);
 //gulp.task('default', ['lint', 'mocha', 'apidoc','csslint']);
