@@ -2,12 +2,14 @@ var gulp = require('gulp'),
    jshint = require('gulp-jshint'),
     apidoc = require('gulp-apidoc'),
     eslint = require('gulp-eslint'),
-    mocha = require('gulp-mocha');
-  
+    mocha = require('gulp-mocha'),
+    babel = require('gulp-babel'),
+    print = require('gulp-print');    // for printing
+
 /**
 * Lint Checker
 */
-gulp.task('lint', function () {
+gulp.task('lint', () => {
    gulp.src('./**/*.js')
       .pipe(jshint())
 })
@@ -23,7 +25,7 @@ gulp.task('mocha', () =>
 /**
 * Run documentation generator
 */
-gulp.task('apidoc', function(done){
+gulp.task('apidoc', (done) => {
    apidoc({
       src: "routes/",
       dest: "doc/"
@@ -50,6 +52,17 @@ gulp.task('lint', () => {
         // lint error, return the stream and pipe to failAfterError last.
         .pipe(eslint.failAfterError());
 });
+
+
+/*
+* Babel Transpiler support
+*/
+gulp.task('babel', () => {
+  return gulp.src(['**/*.js','!node_modules/**', '!doc/**'])
+        .pipe(print())
+        .pipe(babel({ presets: ['es2015'] }))
+        .pipe(gulp.dest('build/es5'));
+})
 
 
 gulp.task('default', ['lint', 'mocha', 'apidoc']);
