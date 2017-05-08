@@ -1,12 +1,10 @@
-var express = require('express');
-var router = express.Router();
-var phoneGeneral = require('../calls/phone_general');
+let express = require('express');
+let router = express.Router();
+let phoneGeneral = require('../calls/phone_general');
 
 
-
-
-router.get('/', function (req, res, next) {
-    res.render('phone', { title: 'Team 0x13 ' });
+router.get('/', function(req, res, next) {
+    res.render('phone', {title: 'Team 0x13 '});
 });
 
 
@@ -23,18 +21,13 @@ router.get('/', function (req, res, next) {
  * @apiSuccess {String} FormatedPhone a string that is the formatted version of the passed in number
  * @apiSuccess {Boolean} isPhoneValid Whether the number is valid or not
  */
-router.post('/isValidPhone', function (req, res) {
-
-    if (req.query.cc && req.query.number)
-     {
+router.post('/isValidPhone', function(req, res) {
+    if (req.query.cc && req.query.number)     {
          res.json(phoneGeneral.isValidPhoneNumber(req.query.cc, req.query.number));
-     }
-     else
-     {
+     }     else     {
          res.json({'isPhoneValid': false, 'E.164 Format': 'NA'});
      }
 });
-
 
 
 /**
@@ -51,8 +44,7 @@ router.post('/isValidPhone', function (req, res) {
  * @apiSuccess {Boolean} isPhoneValid Whether the number is valid or not.
  */
 
-router.post('/format', function(req, res)
-{
+router.post('/format', function(req, res){
     if(req.query.cc && req.query.number)
         res.json(phoneGeneral.formatPhoneNumber(req.query.cc, req.query.number));
     else

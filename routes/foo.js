@@ -1,5 +1,5 @@
 let express = require('express');
-var fooAPI = require('../calls/fooAPI');
+let foo = require('../calls/fooAPI');
 let router = express.Router();
 
 
@@ -21,7 +21,7 @@ function foo(bar)
  */
 router.get('/', function(req, res, next)
 {
-   if (fooAPI.foo(req.query.bar))
+   if (foo(req.query.bar))
    {
       res.writeHead(200, {'Content-Type': 'text/plain'});
       res.end('true');

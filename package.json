@@ -41,6 +41,7 @@
     "eslint": "^3.19.0",
     "eslint-config-google": "^0.7.1",
     "gulp": "^3.9.1",
+    "gulp-eslint": "^3.0.1",
     "istanbul": "^0.4.5",
     "mocha": "^3.2.0",
     "nightwatch": "^0.9.14",
