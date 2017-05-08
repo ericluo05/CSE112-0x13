@@ -1,5 +1,5 @@
 let express = require('express');
-let foo = require('../calls/fooAPI');
+require('../calls/fooAPI');
 let router = express.Router();
 
 

@@ -23,7 +23,7 @@ router.get('/', function(req, res, next) {
  */
 router.post('/isValidPhone', function(req, res) {
     if (req.query.cc && req.query.number)     {
-         res.json(phoneGeneral.isValidPhoneNumber(req.query.cc, req.query.number));
+         res.json(phoneGeneral.isValidPhone(req.query.cc, req.query.number));
      }     else     {
          res.json({'isPhoneValid': false, 'E.164 Format': 'NA'});
      }
