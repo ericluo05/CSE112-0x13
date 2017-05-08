@@ -106,13 +106,13 @@ function checkVL(PN, data) {
           var suffix = data_a["Suffix_Regex"][index_s];
           if (regexCheck(PNSuffix, suffix))
             return handleSuccess([country],data_a["Display_Format"]);
-          return handleError("Error: Invalid digits in " + PNSuffix);
+         // return handleError("Error: Invalid digits in " + PNSuffix);
         }
       }
 
       // Check Error
-      if ("Error" in data_a)
-        return handleError(data_a["Error"]);
+     // if ("Error" in data_a)
+     //   return handleError(data_a["Error"]);
     }
     // Check Error
     if ("Error" in data_c)
