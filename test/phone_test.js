@@ -1,5 +1,5 @@
 let assert = require('assert');
-var phoneGeneral = require('../calls/phone_general');
+let phoneGeneral = require('../calls/phone_general');
 
 let ValidNumberTest = {
   'United States' : {
@@ -101,7 +101,6 @@ let ValidNumberTest = {
 describe('Phone Number Test', function() {
 
   for (country in ValidNumberTest) {
-
     describe(country, function() {
       let data_c = ValidNumberTest[country];
 
@@ -128,4 +127,45 @@ describe('Phone Number Test', function() {
       }
     });
   }
+
+    describe('Invalid Phone Number', function() {
+        it('Expected: 9991231-34 to be invalid phone number', function() {
+            let res = phoneGeneral.isValidPhone('1', '9991231-34');
+            assert.equal(false,res['isValid']);
+        });
+
+        it('Expected: CC=1 Areacode = 999 to have Error(s)', function() {
+            let res = phoneGeneral.isValidPhone('1', '9991231-34');
+            assert.equal('Area Code Not Valid',res['Error']);
+        });
+
+        it('Expected: CC=9 to have Error(s)', function() {
+            let res = phoneGeneral.isValidPhone('9', '9991231-34');
+            assert.equal('Unable to find info with Country Code: 9',res['Error']);
+        });
+
+        it('Expected Error: Area Code Not valid', function() {
+            let res = phoneGeneral.isValidPhone('1', '5691231234');
+            assert.equal('Area Code Not Valid',res['Error']);
+        });
+    });
+
+
 });
+
+describe('Format Phone', function() {
+    describe('US', function() {
+        it('Expected: (562)213-1234', function() {
+            let res = phoneGeneral.formatPhoneNumber('1','5622131234');
+            assert.equal('(562)213-1234',res['Format']);
+        });
+
+        it('Invalid CC', function() {
+            let res = phoneGeneral.formatPhoneNumber('15','9992131234');
+            assert.equal(false,res['isValid']);
+        });
+    });
+
+});
+
+

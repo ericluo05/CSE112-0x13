@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "start": "node ./bin/www",
-    "test": "nyc --reporter=lcov mocha",
+    "test": "nyc --reporter=lcov mocha & nyc report",
     "coverage": "nyc report",
     "e2e": "nightwatch",
     "e2e_firefox": "nightwatch --config nightwatch_firefox.json",
@@ -20,8 +20,7 @@
       "node_modules",
       "bin",
       "coverage",
-      "test/fixtures/coverage.js",
-      "test/build/*"
+      "test/*"
     ]
   },
   "dependencies": {

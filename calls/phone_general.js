@@ -61,7 +61,6 @@ function isValidPhone(CC, PN) {
  **/
 function checkVL(PN, data) {
   var PN_Length = PN.length.toString();
-  //console.log(data["Valid_Length"]===["10"]);
 
   // Check if data contain matching length
   if (data["Valid_Length"].indexOf(PN_Length) < 0)
@@ -123,4 +122,30 @@ function checkVL(PN, data) {
   if ("Error" in data_l)
     return handleError(data_l["Error"]);
 }
-module.exports = { isValidPhone };
+
+/**
+ * cc: country code
+ * number: phone number
+ **/
+function formatPhoneNumber(cc, number)
+{
+    var validJSON = isValidPhone(cc, number);
+    if ( validJSON.isValid )
+    {
+        var formattedNumber = validJSON['Format'];
+        var i = 0;
+        for (var j = 0; j < formattedNumber.length; ++j) {
+            if (formattedNumber[j] != '?')
+                continue;
+            formattedNumber = formattedNumber.substr(0, j) + number[i]
+                + formattedNumber.substr(j+1);
+            ++i;
+        }
+        validJSON['Format'] = formattedNumber;
+        return validJSON;
+    }
+    return {'isValid': false}
+}
+
+
+module.exports = { isValidPhone, formatPhoneNumber };

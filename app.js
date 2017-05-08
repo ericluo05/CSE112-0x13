@@ -9,7 +9,7 @@ let index = require('./routes/index');
 var users = require('./routes/users');
 
 let foo = require('./routes/foo');
-var phone = require('./routes/phone');
+let phone = require('./routes/phone');
 var app = express();
 
 // view engine setup
