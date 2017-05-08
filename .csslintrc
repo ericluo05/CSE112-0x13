@@ -1,10 +1,14 @@
 {
   "ignore": [
-    "adjoining-classes"
+    "adjoining-classes",
+	"ids"
   ],
   "warnings": [
   ],
   "errors": [
-
+	
+  ]
+  "exclude-list":[
+	"public/stylesheets/bulma.min.css",
   ]
 }
