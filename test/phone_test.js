@@ -134,12 +134,12 @@ describe('Phone Number Test', function() {
             assert.equal(false,res['isValid']);
         });
 
-        it('Expected: CC=1 Areacode = 999 to have Error(s)', function() {
+        it('Expected: CC=1 Areacode = 999 be invalid', function() {
             let res = phoneGeneral.isValidPhone('1', '9991231-34');
             assert.equal('Area Code Not Valid',res['Error']);
         });
 
-        it('Expected: CC=9 to have Error(s)', function() {
+        it('Expected: CC=9 tobe invalid', function() {
             let res = phoneGeneral.isValidPhone('9', '9991231-34');
             assert.equal('Unable to find info with Country Code: 9',res['Error']);
         });
@@ -147,6 +147,11 @@ describe('Phone Number Test', function() {
         it('Expected Error: Area Code Not valid', function() {
             let res = phoneGeneral.isValidPhone('1', '5691231234');
             assert.equal('Area Code Not Valid',res['Error']);
+        });
+
+        it('Expected Error: Invalid Number', function() {
+            let res = phoneGeneral.isValidPhone('1', '56212312345');
+            assert.equal('CC_1 Error(Last): Invalid Number',res['Error']);
         });
     });
 
