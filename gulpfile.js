@@ -5,34 +5,16 @@ var gulp = require('gulp'),
     mocha = require('gulp-mocha');
   
 /**
-* Lint Checker
+* Javascript Lint Checker using JSHint
 */
-gulp.task('lint', function () {
-   gulp.src('./**/*.js')
-      .pipe(jshint())
-})
+//gulp.task('lint', function () {
+//  gulp.src('./**/*.js')
+//      .pipe(jshint())
+//})
+
 
 /**
-* Run Mocha Tests
-*/
-gulp.task('mocha', () =>
-   gulp.src('test/test.js', {read: false})
-      .pipe(mocha({reporter: 'nyan'}))
-);
-
-/**
-* Run documentation generator
-*/
-gulp.task('apidoc', function(done){
-   apidoc({
-      src: "routes/",
-      dest: "doc/"
-   }, done);
-});
-
-
-/*
-* Run eslint test
+* Javascript Lint Checker using ESLint
 */
 gulp.task('lint', () => {
     // ESLint ignores files with "node_modules" paths.
@@ -52,4 +34,41 @@ gulp.task('lint', () => {
 });
 
 
-gulp.task('default', ['lint', 'mocha', 'apidoc']);
+
+/**
+* CSS Lint Checker using StyleLint
+*/
+  const gulpStylelint = require('gulp-stylelint');
+  return gulp
+    .src('public/stylesheets/*.css')
+    .pipe(gulpStylelint({
+      reporters: [
+        {formatter: 'string', console: true}
+      ]
+    }));
+});
+
+/**
+* Run Mocha Tests
+*/
+gulp.task('mocha', () =>
+   gulp.src('test/test.js', {read: false})
+      .pipe(mocha({reporter: 'nyan'}))
+);
+
+
+/**
+* Run documentation generator
+*/
+gulp.task('apidoc', function(done){
+   apidoc({
+      src: "routes/",
+      dest: "doc/"
+   }, done);
+});
+
+
+
+//gulp.task('default', ['mocha', 'apidoc']);
+//gulp.task('default', ['lint', 'mocha', 'apidoc']);
+//gulp.task('default', ['lint', 'mocha', 'apidoc','csslint']);
