@@ -72,5 +72,5 @@ gulp.task('apidoc', function(done){
 
 //gulp.task('default', ['mocha', 'apidoc']);
 //gulp.task('default', ['lint', 'mocha', 'apidoc']);
-gulp.task('default', ['stylelint']);
-//gulp.task('default', ['lint', 'mocha', 'apidoc','csslint']);
+//gulp.task('default', ['stylelint']);
+gulp.task('default', ['lint', 'stylelint','mocha', 'apidoc',]);
