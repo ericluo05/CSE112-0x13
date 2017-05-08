@@ -13,7 +13,7 @@
     "e2e_safari": "nightwatch --config nightwatch_safari.json",
     "sendCoverage": "codeclimate-test-reporter < coverage/lcov.info",
     "eslint": "eslint --fix ./*.js",
-	"stylelint": "stylelint public/stylesheets/*.css"
+    "stylelint": "stylelint public/stylesheets/*.css"
   },
   "nyc": {
     "exclude": [
@@ -37,13 +37,13 @@
     "eslint": "^3.19.0",
     "eslint-config-google": "^0.7.1",
     "gulp": "^3.9.1",
-	"gulp-apidoc": "^0.2.6",
+    "gulp-apidoc": "^0.2.6",
+    "gulp-eslint": "^3.0.1",
     "gulp-jshint": "^2.0.4",
     "gulp-mocha": "^4.3.0",
-    "gulp-eslint": "^3.0.1",
     "gulp-stylelint": "^3.9.0",
     "istanbul": "^0.4.5",
-	"jshint": "^2.9.4",
+    "jshint": "^2.9.4",
     "mocha": "^3.2.0",
     "nightwatch": "^0.9.14",
     "nyc": "^10.3.0",
