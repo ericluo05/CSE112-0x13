@@ -1,9 +1,7 @@
-var foo = function foo(bar)
-{
-	var t = (bar==='hi');
-    return (bar === 'baz');
-}
+/* eslint-disable require-jsdoc */
 
-module.exports = {
-    foo : foo
-}
+function foo(bar) {
+    return (bar === 'baz');
+};
+
+module.exports = foo;
