@@ -27,7 +27,9 @@ script:
 - jdk_switcher use oraclejdk8
 - gulp lint
 - npm test
-- npm run e2e
+- npm run e2e_chrome
+- npm run e2e_ff
+- gulp apidoc
 after_script:
 - pkill node
 after_success:

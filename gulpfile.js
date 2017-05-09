@@ -30,10 +30,13 @@ gulp.task('eslint', () => {
 gulp.task('prehtmlhint', ()=>{
     gulp.src("./views/*.ejs")
         .pipe(ejs({
+            msg: "Hello Gulp!"
         }))
+        .pipe(gulp.dest("./dist"))
 });
 
 gulp.task('htmlhint', () => {
+    gulp.src("./public/html/*.html")
        .pipe(htmlhint())
        .pipe(htmlhint.reporter());
 });
@@ -74,6 +77,7 @@ gulp.task('apidoc', function(done){
 
 
 gulp.task('default', ['mocha']);
+gulp.task('lint', ['eslint', 'htmlhint', 'stylelint']);
 gulp.task('api', ['apidoc']);
 
 
