@@ -26,6 +26,7 @@ before_script:
 script:
 - jdk_switcher use oraclejdk8
 - gulp
+- npm test
 - npm run e2e
 after_script:
 - pkill node
