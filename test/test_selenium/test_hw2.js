@@ -24,8 +24,8 @@ module.exports = {
     client.end();
   },
   'Country: United States' : function(client) {
-    client.url('http://localhost:3000/phone').pause(1000);
-    client.useXpath();
+   // client.url('http://localhost:3000/phone').pause(1000);
+   // client.useXpath();
 
     /*
     client.setValue('//input[@name="country_code_0"]', "52").pause(500);
