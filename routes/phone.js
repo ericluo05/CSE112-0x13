@@ -1,10 +1,11 @@
 let express = require('express');
 let router = express.Router();
+let path = require('path');
 let phoneGeneral = require('../calls/phone_general');
 
 
 router.get('/', function(req, res, next) {
-    res.render('phone', {title: 'Team 0x13 '});
+    res.sendFile(path.join(__dirname+ '/../public/html/phone.html'));
 });
 
 
