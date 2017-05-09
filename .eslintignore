@@ -2,3 +2,4 @@
 !routes/*.js
 !test/*.js
 !calls/*.js
+!./*.js

@@ -27,23 +27,18 @@ gulp.task('eslint', () => {
 });
 
 
-gulp.task('prehtmlhint', ()=>{
-    gulp.src("./views/*.ejs")
-        .pipe(ejs({
-            msg: "Hello Gulp!"
-        }))
-        .pipe(gulp.dest("./dist"))
-});
-
+/**
+* HTML Linter  using HtmlHint
+*/
 gulp.task('htmlhint', () => {
     gulp.src("./public/html/*.html")
        .pipe(htmlhint())
-       .pipe(htmlhint.reporter());
+       .pipe(htmlhint.failReporter());
 });
 
 
 /**
-* CSS Lint Checker using StyleLint
+* CSS Linter using StyleLint
 */
 gulp.task('stylelint', function lintCssTask() {
   const gulpStylelint = require('gulp-stylelint');
@@ -74,6 +69,8 @@ gulp.task('apidoc', function(done){
       dest: "doc/"
    }, done);
 });
+
+
 
 
 gulp.task('default', ['mocha']);

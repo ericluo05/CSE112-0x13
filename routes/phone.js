@@ -1,7 +1,7 @@
 let express = require('express');
 let router = express.Router();
 let path = require('path');
-let phoneGeneral = require('../calls/phone_general');
+let phoneGeneral = require('../lib/phone_general');
 
 
 router.get('/', function(req, res, next) {
