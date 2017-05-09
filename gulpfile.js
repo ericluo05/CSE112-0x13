@@ -1,8 +1,8 @@
-var gulp = require('gulp'),
-   jshint = require('gulp-jshint'),
+let gulp = require('gulp'),
+    jshint = require('gulp-jshint'),
     apidoc = require('gulp-apidoc'),
-    eslint = require('gulp-eslint'),
-    mocha = require('gulp-mocha');
+    eslint = require('gulp-eslint');
+
   
 /**
 * Javascript Lint Checker using JSHint
@@ -52,10 +52,12 @@ gulp.task('stylelint', function lintCssTask() {
 /**
 * Run Mocha Tests
 */
+/*       //mocha no longer works, and won't generate test coverage, 
+          //so I am taking it out of gulp
 gulp.task('mocha', () =>
-   gulp.src('test/test.js', {read: false})
+   gulp.src('test/*.js', {read: false})
       .pipe(mocha({reporter: 'nyan'}))
-);
+);*/
 
 
 /**
@@ -68,9 +70,4 @@ gulp.task('apidoc', function(done){
    }, done);
 });
 
-
-
-//gulp.task('default', ['mocha', 'apidoc']);
-//gulp.task('default', ['lint', 'mocha', 'apidoc']);
-//gulp.task('default', ['stylelint']);
-gulp.task('default', ['lint', 'stylelint','mocha', 'apidoc',]);
+gulp.task('default', ['lint', 'stylelint', 'apidoc',]);
