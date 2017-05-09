@@ -8,15 +8,6 @@ var gulp = require('gulp'),
     clean = require('gulp-clean');
 
 /**
-* add Gulp-clean
-*/
-gulp.task('build_clean', () => {
-  // make read = false to speed up the process
-  return gulp.src('build/es5', {read: false})
-        .pipe(clean());
-})
-
-/**
 * Lint Checker
 */
 gulp.task('lint', () => {
@@ -63,19 +54,31 @@ gulp.task('lint', () => {
         .pipe(eslint.failAfterError());
 });
 
+/**
+* add Gulp-clean
+*/
+gulp.task('build_clean', () => {
+  // make read = false to speed up the process
+  return gulp.src('public/js/*.js', {read: false})
+        .pipe(clean());
+})
+
 /*
 * Babel Transpiler support, depend on build_clean
 */
 gulp.task('babel', ['build_clean'], () => {
-  return gulp.src(['**/*.js','!node_modules/**', '!doc/**'])
+  return gulp.src(['public/js_es6/*.js'])
         .pipe(print())
         .pipe(babel({ presets: ['es2015'] }))
-        .pipe(gulp.dest('build/es5'));
-})
+        .pipe(gulp.dest('public/js'));
+});
 
 /**
 * Compbined build task
 */
-gulp.task('build', ['build_clean', 'babel']);
+gulp.task('transpile', ['build_clean', 'babel']);
 
-gulp.task('default', ['lint', 'mocha', 'apidoc']);
+/**
+* Default use by calling "gulp"
+*/
+gulp.task('default', ['lint', 'mocha', 'apidoc', 'transpile']);
