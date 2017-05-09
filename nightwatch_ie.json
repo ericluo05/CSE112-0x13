@@ -12,7 +12,7 @@
     "log_path" : "",
     "port" : 4444,
     "cli_args" : {
-      "webdriver.ie.driver" : ""
+      "webdriver.edge.driver" : "./drivers/selenium/ie/IEDriverServer.exe"
     }
   },
 
@@ -27,13 +27,13 @@
         "path" : ""
       },
       "desiredCapabilities": {
-        "browserName": "InternetExplorer"
+        "browserName": "internet explorer"
       }
     },
 
-    "InternetExplorer" : {
+    "internet explorer" : {
       "desiredCapabilities": {
-        "browserName":"InternetExplorer",
+        "browserName":"internet explorer",
 		"javascriptEnabled": true
       }
     }
