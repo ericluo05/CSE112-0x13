@@ -15,8 +15,7 @@ module.exports = {
     client.expect.element('//button[@type="submit"]').to.be.present.before(500);
     client.click('//select[@id="cc1"]').pause(4000);
     client.setValue('//input[@id="number"]', '5622131234').pause(4000);
-    
-    client.click('.//button[@type="submit"]').pause(4000);
+    client.click('.//button[@type="submit"]').pause(2000);
   //  client.expect.element('body').to.have.attribute('class').which.contains('vasq');
   //  client.expect.element('body').to.have.attribute('class').which.matches(/vasq$/);
   //  client.expect.element('body').to.have.attribute('class').before(1000);

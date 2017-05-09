@@ -25,8 +25,9 @@ before_script:
 
 script:
 - jdk_switcher use oraclejdk8
-- npm test
+- gulp
 - npm run e2e
+- npm run e2e_firefox
 after_script:
 - pkill node
 after_success:
