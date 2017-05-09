@@ -15,6 +15,7 @@
       "webdriver.chrome.driver" : "",
       "webdriver.gecko.driver" : "",
       "webdriver.edge.driver" : "",
+      "webdriver.ie.driver" : "",
       "webdriver.safari.driver" : ""
     }
   },
@@ -29,8 +30,9 @@
         "enabled" : false,
         "path" : ""
       },
+      "Comment" : "do NOT change browserName to anything else other than firefox, otherwise you'll have a hard time getting firefox to work. And yes, I have to put comment like this",
       "desiredCapabilities": {
-        "browserName": "chrome",
+        "browserName": "firefox", 
         "marionette": true
       }
     },
@@ -38,6 +40,32 @@
     "chrome" : {
       "desiredCapabilities": {
         "browserName": "chrome"
+      }
+    },
+    
+    "firefox" : {
+      "desiredCapabilities": {
+        "browserName":"Firefox"
+      }
+    },
+    
+    "safari" : {
+      "desiredCapabilities": {
+        "browserName":"Safari"
+      }
+    },
+    
+    "MicrosoftEdge" : {
+      "desiredCapabilities": {
+        "browserName":"MicrosoftEdge",
+		"javascriptEnabled": true
+      }
+    },
+    
+    "internet explorer" : {
+      "desiredCapabilities": {
+        "browserName":"internet explorer",
+		"javascriptEnabled": true
       }
     }
   }

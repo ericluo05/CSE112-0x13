@@ -1,7 +1,10 @@
 let gulp = require('gulp'),
     jshint = require('gulp-jshint'),
     apidoc = require('gulp-apidoc'),
-    eslint = require('gulp-eslint');
+    eslint = require('gulp-eslint'),
+    htmlhint = require("gulp-htmlhint"),
+    ejs = require("gulp-ejs"),
+    mocha = require('gulp-mocha');
 
   
 /**
@@ -16,23 +19,24 @@ let gulp = require('gulp'),
 /**
 * Javascript Lint Checker using ESLint
 */
-gulp.task('lint', () => {
-    // ESLint ignores files with "node_modules" paths.
-    // So, it's best to have gulp ignore the directory as well.
-    // Also, Be sure to return the stream from the task;
-    // Otherwise, the task may end before the stream has finished.
+gulp.task('eslint', () => {
     return gulp.src(['**/*.js','!node_modules/**'])
-        // eslint() attaches the lint output to the "eslint" property
-        // of the file object so it can be used by other modules.
         .pipe(eslint())
-        // eslint.format() outputs the lint results to the console.
-        // Alternatively use eslint.formatEach() (see Docs).
         .pipe(eslint.format())
-        // To have the process exit with an error code (1) on
-        // lint error, return the stream and pipe to failAfterError last.
         .pipe(eslint.failAfterError());
 });
 
+
+gulp.task('prehtmlhint', ()=>{
+    gulp.src("./views/*.ejs")
+        .pipe(ejs({
+        }))
+});
+
+gulp.task('htmlhint', () => {
+       .pipe(htmlhint())
+       .pipe(htmlhint.reporter());
+});
 
 
 /**
@@ -50,14 +54,12 @@ gulp.task('stylelint', function lintCssTask() {
 });
 
 /**
-* Run Mocha Tests
+* Run Mocha Tests , please use "npm test" instead if you intend to generate coverage data
 */
-/*       //mocha no longer works, and won't generate test coverage, 
-          //so I am taking it out of gulp
 gulp.task('mocha', () =>
-   gulp.src('test/*.js', {read: false})
-      .pipe(mocha({reporter: 'nyan'}))
-);*/
+   gulp.src(['test/*.js'], {read: false})
+      .pipe(mocha({reporter: 'list'}))
+);
 
 
 /**
@@ -70,4 +72,8 @@ gulp.task('apidoc', function(done){
    }, done);
 });
 
-gulp.task('default', ['lint', 'stylelint', 'apidoc',]);
+
+gulp.task('default', ['mocha']);
+gulp.task('api', ['apidoc']);
+
+
