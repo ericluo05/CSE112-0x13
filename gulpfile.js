@@ -1,26 +1,25 @@
 let gulp = require('gulp'),
-    jshint = require('gulp-jshint'),
+ //  jshint = require('gulp-jshint'),
     apidoc = require('gulp-apidoc'),
     eslint = require('gulp-eslint'),
-    htmlhint = require("gulp-htmlhint"),
-    ejs = require("gulp-ejs"),
+    htmlhint = require('gulp-htmlhint'),
     mocha = require('gulp-mocha');
 
-  
+
 /**
 * Javascript Lint Checker using JSHint
 */
-//gulp.task('lint', function () {
+// gulp.task('lint', function () {
 //  gulp.src('./**/*.js')
 //      .pipe(jshint())
-//})
+// })
 
 
 /**
 * Javascript Lint Checker using ESLint
 */
 gulp.task('eslint', () => {
-    return gulp.src(['**/*.js','!node_modules/**'])
+    return gulp.src(['**/*.js', '!node_modules/**'])
         .pipe(eslint())
         .pipe(eslint.format())
         .pipe(eslint.failAfterError());
@@ -31,7 +30,7 @@ gulp.task('eslint', () => {
 * HTML Linter  using HtmlHint
 */
 gulp.task('htmlhint', () => {
-    gulp.src("./public/html/*.html")
+    gulp.src('./public/html/*.html')
        .pipe(htmlhint())
        .pipe(htmlhint.failReporter());
 });
@@ -46,8 +45,8 @@ gulp.task('stylelint', function lintCssTask() {
     .src('public/stylesheets/*.css')
     .pipe(gulpStylelint({
       reporters: [
-        {formatter: 'string', console: true}
-      ]
+        {formatter: 'string', console: true},
+      ],
     }));
 });
 
@@ -55,7 +54,7 @@ gulp.task('stylelint', function lintCssTask() {
 * Run Mocha Tests , please use "npm test" instead if you intend to generate coverage data
 */
 gulp.task('mocha', () =>
-   gulp.src(['test/*.js'], {read: false})
+   gulp.src(['test/unit_test/*.js'], {read: false})
       .pipe(mocha({reporter: 'list'}))
 );
 
@@ -63,14 +62,12 @@ gulp.task('mocha', () =>
 /**
 * Run documentation generator
 */
-gulp.task('apidoc', function(done){
+gulp.task('apidoc', function(done) {
    apidoc({
-      src: "routes/",
-      dest: "doc/"
+      src: 'routes/',
+      dest: 'doc/',
    }, done);
 });
-
-
 
 
 gulp.task('default', ['mocha']);

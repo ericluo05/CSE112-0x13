@@ -1,7 +1,7 @@
 /* jshint expr: true */
 module.exports = {
-  tags: ['Phone Validation'],
-  'Site Element Existence' : function (client) {
+  'tags': ['Phone Validation'],
+  'Site Element Existence': function(client) {
     client
       .url('http://localhost:3000/phone')
       .pause(1000);
@@ -24,5 +24,5 @@ module.exports = {
     client.click('.//button[@id="formatsubmit"]').pause(2000);
 
     client.end();
-  }
+  },
 };
