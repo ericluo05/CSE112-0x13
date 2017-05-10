@@ -1,5 +1,6 @@
-**/*.js
-!routes/*.js
-!test/*.js
-!calls/*.js
-!./*.js
+node_modules/**
+data/
+reports/
+coverage/
+doc/
+nightwatch.conf.js

@@ -1,5 +1,5 @@
 let assert = require('assert');
-let phoneGeneral = require('../lib/phone_general');
+let phoneGeneral = require('../../lib/phone_general');
 
 let ValidNumberTest = {
   'United States': {

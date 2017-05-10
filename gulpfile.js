@@ -1,27 +1,29 @@
 let gulp = require('gulp'),
-    jshint = require('gulp-jshint'),
     apidoc = require('gulp-apidoc'),
     eslint = require('gulp-eslint'),
-    htmlhint = require("gulp-htmlhint"),
-    ejs = require("gulp-ejs"),
-    mocha = require('gulp-mocha');
+    htmlhint = require('gulp-htmlhint'),
+    mocha = require('gulp-mocha'),
+    exec = require('child_process').exec,
+    {normalize} = require('path');
 
-  
+
 /**
 * Javascript Lint Checker using JSHint
 */
-//gulp.task('lint', function () {
+// gulp.task('lint', function () {
 //  gulp.src('./**/*.js')
 //      .pipe(jshint())
-//})
+// })
 
 
 /**
 * Javascript Lint Checker using ESLint
 */
-gulp.task('eslint', () => {
-    return gulp.src(['**/*.js','!node_modules/**'])
-        .pipe(eslint())
+gulp.task('lint:js', () => {
+    return gulp.src(['**/*.js', '!node_modules/**'])
+        .pipe(eslint({
+            fix: true,
+        }))
         .pipe(eslint.format())
         .pipe(eslint.failAfterError());
 });
@@ -30,8 +32,8 @@ gulp.task('eslint', () => {
 /**
 * HTML Linter  using HtmlHint
 */
-gulp.task('htmlhint', () => {
-    gulp.src("./public/html/*.html")
+gulp.task('lint:html', () => {
+    gulp.src('./public/html/*.html')
        .pipe(htmlhint())
        .pipe(htmlhint.failReporter());
 });
@@ -40,41 +42,78 @@ gulp.task('htmlhint', () => {
 /**
 * CSS Linter using StyleLint
 */
-gulp.task('stylelint', function lintCssTask() {
+gulp.task('lint:css', function lintCssTask() {
   const gulpStylelint = require('gulp-stylelint');
   return gulp
     .src('public/stylesheets/*.css')
     .pipe(gulpStylelint({
       reporters: [
-        {formatter: 'string', console: true}
-      ]
+        {formatter: 'string', console: true},
+      ],
     }));
 });
 
 /**
-* Run Mocha Tests , please use "npm test" instead if you intend to generate coverage data
+* Run Mocha Unit Tests
 */
-gulp.task('mocha', () =>
-   gulp.src(['test/*.js'], {read: false})
+gulp.task('mocha:unit', () =>
+   gulp.src(['test/route_test/*.js'], {read: false})
       .pipe(mocha({reporter: 'list'}))
+);
+
+/**
+ * Run Mocha Route Tests
+ */
+gulp.task('mocha:route', () =>
+    gulp.src(['test/route_test/*.js'], {read: false})
+        .pipe(mocha({reporter: 'list'}))
+);
+
+
+/**
+ * Run Mocha API Tests
+ */
+gulp.task('mocha:api', () =>
+    gulp.src(['test/api_test/*.js'], {read: false})
+        .pipe(mocha({reporter: 'list'}))
 );
 
 
 /**
 * Run documentation generator
 */
-gulp.task('apidoc', function(done){
+gulp.task('api', function(done) {
    apidoc({
-      src: "routes/",
-      dest: "doc/"
+      src: 'routes/',
+      dest: 'doc/',
    }, done);
 });
 
 
+/*
+ * Runs Unit, API, and Routing tests, used for coverage
+ */
+gulp.task('storeCoverage', () => exec('node_modules/.bin/nyc', [
+    '--report-dir=var',
+    '--reporter=lcov',
+    normalize('node_modules/.bin/mocha'),
+    '--opts=config/mocha.opts',
+]));
+
+/*
+ * Obtain coverage, to see them in color, use "npm test" instead
+ */
+gulp.task('coverage', ['storeCoverage'], function(cb) {
+    exec('nyc report', function(err, stdout, stderr) {
+        console.log(stdout);
+        console.log(stderr);
+        cb(err);
+    });
+});
 
 
-gulp.task('default', ['mocha']);
-gulp.task('lint', ['eslint', 'htmlhint', 'stylelint']);
-gulp.task('api', ['apidoc']);
+gulp.task('default', []);
+gulp.task('lint', ['lint:js', 'lint:html', 'lint:css']);
+gulp.task('test', ['mocha:route', 'mocha:api', 'mocha:unit']);
 
 

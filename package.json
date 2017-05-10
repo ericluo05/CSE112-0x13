@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "start": "node ./bin/www",
-    "test": "nyc --reporter=lcov mocha & nyc report",
+    "test": "nyc --reporter=lcov mocha --opts config/mocha.opts & nyc report",
     "coverage": "nyc report",
     "e2e_windows": "nightwatch --env chrome & nightwatch & nightwatch --env MicrosoftEdge",
     "e2e_mac": "nightwatch --env chrome & nightwatch & nightwatch --env safari",
@@ -14,9 +14,7 @@
     "e2e_edge": "nightwatch --env MicrosoftEdge",
     "e2e_ie": "nightwatch --env internet explorer",
     "e2e_safari": "nightwatch --env safari",
-    "sendCoverage": "codeclimate-test-reporter < coverage/lcov.info",
-    "eslint": "eslint --fix **/*.js",
-    "stylelint": "stylelint public/stylesheets/*.css"
+    "sendCoverage": "codeclimate-test-reporter < coverage/lcov.info"
   },
   "nyc": {
     "exclude": [
@@ -37,6 +35,7 @@
   },
   "devDependencies": {
     "babel-preset-env": "^1.4.0",
+    "chai": "^3.5.0",
     "eslint": "^3.19.0",
     "eslint-config-google": "^0.7.1",
     "eslint-plugin-apidoc": "0.0.7",
@@ -55,6 +54,7 @@
     "nightwatch": "^0.9.14",
     "nyc": "^10.3.0",
     "stylelint": "^7.10.1",
-    "stylelint-config-standard": "^16.0.0"
+    "stylelint-config-standard": "^16.0.0",
+    "supertest": "^3.0.0"
   }
 }

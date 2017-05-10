@@ -1,5 +1,5 @@
 let assert = require('assert');
-let foo = require('../lib/fooAPI');
+let foo = require('../../lib/fooAPI');
 
 
 describe('Foo Tests', function() {
