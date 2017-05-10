@@ -2,7 +2,9 @@ let gulp = require('gulp'),
     apidoc = require('gulp-apidoc'),
     eslint = require('gulp-eslint'),
     htmlhint = require('gulp-htmlhint'),
-    mocha = require('gulp-mocha');
+    mocha = require('gulp-mocha'),
+    exec = require('child_process').exec,
+    {normalize} = require('path');
 
 
 /**
@@ -20,7 +22,7 @@ let gulp = require('gulp'),
 gulp.task('lint:js', () => {
     return gulp.src(['**/*.js', '!node_modules/**'])
         .pipe(eslint({
-            fix: true
+            fix: true,
         }))
         .pipe(eslint.format())
         .pipe(eslint.failAfterError());
@@ -63,7 +65,7 @@ gulp.task('mocha:unit', () =>
  * Run Mocha Route Tests
  */
 gulp.task('mocha:route', () =>
-    gulp.src(['test/unit_test/*.js'], {read: false})
+    gulp.src(['test/route_test/*.js'], {read: false})
         .pipe(mocha({reporter: 'list'}))
 );
 
@@ -86,6 +88,23 @@ gulp.task('api', function(done) {
       dest: 'doc/',
    }, done);
 });
+
+
+gulp.task('coverage', ['storeCoverage'], function(cb) {
+    exec('nyc report', function(err, stdout, stderr) {
+       console.log(stdout);
+       console.log(stderr);
+       cb(err);
+    });
+});
+
+
+gulp.task('storeCoverage', () => exec('node_modules/.bin/nyc', [
+    '--report-dir=var',
+    '--reporter=lcov',
+    normalize('node_modules/.bin/mocha'),
+    '--opts=config/mocha.opts',
+]));
 
 gulp.task('default', []);
 gulp.task('lint', ['lint:js', 'lint:html', 'lint:css']);

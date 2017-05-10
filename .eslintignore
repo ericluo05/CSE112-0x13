@@ -4,4 +4,3 @@ reports/
 coverage/
 doc/
 nightwatch.conf.js
-gulpfile.js

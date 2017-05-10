@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "start": "node ./bin/www",
-    "test": "nyc --reporter=lcov mocha & nyc report",
+    "test": "nyc --reporter=lcov mocha --opts config/mocha.opts & nyc report",
     "coverage": "nyc report",
     "e2e_windows": "nightwatch --env chrome & nightwatch & nightwatch --env MicrosoftEdge",
     "e2e_mac": "nightwatch --env chrome & nightwatch & nightwatch --env safari",
