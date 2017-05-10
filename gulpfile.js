@@ -90,21 +90,27 @@ gulp.task('api', function(done) {
 });
 
 
-gulp.task('coverage', ['storeCoverage'], function(cb) {
-    exec('nyc report', function(err, stdout, stderr) {
-       console.log(stdout);
-       console.log(stderr);
-       cb(err);
-    });
-});
-
-
+/*
+ * Runs Unit, API, and Routing tests, used for coverage
+ */
 gulp.task('storeCoverage', () => exec('node_modules/.bin/nyc', [
     '--report-dir=var',
     '--reporter=lcov',
     normalize('node_modules/.bin/mocha'),
     '--opts=config/mocha.opts',
 ]));
+
+/*
+ * Obtain coverage, to see them in color, use "npm test" instead
+ */
+gulp.task('coverage', ['storeCoverage'], function(cb) {
+    exec('nyc report', function(err, stdout, stderr) {
+        console.log(stdout);
+        console.log(stderr);
+        cb(err);
+    });
+});
+
 
 gulp.task('default', []);
 gulp.task('lint', ['lint:js', 'lint:html', 'lint:css']);
