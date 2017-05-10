@@ -2,6 +2,7 @@
   "src_folders" : ["./test/e2e_test"],
   "output_folder" : "reports",
   "custom_commands_path" : "",
+  "test_runner" : "mocha",
   "custom_assertions_path" : "",
   "page_objects_path" : "",
   "globals_path" : "",

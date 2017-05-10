@@ -1,5 +1,4 @@
 let gulp = require('gulp'),
- //  jshint = require('gulp-jshint'),
     apidoc = require('gulp-apidoc'),
     eslint = require('gulp-eslint'),
     htmlhint = require('gulp-htmlhint'),
@@ -18,9 +17,11 @@ let gulp = require('gulp'),
 /**
 * Javascript Lint Checker using ESLint
 */
-gulp.task('eslint', () => {
+gulp.task('lint:js', () => {
     return gulp.src(['**/*.js', '!node_modules/**'])
-        .pipe(eslint())
+        .pipe(eslint({
+            fix: true
+        }))
         .pipe(eslint.format())
         .pipe(eslint.failAfterError());
 });
@@ -29,7 +30,7 @@ gulp.task('eslint', () => {
 /**
 * HTML Linter  using HtmlHint
 */
-gulp.task('htmlhint', () => {
+gulp.task('lint:html', () => {
     gulp.src('./public/html/*.html')
        .pipe(htmlhint())
        .pipe(htmlhint.failReporter());
@@ -39,7 +40,7 @@ gulp.task('htmlhint', () => {
 /**
 * CSS Linter using StyleLint
 */
-gulp.task('stylelint', function lintCssTask() {
+gulp.task('lint:css', function lintCssTask() {
   const gulpStylelint = require('gulp-stylelint');
   return gulp
     .src('public/stylesheets/*.css')
@@ -51,27 +52,43 @@ gulp.task('stylelint', function lintCssTask() {
 });
 
 /**
-* Run Mocha Tests , please use "npm test" instead if you intend to generate coverage data
+* Run Mocha Unit Tests
 */
-gulp.task('mocha', () =>
-   gulp.src(['test/unit_test/*.js'], {read: false})
+gulp.task('mocha:unit', () =>
+   gulp.src(['test/route_test/*.js'], {read: false})
       .pipe(mocha({reporter: 'list'}))
+);
+
+/**
+ * Run Mocha Route Tests
+ */
+gulp.task('mocha:route', () =>
+    gulp.src(['test/unit_test/*.js'], {read: false})
+        .pipe(mocha({reporter: 'list'}))
+);
+
+
+/**
+ * Run Mocha API Tests
+ */
+gulp.task('mocha:api', () =>
+    gulp.src(['test/api_test/*.js'], {read: false})
+        .pipe(mocha({reporter: 'list'}))
 );
 
 
 /**
 * Run documentation generator
 */
-gulp.task('apidoc', function(done) {
+gulp.task('api', function(done) {
    apidoc({
       src: 'routes/',
       dest: 'doc/',
    }, done);
 });
 
-
-gulp.task('default', ['mocha']);
-gulp.task('lint', ['eslint', 'htmlhint', 'stylelint']);
-gulp.task('api', ['apidoc']);
+gulp.task('default', []);
+gulp.task('lint', ['lint:js', 'lint:html', 'lint:css']);
+gulp.task('test', ['mocha:route', 'mocha:api', 'mocha:unit']);
 
 

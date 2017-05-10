@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 let request = require('supertest');
 let app = require('../../app');
 
@@ -10,4 +9,3 @@ describe('index route', function() {
             .expect(200, done);
     });
 });
-
