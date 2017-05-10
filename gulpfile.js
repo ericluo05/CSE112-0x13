@@ -1,3 +1,4 @@
+/* eslint-disable one-var */
 let gulp = require('gulp'),
     apidoc = require('gulp-apidoc'),
     eslint = require('gulp-eslint'),
