@@ -27,6 +27,7 @@ script:
 - jdk_switcher use oraclejdk8
 - gulp lint
 - npm test
+- npm coverage
 - npm run e2e_chrome
 - npm run e2e_ff
 - gulp api
