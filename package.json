@@ -14,7 +14,7 @@
     "e2e_edge": "nightwatch --env MicrosoftEdge",
     "e2e_ie": "nightwatch --env internet explorer",
     "e2e_safari": "nightwatch --env safari",
-    "sendCoverage": "codeclimate-test-reporter < coverage/lcov.info",
+    "sendCoverage": "codeclimate-test-reporter < coverage/lcov.info"
   },
   "nyc": {
     "exclude": [
@@ -44,6 +44,7 @@
     "gulp-ejs": "^3.0.1",
     "gulp-eslint": "^3.0.1",
     "gulp-htmlhint": "^0.3.1",
+    "gulp-istanbul": "^1.1.1",
     "gulp-jshint": "^2.0.4",
     "gulp-mocha": "^4.3.0",
     "gulp-stylelint": "^3.9.0",
