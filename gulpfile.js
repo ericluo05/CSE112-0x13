@@ -6,6 +6,8 @@ let gulp = require('gulp'),
     babel = require('gulp-babel'),
     print = require('gulp-print'),
     clean = require('gulp-clean'),
+    jsdoc = require('gulp-jsdoc3'),
+    config = require('./config/jsdoc.conf.json'),
     htmlhint = require('gulp-htmlhint'),
     exec = require('child_process').exec,
     {normalize} = require('path');
@@ -82,13 +84,20 @@ gulp.task('mocha:api', () =>
 );
 
 
+gulp.task('doc', function(cb) {
+    gulp.src(['README.md', './lib/**/*.js'],
+        {'read': false, 'destination': '/doc/lib'})
+        .pipe(jsdoc(config, cb));
+});
+
+
 /**
 * Run documentation generator
 */
 gulp.task('api', function(done) {
    apidoc({
       src: 'routes/',
-      dest: 'doc/',
+      dest: 'doc/api',
    }, done);
 });
 

@@ -95,5 +95,4 @@ reports/
 #Test Coverage files
 .nyc_output/
 
-#babel build folder
-public/js/
+
