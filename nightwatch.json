@@ -62,7 +62,7 @@
       }
     },
     
-    "internet explorer" : {
+    "ie" : {
       "desiredCapabilities": {
         "browserName":"internet explorer",
 		"javascriptEnabled": true

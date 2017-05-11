@@ -58,7 +58,7 @@ gulp.task('lint:css', function lintCssTask() {
 * Run Mocha Unit Tests
 */
 gulp.task('mocha:unit', () =>
-   gulp.src(['test/route_test/*.js'], {read: false})
+   gulp.src(['test/unit_test/*.js'], {read: false})
       .pipe(mocha({reporter: 'list'}))
 );
 
