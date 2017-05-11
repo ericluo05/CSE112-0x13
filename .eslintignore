@@ -4,3 +4,4 @@ reports/
 coverage/
 doc/
 nightwatch.conf.js
+public/js/*.js

@@ -2,8 +2,11 @@
 let gulp = require('gulp'),
     apidoc = require('gulp-apidoc'),
     eslint = require('gulp-eslint'),
-    htmlhint = require('gulp-htmlhint'),
     mocha = require('gulp-mocha'),
+    babel = require('gulp-babel'),
+    print = require('gulp-print'),
+    clean = require('gulp-clean'),
+    htmlhint = require('gulp-htmlhint'),
     exec = require('child_process').exec,
     {normalize} = require('path');
 
@@ -31,14 +34,13 @@ gulp.task('lint:js', () => {
 
 
 /**
-* HTML Linter  using HtmlHint
-*/
+ * HTML Linter  using HtmlHint
+ */
 gulp.task('lint:html', () => {
     gulp.src('./public/html/*.html')
-       .pipe(htmlhint())
-       .pipe(htmlhint.failReporter());
+        .pipe(htmlhint())
+        .pipe(htmlhint.failReporter());
 });
-
 
 /**
 * CSS Linter using StyleLint
@@ -113,8 +115,30 @@ gulp.task('coverage', ['storeCoverage'], function(cb) {
 });
 
 
+/**
+ * clean public/js folder
+ */
+gulp.task('build_clean', () => {
+    // make read = false to speed up the process
+    return gulp.src('public/js/*.js', {read: false})
+        .pipe(clean());
+});
+
+
+/*
+ * Babel Transpiler support, depend on build_clean
+ * compiles es6 js file st es5
+ */
+gulp.task('babel', ['build_clean'], () => {
+    return gulp.src(['public/js_es6/*.js'])
+        .pipe(print())
+        .pipe(babel({presets: ['es2015']}))
+        .pipe(gulp.dest('public/js'));
+});
+
+
 gulp.task('default', []);
 gulp.task('lint', ['lint:js', 'lint:html', 'lint:css']);
 gulp.task('test', ['mocha:route', 'mocha:api', 'mocha:unit']);
-
+gulp.task('build', ['build_clean', 'babel']);
 
