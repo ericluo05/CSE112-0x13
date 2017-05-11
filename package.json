@@ -4,16 +4,17 @@
   "private": true,
   "scripts": {
     "start": "node ./bin/www",
-    "test": "nyc --reporter=lcov mocha & nyc report",
+    "test": "nyc --reporter=lcov mocha --opts config/mocha.opts",
     "coverage": "nyc report",
-    "e2e": "nightwatch",
-    "e2e_firefox": "nightwatch --config nightwatch_firefox.json",
-    "e2e_edge": "nightwatch --config nightwatch_edge.json",
-    "e2e_ie": "nightwatch --config nightwatch_ie.json",
-    "e2e_safari": "nightwatch --config nightwatch_safari.json",
-    "sendCoverage": "codeclimate-test-reporter < coverage/lcov.info",
-    "eslint": "eslint --fix **/*.js",
-    "stylelint": "stylelint public/stylesheets/*.css"
+    "e2e_windows": "nightwatch --env chrome & nightwatch & nightwatch --env MicrosoftEdge",
+    "e2e_mac": "nightwatch --env chrome & nightwatch & nightwatch --env safari",
+    "e2e_chrome": "nightwatch --env chrome",
+    "e2e_firefox": "nightwatch",
+    "e2e_ff": "nightwatch",
+    "e2e_edge": "nightwatch --env MicrosoftEdge",
+    "e2e_ie": "nightwatch --env ie",
+    "e2e_safari": "nightwatch --env safari",
+    "sendCoverage": "codeclimate-test-reporter < coverage/lcov.info"
   },
   "nyc": {
     "exclude": [
@@ -34,20 +35,31 @@
   },
   "devDependencies": {
     "babel-preset-env": "^1.4.0",
+    "babel-preset-es2015": "^6.24.1",
+    "chai": "^3.5.0",
     "eslint": "^3.19.0",
     "eslint-config-google": "^0.7.1",
+    "eslint-plugin-apidoc": "0.0.7",
     "gulp": "^3.9.1",
     "gulp-apidoc": "^0.2.6",
+    "gulp-babel": "^6.1.2",
+    "gulp-clean": "^0.3.2",
+    "gulp-ejs": "^3.0.1",
     "gulp-eslint": "^3.0.1",
+    "gulp-htmlhint": "^0.3.1",
+    "gulp-jsdoc3": "^1.0.1",
     "gulp-jshint": "^2.0.4",
     "gulp-mocha": "^4.3.0",
+    "gulp-print": "^2.0.1",
     "gulp-stylelint": "^3.9.0",
+    "htmlhint": "^0.9.13",
     "istanbul": "^0.4.5",
     "jshint": "^2.9.4",
     "mocha": "^3.2.0",
     "nightwatch": "^0.9.14",
     "nyc": "^10.3.0",
     "stylelint": "^7.10.1",
-    "stylelint-config-standard": "^16.0.0"
+    "stylelint-config-standard": "^16.0.0",
+    "supertest": "^3.0.0"
   }
 }
