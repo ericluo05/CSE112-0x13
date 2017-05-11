@@ -1,11 +1,6 @@
 let express = require('express');
-require('../calls/fooAPI');
+let foo = require('../lib/fooAPI');
 let router = express.Router();
-
-
-function foo(bar) {
-    return (bar === 'baz');
-}
 
 
 /**
@@ -19,7 +14,7 @@ function foo(bar) {
  *
  */
 router.get('/', function(req, res, next) {
-   if (foo(req.query.bar)) {
+   if (foo.foo(req.query.bar)) {
       res.writeHead(200, {'Content-Type': 'text/plain'});
       res.end('true');
    } else {

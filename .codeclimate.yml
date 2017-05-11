@@ -8,13 +8,12 @@ engines:
 ratings:
   paths:
   - calls/**
-  - public/**
+  - public/js/*
   - test/**
   - views/**
   - routes/**
 exclude_paths:
-- doc/**/
+- doc/**
 - data/**
 - drivers/**
-- *.json
-- *.png
+- public/image/*

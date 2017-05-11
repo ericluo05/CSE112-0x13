@@ -1,91 +1,144 @@
-var gulp = require('gulp'),
-   jshint = require('gulp-jshint'),
+/* eslint-disable one-var */
+let gulp = require('gulp'),
     apidoc = require('gulp-apidoc'),
     eslint = require('gulp-eslint'),
     mocha = require('gulp-mocha'),
     babel = require('gulp-babel'),
     print = require('gulp-print'),
-    clean = require('gulp-clean');
+    clean = require('gulp-clean'),
+    htmlhint = require('gulp-htmlhint'),
+    exec = require('child_process').exec,
+    {normalize} = require('path');
+
+
+/**
+* Javascript Lint Checker using JSHint
+*/
+// gulp.task('lint', function () {
+//  gulp.src('./**/*.js')
+//      .pipe(jshint())
+// })
 
 
 /**
 * Javascript Lint Checker using ESLint
 */
-gulp.task('lint', () => {
-    // ESLint ignores files with "node_modules" paths.
-    // So, it's best to have gulp ignore the directory as well.
-    // Also, Be sure to return the stream from the task;
-    // Otherwise, the task may end before the stream has finished.
-    return gulp.src(['**/*.js','!node_modules/**'])
-        // eslint() attaches the lint output to the "eslint" property
-        // of the file object so it can be used by other modules.
-        .pipe(eslint())
-        // eslint.format() outputs the lint results to the console.
-        // Alternatively use eslint.formatEach() (see Docs).
+gulp.task('lint:js', () => {
+    return gulp.src(['**/*.js', '!node_modules/**'])
+        .pipe(eslint({
+            fix: true,
+        }))
         .pipe(eslint.format())
-        // To have the process exit with an error code (1) on
-        // lint error, return the stream and pipe to failAfterError last.
         .pipe(eslint.failAfterError());
 });
 
-/**
-* add Gulp-clean
-*/
-gulp.task('build_clean', () => {
-  // make read = false to speed up the process
-  return gulp.src('public/js/*.js', {read: false})
-        .pipe(clean());
-})
 
-/*
-* Babel Transpiler support, depend on build_clean
-*/
-gulp.task('babel', ['build_clean'], () => {
-  return gulp.src(['public/js_es6/*.js'])
-        .pipe(print())
-        .pipe(babel({ presets: ['es2015'] }))
-        .pipe(gulp.dest('public/js'));
+/**
+ * HTML Linter  using HtmlHint
+ */
+gulp.task('lint:html', () => {
+    gulp.src('./public/html/*.html')
+        .pipe(htmlhint())
+        .pipe(htmlhint.failReporter());
 });
 
 /**
-* Compbined build task
+* CSS Linter using StyleLint
 */
-gulp.task('transpile', ['build_clean', 'babel']);
-
-/**
-* CSS Lint Checker using StyleLint
-*/
-gulp.task('stylelint', function lintCssTask() {
+gulp.task('lint:css', function lintCssTask() {
   const gulpStylelint = require('gulp-stylelint');
   return gulp
     .src('public/stylesheets/*.css')
     .pipe(gulpStylelint({
       reporters: [
-        {formatter: 'string', console: true}
-      ]
+        {formatter: 'string', console: true},
+      ],
     }));
 });
 
 /**
-* Run Mocha Tests
+* Run Mocha Unit Tests
 */
-gulp.task('mocha', () =>
-   gulp.src('test/test.js', {read: false})
-      .pipe(mocha({reporter: 'nyan'}))
+gulp.task('mocha:unit', () =>
+   gulp.src(['test/unit_test/*.js'], {read: false})
+      .pipe(mocha({reporter: 'list'}))
+);
+
+/**
+ * Run Mocha Route Tests
+ */
+gulp.task('mocha:route', () =>
+    gulp.src(['test/route_test/*.js'], {read: false})
+        .pipe(mocha({reporter: 'list'}))
+);
+
+
+/**
+ * Run Mocha API Tests
+ */
+gulp.task('mocha:api', () =>
+    gulp.src(['test/api_test/*.js'], {read: false})
+        .pipe(mocha({reporter: 'list'}))
 );
 
 
 /**
 * Run documentation generator
 */
-gulp.task('apidoc', function(done){
+gulp.task('api', function(done) {
    apidoc({
-      src: "routes/",
-      dest: "doc/"
+      src: 'routes/',
+      dest: 'doc/',
    }, done);
 });
 
+
+/*
+ * Runs Unit, API, and Routing tests, used for coverage
+ */
+gulp.task('storeCoverage', () => exec('node_modules/.bin/nyc', [
+    '--report-dir=var',
+    '--reporter=lcov',
+    normalize('node_modules/.bin/mocha'),
+    '--opts=config/mocha.opts',
+]));
+
+/*
+ * Obtain coverage, to see them in color, use "npm test" instead
+ */
+gulp.task('coverage', ['storeCoverage'], function(cb) {
+    exec('nyc report', function(err, stdout, stderr) {
+        console.log(stdout);
+        console.log(stderr);
+        cb(err);
+    });
+});
+
+
 /**
-* Default "gulp" command
-*/
-gulp.task('default', ['lint', 'stylelint','mocha', 'apidoc','transpile']);
+ * clean public/js folder
+ */
+gulp.task('build_clean', () => {
+    // make read = false to speed up the process
+    return gulp.src('public/js/*.js', {read: false})
+        .pipe(clean());
+});
+
+
+/*
+ * Babel Transpiler support, depend on build_clean
+ * compiles es6 js file st es5
+ */
+gulp.task('babel', ['build_clean'], () => {
+    return gulp.src(['public/js_es6/*.js'])
+        .pipe(print())
+        .pipe(babel({presets: ['es2015']}))
+        .pipe(gulp.dest('public/js'));
+});
+
+
+gulp.task('default', []);
+gulp.task('lint', ['lint:js', 'lint:html', 'lint:css']);
+gulp.task('test', ['mocha:route', 'mocha:api', 'mocha:unit']);
+gulp.task('build', ['build_clean', 'babel']);
+
