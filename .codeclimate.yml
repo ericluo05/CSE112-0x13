@@ -1,23 +1,19 @@
 engines:
-  rubocop:
-    enabled: true
-  golint:
-    enabled: true
   eslint:
     enabled: true
-  csslint:
+  stylelint:
+    enabled: true
+  fixme:
     enabled: true
 ratings:
   paths:
   - calls/**
-  - public/**
+  - public/js/*
   - test/**
   - views/**
   - routes/**
 exclude_paths:
-- doc/**/
+- doc/**
 - data/**
-- ./*.js
-- ./routes/phone.js
-- ./test/phone_test.js
-- ./calls/phone_general.js
+- drivers/**
+- public/image/*
