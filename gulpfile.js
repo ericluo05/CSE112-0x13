@@ -116,7 +116,7 @@ gulp.task('storeCoverage', () => exec('node_modules/.bin/nyc', [
  * Obtain coverage, to see them in color, use "npm test" instead
  */
 gulp.task('coverage', ['storeCoverage'], function(cb) {
-    exec('nyc report', function(err, stdout, stderr) {
+    exec('node_modules/.bin/nyc report', function(err, stdout, stderr) {
         console.log(stdout);
         console.log(stderr);
         cb(err);
