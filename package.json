@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "start": "node ./bin/www",
-    "test": "nyc --reporter=lcov mocha --opts config/mocha.opts",
+    "test": "nyc --reporter=lcov mocha --opts config/mocha.opts --reporter list",
     "coverage": "nyc report",
 	
     "e2e_windows": "npm run e2e_chrome & npm run e2e_ff & npm run e2e_edge",
