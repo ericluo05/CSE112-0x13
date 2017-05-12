@@ -62,7 +62,7 @@ gulp.task('lint:css', function lintCssTask() {
 * Run Mocha Unit Tests
 */
 gulp.task('mocha:unit', () =>
-   gulp.src(['test/unit_test/*.js'], {read: false})
+   gulp.src(['test/unit/*.js'], {read: false})
       .pipe(mocha({reporter: 'list'}))
 );
 
@@ -70,7 +70,7 @@ gulp.task('mocha:unit', () =>
  * Run Mocha Route Tests
  */
 gulp.task('mocha:route', () =>
-    gulp.src(['test/route_test/*.js'], {read: false})
+    gulp.src(['test/route/*.js'], {read: false})
         .pipe(mocha({reporter: 'list'}))
 );
 
@@ -79,7 +79,7 @@ gulp.task('mocha:route', () =>
  * Run Mocha API Tests
  */
 gulp.task('mocha:api', () =>
-    gulp.src(['test/api_test/*.js'], {read: false})
+    gulp.src(['test/api/*.js'], {read: false})
         .pipe(mocha({reporter: 'list'}))
 );
 

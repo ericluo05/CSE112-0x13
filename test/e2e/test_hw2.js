@@ -3,7 +3,7 @@ module.exports = {
   'tags': ['Phone Validation'],
   'Site Element Existence': function(client) {
     client
-      .url('http://localhost:3000/phone')
+      .url('http://127.0.0.1:3000/phone')
       .pause(1000);
 
     client.useXpath();
