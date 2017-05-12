@@ -58,6 +58,15 @@
       }
     },
 
+	
+	 "safari" : {
+      "desiredCapabilities": {
+		"platform": "OS X 10.11",
+		"browserName":"Safari",
+		"version": "10"
+      }
+    },
+	
     "ie11" : {
       "desiredCapabilities": {
         "platform": "Windows 10",
@@ -76,11 +85,14 @@
 
     "iphone_6_simulator": {
       "desiredCapabilities": {
-        "browserName": "iPhone",
-        "deviceOrientation": "portrait",
-        "deviceName": "iPhone 6",
-        "platform": "OSX 10.10",
-        "version": "8.4"
+        "browserName" = "Safari",
+		"appiumVersion" = "1.6.4",
+		"deviceName" = "iPhone 6 Simulator",
+		"deviceOrientation" = "portrait",
+		"platformVersion" = "9.3",
+		"platformName" = "iOS",
+	
+
       }
     }
 
