@@ -4,16 +4,28 @@
   "private": true,
   "scripts": {
     "start": "node ./bin/www",
-    "test": "nyc --reporter=lcov mocha --opts config/mocha.opts",
+    "test": "nyc --reporter=lcov mocha --opts config/mocha.opts --reporter list",
     "coverage": "nyc report",
-    "e2e_windows": "nightwatch --env chrome & nightwatch & nightwatch --env MicrosoftEdge",
-    "e2e_mac": "nightwatch --env chrome & nightwatch & nightwatch --env safari",
-    "e2e_chrome": "nightwatch --env chrome",
-    "e2e_firefox": "nightwatch",
-    "e2e_ff": "nightwatch",
-    "e2e_edge": "nightwatch --env MicrosoftEdge",
-    "e2e_ie": "nightwatch --env ie",
-    "e2e_safari": "nightwatch --env safari",
+	
+    "e2e_windows": "npm run e2e_chrome & npm run e2e_ff & npm run e2e_edge",
+    "e2e_mac": "npm run e2e_chrome & npm run e2e_ff & npm run e2e_safari",
+	
+    "e2e_chrome": "nightwatch --env chrome --config ./config/nightwatch_local.conf.js",
+    "e2e_firefox": "nightwatch --config ./config/nightwatch_local.conf.js",
+    "e2e_ff": "nightwatch --config ./config/nightwatch_local.conf.js",
+    "e2e_edge": "nightwatch --env MicrosoftEdge --config ./config/nightwatch_local.conf.js",
+    "e2e_ie": "nightwatch --env ie --config ./config/nightwatch_local.conf.js",
+    "e2e_safari": "nightwatch --env safari --config ./config/nightwatch_local.conf.js",
+	
+	
+	"e2e_chrome_remote": "nightwatch --env chrome --config ./config/nightwatch_remote.json",
+    "e2e_firefox_remote": "nightwatch --config ./config/nightwatch_remote.json",
+    "e2e_ff_remote": "nightwatch --config ./config/nightwatch_remote.json",
+    "e2e_edge_remote": "nightwatch --env MicrosoftEdge --config ./config/nightwatch_remote.json",
+    "e2e_ie_remote": "nightwatch --env ie11 --config ./config/nightwatch_remote.json",
+    "e2e_safari_remote": "nightwatch --env safari --config ./config/nightwatch_remote.json",
+	"e2e_remote": "nightwatch --env chrome,firefox,safari,edge,ie11 --config ./config/nightwatch_remote.json",
+	
     "sendCoverage": "codeclimate-test-reporter < coverage/lcov.info"
   },
   "nyc": {
@@ -44,6 +56,7 @@
     "gulp-apidoc": "^0.2.6",
     "gulp-babel": "^6.1.2",
     "gulp-clean": "^0.3.2",
+    "gulp-connect": "^5.0.0",
     "gulp-ejs": "^3.0.1",
     "gulp-eslint": "^3.0.1",
     "gulp-htmlhint": "^0.3.1",

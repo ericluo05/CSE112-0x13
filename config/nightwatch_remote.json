@@ -1,0 +1,106 @@
+{
+  "src_folders" : ["test/e2e"],
+  "output_folder" : "reports",
+  "custom_commands_path" : "",
+  "custom_assertions_path" : "",
+  "page_objects_path" : "",
+  "globals_path" : "",
+
+  "selenium" : {
+    "start_process" : false,
+    "server_path" : "",
+    "log_path" : "",
+    "host" : "127.0.0.1",
+    "port" : 4444,
+    "cli_args" : {
+      "webdriver.chrome.driver" : "",
+	  "webdriver.gecko.driver" : "",
+      "webdriver.edge.driver" : "",
+      "webdriver.ie.driver" : "",
+      "webdriver.safari.driver" : ""
+    }
+  },
+
+  "test_workers" : {"enabled" : true, "workers" : "auto"},
+
+  "test_settings" : {
+    "default" : {
+      "launch_url" : "http://localhost:3000",
+      "selenium_port"  : 80,
+      "selenium_host"  : "ondemand.saucelabs.com",
+      "silent": true,
+      "screenshots" : {
+        "enabled" : false,
+        "path" : ""
+      },
+      "username" : "eric_luo",
+      "access_key" : "9e1b8054-6164-4494-bbae-85b252ac3f99",
+
+      "desiredCapabilities": {
+        "javascriptEnabled": true,
+        "acceptSslCerts": true
+      }
+    },
+
+    "chrome": {
+      "desiredCapabilities": {
+        "platform": "Windows 10",
+        "browserName": "chrome",
+        "version": "41"
+      }
+    },
+
+    "firefox" : {
+      "desiredCapabilities": {
+        "platform": "Windows 10",
+        "browserName": "firefox",
+        "version": "33"
+      }
+    },
+
+	
+	 "safari" : {
+      "desiredCapabilities": {
+		"platform": "OS X 10.11",
+		"browserName":"Safari",
+		"version": "10"
+      }
+    },
+	
+	"edge" : {
+      "desiredCapabilities": {
+        "platform": "Windows 10",
+        "browserName": "MicrosoftEdge",
+        "version": "13.10586"
+      }
+    },
+	
+    "ie11" : {
+      "desiredCapabilities": {
+        "platform": "Windows 10",
+        "browserName": "internet explorer",
+        "version": "11"
+      }
+    },
+
+    "android_s4_emulator": {
+      "desiredCapabilities": {
+        "browserName": "android",
+        "deviceOrientation": "portrait",
+        "deviceName": "Samsung Galaxy S4 Emulator"
+      }
+    },
+
+    "iphone_6_simulator": {
+      "desiredCapabilities": {
+        "browserName" : "Safari",
+		"appiumVersion" : "1.6.4",
+		"deviceName" : "iPhone 6 Simulator",
+		"deviceOrientation" : "portrait",
+		"platformVersion" : "9.3",
+		"platformName" : "iOS"
+      }
+    }
+
+  }
+}
