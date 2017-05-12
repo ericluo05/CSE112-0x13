@@ -67,6 +67,14 @@
       }
     },
 	
+	"edge" : {
+      "desiredCapabilities": {
+        "platform": "Windows 10",
+        "browserName": "MicrosoftEdge",
+        "version": "13.10586"
+      }
+    },
+	
     "ie11" : {
       "desiredCapabilities": {
         "platform": "Windows 10",
@@ -85,14 +93,12 @@
 
     "iphone_6_simulator": {
       "desiredCapabilities": {
-        "browserName" = "Safari",
-		"appiumVersion" = "1.6.4",
-		"deviceName" = "iPhone 6 Simulator",
-		"deviceOrientation" = "portrait",
-		"platformVersion" = "9.3",
-		"platformName" = "iOS",
-	
-
+        "browserName" : "Safari",
+		"appiumVersion" : "1.6.4",
+		"deviceName" : "iPhone 6 Simulator",
+		"deviceOrientation" : "portrait",
+		"platformVersion" : "9.3",
+		"platformName" : "iOS"
       }
     }
 
