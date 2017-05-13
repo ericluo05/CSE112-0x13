@@ -23,8 +23,6 @@ before_install:
 
 before_script:
 - npm install -g gulp
-- npm start &
-- sleep 3
 
 script:
 - jdk_switcher use oraclejdk8
@@ -32,6 +30,8 @@ script:
 - gulp build --production
 - npm test
 - npm run coverage
+- npm start &
+- sleep 3
 - npm run e2e_chrome
 - npm run e2e_ff
 after_script:
