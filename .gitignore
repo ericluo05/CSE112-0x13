@@ -20,7 +20,7 @@ coverage
 # node-waf configuration
 .lock-wscript
 
-# Transpiled ES5 files
+# Deployed folder
 build
 
 # Compiled binary addons (http://nodejs.org/api/addons.html)
