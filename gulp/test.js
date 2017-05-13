@@ -1,5 +1,4 @@
 /* eslint-disable apidoc/rule-name*/
-
 let gulp = require('gulp');
 let mocha = require('gulp-mocha');
 let exec = require('child_process').exec;

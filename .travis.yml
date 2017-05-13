@@ -29,12 +29,11 @@ before_script:
 script:
 - jdk_switcher use oraclejdk8
 - gulp lint
-- gulp build
+- gulp build --production
 - npm test
 - npm run coverage
 - npm run e2e_chrome
 - npm run e2e_ff
-- gulp api
 after_script:
 - pkill node
 after_success:

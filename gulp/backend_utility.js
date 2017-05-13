@@ -8,11 +8,11 @@ let nodemon = require('gulp-nodemon');
  * use nodemon for development
  *
  */
-gulp.task('develop', function() {
+gulp.task('develop', ['build'], function() {
   let stream = nodemon({
           script: './server/bin/www',
           ext: 'html js',
-          ignore: ['config/', 'coverage/', 'drivers/', 'node_modules/',
+          ignore: ['config/', 'build', 'coverage/', 'drivers/', 'node_modules/',
               'public/js', 'reprts/', 'test/'],
           tasks: ['build'],
           env: {'NODE_ENV': 'development'},

@@ -1,4 +1,4 @@
-/* eslint-disable no-unused-vars */
+/* eslint-disable no-unused-vars,apidoc/rule-name */
 let request = require('supertest');
 let app = require('../../server/app');
 

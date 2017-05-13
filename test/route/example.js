@@ -1,3 +1,4 @@
+/* eslint-disable apidoc/rule-name */
 let request = require('supertest');
 let app = require('../../server/app');
 

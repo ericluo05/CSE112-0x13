@@ -1,11 +1,11 @@
-/* eslint-disable no-unused-vars */
+/* eslint-disable no-unused-vars,require-jsdoc */
 function validatePhone() {
     let ccEle = document.getElementById('cc1');
     let cc = ccEle.options[ccEle.selectedIndex].value;
     let number = document.getElementById('number').value;
     let result = document.getElementById('ResultText');
     let xhttp = new XMLHttpRequest();
-    let numOnly = /^\d/; // regex used to check if the phone number is numeric only
+    let numOnly = /^\d/; // regex used to check if the number is numeric only
 
     if (numOnly.test(number.toString())) {
         xhttp.onreadystatechange = function() {

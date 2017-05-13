@@ -1,7 +1,8 @@
-let gulp = require('gulp'),
-    apidoc = require('gulp-apidoc'),
-    jsdoc = require('gulp-jsdoc3'),
-    config = require('../config/jsdoc.conf.json');
+/* eslint-disable apidoc/rule-name */
+let gulp = require('gulp');
+let apidoc = require('gulp-apidoc');
+let jsdoc = require('gulp-jsdoc3');
+let config = require('../config/jsdoc.conf.json');
 
 
 gulp.task('doc', function(cb) {
