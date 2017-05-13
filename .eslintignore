@@ -1,6 +1,11 @@
-node_modules/**
-data/
-reports/
+build/
+config/
 coverage/
 doc/
-nightwatch.conf.js
+drivers/
+node_modules/
+reports/
+server/data/
+server/lib/fooAPI.js
+server/lib/phone_general.js
+

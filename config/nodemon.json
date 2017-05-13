@@ -1,0 +1,7 @@
+{
+  "verbose": true,
+  "ignore":  ['public/js', 'node_modules/', 'drivers/', 'coverage'],
+  "execMap": {
+    "rb": "ruby",
+  }
+}

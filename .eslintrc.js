@@ -7,7 +7,7 @@ module.exports = {
         "apidoc"
     ],
     rules: {
-       // "apidoc/rule-name": 2, //suppress apicod for now
+     //   "apidoc/rule-name": 2,
 
         // The rules below are listed in the order they appear on the eslint
         // rules page. All rules are listed to make it easier to keep in sync
@@ -50,6 +50,12 @@ module.exports = {
         // 'no-unsafe-finally': 2, // eslint:recommended
         // 'no-unsafe-negation': 0,
         // 'use-isnan': 2 // eslint:recommended
+        'valid-jsdoc': [2, {
+            requireParamDescription: false,
+            requireReturnDescription: false,
+            requireReturn: false,
+            prefer: {returns: 'return'},
+        }],
         // 'valid-typeof': 2 // eslint:recommended
 
 
@@ -69,7 +75,7 @@ module.exports = {
         // 'dot-location': 0,
         // 'dot-notation': 0,
         // 'eqeqeq': 0,
-       // 'guard-for-in': 2,
+        'guard-for-in': 2,
         // 'no-alert': 0,
         'no-caller': 2,
         // 'no-case-declarations': 2, // eslint:recommended
@@ -166,7 +172,7 @@ module.exports = {
         'array-bracket-spacing': [2, 'never'],
         // 'block-spacing': 0,
         'brace-style': 2,
-       // 'camelcase': [2, {properties: 'never'}],
+        'camelcase': [2, {properties: 'never'}],
         'comma-dangle': [2, 'always-multiline'],
         'comma-spacing': 2,
         'comma-style': 2,
@@ -181,7 +187,6 @@ module.exports = {
         // 'id-length': 0,
         // 'id-match': 0,
         // 'indent': 0,
-        // Google's 4-space indent for line continuations.
         // 'jsx-quotes': 0,
         'key-spacing': 2,
         'keyword-spacing': 0,
@@ -191,7 +196,7 @@ module.exports = {
         // 'lines-around-directive': 0,
         // 'max-depth': 0,
         'max-len': [2, {
-            code: 100,
+            code: 80,
             tabWidth: 2,
             ignoreUrls: true,
             ignorePattern: '^goog\.(module|require)',
@@ -203,7 +208,7 @@ module.exports = {
         // 'max-statements': 0,
         // 'multiline-ternary': 0,
         // operator appearing at the end of the line.
-        // 'new-cap': 2,
+        'new-cap': 2,
         // 'new-parens': 0,
         // 'newline-after-var': 0,
         // 'newline-before-return': 0,
@@ -241,6 +246,13 @@ module.exports = {
         'padded-blocks': [2, 'never'],
         'quote-props': [2, 'consistent'],
         'quotes': [2, 'single', {allowTemplateLiterals: true}],
+        'require-jsdoc': [2, {
+            require: {
+                FunctionDeclaration: true,
+                MethodDefinition: true,
+                ClassDeclaration: true,
+            },
+        }],
         'semi-spacing': 2,
         'semi': 2,
         // 'sort-keys': 0,

@@ -1,0 +1,80 @@
+{
+  "52" : {
+    "Countries" : ["Mexico"],
+    "Special_All" : {
+      "Valid_Length" : [],
+      "Error" : "CC_52 Error(SP): SHOULD NOT BE REACHABLE"
+    },
+    "Special_Some" : {
+      "Valid_Length" : [],
+      "Error" : "CC_52 Error(SS): SHOULD NOT BE REACHABLE"
+    },
+    "Valid_Length" : ["3","10"],
+    "3" : {
+      "Countries" : ["Mexico"],
+      "Mexico" : {
+        "Areas" : ["Area_1"],
+        "Area_1" : {
+          "Prefix" : ["020", "030", "031", "040", "050", "060", "065", "066",
+                      "070", "071", "072", "080", "090", "911"],
+          "Prefix_Regex" : [],
+          "Prefix_Length" : 3,
+          "Suffix" : [""],
+          "Suffix_Regex" : [],
+          "Display_Format" : {
+            "E.164" : "+52???",
+            "International" : "+52 ???",
+            "Domestic" : {
+              "Normal" : "???"
+            }
+          }
+        }
+      },
+      "Error" : "CC_52 Error(L3): Invalid 3 digit number"
+    },
+    "10" : {
+      "Countries" : ["Mexico"],
+      "Mexico" : {
+        "Areas" : ["Area_1", "Area_2"],
+        "Area_1" : {
+          "Prefix" : ["55", "81", "33"],
+          "Prefix_Regex" : [],
+          "Prefix_Length" : 2,
+          "Suffix" : [],
+          "Suffix_Regex" : ["????????"],
+          "Display_Format" : {
+            "E.164" : "+52??????????",
+            "International" : "+52(??)????????",
+            "Domestic" : {
+              "Normal" : "?? ???? ????",
+              "Domestic Long Distance" : ["(01) ?? ???? ????", 
+                                          "(01 ??) ???? ????"],
+              "To Cellphone from landline in same city" : [ "(044)?? ???? ????"]
+            }
+          }
+        },
+        "Area_2" : {
+          "Prefix" : ["222", "229", "442", "443", "444", "449", "477", "614",
+                         "656", "662", "664", "667", "686", "722", "744", "833",
+                         "844", "871", "961", "998", "999"],
+          "Prefix_Regex" : [],
+          "Prefix_Length" : 3,
+          "Suffix" : [],
+          "Suffix_Regex" : ["???????"],
+          "Display_Format" : {
+            "E.164" : "+52??????????",
+            "International" : "+52(???)???????",
+            "Domestic" : {
+              "Normal" : "??? ??? ????",
+              "Domestic Long Distance" : ["(01) ??? ??? ????", 
+                                          "(01 ???) ??? ????"],
+              "To Cellphone from landline in same city" : [ "(044)??? ??? ????"]
+            }
+          }
+        }
+      },
+      "Error" : "CC_52 Error(L10): Invalid 10 digit number"
+    },
+    "Error" : "CC_52 Error(Last): Invalid Length"
+  }
+}
