@@ -3,29 +3,24 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "node ./bin/www",
+    "start": "node ./server/bin/www",
     "test": "nyc --reporter=lcov mocha --opts config/mocha.opts --reporter list",
     "coverage": "nyc report",
-	
     "e2e_windows": "npm run e2e_chrome & npm run e2e_ff & npm run e2e_edge",
     "e2e_mac": "npm run e2e_chrome & npm run e2e_ff & npm run e2e_safari",
-	
     "e2e_chrome": "nightwatch --env chrome --config ./config/nightwatch_local.conf.js",
     "e2e_firefox": "nightwatch --config ./config/nightwatch_local.conf.js",
     "e2e_ff": "nightwatch --config ./config/nightwatch_local.conf.js",
     "e2e_edge": "nightwatch --env MicrosoftEdge --config ./config/nightwatch_local.conf.js",
     "e2e_ie": "nightwatch --env ie --config ./config/nightwatch_local.conf.js",
     "e2e_safari": "nightwatch --env safari --config ./config/nightwatch_local.conf.js",
-	
-	
-	"e2e_chrome_remote": "nightwatch --env chrome --config ./config/nightwatch_remote.json",
+    "e2e_chrome_remote": "nightwatch --env chrome --config ./config/nightwatch_remote.json",
     "e2e_firefox_remote": "nightwatch --config ./config/nightwatch_remote.json",
     "e2e_ff_remote": "nightwatch --config ./config/nightwatch_remote.json",
     "e2e_edge_remote": "nightwatch --env MicrosoftEdge --config ./config/nightwatch_remote.json",
     "e2e_ie_remote": "nightwatch --env ie11 --config ./config/nightwatch_remote.json",
     "e2e_safari_remote": "nightwatch --env safari --config ./config/nightwatch_remote.json",
-	"e2e_remote": "nightwatch --env chrome,firefox,safari,edge,ie11 --config ./config/nightwatch_remote.json",
-	
+    "e2e_remote": "nightwatch --env chrome,firefox,safari,edge,ie11 --config ./config/nightwatch_remote.json",
     "sendCoverage": "codeclimate-test-reporter < coverage/lcov.info"
   },
   "nyc": {
@@ -63,6 +58,7 @@
     "gulp-jsdoc3": "^1.0.1",
     "gulp-jshint": "^2.0.4",
     "gulp-mocha": "^4.3.0",
+    "gulp-nodemon": "^2.2.1",
     "gulp-print": "^2.0.1",
     "gulp-stylelint": "^3.9.0",
     "htmlhint": "^0.9.13",

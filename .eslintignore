@@ -1,7 +1,8 @@
-node_modules/**
-data/
-reports/
+config/
 coverage/
 doc/
-nightwatch.conf.js
-public/js/*.js
+drivers/
+node_modules/
+reports/
+server/data/
+build/
