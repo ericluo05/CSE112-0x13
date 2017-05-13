@@ -1,6 +1,6 @@
 language: node_js
 node_js:
-- '6'
+- '7'
 cache: yarn
 sudo: required
 os: linux
@@ -23,19 +23,17 @@ before_install:
 
 before_script:
 - npm install -g gulp
-- npm start &
-- sleep 3
 
 script:
 - jdk_switcher use oraclejdk8
 - gulp lint
-- gulp build
+- gulp build --production
 - npm test
 - npm run coverage
+- npm start &
+- sleep 3
 - npm run e2e_chrome
 - npm run e2e_ff
-- npm run e2e_remote
-- gulp api
 after_script:
 - pkill node
 after_success:

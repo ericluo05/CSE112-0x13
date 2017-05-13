@@ -8,7 +8,7 @@
   
   "selenium" : {
     "start_process" : true,
-    "server_path" : "bin/selenium-server-standalone-3.4.0.jar",
+    "server_path" : "drivers/selenium/selenium-server-standalone-3.4.0.jar",
     "log_path" : "",
     "port" : 4444,
     "cli_args" : {

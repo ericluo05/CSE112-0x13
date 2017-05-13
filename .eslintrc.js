@@ -7,7 +7,7 @@ module.exports = {
         "apidoc"
     ],
     rules: {
-        "apidoc/rule-name": 2, 
+     //   "apidoc/rule-name": 2,
 
         // The rules below are listed in the order they appear on the eslint
         // rules page. All rules are listed to make it easier to keep in sync

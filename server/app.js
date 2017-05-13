@@ -6,30 +6,24 @@ let cookieParser = require('cookie-parser');
 let bodyParser = require('body-parser');
 
 let index = require('./routes/index');
-let users = require('./routes/users');
 
-let foo = require('./routes/foo');
 let phone = require('./routes/phone');
 let app = express();
 
 // view engine setup
-app.set('views', path.join(__dirname, 'views'));
+app.set('views', path.join(__dirname + '/../build/views'));
 app.set('view engine', 'ejs');
 
 // uncomment after placing your favicon in /public
-app.use(favicon(__dirname + '/public/image/favicon.ico'));
+app.use(favicon(__dirname + './../build/images/favicon.ico'));
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, '/../build')));
 
 app.use('/', index);
-app.use('/users', users);
-
-//
 app.use('/phone', phone);
-app.use('/foo', foo);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

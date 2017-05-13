@@ -1,5 +1,6 @@
+/* eslint-disable apidoc/rule-name */
 let request = require('supertest');
-let app = require('../../app');
+let app = require('../../server/app');
 
 describe('index route', function() {
     it('should respond with a 200 with no query parameters', function(done) {
