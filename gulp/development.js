@@ -31,7 +31,6 @@ gulp.task('dev', ['dev:frontend'], function() {
  *  server automatically restart on any changes in server folder
  */
 gulp.task('dev:frontend', ['dev:backend', 'watch:html'], function() {
-
     // capture all relevant file edits in client folder
     gulp.watch(paths.js_src, ['watch:js']);
     gulp.watch(paths.html_src, ['watch:html']);
