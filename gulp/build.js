@@ -18,6 +18,8 @@ let paths = {
     css_dest: 'build/stylesheets',
     image_src: 'client/images/**',
     image_dest: 'build/images',
+    emissary_src: 'client/emissary/**',
+    emissary_dest: 'build/emissary/',
 };
 
 /**
@@ -71,13 +73,23 @@ gulp.task('copy:image', () =>
 
 /*
  *  Copy Views (it doesn't minimize.. cuz i haven't found a plugin for it)
+
  */
 gulp.task('copy:views', function() {
     return gulp.src('client/views/**/*.ejs')
         .pipe(gulp.dest('build/views'));
 });
 
+/*
+ *  Copy Emissary folder, no compression done
+ */
+gulp.task('copy:emissary', function() {
+    return gulp.src(paths.emissary_src)
+        .pipe(gulp.dest(paths.emissary_dest));
+});
+
+
 gulp.task('build', ['copy:html', 'copy:css', 'copy:image',
-    'copy:js', 'copy:views']);
+    'copy:js', 'copy:views', 'copy:emissary']);
 
 
