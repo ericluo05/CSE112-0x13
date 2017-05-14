@@ -11,6 +11,8 @@ let paths = {
     css_dest: 'build/stylesheets',
     image_src: 'client/images/**',
     image_dest: 'build/images',
+    emissary_src: 'client/emissary/**',
+    emissary_dest: 'build/emissary/',
 };
 
 /*
@@ -36,7 +38,7 @@ gulp.task('dev:frontend', ['dev:backend', 'watch:html'], function() {
     gulp.watch(paths.html_src, ['watch:html']);
     gulp.watch(paths.css_src, ['watch:css']);
     gulp.watch(paths.image_src, ['watch:image']);
-
+    gulp.watch(paths.emissary_src, ['watch:emissary']);
     browserSync.init(null, {
         proxy: 'http://localhost:3000',
         files: ['build/**/*.*'],
@@ -105,3 +107,11 @@ gulp.task('watch:image', function() {
 });
 
 
+/*
+ * Helper for dev:frontend, watch for changes in emissary folder
+ */
+gulp.task('watch:emissary', function() {
+    gulp.src(paths.emissary_src)
+        .pipe(newer(paths.emissary_dest))
+        .pipe(gulp.dest(paths.emissary_dest));
+});
