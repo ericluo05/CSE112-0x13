@@ -18,7 +18,7 @@ let paths = {
     css_dest: 'build/stylesheets',
     image_src: 'client/images/**',
     image_dest: 'build/images',
-    emissary_src: 'client/emissary/**',
+    emissary_src: 'client/emissary/**/*.*',
     emissary_dest: 'build/emissary/',
 };
 
