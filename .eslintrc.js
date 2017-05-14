@@ -4,7 +4,6 @@ module.exports = {
         "sourceType": "module",
     },
     "plugins": [
-        "apidoc"
     ],
     rules: {
      //   "apidoc/rule-name": 2,
