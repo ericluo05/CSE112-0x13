@@ -20,6 +20,10 @@ let paths = {
 gulp.task('development', ['dev:frontend'], function() {
 });
 
+gulp.task('dev', ['dev:frontend'], function() {
+});
+
+
 /*
  *  Use browser-sync and nodemon
  *  changes in client folder are capture and propagated to build folder
