@@ -3,9 +3,6 @@ module.exports = {
         "ecmaVersion": 6,
         "sourceType": "module",
     },
-    "plugins": [
-        "apidoc"
-    ],
     rules: {
      //   "apidoc/rule-name": 2,
 

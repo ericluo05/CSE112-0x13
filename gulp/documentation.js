@@ -6,7 +6,7 @@ let config = require('../config/jsdoc.conf.json');
 
 
 gulp.task('doc', function(cb) {
-    gulp.src(['README.md', './lib/**/*.js'],
+    gulp.src(['README.md', './server/**/*.js'],
         {'read': false, 'destination': '/doc/lib'})
         .pipe(jsdoc(config, cb));
 });
@@ -17,7 +17,7 @@ gulp.task('doc', function(cb) {
 */
 gulp.task('api', function(done) {
    apidoc({
-      src: 'routes/',
+      src: 'server/routes/',
       dest: 'doc/api',
    }, done);
 });
