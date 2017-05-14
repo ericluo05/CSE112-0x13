@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "start": "node ./server/bin/www",
-    "postinstall": "gulp build --production",
+    "postinstall": "gulp build",
     "test": "nyc --reporter=lcov mocha --opts config/mocha.opts --reporter list",
     "coverage": "nyc report",
     "e2e_windows": "npm run e2e_chrome & npm run e2e_ff & npm run e2e_edge",
@@ -81,6 +81,7 @@
     "jshint": "^2.9.4",
     "mocha": "^3.2.0",
     "nightwatch": "^0.9.14",
+    "npm-run-all": "^4.0.2",
     "nyc": "^10.3.0",
     "require-dir": "^0.3.1",
     "stylelint": "^7.10.1",

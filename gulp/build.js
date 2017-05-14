@@ -8,7 +8,6 @@ let cleanCSS = require('gulp-clean-css');
 let htmlmin = require('gulp-htmlmin');
 let newer = require('gulp-newer');
 let util = require('gulp-util');
-let config = {production: !!util.env.production};
 let paths = {
     js_src: 'client/js_es6/**/*.js',
     js_dest: 'build/js',
@@ -37,7 +36,7 @@ gulp.task('copy:js', () => {
     return gulp.src(paths.js_src)
         .pipe(newer(paths.js_dest))
         .pipe(babel({presets: ['es2015']}))
-        .pipe(config.production? uglify(): util.noop())
+        .pipe((process.env.NODE_ENV === 'production') ? uglify(): util.noop())
         .pipe(gulp.dest(paths.js_dest));
 });
 /*
@@ -46,7 +45,7 @@ gulp.task('copy:js', () => {
 gulp.task('copy:html', function() {
     return gulp.src(paths.html_src)
         .pipe(newer(paths.html_dest))
-        .pipe(config.production?
+        .pipe((process.env.NODE_ENV === 'production')?
             htmlmin({collapseWhitespace: true}):util.noop())
         .pipe(gulp.dest(paths.html_dest));
 });
@@ -57,7 +56,7 @@ gulp.task('copy:html', function() {
 gulp.task('copy:css', function() {
     return gulp.src('client/stylesheets/**/*.css')
         .pipe(newer(paths.css_dest))
-        .pipe(config.production? cleanCSS(): util.noop())
+        .pipe((process.env.NODE_ENV === 'production')? cleanCSS(): util.noop())
         .pipe(gulp.dest(paths.css_dest));
 });
 
@@ -67,7 +66,7 @@ gulp.task('copy:css', function() {
 gulp.task('copy:image', () =>
     gulp.src(paths.image_src)
         .pipe(newer(paths.image_dest))
-        .pipe(config.production? imagemin() : util.noop())
+        .pipe((process.env.NODE_ENV === 'production')? imagemin() : util.noop())
         .pipe(gulp.dest(paths.image_dest))
 );
 
