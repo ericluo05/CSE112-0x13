@@ -11,6 +11,8 @@ let staticSiteMapping = require('./routes/staticmapping');
 let apiMapping = require('./routes/apimapping');
 let app = express();
 
+require('./socket/socket');
+
 // view engine setup
 app.set('views', path.join(__dirname + '/../build/views'));
 app.set('view engine', 'ejs');
@@ -35,12 +37,11 @@ app.use(express.static(path.join(__dirname, '/../build')));
 app.use('/phone', require('./routes/phone'));
 
 
-//map request to properly query when user tries to access .html files
+// map request to properly query when user tries to access .html files
 app.use(function(req, res, next) {
     if (req.path.substr(-5) == '.html' && req.path.length > 1) {
-        var query = req.url.slice(req.path.length);
+        let query = req.url.slice(req.path.length);
         res.redirect(301, req.path.slice(0, -5) + query);
-        //res.sendFile(path.join(__dirname,'../dist/assets/views/checkin.html'))
     } else {
         next();
     }
