@@ -1,0 +1,55 @@
+body{
+    font-family: "Helvetica Neue";
+}
+
+.visitor-container{
+    width: 95%;
+   // max-width: 768px;
+    margin-left: auto;
+    margin-right: auto;
+    .patient-table-header{
+        
+        .form-control{
+            &:focus{
+                outline: none;
+            }
+        }
+    }
+    .table{
+        margin-top: 30px;
+        border-collapse: collapse;
+        width: 100%;
+        border: 1px solid #ebebeb;
+        thead{
+            text-align: left;
+             tr{
+                background-color:#f5f5f6; 
+                th{
+                    width: 33%;
+                    padding: 15px;
+                    color: #a6a7aa;
+                    font-size: 16px;
+                    .fa{
+                        margin-left: 8px;
+                    }
+                }
+            }    
+        }
+        tbody{
+            tr{
+                border: 1px solid #ebebeb;
+                td{
+                    padding: 15px;
+                    color: #9494B1;
+                    font-size: 14px;
+                }
+                .text-danger{
+                    .fa{
+
+                        margin-right: 4px;
+                    }
+                }
+            }
+        }
+    }
+}

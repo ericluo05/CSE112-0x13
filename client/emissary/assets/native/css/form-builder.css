@@ -1,0 +1,63 @@
+#optional_label.form-control{
+	max-width: 70%;
+}
+
+.form-control{
+	display: inline;
+}
+
+#box1, #box2{
+	/*width: 80%;*/
+	border: none;
+	padding: 6px;
+	color: black;
+	display: inline-block;
+}
+
+.remove-box{
+	margin-left: 20px;
+}
+
+hr{
+	border-top: 3px solid #01b2bd !important;
+}
+
+.form-builder{
+	width: 90%;
+	max-width: 980px;
+	margin: 25px auto;
+}
+.form-group{
+	width: 50%;
+	max-width: 400px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+
+.my-form input{
+	width: 60%;
+}
+.add-form-text{
+	width: 50%;
+	max-width: 400px;
+	margin: 25px auto;
+
+}
+
+.add-fields{
+	width: 50%;
+	max-width: 400px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.save-form{
+	margin-top: 25px;
+}
+
+h1{
+	margin-top: 40px;
+	margin-bottom: 15px;
+	text-align: center;
+}
