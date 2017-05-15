@@ -1,8 +1,10 @@
+/* eslint-disable camelcase */
 'use strict';
 
 let express = require('express');
 let server;
 let io = require('socket.io')();
+
 // Constants for listening to Sockets
 let CONNECTION = 'connection';
 let VALIDATE_COMPANY_ID = 'validate_company_id';
@@ -15,14 +17,9 @@ let NOTIFY_ERROR = 'notify_error';
 let VisitorListCtr = require('../routes/visitorList/visitorList.controller');
 let Company = require('../models/Company');
 
-/********** Socket IO Module **********/
-/**
- * Socket IO Module 
- * @param {Object} ioIn
- * @return {Object} Returns server created.
- */
-exports.createServer = function(ioIn) {
-    io = ioIn;
+/** ******** Socket IO Module **********/
+exports.createServer = function(io_in) {
+    io = io_in;
 
     /*
      * This handles the 'connection' event, which is send when the user is
@@ -33,58 +30,70 @@ exports.createServer = function(ioIn) {
      * room and notified when changes are being made.
      */
     io.on(CONNECTION, function(socket) {
-        console.log('SOCKET CONNECTED');
-        /* companyId is required to connect to join right socket to listen to*/
+        /* company_id is required to connect to join right socket to listen to*/
         socket.on(VALIDATE_COMPANY_ID, function(data) {
             console.log(data);
-            let companyId = data.company_id;
-            Company.findOne({_id: companyId}, function(err, c) {
+            let company_id = data.company_id;
+            Company.findOne({_id: company_id}, function(err, c) {
                 if(err || !c)
                     return;
                 else {
-                    socket.join(companyId);
-                    VisitorListCtr.getCompanyVisitorList(companyId, 
-                    function(errMsg, result) {
-                        if(errMsg)
-                            exports.notifyError(companyId, {error: errMsg});
+                    socket.join(company_id);
+                    VisitorListCtr.getCompanyVisitorList(company_id,
+                        function(err_msg, result) {
+                        if(err_msg)
+                            exports.notifyError(company_id, {error: err_msg});
                         else {
-                            exports.notifyNewList(companyId, result);
+                            exports.notifyNewList(company_id, result);
                         }
                     });
                 }
             });
         });
 
-        // requires the companyId to be sent
+        // requires the company_id to be sent
         socket.on(VISITOR_LIST_UPDATE, function(data) {
-            let companyId = data.company_id;
+            let company_id = data.company_id;
             console.log('Visitor List Update' + data);
-            VisitorListCtr.getCompanyVisitorList(companyId, 
-            function(errMsg, result) {
-                if(errMsg) {
-                    exports.notifyError(companyId, {error: errMsg});
+            VisitorListCtr.getCompanyVisitorList(company_id,
+                function(err_msg, result) {
+                if(err_msg) {
+                    exports.notifyError(company_id, {error: err_msg});
                 } else
-                    exports.notifyNewList(companyId, result);
+                    exports.notifyNewList(company_id, result);
+            });
+        });
+
+// requires the company_id to be sent
+        socket.on(VISITOR_LIST_UPDATE, function(data) {
+            let company_id = data.company_id;
+            console.log('Visitor List Update' + data);
+            VisitorListCtr.getCompanyVisitorList(company_id,
+                function(err_msg, result) {
+                if(err_msg) {
+                    exports.notifyError(company_id, {error: err_msg});
+                } else
+                    exports.notifyNewList(company_id, result);
             });
         });
 
         socket.on(DISCONNECT, function() {
-            // console.log('user disconnected from ' + companyId);
+            // console.log('user disconnected from ' + company_id);
         });
 
-        // requires the companyId and visitorId to be sent
+        // requires the company_id and visitor_id to be sent
         socket.on(REMOVE_VISITOR, function(data) {
             console.log(data.company_id);
-            let companyId = data.company_id;
-            let visitorId = data.visitor_id;
-            if(!companyId || !visitorId) return;
-            VisitorListCtr.deleteVisitor(companyId, visitorId, 
-            function(errMsg, result) {
-                if(errMsg) {
+            let company_id = data.company_id;
+            let visitor_id = data.visitor_id;
+            if(!company_id || !visitor_id) return;
+            VisitorListCtr.deleteVisitor(company_id, visitor_id,
+                function(err_msg, result) {
+                if(err_msg) {
                     console.log('error');
-                    exports.notifyError(companyId, {error: errMsg});
+                    exports.notifyError(company_id, {error: err_msg});
                 } else
-                    exports.notifyNewList(companyId, result);
+                    exports.notifyNewList(company_id, result);
             });
         });
 
@@ -93,13 +102,13 @@ exports.createServer = function(ioIn) {
             console.log('ADDING VISITOR');
             console.log(data);
             console.log(data.company_id);
-            let companyId = data.company_id;
-            VisitorListCtr.create(data, function(errMsg, result) {
-                if(errMsg) {
+            let company_id = data.company_id;
+            VisitorListCtr.create(data, function(err_msg, result) {
+                if(err_msg) {
                     console.log('error');
-                    exports.notifyError(companyId, {error: errMsg});
+                    exports.notifyError(company_id, {error: err_msg});
                 } else {
-                    exports.notifyNewList(companyId, result);
+                    exports.notifyNewList(company_id, result);
                 }
             });
         });
@@ -114,12 +123,12 @@ exports.createServer = function(ioIn) {
  * this event is triggered, the client side can retrieve the whole queue of
  * patients to reflect the changes.
  */
-exports.notifyNewList = function(companyId, data) {
-    io.to(companyId).emit(VISITOR_LIST_UPDATE, data);
+exports.notifyNewList = function(company_id, data) {
+    io.to(company_id).emit(VISITOR_LIST_UPDATE, data);
 };
 
-exports.notifyError = function(companyId, data) {
-    io.to(companyId).emit(NOTIFY_ERROR, data);
+exports.notifyError = function(company_id, data) {
+    io.to(company_id).emit(NOTIFY_ERROR, data);
 };
 
 /*

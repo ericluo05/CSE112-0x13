@@ -7,7 +7,6 @@ let formAPI = require('../routes/form');
 let payment = require('../routes/payment');
 let visitorListsAPI = require('../routes/visitorList');
 
-
 module.exports = function(app) {
     app.use('/api', api);
     app.use('/api/appointments', appointmentAPI);
