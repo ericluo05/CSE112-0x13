@@ -17,4 +17,4 @@ exclude_paths:
 - drivers/
 - server/data/
 - build/
-- client/emissary
+- client/emissary/
