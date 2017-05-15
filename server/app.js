@@ -11,6 +11,8 @@ let staticSiteMapping = require('./routes/staticmapping');
 let apiMapping = require('./routes/apimapping');
 let app = express();
 
+let slack = require('slack-notify')('https://hooks.slack.com/services/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');
+
 require('./socket/socket');
 
 // view engine setup
