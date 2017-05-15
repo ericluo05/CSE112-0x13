@@ -3,8 +3,6 @@
 let express = require('express');
 let server;
 let io = require('socket.io')();
-let exports = module.exports;
-
 // Constants for listening to Sockets
 let CONNECTION = 'connection';
 let VALIDATE_COMPANY_ID = 'validate_company_id';

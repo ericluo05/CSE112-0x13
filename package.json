@@ -46,6 +46,7 @@
     "morgan": "~1.8.1",
     "nodemailer": "^4.0.1",
     "serve-favicon": "~2.4.2",
+    "slack-notify": "^0.1.6",
     "socket.io": "^2.0.1",
     "stripe": "^4.19.0",
     "twilio": "^3.0.0"
