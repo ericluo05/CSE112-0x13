@@ -10,8 +10,10 @@ let config = require('./config/config')[process.env.NODE_ENV || 'development'];
 let staticSiteMapping = require('./routes/staticmapping');
 let apiMapping = require('./routes/apimapping');
 let app = express();
+require('./socket/socket');
+// slack notification is done on client side currently.. not safe
+// let slack = require('slack-notify')('https://hooks.slack.com/services/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');
 
-let slack = require('slack-notify')('https://hooks.slack.com/services/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');
 
 require('./socket/socket');
 
@@ -60,6 +62,7 @@ app.use(function(req, res, next) {
   next(err);
 });
 
+
 // error handler
 app.use(function(err, req, res, next) {
   // set locals, only providing error in development
@@ -70,5 +73,8 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
+
+
+
 
 module.exports = app;
