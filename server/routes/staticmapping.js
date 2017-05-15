@@ -29,6 +29,9 @@ router.get('/appointments', function(req, res) {
   res.sendFile(path.join(__dirname, '../../build/html/appointments.html'));
 });
 
+// router.get('/appointments', function(req, res) {
+//     res.sendFile(path.join(__dirname, '../../build/emissary/assets/views/appointments.html'));
+// });
 router.get('/checkin', function(req, res) {
   res.sendFile(path.join(__dirname, '../../build/html/checkin.html'));
 });
@@ -44,6 +47,8 @@ router.get('/forgot-password', function(req, res) {
 router.get('/form-builder', function(req, res) {
   res.sendFile(path.join(__dirname, '../../build/html/form-builder.html'));
 });
+
+
 
 router.get('/login', function(req, res) {
   res.sendFile(path.join(__dirname, '../../build/html/login.html'));
@@ -66,7 +71,7 @@ router.get('/admin-settings', function(req, res) {
 });
 
 router.get('/index', function(req, res) {
-    res.sendFile(path.join(__dirname, '../../build/html/index.html'));
+    res.sendFile(path.join(__dirname, '../../build/html/index3.html'));
 });
 
 module.exports = router;
