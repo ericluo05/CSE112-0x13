@@ -16,25 +16,30 @@ module.exports.template = {};
 module.exports.template.findByCompanyId =  function(req, res) {
   TemplateForm.findOne({'_admin_id' : req.params.id}, function(err, template) {
     if(err)
-      res.status(400).json({error: "There was an error finding the template form."});
+      res.status(400).json(
+        {error: "There was an error finding the template form."});
     else
       res.status(200).json(template);
   });
 };
 
 module.exports.template.findByAdminId = function(req,res){
-  TemplateForm.findOne({'_admin_id' : req.params.adminid}, function(err, template) {
+  TemplateForm.findOne({'_admin_id' : req.params.adminid}, 
+  function(err, template) {
     if(err)
-      res.status(400).json({error: "There was an error finding the template form."});
+      res.status(400).json(
+        {error: "There was an error finding the template form."});
     else
       res.status(200).json(template);
   });
 };
 
 module.exports.template.sendByAdminId = function(req,res){
-  TemplateForm.findOne({'_admin_id' : req.params.adminid}, function(err, template) {
+  TemplateForm.findOne({'_admin_id' : req.params.adminid}, 
+  function(err, template) {
     if(err)
-      res.status(400).json({error: "There was an error finding the template form."});
+      res.status(400).json(
+        {error: "There was an error finding the template form."});
     else if(!template){//if doesn't exist
       createWithAdminId(req,res);
     }
@@ -44,6 +49,11 @@ module.exports.template.sendByAdminId = function(req,res){
   });
 };
 
+/**
+ * Create with admin id 
+ * @param {Object} req
+ * @param {Object} res
+ */
 function createWithAdminId(req,res){
   var newTemplate = new TemplateForm();
   newTemplate._admin_id = req.params.adminid;
@@ -57,13 +67,19 @@ function createWithAdminId(req,res){
   });
 }
 
+/**
+ * Update with admin id 
+ * @param {Object} req
+ * @param {Object} res
+ */
 function updateWithAdminId(req,res){
   var update = {template: req.body.template};
 
   TemplateForm.findOneAndUpdate({_admin_id: req.params.adminid}, update,
     function(err, template) {
         if(err)
-          return res.status(400).json({error: "There was an error updating a template."});
+          return res.status(400).json(
+            {error: "There was an error updating a template."});
         else
           return res.status(200).json(template);
     });
@@ -91,7 +107,8 @@ module.exports.template.update =  function(req, res) {
     TemplateForm.findOneAndUpdate({_id: req.body.template_id}, update, options,
       function(err, template) {
           if(err)
-            res.status(400).json({error: "There was an error updating a template."});
+            res.status(400).json(
+              {error: "There was an error updating a template."});
           else
             res.status(200).json(template);
       });
@@ -109,7 +126,8 @@ module.exports.template.delete =  function (req, res) {
 
     TemplateForm.findOneAndRemove({_id: templateID}, function(err, result) {
       if(err) {
-        res.status(400).json({error: 'There was problem removing the form template'});
+        res.status(400).json(
+          {error: 'There was problem removing the form template'});
         return;
       }
       res.status(200).json(result);
@@ -120,9 +138,11 @@ module.exports.template.delete =  function (req, res) {
 module.exports.submitted_form = {};
 
 module.exports.submitted_form.findById = function(req, res) {
-  SubmittedForm.findOne({ '_id': req.params.form_id }, function (err, submittedForm) {
+  SubmittedForm.findOne({ '_id': req.params.form_id }, 
+  function (err, submittedForm) {
     if (err) {
-      res.status(400).json({error: "An error occured while finding visitorList form"});
+      res.status(400).json(
+        {error: "An error occured while finding visitorList form"});
       return;
     }
     res.status(200).json(submittedForm);
@@ -139,21 +159,23 @@ module.exports.submitted_form.create = function(req, res) {
   form.date = new Date();
   form.save(function(err, savedForm){
     if (err){
-      res.status(400).json({error: "An error occured while saving the submitted form"});
+      res.status(400).json(
+        {error: "An error occured while saving the submitted form"});
     }
     res.status(200).json(savedForm);
   });
 };
 
 module.exports.submitted_form.findByPatientInfo = function(req, res) {
-  var query = {},
-    firstName = req.query.firstName,
-    lastName = req.query.lastName,
-    patientEmail = req.query.patientEmail;
+  var query = {};
+  var firstName = req.query.firstName;
+  var lastName = req.query.lastName;
+  var patientEmail = req.query.patientEmail;
 
 
   if(!((firstName && lastName) || patientEmail)) {
-    res.status(400).json({error: "You must specify either both first and last name or email"});
+    res.status(400).json(
+      {error: "You must specify either both first and last name or email"});
     return;
   }
   if(firstName) query.firstName = firstName;
@@ -162,9 +184,11 @@ module.exports.submitted_form.findByPatientInfo = function(req, res) {
 
 
   if(req.query.mostRecent == "true") {
-    SubmittedForm.findOne(query).sort('-date').exec(function (err, submittedForm) {
+    SubmittedForm.findOne(query).sort('-date').exec(
+    function (err, submittedForm) {
       if (err) {
-        res.status(400).json({error: "An error occured while finding visitorList form"});
+        res.status(400).json(
+          {error: "An error occured while finding visitorList form"});
         return;
       }
       res.status(200).json(submittedForm);
@@ -173,7 +197,8 @@ module.exports.submitted_form.findByPatientInfo = function(req, res) {
   else {
       SubmittedForm.findOne(query, function(err, submittedForms) {
       if (err) {
-        res.status(400).json({error: "An error occured while finding visitorList forms"});
+        res.status(400).json(
+          {error: "An error occured while finding visitorList forms"});
         return;
       }
       res.status(200).json(submittedForms);

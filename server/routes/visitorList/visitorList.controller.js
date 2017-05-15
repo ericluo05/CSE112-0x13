@@ -11,9 +11,9 @@ var Appointment = require('../../models/Appointment');
 
 /* handles route for getting the Company's visitor list */
 exports.getCompanyVisitorListReq = function(req, res){
-    var company_id=req.params.id;
-    exports.getCompanyVisitorList(company_id, function(err_msg, result){
-        if(err_msg) return res.status(400).json(err_msg);
+    var companyId=req.params.id;
+    exports.getCompanyVisitorList(company_id, function(errMsg, result){
+        if(errMsg) return res.status(400).json(errMsg);
         if(result == null){
             result = new VisitorList();
             result.visitors = [];
@@ -29,15 +29,15 @@ exports.getCompanyVisitorListReq = function(req, res){
 
 
 /* logic for getting the Company's visitor list */
-exports.getCompanyVisitorList = function(company_id, callback){
-    if(!company_id)
+exports.getCompanyVisitorList = function(companyId, callback){
+    if(!companyId)
         return callback({error: "Please send company id."}, null);
     VisitorList.findOne({company_id: company_id}, function(err, list){
         if(err) return callback({error: "Getting Visitor List"}, null);
         if(list==null) {
             list = new VisitorList();
             list.visitors=[];
-            list.company_id = company_id;
+            list.company_id = companyId;
         }
         list.save(function(err){
             if(err)return callback({error: "Error in saving"}, null);
@@ -48,19 +48,19 @@ exports.getCompanyVisitorList = function(company_id, callback){
 
 /* handles route to delete visitor in the list*/
 exports.deleteVisitorReq = function(req, res){
-    var visitor_id=req.params.visitor_id;
-    var company_id=req.params.company_id;
-    exports.deleteVisitor(company_id, visitor_id, function(err_msg, result){
-        if(err_msg)  return res.status(400).json(err_msg);
+    var visitorId=req.params.visitor_id;
+    var companyId=req.params.company_id;
+    exports.deleteVisitor(companyId, visitorId, function(errMsg, result){
+        if(errMsg)  return res.status(400).json(errMsg);
         return res.status(200).json(result);
     });
 }
 
 /* logic for deleting the visitor in the list */
-exports.deleteVisitor = function(company_id, visitor_id, callback){
-    if(!company_id)
+exports.deleteVisitor = function(companyId, visitorId, callback){
+    if(!companyId)
         return callback({error: "Please send company id."}, null);
-    if(!visitor_id)
+    if(!visitorId)
         return callback({error: "Please send visitorList id."}, null);
     VisitorList.findOneAndUpdate(
         {company_id: company_id},
@@ -73,18 +73,19 @@ exports.deleteVisitor = function(company_id, visitor_id, callback){
 
 /* clear the list */
 exports.deleteReq = function(req, res){
-    var list_id=req.params.id;
-    exports.delete(list_id, function(err_msg, result){
-        if(err_msg)  return res.status(400).json(err_msg);
+    var listId=req.params.id;
+    exports.delete(listId, function(errMsg, result){
+        if(errMsg)  return res.status(400).json(errMsg);
         return res.status(200).json(result);
     });
 }
 
-exports.delete = function(list_id, callback){
-    if(!list_id)
+exports.delete = function(listId, callback){
+    if(!listId)
         return callback({error: "Please send list id."}, null);
-    VisitorList.findOne({_id: list_id}, function(err, list){
-        if(err || list==null) return callback({error: "Can't find company"}, null);
+    VisitorList.findOne({_id: listId}, function(err, list){
+        if(err || list==null) 
+            return callback({error: "Can't find company"}, null);
         list.visitors=[];
         list.save(function(err){
             if(err) return callback({error: "Can't save"}, null);
@@ -94,22 +95,22 @@ exports.delete = function(list_id, callback){
 }
 // This route will be called when a visitor checks in
 exports.createReq = function(req, res) {
-    exports.create(req.body, function(err_msg, result){
-        if(err_msg)  return res.status(400).json(err_msg);
+    exports.create(req.body, function(errMsg, result){
+        if(errMsg)  return res.status(400).json(errMsg);
         return res.status(200).json(result);
     });
 }
 
 exports.create = function(param, callback){
     //required fields
-    var company_id = param.company_id;
-    var first_name = param.first_name;
-    var last_name = param.last_name;
-    var phone_number = param.phone_number;
-    var checkin_time = param.checkin_time;
+    var companyId = param.company_id;
+    var firstName = param.first_name;
+    var lastName = param.last_name;
+    var phoneNumber = param.phone_number;
+    var checkinTime = param.checkin_time;
 
     //optional dic var
-    var additional_info = param.additional_info;
+    var additionalInfo = param.additional_info;
 
     // find all the appointments for this visitor
     var today = new Date();
@@ -120,37 +121,39 @@ exports.create = function(param, callback){
 
     var query=
     {
-        company_id: company_id,
-        first_name: first_name,
-        last_name: last_name,
-        phone_number: phone_number,
+        company_id: companyId,
+        first_name: firstName,
+        last_name: lastName,
+        phone_number: phoneNumber,
         date: {$gte:today, $lt: tomorrow}
     };
 
     Appointment.find(query, function(err, appointments){
         var visitor =
         {
-            company_id: company_id,
-            last_name: last_name,
-            first_name: first_name,
-            phone_number: phone_number,
-            checkin_time: checkin_time,
-            additional_info: additional_info,
+            company_id: companyId,
+            last_name: lastName,
+            first_name: firstName,
+            phone_number: phoneNumber,
+            checkin_time: checkinTime,
+            additional_info: additionalInfo,
             appointments: appointments
         };
         VisitorList.findOne(
-            {company_id: company_id},
+            {company_id: companyId},
             function(err, list) {
                 if(err)
-                    return callback({error: "an error occured while finding"}, null);
+                    return callback({error: "an error occured while finding"}, 
+                                    null);
                 if(list==null) {
                     list = new VisitorList();
                     list.visitors=[];
-                    list.company_id = company_id;
+                    list.company_id = companyId;
                 }
                 list.visitors.push(visitor);
                 list.save(function(err){
-                    if(err) return callback({error: "an error in saving"}, null);
+                    if(err) return callback({error: "an error in saving"}, 
+                                            null);
                     return callback(null, list);
                     /*Employee.find({company : req.body.company_id},
                      function(err, employees) {
@@ -162,8 +165,10 @@ exports.create = function(param, callback){
                      }
                      };
 
-                     Email.sendEmail(req.body.name, employees, function(){respond();});
-                     TextModel.sendText(req.body.name, employees, function(){respond();});
+                     Email.sendEmail(req.body.name, employees, 
+                                     function(){respond();});
+                     TextModel.sendText(req.body.name, employees, 
+                                        function(){respond();});
                      }
                      );*/
                 });

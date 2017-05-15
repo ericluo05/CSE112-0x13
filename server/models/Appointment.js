@@ -11,7 +11,7 @@ var Schema = mongoose.Schema;
  */
 
 //TODO add last and first name field
-var appointmentSchema = mongoose.Schema({
+var appointmentSchema = new Schema({
     first_name: {type: String, required: true},
     last_name: {type: String, required: true},
     phone_number: {type: String, required: true},

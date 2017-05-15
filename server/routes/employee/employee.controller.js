@@ -15,14 +15,15 @@ exports.login = function(req, res) {
         }
         if(!e.validPassword(req.body.password))
           return res.status(400).send({error: "Incorrect Credentials"});
-        var employee_json=e.toJSON();
-        delete employee_json.password;
-        return res.status(200).json(employee_json);
+        var employeeJson=e.toJSON();
+        delete employeeJson.password;
+        return res.status(200).json(employeeJson);
     });
 };
 
 exports.getAllEmployees = function(req, res) {
-  Employee.find({company_id : req.params.id}, { password: 0}, function(err, result) {
+  Employee.find({company_id : req.params.id}, { password: 0}, 
+  function(err, result) {
     if(err){
       return res.status(400).send({error: "Can not Find"});
     }
@@ -57,9 +58,9 @@ exports.insert = function(req, res) {
         if(err) {
             return res.status(400).json({error: "Can not Save"});
         }
-        var employee_json=e.toJSON();
-        delete employee_json.password;
-        return res.status(200).json(employee_json);
+        var employeeJson=e.toJSON();
+        delete employeeJson.password;
+        return res.status(200).json(employeeJson);
     });
 };
 
@@ -72,8 +73,10 @@ exports.update = function(req, res) {
         employee.first_name = req.body.first_name || employee.first_name;
         employee.last_name = req.body.last_name || employee.last_name;
         employee.email = req.body.email || employee.email;
-        employee.phone_number = req.body.phone_number || employee.phone_number;
-        employee.password = employee.generateHash(req.body.password) || employee.password;
+        employee.phone_number = req.body.phone_number || 
+                                employee.phone_number;
+        employee.password = employee.generateHash(req.body.password) || 
+                            employee.password;
         employee.role = req.body.role || employee.role;
 
         employee.save(function(err) {
@@ -81,9 +84,9 @@ exports.update = function(req, res) {
             console.log(employee);
             if(err)
                 return res.status(400).json({error: "Can not Save"});
-            var employee_json=employee.toJSON();
-            delete employee_json.password;
-            return res.status(200).send(employee_json);
+            var employeeJson=employee.toJSON();
+            delete employeeJson.password;
+            return res.status(200).send(employeeJson);
         });
    });
 };
@@ -94,9 +97,9 @@ exports.delete = function(req, res) {
       if(err) {
         res.status(400).json({error: "Can not Find"});
       } else {
-          var employee_json=employee.toJSON();
-          delete employee_json.password;
-          return res.status(200).send(employee_json);
+          var employeeJson=employee.toJSON();
+          delete employeeJson.password;
+          return res.status(200).send(employeeJson);
       }
     });
   });

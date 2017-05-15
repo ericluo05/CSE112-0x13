@@ -15,7 +15,8 @@ exports.createSubscription = function(req, res){
 		description: 'Customer for '+req.body.stripeEmail,
 		plan: BASIC_PLAN_ID, // TODO: move this string to a global constant
 		source: req.body.stripeToken
-	}, function (err, customer){ // then passes err and customer to this callback for handling
+	}, function (err, customer){ 
+		// then passes err and customer to this callback for handling
 		if (err) {
 			return res.status(400).send({ error: "Could not create customer" });
 		}
@@ -42,7 +43,11 @@ exports.getSubscription = function(req, res){
 	});
 
 }
-
+/**
+ * Index of basic plan 
+ * @param {Object} arr
+ * @return {Number} Returns index of basic plan
+ */
 function basicPlanIndex(arr){
 	var arrLength = arr.length;
 	for(var i = 0; i < arrLength; i++){

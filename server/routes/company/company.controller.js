@@ -23,7 +23,11 @@ var jwt = require('jwt-simple');
 /****** Company TEMPLATE ROUTES ******/
 module.exports.template = {};
 
-/**signup- Used to sign up a user.*/
+/**
+ * Sign up a user 
+ * @param {Object} req Request
+ * @param {Object} res Response
+ */
 module.exports.template.create = function(req, res) {
     var company = new Company();
 
@@ -47,7 +51,11 @@ module.exports.template.create = function(req, res) {
     });
 };
 
-/**get All the companies*/
+/**
+ * get all companies
+ * @param {Object} req Request
+ * @param {Object} res Response
+ */
 module.exports.template.getAll = function(req, res) {
     Company.find({},
         {
@@ -62,7 +70,11 @@ module.exports.template.getAll = function(req, res) {
     });
 };
 
-/**authLogin- logs in a user*/
+/**
+ * Log in a user 
+ * @param {Object} req Request
+ * @param {Object} res Response
+ */
 module.exports.template.get = function(req, res) {
     Company.findOne({_id: req.params.id}, function(err, company) {
         if(err)
@@ -71,7 +83,11 @@ module.exports.template.get = function(req, res) {
     });
 };
 
-/* update the company info */
+/**
+ * Update company infomation 
+ * @param {Object} req Request
+ * @param {Object} res Response
+ */
 module.exports.template.update = function(req, res){
     Company.findOne({_id: req.params.id}, function (err, c) {
         if(err || !c)
@@ -98,7 +114,11 @@ module.exports.template.update = function(req, res){
     });
 };
 
-/* delete company */
+/**
+ * Delete company 
+ * @param {Object} req Request
+ * @param {Object} res Response
+ */
 module.exports.template.delete = function(req, res){
     Company.findById(req.params.id, function(err, c) {
         if(err)
@@ -113,7 +133,11 @@ module.exports.template.delete = function(req, res){
     });
 };
 
-/**authResetCredentials- resets a user's credentials*/
+/**
+ * Resets a user's credentials 
+ * @param {Object} req Request
+ * @param {Object} res Response
+ */
 module.exports.template.resetCredentials = function(req, res) {
     Company.findOne({email: req.params.user}, function (err, c) {
         if(err || !c)
@@ -149,7 +173,11 @@ module.exports.template.resetCredentials = function(req, res) {
         return res.status(200).json(showCompanyPublicInfo(c));
     });
 };
-
+/**
+ * Shows public information of company 
+ * @param {Object} c Company
+ * @return {Object} Returns public info of company
+ */
 function showCompanyPublicInfo(c){
     return {
         _id: c._id,
