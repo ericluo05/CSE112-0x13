@@ -30,6 +30,7 @@ exports.getCompanyVisitorListReq = function(req, res){
 
 /* logic for getting the Company's visitor list */
 exports.getCompanyVisitorList = function(companyId, callback){
+    console.log('company id is ' + companyId);
     if(!companyId)
         return callback({error: "Please send company id."}, null);
     VisitorList.findOne({company_id: company_id}, function(err, list){

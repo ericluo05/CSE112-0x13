@@ -10,12 +10,14 @@ let config = require('./config/config')[process.env.NODE_ENV || 'development'];
 let staticSiteMapping = require('./routes/staticmapping');
 let apiMapping = require('./routes/apimapping');
 let app = express();
-require('./socket/socket');
+
 // slack notification is done on client side currently.. not safe
 // let slack = require('slack-notify')('https://hooks.slack.com/services/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');
 
+// let http = require('http').Server(app);
+// let io = require('socket.io')(http);
+// require('./socket/socket').createServer(require('http').Server(app));
 
-require('./socket/socket');
 
 // view engine setup
 app.set('views', path.join(__dirname + '/../build/views'));
@@ -27,7 +29,7 @@ mongoose.connect(config.mongoDBUrl);
 let db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', function callback() {
-    console.log('Connected to mongolab at ' + config.mongoDBUrl);
+    console.log('Connected to a mongo database at ' + config.mongoDBUrl);
 });
 
 // uncomment after placing your favicon in /public
@@ -74,7 +76,20 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
+//let socketIO = require('./socket/socket');
+//let server = require('http').createServer(app);
 
+/*let io = require('socket.io')(server);
+server.listen(app.get('port'), function() {
+    console.log('Express server listening on port %d in %s mode',
+        app.get('port'),
+        app.get('env'));
+});
+*/
+/*
+ * Create Socket.io server.
+ */
+//let aaa = socketIO.createServer(io);
 
 
 module.exports = app;
