@@ -1,3 +1,4 @@
 ./test/unit
 ./test/route
 ./test/api
+./test/api/test

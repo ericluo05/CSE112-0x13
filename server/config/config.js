@@ -1,5 +1,4 @@
 module.exports = {
-
     "development":{
         mongoDBUrl: 'mongodb://localhost:27017/team0x13',
         secret: 'areyoucuriousnow?'
