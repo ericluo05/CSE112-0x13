@@ -19,7 +19,7 @@ router.get('/admin-companies', function(req, res) {
 });
 
 router.get('/admin-dashboard', function(req, res) {
-  res.sendFile(path.join(htmlPath, 'dmin-dashboard.html'));
+  res.sendFile(path.join(htmlPath, 'admin-dashboard.html'));
 });
 
 router.get('/analytics_raw', function(req, res) {
