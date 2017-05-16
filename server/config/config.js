@@ -1,3 +1,11 @@
 module.exports = {
-    mongoDBUrl: process.env.MONGODB_URL || process.env.MONGOLAB_URI  || 'mongodb://localhost:27017/team0x13',
+
+    "development":{
+        mongoDBUrl: 'mongodb://localhost:27017/team0x13',
+        secret: 'areyoucuriousnow?'
+    },
+    "production": {
+        mongoDBUrl: process.env.MONGODB_URL || process.env.MONGOLAB_URI,
+        secret: process.env.SECRET
+    }
 };

@@ -1,16 +1,16 @@
 'use strict';
 
-var express = require('express');
-var controller = require('./company.controller');
+let express = require('express');
+let controller = require('./company.controller');
 
-var router = express.Router();
+let router = express.Router();
 
 router.post('/', 			controller.template.create);
 router.get('/:id', 			controller.template.get);
 router.get('/', 			controller.template.getAll);
-router.put('/:id',          controller.template.update);
-router.delete('/:id',       controller.template.delete);
+router.put('/:id', controller.template.update);
+router.delete('/:id', controller.template.delete);
 
-router.put("/setting/:user", 	controller.template.resetCredentials);
+router.put('/setting/:user', 	controller.template.resetCredentials);
 
 module.exports = router;
