@@ -1,0 +1,142 @@
+body {
+  background: url('../images/phone.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: top left;
+}
+
+.container {
+  margin: 70px auto;
+  text-align: center;
+  border: 1px solid black;
+  background-color: white;
+  opacity: 0.93;
+  display: table;
+}
+
+/* text inside placeholder */
+::-webkit-input-placeholder {
+  color: darkgray;
+}
+
+h1 {
+  font-size: 20px;
+  color: black !important;
+}
+
+select {
+  color: white;
+}
+
+.navteam {
+  font-size: 20px;
+}
+
+#teamname {
+  margin-left: 20px;
+  margin-right: 15px;
+}
+
+#gitlogo {
+  margin-left: 15px;
+  margin-right: 20px;
+}
+
+.alignleft {
+  float: left;
+}
+
+.alignright {
+  float: right;
+}
+
+.waves-effect.waves-teal-lighten-5.waves-ripple {
+  background-color: blue;
+}
+
+#number:focus {
+  border-bottom: 1px solid teal;
+  box-shadow: 0 1px 0 0 teal;
+}
+
+#telnum:focus {
+  border-bottom: 1px solid teal;
+  box-shadow: 0 1px 0 0 teal;
+}
+
+#vselector {
+  margin: 0 20px 0 0;
+  display: inline-block;
+}
+
+#vinput {
+  margin: 0 20px 0 0;
+  display: inline-block;
+}
+
+#validbtn {
+  margin: 0 20px 0 0;
+  margin: 10px auto;
+  display: inline-block;
+}
+
+#fselector {
+  margin: 0 20px 0 0;
+  display: inline-block;
+}
+
+#finput {
+  margin: 0 20px 0 0;
+  display: inline-block;
+}
+
+#formatbtn {
+  margin: 0 20px 0 0;
+  margin: 10px auto;
+  display: inline-block;
+}
+
+#res {
+  margin: 10px auto;
+  display: inline-block;
+  padding: 0 10em;
+  border: 2px solid teal;
+  text-align: center;
+}
+
+@media (max-width: 700px) {
+  .container {
+    margin: 20px auto;
+    text-align: center;
+    border: 1px solid black;
+    background-color: white;
+    opacity: 0.93;
+    display: table;
+  }
+
+  #vselector {
+    display: inline-block;
+  }
+
+  #vinput {
+    display: inline-block;
+  }
+
+  #validbtn {
+    margin: 10px auto;
+    display: block;
+  }
+
+  #fselector {
+    display: inline-block;
+  }
+
+  #finput {
+    display: inline-block;
+  }
+
+  #formatbtn {
+    margin: 10px auto;
+    display: block;
+  }
+}

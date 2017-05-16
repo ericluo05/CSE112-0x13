@@ -1,14 +1,21 @@
 language: node_js
 node_js:
-- '6'
-cache: yarn
+- '7'
+cache: 
+ directories:
+    - node_modules
 sudo: required
 os: linux
 dist: trusty
+services:
+  - mongodb
 addons:
     code_climate:
         repo_token: 4d53c65fda9dd3b1fbdfc7eb366d294fb37e5b457a4770eacbb41bc8fa74f370
     firefox: "49.0"
+    sauce_connect:
+        username: "eric_luo"
+        access_key: "9e1b8054-6164-4494-bbae-85b252ac3f99"
 before_install:
 - if [ "$TRAVIS_OS_NAME" == "linux" ]; then export CHROME_BIN=/usr/bin/google-chrome; fi
 - if [ "$TRAVIS_OS_NAME" == "linux" ]; then export DISPLAY=:99.0; fi
@@ -20,17 +27,17 @@ before_install:
 
 before_script:
 - npm install -g gulp
-- npm start &
 - sleep 3
-
 script:
 - jdk_switcher use oraclejdk8
 - gulp lint
+- gulp build --production
+- npm start &
+- sleep 3
 - npm test
 - npm run coverage
 - npm run e2e_chrome
 - npm run e2e_ff
-- gulp api
 after_script:
 - pkill node
 after_success:

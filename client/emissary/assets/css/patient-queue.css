@@ -1,0 +1,4 @@
+.visitor-container table tbody tr:hover {
+	background-color: #CCCCD4;
+    cursor: pointer;
+}

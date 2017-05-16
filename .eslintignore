@@ -1,6 +1,10 @@
-node_modules/**
-data/
-reports/
-coverage/
-doc/
-nightwatch.conf.js
+build
+client/emissary
+config
+coverage
+doc
+drivers
+node_modules
+reports
+server/data
+server/lib/phone_general.js

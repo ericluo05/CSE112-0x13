@@ -1,3 +1,4 @@
-./test/unit_test
-./test/route_test
-./test/api_test
+./test/unit
+./test/route
+./test/api
+./test/api/test
