@@ -1,9 +1,9 @@
-var request = require('supertest');
+let request = require('supertest');
 
-var config = require('../../../server/config/config');
+let config = require('../../../server/config/config');
 
-var AdminUser = require('../../../server/models/Company');
-var Employee = require('../../../server/models/Employee');
+let AdminUser = require('../../../server/models/Company');
+let Employee = require('../../../server/models/Employee');
 
 // Employee login feature
 function setupEmployee(done) {
@@ -15,34 +15,34 @@ function setupAdmin(done) {
 }
 
 function setupUser(done, isEmployee) {
-  var path = isEmployee ? '/employees' : '/api/companies';
-  var UserModel = isEmployee ? Employee : AdminUser;
+  let path = isEmployee ? '/employees' : '/api/companies';
+  let UserModel = isEmployee ? Employee : AdminUser;
 
-  var token;
-  var admin;
+  let token;
+  let admin;
 
-  // Add random number to email to reduce concurrency issue chances on 
+  // Add random number to email to reduce concurrency issue chances on
   // duplicate unique key errors.
-  var email = "test" + Math.floor(Math.random() * 100000) + "@test.com";
-  var password = "test_password";
-  var credit_card_number="1231231241251";
-  var name = "test";
-  var expiration_date="6/17";
-  var phone_number="1234567890";
+  let email = 'test' + Math.floor(Math.random() * 100000) + '@test.com';
+  let password = 'test_password';
+  let credit_card_number='1231231241251';
+  let name = 'test';
+  let expiration_date='6/17';
+  let phone_number='1234567890';
 
-  var url = "localhost:" + config.port;
+  let url = 'localhost:' + config.port;
   request(url)
       .post(path)
       .send({
         email: email,
         password: password,
-        credit_card_number:credit_card_number,
-        name:name,
-        expiration_date:expiration_date,
-        phone_number:phone_number
+        credit_card_number: credit_card_number,
+        name: name,
+        expiration_date: expiration_date,
+        phone_number: phone_number,
       })
       .expect(200)
-      .end(function(err, res){
+      .end(function(err, res) {
           if(err)
             throw(err);
           res.body.should.have.property('_id');
@@ -53,7 +53,7 @@ function setupUser(done, isEmployee) {
     request(url)
         .get(path+'/'+id)
         .expect(200)
-        .end(function(err,res){
+        .end(function(err, res) {
           if(err)
             throw(err);
           retrieveAdmin();
@@ -69,7 +69,7 @@ function setupUser(done, isEmployee) {
         admin: admin,
         email: email,
         password: password,
-        token: token
+        token: token,
       });
     });
   }

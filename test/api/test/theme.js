@@ -1,21 +1,21 @@
-var chai = require('chai');
-var should = chai.should();
-var Theme = require('../../../server/models/Theme');
-var config = require('../../../server/config/config');
-var ConfigureAuth = require('./ConfigureAuth.js');
-var request = require('supertest');
+let chai = require('chai');
+let should = chai.should();
+let Theme = require('../../../server/models/Theme');
+let config = require('../../../server/config/config');
+let ConfigureAuth = require('./ConfigureAuth.js');
+let request = require('supertest');
 
-//Schema Test
+// Schema Test
 describe('Theme Settings Model', function() {
     it('should create(POST) a new setting', function(done) {
-        var theme = new Theme({
-            user_id: "test", //company or user id
-            form_color: "default",
-            background_img: "default",
+        let theme = new Theme({
+            user_id: 'test', // company or user id
+            form_color: 'default',
+            background_img: 'default',
             displayPhone: false,
             displayClock: false,
             displaySignature: false,
-            additionalComments: false
+            additionalComments: false,
         });
         theme.save(function(err) {
             if (err) return done(err);
@@ -23,7 +23,7 @@ describe('Theme Settings Model', function() {
         });
     });
 
-    /*it('should GET theme setting', function(done) {
+    /* it('should GET theme setting', function(done) {
         Theme.findOne({
             user_id: "test"
         }, function(err, theme) {
@@ -40,11 +40,11 @@ describe('Theme Settings Model', function() {
 
     it('should update(PUT) theme setting', function(done) {
         Theme.findOne({
-            user_id: "test"
+            user_id: 'test',
         }, function(err, theme) {
-            theme.user_id = "test"; //company or user id
-            theme.form_color = "default";
-            theme.background_img = "default";
+            theme.user_id = 'test'; // company or user id
+            theme.form_color = 'default';
+            theme.background_img = 'default';
             theme.displayPhone = false;
             theme.displayClock = true;
             theme.displaySignature = false;
@@ -62,7 +62,7 @@ describe('Theme Settings Model', function() {
         });
     });
 
-    /*it('should remove(DELETE) theme setting', function(done) {
+    /* it('should remove(DELETE) theme setting', function(done) {
         Theme.remove({
             user_id: "test"
         }, function(err, theme) {
@@ -71,13 +71,12 @@ describe('Theme Settings Model', function() {
             done();
         });
     });*/
-
 });
 
-//Route Tests need to be changed to work with auth
+// Route Tests need to be changed to work with auth
 
-describe("Themes Route Test", function() {
-        var credentials;  // variable to hold all the need authentication variables.
+describe('Themes Route Test', function() {
+        let credentials;  // variable to hold all the need authentication variables.
 
         // before function is called at the very beginning of the 'Forms' test suite,
         // no tests are run until the done() callback is called.
@@ -91,17 +90,16 @@ describe("Themes Route Test", function() {
         });
 
 
-
         describe('POST /api/:user_id/theme', function() {
             it('should respond with theme info for respective user_id settings that were created for first time user', function(done) {
-                var url = "localhost:" + config.port;
-                var _user_id = '1';
-                var _form_color = 'default';
-                var _background_img = 'default';
-                var _displayPhone = false;
-                var _displayClock = false;
-                var _displaySignature = false;
-                var _additionalComments = false;
+                let url = 'localhost:' + config.port;
+                let _user_id = '1';
+                let _form_color = 'default';
+                let _background_img = 'default';
+                let _displayPhone = false;
+                let _displayClock = false;
+                let _displaySignature = false;
+                let _additionalComments = false;
                 request(url)
                     .post('/api/' + _user_id + '/theme')
                     .query({email: credentials.email, token: credentials.token})
@@ -111,7 +109,7 @@ describe("Themes Route Test", function() {
                         displayPhone: _displayPhone,
                         displayClock: _displayClock,
                         displaySignature: _displaySignature,
-                        additionalComments: _additionalComments
+                        additionalComments: _additionalComments,
                     })
                     .end(function(err, res) {
                         console.log(res.body);
@@ -138,8 +136,8 @@ describe("Themes Route Test", function() {
 
         describe('GET /api/:user_id/theme', function() {
             it('should respond with theme info for respective user_id', function(done) {
-                var url = "localhost:" + config.port;
-                var user_id = '1';
+                let url = 'localhost:' + config.port;
+                let user_id = '1';
                 request(url)
                     .get('/api/' + user_id + '/theme')
                     .query({email: credentials.email, token: credentials.token})
@@ -159,17 +157,16 @@ describe("Themes Route Test", function() {
         });
 
 
-
         describe('PUT /api/:user_id/theme', function() {
             it('should respond with theme info for respective user_id settings that were updated', function(done) {
-                var url = "localhost:" + config.port;
-                var _user_id = '1';
-                var _form_color = "1";
-                var _background_img = "1";
-                var _displayPhone = false;
-                var _displayClock = false;
-                var _displaySignature = false;
-                var _additionalComments = false;
+                let url = 'localhost:' + config.port;
+                let _user_id = '1';
+                let _form_color = '1';
+                let _background_img = '1';
+                let _displayPhone = false;
+                let _displayClock = false;
+                let _displaySignature = false;
+                let _additionalComments = false;
                 request(url)
                     .put('/api/' + _user_id + '/theme')
                     .query({email: credentials.email, token: credentials.token})
@@ -179,7 +176,7 @@ describe("Themes Route Test", function() {
                         displayPhone: _displayPhone,
                         displayClock: _displayClock,
                         displaySignature: _displaySignature,
-                        additionalComments: _additionalComments
+                        additionalComments: _additionalComments,
                     })
                     .end(function(err, res) {
                         res.body.should.have.property('user_id');
@@ -205,14 +202,14 @@ describe("Themes Route Test", function() {
 
         describe('DELETE /api/:user_id/theme', function() {
             it('should respond with successful delete', function(done) {
-                var url = "localhost:" + config.port;
-                var user_id = '1';
+                let url = 'localhost:' + config.port;
+                let user_id = '1';
                 request(url)
                     .delete('/api/' + user_id + '/theme')
                     .query({email: credentials.email, token: credentials.token})
                     .expect(200)
                     .end(function(err, res) {
-                        res.body.should.have.property("msg");
+                        res.body.should.have.property('msg');
                         done();
                     });
             });

@@ -1,47 +1,46 @@
 /**
  * Created by kevingu on 2/21/16.
  */
-var request = require('supertest');
-var config = require('../../../server/config/config');
-var Appointment = require('../../../server/models/Appointment');
-var Company = require('../../../server/models/Company');
-var chai = require('chai');
-var should = chai.should();
+let request = require('supertest');
+let config = require('../../../server/config/config');
+let Appointment = require('../../../server/models/Appointment');
+let Company = require('../../../server/models/Company');
+let chai = require('chai');
+let should = chai.should();
 
 describe('Appointment Test', function() {
-    var url = "localhost:" + config.port;
-    var token;
-    var currAppointment;
-    var currCompany;
+    let url = 'localhost:' + config.port;
+    let token;
+    let currAppointment;
+    let currCompany;
 
     // old appointment info
-    var first_name = "test";
-    var last_name = "test";
-    var phone_number="1234567890";
-    var date="2016-04-23T18:25:43.511Z";
-    var provider_name = "test test";
+    let first_name = 'test';
+    let last_name = 'test';
+    var phone_number='1234567890';
+    let date='2016-04-23T18:25:43.511Z';
+    let provider_name = 'test test';
 
-    //new appointment info
-    var new_first_name = "test1";
-    var new_last_name = "test1";;
-    var new_phone_number="1231267890";
-    var new_date="2016-03-23T18:25:43.511Z";
-    var new_provider_name = "test1 test1";
+    // new appointment info
+    let new_first_name = 'test1';
+    let new_last_name = 'test1'; ;
+    let new_phone_number='1231267890';
+    let new_date='2016-03-23T18:25:43.511Z';
+    let new_provider_name = 'test1 test1';
 
-    //company info
-    var email = "new@test.edu";
-    var credit_card_number="1231231241251";
-    var name = "test";
-    var expiration_date="6/17";
-    var phone_number="1234567890";
+    // company info
+    let email = 'new@test.edu';
+    let credit_card_number='1231231241251';
+    let name = 'test';
+    let expiration_date='6/17';
+    var phone_number='1234567890';
 
-    var userID = null;
+    let userID = null;
 
 
     before(function(done) {
-
-        //setup company
-        var company = new Company();
+        // setup company
+        let company = new Company();
         company.email = email;
         company.credit_card_number = credit_card_number;
         company.name = name;
@@ -49,7 +48,7 @@ describe('Appointment Test', function() {
         company.phone_number = phone_number;
         company.paid_time=new Date();
 
-        company.save(function(err, c){
+        company.save(function(err, c) {
             currCompany=c;
             request(url)
                 .post('/api/appointments')
@@ -60,11 +59,11 @@ describe('Appointment Test', function() {
                         phone_number: phone_number,
                         date: date,
                         company_id: currCompany._id,
-                        provider_name: provider_name
+                        provider_name: provider_name,
                     }
                 )
                 .expect(200)
-                .end(function(err,res){
+                .end(function(err, res) {
                     res.body.should.have.property('_id');
                     currAppointment=res.body;
                     done();
@@ -73,7 +72,7 @@ describe('Appointment Test', function() {
     });
 
 
-    it("should not create the appointment", function(done) {
+    it('should not create the appointment', function(done) {
         request(url)
             .post('/api/appointments')
             .send(
@@ -83,31 +82,31 @@ describe('Appointment Test', function() {
                     phone_number: new_phone_number,
                     date: new_date,
                     company_id: currCompany._id,
-                    provider_name: new_provider_name
+                    provider_name: new_provider_name,
                 }
             )
             .expect(400)
-            .end(function(err,res){
+            .end(function(err, res) {
                 res.should.have.property('error');
                 done();
             });
     });
 
-    it("should get appointment", function(done) {
+    it('should get appointment', function(done) {
         request(url)
             .get('/api/appointments/'+currAppointment._id)
             .expect(200)
-            .end(function(err,res){
+            .end(function(err, res) {
                 res.body.should.have.property('_id');
                 done();
             });
     });
 
-    it("should not get appointment", function(done) {
+    it('should not get appointment', function(done) {
         request(url)
             .get('/api/appointments/'+0)
             .expect(400)
-            .end(function(err,res){
+            .end(function(err, res) {
                 console.log(res.body);
                 res.body.should.have.property('error');
                 done();
@@ -115,11 +114,11 @@ describe('Appointment Test', function() {
     });
 
 
-    it("should get all appointments", function(done) {
+    it('should get all appointments', function(done) {
         request(url)
             .get('/api/appointments/company/'+currCompany._id)
             .expect(200)
-            .end(function(err,res){
+            .end(function(err, res) {
                 res.body.should.be.an.instanceof(Array);
                 done();
             });
@@ -134,11 +133,11 @@ describe('Appointment Test', function() {
                     last_name: new_last_name,
                     phone_number: new_phone_number,
                     date: new_date,
-                    provider_name: new_provider_name
+                    provider_name: new_provider_name,
                 }
             )
             .expect(200)
-            .end(function(err,res){
+            .end(function(err, res) {
                 if(err)
                     throw(err);
                 res.body.should.have.property('first_name');
@@ -154,18 +153,18 @@ describe('Appointment Test', function() {
                 done();
             });
     });
-    
-    it("should delete appointment", function(done) {
+
+    it('should delete appointment', function(done) {
         request(url)
             .delete('/api/appointments/'+currAppointment._id)
             .expect(200)
-            .end(function(err,res){
+            .end(function(err, res) {
                 res.body.should.have.property('_id');
-                Appointment.find({_id:currAppointment._id}, function(err, res){
-                    //console.log('in res');
-                    //console.log(res);
-                    //console.log('in err');
-                    //console.log(err);
+                Appointment.find({_id: currAppointment._id}, function(err, res) {
+                    // console.log('in res');
+                    // console.log(res);
+                    // console.log('in err');
+                    // console.log(err);
                     should.exist(res);
                     done();
                 });
@@ -173,9 +172,8 @@ describe('Appointment Test', function() {
     });
 
     after(function(done) {
-        Company.remove({email:email}, function(err, c){
+        Company.remove({email: email}, function(err, c) {
             done();
         });
     });
-   
 });

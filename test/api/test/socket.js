@@ -1,25 +1,25 @@
 /**
  * Created by kevingu on 2/26/16.
  */
-var io = require('socket.io-client');
-var config = require('../../../server/config/config');
-var Company = require('../../../server/models/Company');
-var Appointment = require('../../../server/models/Appointment');
-var VisitorList = require('../../../server/models/VisitorList');
+let io = require('socket.io-client');
+let config = require('../../../server/config/config');
+let Company = require('../../../server/models/Company');
+let Appointment = require('../../../server/models/Appointment');
+let VisitorList = require('../../../server/models/VisitorList');
 
-var socketURL = "http://localhost:" + config.port;
+let socketURL = 'http://localhost:' + config.port;
 
-var options ={
-    transports: ['websocket'],
-    'force new connection': true
+let options ={
+    'transports': ['websocket'],
+    'force new connection': true,
 };
 
-//Constants for listening to Sockets
-var VALIDATE_COMPANY_ID = "validate_company_id";
-var VISITOR_LIST_UPDATE = "visitor_list_update";
-var REMOVE_VISITOR = "remove_visitor";
-var ADD_VISITOR = "add_visitor";
-var NOTIFY_ERROR = "notify_error";
+// Constants for listening to Sockets
+let VALIDATE_COMPANY_ID = 'validate_company_id';
+let VISITOR_LIST_UPDATE = 'visitor_list_update';
+let REMOVE_VISITOR = 'remove_visitor';
+let ADD_VISITOR = 'add_visitor';
+let NOTIFY_ERROR = 'notify_error';
 
 
 /*

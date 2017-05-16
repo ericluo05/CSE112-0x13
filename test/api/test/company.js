@@ -1,38 +1,38 @@
-var request = require('supertest');
-var config = require('../../../server/config/config');
-var Company = require('../../../server/models/Company');
-var chai = require('chai');
-var should = chai.should();
+let request = require('supertest');
+let config = require('../../../server/config/config');
+let Company = require('../../../server/models/Company');
+let chai = require('chai');
+let should = chai.should();
 
 describe('Company Test', function() {
-    var url = "localhost:" + config.port;
-    var token;
-    var currCompany;
+    let url = 'localhost:' + config.port;
+    let token;
+    let currCompany;
 
-    var email = "test@test.edu";
-    var name = "test";
-    var expiration_date="6/17";
-    var phone_number="1234567890";
+    let email = 'test@test.edu';
+    let name = 'test';
+    let expiration_date='6/17';
+    let phone_number='1234567890';
 
-    var new_email = "test1@test.edu";;
-    var new_name = "test1";
-    var new_expiration_date="3/19";
-    var new_phone_number="1231267890";
+    let new_email = 'test1@test.edu'; ;
+    let new_name = 'test1';
+    let new_expiration_date='3/19';
+    let new_phone_number='1231267890';
 
 
-      var userID = null;
+      let userID = null;
 
 
     before(function(done) {
         request(url)
             .post('/api/companies')
             .send({
-                "email": email,
-                "name":name,
-                "phone_number":phone_number
+                'email': email,
+                'name': name,
+                'phone_number': phone_number,
             })
             .expect(200)
-            .end(function(err,res){
+            .end(function(err, res) {
                 if(err)
                     throw(err);
                 res.body.should.have.property('_id');
@@ -42,38 +42,38 @@ describe('Company Test', function() {
     });
 
 
-    it("should not create the company", function(done) {
+    it('should not create the company', function(done) {
         request(url)
             .post('/api/companies')
             .send(
                 {
                     email: email,
-                    name:name,
-                    expiration_date:expiration_date,
-                    phone_number:phone_number
+                    name: name,
+                    expiration_date: expiration_date,
+                    phone_number: phone_number,
                 })
             .expect(400)
-            .end(function(err,res){
+            .end(function(err, res) {
                 res.should.have.property('error');
                 done();
             });
     });
 
-    it("should get company", function(done) {
+    it('should get company', function(done) {
         request(url)
             .get('/api/companies/'+currCompany._id)
             .expect(200)
-            .end(function(err,res){
+            .end(function(err, res) {
                 res.body.should.have.property('_id');
                 done();
             });
     });
 
-    it("should not get company", function(done) {
+    it('should not get company', function(done) {
         request(url)
             .get('/api/companies/'+0)
             .expect(400)
-            .end(function(err,res){
+            .end(function(err, res) {
                 console.log(res.body);
                 res.body.should.have.property('error');
                 done();
@@ -81,11 +81,11 @@ describe('Company Test', function() {
     });
 
 
-    it("should get all companies", function(done) {
+    it('should get all companies', function(done) {
         request(url)
             .get('/api/companies')
             .expect(200)
-            .end(function(err,res){
+            .end(function(err, res) {
                 res.body.should.be.an.instanceof(Array);
                 res.body.should.have.length.of.at.least(1);
                 done();
@@ -99,11 +99,11 @@ describe('Company Test', function() {
                 {
                     email: new_email,
                     name: new_name,
-                    phone_number: new_phone_number
+                    phone_number: new_phone_number,
                 }
             )
             .expect(200)
-            .end(function(err,res){
+            .end(function(err, res) {
                 if(err)
                     throw(err);
                 res.body.should.have.property('email');
@@ -116,13 +116,13 @@ describe('Company Test', function() {
             });
     });
 
-    it("should delete company", function(done) {
+    it('should delete company', function(done) {
         request(url)
             .delete('/api/companies/'+currCompany._id)
             .expect(200)
-            .end(function(err,res){
+            .end(function(err, res) {
                 res.body.should.have.property('_id');
-                Company.find({_id:currCompany._id}, function(err, _){
+                Company.find({_id: currCompany._id}, function(err, _) {
                     should.exist(res);
                     done();
                 });

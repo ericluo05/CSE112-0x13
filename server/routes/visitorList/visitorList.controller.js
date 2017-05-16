@@ -157,7 +157,6 @@ exports.create = function(param, callback) {
 // eslint-disable-next-line max-len
                     if(err) return callback({error: 'an error in saving'}, null);
                     return callback(null, list);
-
                 });
             }
         );
