@@ -11,7 +11,7 @@ let paths = {
     css_dest: 'build/stylesheets',
     image_src: 'client/images/**',
     image_dest: 'build/images',
-    emissary_src: 'client/emissary/**',
+    emissary_src: 'client/emissary/**/*.*',
     emissary_dest: 'build/emissary/',
 };
 
@@ -22,9 +22,20 @@ let paths = {
 gulp.task('development', ['dev:frontend'], function() {
 });
 
-gulp.task('dev', ['dev:frontend'], function() {
-});
 
+gulp.task('dev', ['dev:backend'], function() {
+    gulp.watch(paths.js_src, ['watch:js']);
+    gulp.watch(paths.html_src, ['watch:html']);
+    gulp.watch(paths.css_src, ['watch:css']);
+    gulp.watch(paths.image_src, ['watch:image']);
+    gulp.watch(paths.emissary_src, ['watch:emissary']);
+    browserSync.init(null, {
+        proxy: 'http://localhost:3000',
+        files: ['build/**/*.*'],
+        port: 7000,
+    });
+
+});
 
 /*
  *  Use browser-sync and nodemon
@@ -32,7 +43,7 @@ gulp.task('dev', ['dev:frontend'], function() {
  *  to allow browser-sync to reload automatically
  *  server automatically restart on any changes in server folder
  */
-gulp.task('dev:frontend', ['dev:backend', 'watch:html'], function() {
+gulp.task('dev:frontend', ['dev:backend'], function() {
     // capture all relevant file edits in client folder
     gulp.watch(paths.js_src, ['watch:js']);
     gulp.watch(paths.html_src, ['watch:html']);

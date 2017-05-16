@@ -1,8 +1,8 @@
 'use strict';
 
-let express = require('express');
-let router = express.Router();
-let bodyparser = require('body-parser');
+//let express = require('express');
+// let router = express.Router();
+// let bodyparser = require('body-parser');
 
 // Load the twilio module
 let twilio = require('twilio');
@@ -12,7 +12,7 @@ let accountSid = 'ACb70bc33c96bfc11985cbd1cf76a239ef';
 let authToken = '452f1f1d86c183097a96db390ca55590';
 
 // require the Twilio module and create a REST client
-let client = require('twilio')(accountSid, authToken);
+let client = twilio(accountSid, authToken);
 
 // sendText: Send text message to employees when visitorList is checked in.
 exports.sendText = function(patientName, employees, done) {

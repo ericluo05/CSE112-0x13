@@ -14,9 +14,10 @@ let htmlhint = require('gulp-htmlhint');
 
 /**
 * Javascript Lint Checker using ESLint
+* CLI options: http://eslint.org/docs/developer-guide/nodejs-api#cliengine
 */
 gulp.task('lint:js', () => {
-    return gulp.src(['**/*.js', '!node_modules/**', '!build'])
+    return gulp.src(['**/*.js', '!node_modules/**'])
         .pipe(eslint({
             fix: true,
         }))
@@ -31,7 +32,8 @@ gulp.task('lint:js', () => {
 gulp.task('lint:html', () => {
     gulp.src('./client/html/**/*.html')
         .pipe(htmlhint())
-        .pipe(htmlhint.failReporter());
+        .pipe(htmlhint.reporter());
+        //.pipe(htmlhint.failReporter());
 });
 
 /**
