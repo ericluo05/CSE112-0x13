@@ -32,7 +32,8 @@ gulp.task('lint:js', () => {
 gulp.task('lint:html', () => {
     gulp.src('./client/html/**/*.html')
         .pipe(htmlhint())
-        .pipe(htmlhint.failReporter());
+        .pipe(htmlhint.reporter());
+        //.pipe(htmlhint.failReporter());
 });
 
 /**
