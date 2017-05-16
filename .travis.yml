@@ -30,10 +30,10 @@ script:
 - jdk_switcher use oraclejdk8
 - gulp lint
 - gulp build --production
-- npm test
-- npm run coverage
 - npm start &
 - sleep 3
+- npm test
+- npm run coverage
 - npm run e2e_chrome
 - npm run e2e_ff
 after_script:
