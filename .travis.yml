@@ -39,10 +39,9 @@ script:
 - npm run e2e_chrome
 - npm run e2e_ff
 after_script:
+- npm install -g codeclimate-test-reporter
+- codeclimate-test-reporter < coverage/lcov.info
 - pkill node
-after_success:
-  - npm install -g codeclimate-test-reporter
-  - codeclimate-test-reporter < coverage/lcov.info
 deploy:
   provider: heroku
   api_key:
