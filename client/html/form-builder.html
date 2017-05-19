@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<script src = "emissary/assets/native/js/shared.js"></script>
+	<script src = "/emissary/js/shared.js"></script>
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 
 	<meta charset="utf-8">
@@ -9,33 +9,21 @@
 	<meta name="description" content="Neon Admin Panel" />
 	<meta name="author" content="" />
 
-	<link rel="icon" href="emissary/assets/images/logo-emissary.png">
+	<link rel="icon" href="/images/logo-emissary.png">
 
 	<title>Emissary | Forms</title>
-	<link rel="stylesheet" href="emissary/assets/font-awesome/css/font-awesome.css">
-	<link rel="stylesheet" href="emissary/assets/native/css/shared-dashboard.css">
-	<link rel="stylesheet" href="emissary/assets/js/jquery-ui/css/no-theme/jquery-ui-1.10.3.custom.min.css">
-	<link rel="stylesheet" href="emissary/assets/css/font-icons/entypo/css/entypo.css">
-	<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Noto+Sans:400,700,400italic">
-	<link rel="stylesheet" href="emissary/assets/css/bootstrap.css">
-	<link rel="stylesheet" href="emissary/assets/css/neon-core.css">
-	<link rel="stylesheet" href="emissary/assets/css/neon-theme.css">
-	<link rel="stylesheet" href="emissary/assets/css/neon-forms.css">
-	<link rel="stylesheet" href="emissary/assets/css/form-builder.css">
-	<link rel="stylesheet" href="emissary/assets/css/custom.css">
-	
-	<link rel="stylesheet" href="emissary/assets/native/css/appointment.css">
-
-	<script src="emissary/assets/js/jquery-1.11.3.min.js"></script>
-
-	<!--[if lt IE 9]><script src="emissary/assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
-
-	<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-	<!--[if lt IE 9]>
-	<script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-	<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-	<![endif]-->
-
+	<link rel="stylesheet" href="/emissary/stylesheets/font-icons/font-awesome/css/font-awesome.css">
+	<link rel="stylesheet" href="/emissary/stylesheets/shared-dashboard.css">
+	<link rel="stylesheet" href="/emissary/stylesheets/jquery/jquery-ui-1.10.3.custom.min.css">
+	<link rel="stylesheet" href="/emissary/stylesheets/font-icons/entypo/css/entypo.css">
+	<link rel="stylesheet" href="/emissary/stylesheets/bootstrap.css">
+	<link rel="stylesheet" href="/emissary/stylesheets/neon/neon-core.css">
+	<link rel="stylesheet" href="/emissary/stylesheets/neon/neon-theme.css">
+	<link rel="stylesheet" href="/emissary/stylesheets/neon/neon-forms.css">
+	<link rel="stylesheet" href="/emissary/stylesheets/form-builder.css">
+	<link rel="stylesheet" href="/emissary/stylesheets/appointment.css">
+	<link rel="stylesheet" href="/emissary/stylesheets/jquery/jquery-jvectormap-1.2.2.css">
+	<link rel="stylesheet" href="/emissary/stylesheets/rickshaw.min.css">
 
 </head>
 <body class="page-body gray" data-url="http://neon.dev">
@@ -43,11 +31,12 @@
 <div class="page-container"><!-- add class "sidebar-collapsed" to close sidebar by default, "chat-visible" to make chat appear always -->
 	<div class="sidebar-menu">
 		<div class="sidebar-menu-inner">
+
 			<header class="logo-env">
 				<!-- logo -->
 				<div class="logo">
 					<a href="visitors.html">
-						<img src="emissary/assets/images/emissary.png" width="150" alt="" />
+						<img src="/images/emissary.png" width="150" alt="logo" />
 					</a>
 				</div>
 				<!-- logo collapse icon -->
@@ -100,126 +89,105 @@
 			</ul>
 
 		</div>
-
 	</div>
 
 	<div class="main-content">
-
 		<div class="row">
-
 			<!-- Profile Info and Notifications -->
 			<div class="col-md-6 col-sm-8 clearfix">
-
 				<ul class="user-info pull-left pull-none-xsm">
-
 					<!-- Profile Info -->
 					<li class="profile-info dropdown"><!-- add class "pull-right" if you want to place this from right -->
-
 						<div id="company-name">
 							<h1>Hello, <span id="user-name"> </span></h1>
 						</div>
-
-
 					</li>
-
 				</ul>
-
 			</div>
-
 
 			<!-- Raw Links -->
 			<div class="col-md-6 col-sm-4 clearfix hidden-xs">
-
 				<ul class="list-inline links-list pull-right">
 					<div class="dropdown">
-                        <i class="fa fa-3x fa-cog dropdown-toggle" data-toggle="dropdown"></i>
-                        <ul class="dropdown-menu">
-                            <li><a href="/checkin.html">Check-In</a></li>
-                            <li><a id="logoutButton" href="/index.html">
-                                Log Out <i class="entypo-logout right"></i></a>
-                            </li>
-                        </ul>
-                  </div>
+            <i class="fa fa-3x fa-cog dropdown-toggle" data-toggle="dropdown"></i>
+            <ul class="dropdown-menu">
+              <li><a href="/checkin.html">Check-In</a></li>
+              <li><a id="logoutButton" href="/index.html">
+                  Log Out <i class="entypo-logout right"></i></a>
+              </li>
+            </ul>
+      		</div>
 				</ul>
-
 			</div>
-
 		</div>
 
-
 		<hr />
-
 		<center>
 		  <h1>Build your form</h1>
-          <h2>Color picker:</h2> 
-           <div>Color: <input class="jscolor" value="1C7F79"> </div>
-         
-        </center>
-		<!--<center><h3>Preview</h3></center>-->
-<form class = "form-builder" role = "form">
-   <div class = "form-group">
-      <label for = "f_name">First Name</label>
-      <input type = "text" class = "form-control" id = "f_name" placeholder = "Enter your First Name" required>
-   </div>
-   <div class = "form-group">
-      <label for = "l_name">Last Name</label>
-      <input type = "text" class = "form-control" id = "l_name" placeholder = "Enter your Last Name" required>
-   </div>
-   <div class = "form-group">
-      <label for = "phone">Phone Number</label>
-      <input type = "tel" class = "form-control" pattern="[\(]\d{3}[\)]\d{3}[\-]\d{4}" id = "phone" placeholder = "Enter your Phone Number" required>
-   </div>
-    <div class = "form-group">
-		<div class="my-form">
-   			<div class="addField">
-   			</div>
-   		</div>
-   </div>
+      <h2>Color picker:</h2> 
+      <div>Color: <input class="jscolor" value="1C7F79"> </div>
+    </center>
+		<form class = "form-builder" role = "form">
+	   	<div class = "form-group">
+	      <label for = "f_name">First Name</label>
+	      <input type = "text" class = "form-control" id = "f_name" placeholder = "Enter your First Name" required>
+	   	</div>
+	   	<div class = "form-group">
+	      <label for = "l_name">Last Name</label>
+	      <input type = "text" class = "form-control" id = "l_name" placeholder = "Enter your Last Name" required>
+	   	</div>
+	   	<div class = "form-group">
+	      <label for = "phone">Phone Number</label>
+	      <input type = "tel" class = "form-control" pattern="[\(]\d{3}[\)]\d{3}[\-]\d{4}" id = "phone" placeholder = "Enter your Phone Number" required>
+	   	</div>
+	    <div class = "form-group">
+				<div class="my-form">
+	   			<div class="addField"></div>
+	   		</div>
+	   	</div>
+	   	<h3 class = "add-form-text">Add up to two fields</h3>
+	   		<input type = "text" class = "form-control" id = "optional_label" placeholder = "Enter label for field" maxlength="30">
+	  	<div class="add-fields my-form">
+	      <button type="button" class="btn btn-success add-box">Add</button>         
+				<button type = "submit" class = "save-form btn btn-primary">Submit</button>
+			</div>
+		</form>
 
-   <h3 class = "add-form-text">Add up to two fields</h3>
-   <input type = "text" class = "form-control" id = "optional_label" placeholder = "Enter label for field" maxlength="30">
-   
-   <div class="add-fields my-form">
-       
-        <button type="button" class="btn btn-success add-box">Add</button>         
-		<button type = "submit" class = "save-form btn btn-primary">Submit</button>
-	</div>
-
-</form>
-
-
-		<!-- Imported styles on this page -->
-		<link rel="stylesheet" href="emissary/assets/js/jvectormap/jquery-jvectormap-1.2.2.css">
-		<link rel="stylesheet" href="emissary/assets/js/rickshaw/rickshaw.min.css">
+  </div>
+</div>
 
 		<!-- Bottom scripts (common) -->
-		<script src="emissary/assets/js/gsap/TweenMax.min.js"></script>
-		<script src="emissary/assets/js/jquery-ui/js/jquery-ui-1.10.3.minimal.min.js"></script>
-		<script src="emissary/assets/js/bootstrap.js"></script>
-		<script src="emissary/assets/js/joinable.js"></script>
-		<script src="emissary/assets/js/resizeable.js"></script>
-		<script src="emissary/assets/js/neon-api.js"></script>
-		<script src="emissary/assets/js/jvectormap/jquery-jvectormap-1.2.2.min.js"></script>
+		<script src="/emissary/js/js_libs/jquery/jquery-1.11.3.min.js"></script>
+		<script src="/emissary/js/js_libs/TweenMax.min.js"></script>
+		<script src="/emissary/js/js_libs/jquery/jquery-ui-1.10.3.minimal.min.js"></script>
+		<script src="/emissary/js/js_libs/bootstrap.js"></script>
+		<script src="/emissary/js/js_libs/joinable.js"></script>
+		<script src="/emissary/js/js_libs/resizeable.js"></script>
+		<script src="/emissary/js/js_libs/neon/neon-api.js"></script>
+		<script src="/emissary/js/js_libs/jquery/jquery-jvectormap-1.2.2.min.js"></script>
+		
 		<!-- Imported scripts on this page -->
-		<script src="emissary/assets/js/jvectormap/jquery-jvectormap-europe-merc-en.js"></script>
-		<script src="emissary/assets/js/jquery.sparkline.min.js"></script>
-		<script src="emissary/assets/js/rickshaw/vendor/d3.v3.js"></script>
-		<script src="emissary/assets/js/rickshaw/rickshaw.min.js"></script>
-		<script src="emissary/assets/js/raphael-min.js"></script>
-		<script src="emissary/assets/js/morris.min.js"></script>
-		<script src="emissary/assets/js/toastr.js"></script>
-		<script src="emissary/assets/js/fullcalendar/fullcalendar.min.js"></script>
-		<script src="emissary/assets/js/neon-chat.js"></script>
-		<script src="emissary/assets/js/form-builder.js"></script>
+		<script src="/emissary/js/js_libs/jquery/jquery-jvectormap-europe-merc-en.js"></script>
+		<script src="/emissary/js/js_libs/jquery/jquery.sparkline.min.js"></script>
+		<script src="/emissary/js/js_libs/rickshaw/d3.v3.js"></script>
+		<script src="/emissary/js/js_libs/rickshaw/rickshaw.min.js"></script>
+		<script src="/emissary/js/js_libs/raphael-min.js"></script>
+		<script src="/emissary/js/js_libs/morris.min.js"></script>
+		<script src="/emissary/js/js_libs/toastr.js"></script>
+		<script src="/emissary/js/js_libs/fullcalendar.min.js"></script>
+		<script src="/emissary/js/js_libs/neon/neon-chat.js"></script>
+		<script src="/emissary/js/form-builder.js"></script>
+
 		<!-- JavaScripts initializations and stuff -->
-		<script src="emissary/assets/js/neon-custom.js"></script>
-		<script src="emissary/assets/js/jscolor/jscolor.js"></script>
+		<script src="/emissary/js/js_libs/neon/neon-custom.js"></script>
+		<script src="/emissary/js/js_libs/jscolor.js"></script>
+
 		<!-- Demo Settings -->
-		<script src="emissary/assets/js/neon-demo.js"></script>
-		<script src="emissary/assets/js/socket.io.js"></script>
-		<script type = "text/javascript" src= "emissary/assets/js/handlebars-v4.0.5.js"></script>
-		<script type ="text/javascript" src="emissary/assets/native/js/login.js"></script>
-		<script type ="text/javascript" src = "emissary/assets/native/js/appointments.js"> </script>
-	</div>
+		<script src="/emissary/js/js_libs/neon/neon-demo.js"></script>
+		<script src="/emissary/js/js_libs/socket.io.js"></script>
+		<script src="/emissary/js/js_libs/handlebars-v4.0.5.js"></script>
+		<script src="/emissary/js/login.js"></script>
+		<script src="/emissary/js/appointments.js"> </script>
+
 </body>
 </html>
