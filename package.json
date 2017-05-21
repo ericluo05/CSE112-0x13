@@ -32,7 +32,7 @@
       "node_modules",
       "bin",
       "coverage",
-      "test/*"
+      "server/routes/*/*.controller.js"
     ]
   },
   "dependencies": {
