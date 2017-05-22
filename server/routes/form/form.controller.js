@@ -1,10 +1,11 @@
+/* eslint-disable max-len */
 'use strict';
 
 /* This module is meant to house all of the API
  * routes that pertain to forms
  */
 let express = require('express');
-let router = express.Router();
+new express.Router();
 
 let SubmittedForm = require('../../models/form/SubmittedForm');
 let mongoose = require('mongoose');
@@ -151,10 +152,10 @@ module.exports.submitted_form.create = function(req, res) {
 };
 
 module.exports.submitted_form.findByPatientInfo = function(req, res) {
-  let query = {},
-    firstName = req.query.firstName,
-    lastName = req.query.lastName,
-    patientEmail = req.query.patientEmail;
+  let query = {};
+  let firstName = req.query.firstName;
+  let lastName = req.query.lastName;
+  let patientEmail = req.query.patientEmail;
 
 
   if(!((firstName && lastName) || patientEmail)) {

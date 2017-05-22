@@ -1,6 +1,6 @@
 'use strict';
 
-let express = require('express');
+require('express');
 // let router = express.Router();
 // let bodyparser = require('body-parser');
 let nodemailer = require('nodemailer');

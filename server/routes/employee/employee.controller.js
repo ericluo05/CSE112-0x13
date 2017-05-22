@@ -73,7 +73,8 @@ exports.update = function(req, res) {
         employee.last_name = req.body.last_name || employee.last_name;
         employee.email = req.body.email || employee.email;
         employee.phone_number = req.body.phone_number || employee.phone_number;
-        employee.password = employee.generateHash(req.body.password) || employee.password;
+        employee.password = employee.generateHash(req.body.password)
+            || employee.password;
         employee.role = req.body.role || employee.role;
 
         employee.save(function(err) {
