@@ -1,1 +1,0 @@
-$(document).ready(function(){function o(o){var t=n(o);$("#visitor-list").html(t)}function t(){console.log("clicked modal"),consoel.log("value of this "+this)}var i=io();i.on("send list",function(t){console.log("sent list"),o(t)});var l=$("#visitor-list-template").html(),n=Handlebars.compile(l);$(".patient-check-out").on("click",t())});
