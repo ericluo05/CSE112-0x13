@@ -5,15 +5,27 @@ let config = require('../../../server/config/config');
 let AdminUser = require('../../../server/models/Company');
 let Employee = require('../../../server/models/Employee');
 
-// Employee login feature
+/**
+ * Employee login feature
+ * @param {object} done
+ */
 function setupEmployee(done) {
   setupAdmin(done, true);
 }
 
+/**
+ * setupAdmin
+ * @param {object} done
+ */
 function setupAdmin(done) {
   setupUser(done, false);
 }
 
+/**
+ * setupUser
+ * @param {object} done
+ * @param {object} isEmployee
+ */
 function setupUser(done, isEmployee) {
   let path = isEmployee ? '/employees' : '/api/companies';
   //let UserModel = isEmployee ? Employee : AdminUser;
@@ -49,6 +61,10 @@ function setupUser(done, isEmployee) {
           login(res.body._id);
       });
 
+  /**
+   * login
+   * @param {object} id
+   */
   function login(id) {
     request(url)
         .get(path+'/'+id)
@@ -60,6 +76,9 @@ function setupUser(done, isEmployee) {
         });
   }
 
+  /**
+   * retrieveAdmin
+   */
   function retrieveAdmin() {
     AdminUser.findOne({email: email}, function(err, dbAdmin) {
       if(err)
@@ -75,6 +94,11 @@ function setupUser(done, isEmployee) {
   }
 }
 
+/**
+ * cleanupAuth
+ * @param {object} email
+ * @param {object} callback
+ */
 function cleanupAuth(email, callback) {
   AdminUser.remove({email: email}, function(err) {
     if(err)
@@ -83,7 +107,11 @@ function cleanupAuth(email, callback) {
   });
 }
 
-// Employee login feature
+/**
+ * cleanupEmployee
+ * @param {object} email
+ * @param {object} callback
+ */
 function cleanupEmployee(email, callback) {
   Employee.remove({email: email}, function(err) {
     if(err)
