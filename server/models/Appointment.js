@@ -2,7 +2,7 @@
 
 /* Require mongoose to interact with mongoDB */
 let mongoose = require('mongoose');
-let Schema = new mongoose.Schema;
+let Schema = mongoose.Schema;
 /*
  * Appointment schema
  */

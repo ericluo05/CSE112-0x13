@@ -16,7 +16,7 @@ function setupAdmin(done) {
 
 function setupUser(done, isEmployee) {
   let path = isEmployee ? '/employees' : '/api/companies';
-  let UserModel = isEmployee ? Employee : AdminUser;
+  //let UserModel = isEmployee ? Employee : AdminUser;
 
   let token;
   let admin;
@@ -25,10 +25,10 @@ function setupUser(done, isEmployee) {
   // duplicate unique key errors.
   let email = 'test' + Math.floor(Math.random() * 100000) + '@test.com';
   let password = 'test_password';
-  let credit_card_number='1231231241251';
+  let creditCardNumber='1231231241251';
   let name = 'test';
-  let expiration_date='6/17';
-  let phone_number='1234567890';
+  let expirationDate='6/17';
+  let phoneNumber='1234567890';
 
   let url = 'localhost:' + config.port;
   request(url)
@@ -36,10 +36,10 @@ function setupUser(done, isEmployee) {
       .send({
         email: email,
         password: password,
-        credit_card_number: credit_card_number,
+        credit_card_number: creditCardNumber,
         name: name,
-        expiration_date: expiration_date,
-        phone_number: phone_number,
+        expiration_date: expirationDate,
+        phone_number: phoneNumber,
       })
       .expect(200)
       .end(function(err, res) {
