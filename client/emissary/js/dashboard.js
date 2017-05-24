@@ -1,7 +1,14 @@
+<<<<<<< Updated upstream
 // let userState = JSON.parse(localStorage.getItem('userState'));
 //   if(!userState) {
 //     location.href= 'login.html';
 // }
+=======
+let userState = JSON.parse(localStorage.getItem('userState'));
+  if(!userState) {
+    location.href= 'login.html';
+}
+>>>>>>> Stashed changes
 
 $(document).ready(function() {
     let socket = io(); // Initialize Socket

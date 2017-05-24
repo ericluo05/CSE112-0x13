@@ -3,7 +3,11 @@ jQuery(document).ready(function() {
     /*
         Fullscreen background
     */
+<<<<<<< Updated upstream
     $.backstretch('/images/1.jpg');
+=======
+    $.backstretch('../images/emissary/backgrounds/1.jpg');
+>>>>>>> Stashed changes
 
     $('#top-navbar-1').on('shown.bs.collapse', function() {
     	$.backstretch('resize');
