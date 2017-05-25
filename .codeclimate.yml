@@ -7,14 +7,18 @@ engines:
     enabled: true
 ratings:
   paths:
+  - client/emissary/js/*.js
+  - client/emissary/stylesheets/*.css
   - client/js_es6
   - client/stylesheets
   - server/lib/
   - server/routes/
 exclude_paths:
+- build/
+- client/emissary/js/js_libs/
 - config/
 - doc/
 - drivers/
 - server/data/
-- build/
-- client/emissary/
+
+

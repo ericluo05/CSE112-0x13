@@ -1,8 +1,6 @@
 'use strict';
-
 let express = require('express');
 let controller = require('./company.controller');
-
 let router = new express.Router();
 
 /**
@@ -17,7 +15,7 @@ let router = new express.Router();
                                   be what was passed in in JSON Format
  * @apiError CouldnotSave failed to save to server
  */
-router.post('/', 			controller.template.create);
+router.post('/', controller.create);
 
 /**
  *
@@ -31,7 +29,7 @@ router.post('/', 			controller.template.create);
  * @apiError CouldnotSave failed connection
  * @apiError CouldnotFind company does not exist
  */
-router.get('/:id', 			controller.template.get);
+router.get('/:id', controller.get);
 
 /**
  *
@@ -43,7 +41,7 @@ router.get('/:id', 			controller.template.get);
  * @apiSuccess {JSON} companyInfo all the companies info in JSON format
  *
  */
-router.get('/', 			controller.template.getAll);
+router.get('/', controller.getAll);
 
 /**
  *
@@ -59,7 +57,7 @@ router.get('/', 			controller.template.getAll);
  * @apiError CouldNotFind wrong company ID
  * @apiError CouldnotSave a connection problem
  */
-router.put('/:id', controller.template.update);
+router.put('/:id', controller.update);
 
 /**
  *
@@ -73,7 +71,7 @@ router.put('/:id', controller.template.update);
  * @apiError CouldNotFind wrong company ID
  * @apiError CouldnotSave a connection problem
  */
-router.delete('/:id', controller.template.delete);
+router.delete('/:id', controller.delete);
 
 /**
  *
@@ -89,6 +87,6 @@ router.delete('/:id', controller.template.delete);
  * @apiError CouldNotFind wrong company ID
  * @apiError CouldnotSave a connection problem
  */
-router.put('/setting/:user', 	controller.template.resetCredentials);
+router.put('/setting/:user', controller.resetCredentials);
 
 module.exports = router;

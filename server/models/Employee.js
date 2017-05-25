@@ -27,8 +27,7 @@ let employeeSchema = new Schema({
 });
 
 /**
- * @memberOf Employee
- * @function validPassword
+ * @function Employee.validPassword
  * @description check if password is correct
  * @param {string} password - password (don't know if salted or not)
  * @return {boolean} password is correct or not
@@ -38,8 +37,7 @@ employeeSchema.methods.validPassword = function(password) {
 };
 
 /**
- * @memberOf Employee
- * @function generateHash
+ * @function Employee.generateHash
  * @description encrypt input password to hash
  * @param {string} password - password to hash
  * @return {string} hashed password

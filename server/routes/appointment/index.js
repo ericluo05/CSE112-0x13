@@ -1,8 +1,6 @@
 'use strict';
-
 let express = require('express');
 let controller = require('./appointment.controller');
-
 let router = new express.Router();
 
 /**
@@ -14,8 +12,7 @@ let router = new express.Router();
  * @apiGroup Appointment
  *
  */
-
-router.post('/', 			controller.template.create);
+router.post('/', controller.create);
 
 /**
  *
@@ -26,8 +23,7 @@ router.post('/', 			controller.template.create);
  * @apiGroup Appointment
  *
  */
-
-router.get('/:id', 			controller.template.get);
+router.get('/:id', controller.get);
 
 /**
  *
@@ -38,7 +34,7 @@ router.get('/:id', 			controller.template.get);
  * @apiGroup Appointment
  *
  */
-router.get('/company/:id', 	controller.template.getAll);
+router.get('/company/:id', controller.getAll);
 
 /**
  *
@@ -49,8 +45,7 @@ router.get('/company/:id', 	controller.template.getAll);
  * @apiGroup Appointment
  *
  */
-
-router.put('/:id', controller.template.update);
+router.put('/:id', controller.update);
 
 /**
  *
@@ -61,9 +56,7 @@ router.put('/:id', controller.template.update);
  * @apiGroup Appointment
  *
  */
-
-router.delete('/:id', controller.template.delete);
-
+router.delete('/:id', controller.delete);
 
 
 module.exports = router;

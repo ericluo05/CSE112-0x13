@@ -1,26 +1,17 @@
 'use strict';
-
-/* This module is meant to house the functions
- * used by the authorization (auth) API. The
- * actual API is set up in index.js
-
- Functions:
- authSignup()
- authLogin()
- authResetCredentials()
- */
-
-
-/* need this to enable cross origin resource sharing.If disabled, we might
- * not need this later. This is just to get the example to work
- * when front end is served from a something other than our app server.
+/**
+ *  Module that house all the API routes that pertains to appointment
+ * @module routes/appointment
  */
 let Appointment = require('../../models/Appointment');
 
-/* * **** Company TEMPLATE ROUTES ******/
-module.exports.template = {};
-
-module.exports.template.create = function(req, res) {
+/**
+ * @function create
+ * @description  handler to create an appointment
+ * @param {Object} req - request object
+ * @param {Object} res - response object
+ */
+exports.create = function(req, res) {
     let appointment = new Appointment();
     let param = req.body;
 
@@ -50,7 +41,13 @@ module.exports.template.create = function(req, res) {
         });
 };
 
-module.exports.template.getAll = function(req, res) {
+/**
+ * @function getAll
+ * @description  handler to all appointment of a company
+ * @param {Object} req - request object
+ * @param {Object} res - response object
+ */
+exports.getAll = function(req, res) {
     Appointment.find({company_id: req.params.id}, function(err, result) {
             if(err) {
                 return res.status(400).json(err);
@@ -59,7 +56,13 @@ module.exports.template.getAll = function(req, res) {
         });
 };
 
-module.exports.template.get = function(req, res) {
+/**
+ * @function get
+ * @description  handler to get an appointment
+ * @param {Object} req - request object
+ * @param {Object} res - response object
+ */
+exports.get = function(req, res) {
     Appointment.findOne({_id: req.params.id}, function(err, a) {
         if(err || !a)
             return res.status(400).send({error: 'Could Not Find'});
@@ -67,7 +70,13 @@ module.exports.template.get = function(req, res) {
     });
 };
 
-module.exports.template.update = function(req, res) {
+/**
+ * @function update
+ * @description  handler to update an appointment
+ * @param {Object} req - request object
+ * @param {Object} res - response object
+ */
+exports.update = function(req, res) {
     Appointment.findOne({_id: req.params.id}, function(err, a) {
         if(err || !a)
             return res.status(401).json({error: 'Could Not Find'});
@@ -95,7 +104,13 @@ module.exports.template.update = function(req, res) {
     });
 };
 
-module.exports.template.delete = function(req, res) {
+/**
+ * @function delete
+ * @description  handler to delete an appointment
+ * @param {Object} req - request object
+ * @param {Object} res - response object
+ */
+exports.delete = function(req, res) {
     Appointment.findById(req.params.id, function(err, a) {
         if(err)
             res.status(400).json({error: 'Could Not Find'});

@@ -1,16 +1,18 @@
 /* eslint-disable camelcase */
 'use strict';
-
-// Import Resources and Libs
-
-let Email = require('../../notification/email');
-let TextModel = require('../../notification/text');
-
+// let Email = require('../../notification/email');
+// let TextModel = require('../../notification/text');
+// let Employee = require('../../models/Employee');
 let VisitorList = require('../../models/VisitorList');
-let Employee = require('../../models/Employee');
 let Appointment = require('../../models/Appointment');
 
 /* handles route for getting the Company's visitor list */
+/**
+ * @function create
+ * @description  handler to create a theme
+ * @param {Object} req - request object
+ * @param {Object} res - response object
+ */
 exports.getCompanyVisitorListReq = function(req, res) {
     let company_id=req.params.id;
     exports.getCompanyVisitorList(company_id, function(err_msg, result) {
@@ -29,7 +31,60 @@ exports.getCompanyVisitorListReq = function(req, res) {
 };
 
 
-/* logic for getting the Company's visitor list */
+// This route will be called when a visitor checks in
+/**
+ * @function createReq
+ * @description  handler to ???
+ * @param {Object} req - request object
+ * @param {Object} res - response object
+ */
+exports.createReq = function(req, res) {
+    exports.create(req.body, function(err_msg, result) {
+        if(err_msg) return res.status(400).json(err_msg);
+        return res.status(200).json(result);
+    });
+};
+
+
+/* handles route to delete visitor in the list*/
+/**
+ * @function deleteVisitorReq
+ * @description  handler to create a theme
+ * @param {Object} req - request object
+ * @param {Object} res - response object
+ */
+exports.deleteVisitorReq = function(req, res) {
+    let visitor_id=req.params.visitor_id;
+    let company_id=req.params.company_id;
+    exports.deleteVisitor(company_id, visitor_id, function(err_msg, result) {
+        if(err_msg) return res.status(400).json(err_msg);
+        return res.status(200).json(result);
+    });
+};
+
+
+/**
+ * @function deleteReq
+ * @description  handler to clear visitor list
+ * @param {Object} req - request object
+ * @param {Object} res - response object
+ */
+exports.deleteReq = function(req, res) {
+    let list_id=req.params.id;
+    exports.delete(list_id, function(err_msg, result) {
+        if(err_msg) return res.status(400).json(err_msg);
+        return res.status(200).json(result);
+    });
+};
+
+
+/**
+ * @function getCompanyVisitorList
+ * @description  handler to create a theme
+ * @param {int} company_id - company id
+ * @param {callback} callback - callback function
+ * @return {callback} callback function
+ */
 exports.getCompanyVisitorList = function(company_id, callback) {
     if(!company_id)
         return callback({error: 'Please send company id.'}, null);
@@ -47,17 +102,15 @@ exports.getCompanyVisitorList = function(company_id, callback) {
     });
 };
 
-/* handles route to delete visitor in the list*/
-exports.deleteVisitorReq = function(req, res) {
-    let visitor_id=req.params.visitor_id;
-    let company_id=req.params.company_id;
-    exports.deleteVisitor(company_id, visitor_id, function(err_msg, result) {
-        if(err_msg) return res.status(400).json(err_msg);
-        return res.status(200).json(result);
-    });
-};
 
-/* logic for deleting the visitor in the list */
+/**
+ * @function deleteVisitor
+ * @description  handler to delete visitor from a list
+ * @param {int} company_id - compnay id
+ * @param {visitor_id} visitor_id -  visitor id
+ * @param {callback} callback function
+ * @return {callback} callback function
+ */
 exports.deleteVisitor = function(company_id, visitor_id, callback) {
     if(!company_id)
         return callback({error: 'Please send company id.'}, null);
@@ -72,15 +125,14 @@ exports.deleteVisitor = function(company_id, visitor_id, callback) {
         });
 };
 
-/* clear the list */
-exports.deleteReq = function(req, res) {
-    let list_id=req.params.id;
-    exports.delete(list_id, function(err_msg, result) {
-        if(err_msg) return res.status(400).json(err_msg);
-        return res.status(200).json(result);
-    });
-};
 
+/**
+ * @function delete
+ * @description  Don't know what this function is doing
+ * @param {array} list_id - don't know what this is
+ * @param {callback} callback - callback function
+ * @return {callback} callback function
+ */
 exports.delete = function(list_id, callback) {
     if(!list_id)
         return callback({error: 'Please send list id.'}, null);
@@ -95,14 +147,14 @@ exports.delete = function(list_id, callback) {
         });
     });
 };
-// This route will be called when a visitor checks in
-exports.createReq = function(req, res) {
-    exports.create(req.body, function(err_msg, result) {
-        if(err_msg) return res.status(400).json(err_msg);
-        return res.status(200).json(result);
-    });
-};
 
+
+/**
+ * @function create
+ * @description  don't know what this is doing
+ * @param {array} param - list of parameters
+ * @param {callback} callback - callback function
+ */
 exports.create = function(param, callback) {
     // required fields
     let company_id = param.company_id;
@@ -145,7 +197,6 @@ exports.create = function(param, callback) {
             {company_id: company_id},
             function(err, list) {
                 if(err)
-// eslint-disable-next-line max-len
                     return callback({error: 'an error occured while finding'}, null);
                 if(list==null) {
                     list = new VisitorList();
@@ -154,7 +205,6 @@ exports.create = function(param, callback) {
                 }
                 list.visitors.push(visitor);
                 list.save(function(err) {
-// eslint-disable-next-line max-len
                     if(err) return callback({error: 'an error in saving'}, null);
                     return callback(null, list);
                 });

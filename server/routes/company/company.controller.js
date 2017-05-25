@@ -1,18 +1,17 @@
-/* eslint-disable valid-jsdoc */
 'use strict';
 /**
- * @file Company Controller
+ *  Module that house all the API routes that pertains to company
+ * @module routes/company
  */
-
-
 let Company = require('../../models/Company');
 
-
-/* **** Company TEMPLATE ROUTES ******/
-module.exports.template = {};
-
-/* signup- Used to sign up a user.*/
-module.exports.template.create = function(req, res) {
+/**
+ * @function create
+ * @description  handler to sign up a user
+ * @param {Object} req - request object
+ * @param {Object} res - response object
+ */
+exports.create = function(req, res) {
     let company = new Company();
 
     // require provided info
@@ -20,12 +19,6 @@ module.exports.template.create = function(req, res) {
     company.name = req.body.name;
     company.phone_number = req.body.phone_number;
     company.paid_time=new Date();
-
-    // optinal info
-    /* company.expiration_date=req.body.expiration_date;
-    company.credit_card_number=req.body.credit_card_number;
-    */
-
 
     company.save(function(err, c) {
         if(err) {
@@ -35,14 +28,19 @@ module.exports.template.create = function(req, res) {
     });
 };
 
-/* get All the companies*/
-module.exports.template.getAll = function(req, res) {
+/**
+ * @function getAll
+ * @description  handler to  ???
+ * @param {Object} req - request object
+ * @param {Object} res - response object
+ */
+exports.getAll = function(req, res) {
     Company.find({},
         {
             credit_card_number: false,
             expiration_date: false,
         }
-        , /**/function(err, result) {
+        , function(err, result) {
         if(err) {
             return res.status(400).json(err);
         }
@@ -50,8 +48,13 @@ module.exports.template.getAll = function(req, res) {
     });
 };
 
-/* authLogin- logs in a user*/
-module.exports.template.get = /**/function(req, res) {
+/**
+ * @function get
+ * @description  handler to log in a user
+ * @param {Object} req - request object
+ * @param {Object} res - response object
+ */
+exports.get = function(req, res) {
     Company.findOne({_id: req.params.id}, /**/ function(err, company) {
         if(err)
             return res.status(400).json({error: 'Could Not Save'});
@@ -59,9 +62,15 @@ module.exports.template.get = /**/function(req, res) {
     });
 };
 
-/* update the company info */
-module.exports.template.update = /**/ function(req, res) {
-    Company.findOne({_id: req.params.id}, /**/ function(err, c) {
+
+/**
+ * @function update
+ * @description  handler to update the company info
+ * @param {Object} req - request object
+ * @param {Object} res - response object
+ */
+exports.update = function(req, res) {
+    Company.findOne({_id: req.params.id}, function(err, c) {
         if(err || !c)
             return res.status(401).json({error: 'Could Not Find'});
 
@@ -87,7 +96,13 @@ module.exports.template.update = /**/ function(req, res) {
 };
 
 /* delete company */
-module.exports.template.delete = function(req, res) {
+/**
+ * @function delete
+ * @description handler to delete company
+ * @param {Object} req - request object
+ * @param {Object} res - response object
+ */
+exports.delete = function(req, res) {
     Company.findById(req.params.id, function(err, c) {
         if(err)
             res.status(400).json({error: 'Could Not Find'});
@@ -101,8 +116,13 @@ module.exports.template.delete = function(req, res) {
     });
 };
 
-/* authResetCredentials- resets a user's credentials*/
-module.exports.template.resetCredentials = function(req, res) {
+/**
+ * @function resetCredentials
+ * @description  handler to resets a user's credentials
+ * @param {Object} req - request object
+ * @param {Object} res - response object
+ */
+exports.resetCredentials = function(req, res) {
     Company.findOne({email: req.params.user}, function(err, c) {
         if(err || !c)
             return res.status(400).json({error: 'Could Not Find'});
@@ -148,9 +168,10 @@ module.exports.template.resetCredentials = function(req, res) {
  */
 
 /**
+ * @private
  * @function showCompanyPublicInfo
  * @description convert company info into array
- * @param {Object} company - company object
+ * @param {Object} c - company object
  * @return {CompanyInfo} company info object
  */
 function showCompanyPublicInfo(c) {

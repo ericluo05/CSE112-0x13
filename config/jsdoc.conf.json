@@ -1,6 +1,7 @@
 {
   "opts": {
-    "destination": "doc/lib-doc"
+    "destination": "doc/lib-doc",
+    "private" : true
   },
   "tags": {
     "allowUnknownTags": true

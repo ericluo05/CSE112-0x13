@@ -3,7 +3,7 @@
 let express = require('express');
 let controller = require('./visitorList.controller');
 
-let router = express.Router();
+let router = new express.Router();
 
 router.post('/', controller.createReq);
 router.get('/company/:id', controller.getCompanyVisitorListReq);
