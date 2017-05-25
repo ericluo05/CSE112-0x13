@@ -26,7 +26,7 @@ let Company = require('../../models/Company');
 module.exports.template = {};
 
 /** signup- Used to sign up a user.*/
-module.exports.template.create = function(req, res) {
+module.exports.template.create = /**/ function(req, res) {
     let company = new Company();
 
     // require provided info
@@ -50,13 +50,13 @@ module.exports.template.create = function(req, res) {
 };
 
 /** get All the companies*/
-module.exports.template.getAll = function(req, res) {
+module.exports.template.getAll = /**/ function(req, res) {
     Company.find({},
         {
             credit_card_number: false,
             expiration_date: false,
         }
-        , function(err, result) {
+        , /**/function(err, result) {
         if(err) {
             return res.status(400).json(err);
         }
@@ -65,8 +65,8 @@ module.exports.template.getAll = function(req, res) {
 };
 
 /** authLogin- logs in a user*/
-module.exports.template.get = function(req, res) {
-    Company.findOne({_id: req.params.id}, function(err, company) {
+module.exports.template.get = /**/function(req, res) {
+    Company.findOne({_id: req.params.id}, /**/ function(err, company) {
         if(err)
             return res.status(400).json({error: 'Could Not Save'});
         return res.status(200).json(showCompanyPublicInfo(company));
@@ -74,8 +74,8 @@ module.exports.template.get = function(req, res) {
 };
 
 /* update the company info */
-module.exports.template.update = function(req, res) {
-    Company.findOne({_id: req.params.id}, function(err, c) {
+module.exports.template.update = /**/ function(req, res) {
+    Company.findOne({_id: req.params.id}, /**/ function(err, c) {
         if(err || !c)
             return res.status(401).json({error: 'Could Not Find'});
 
@@ -101,8 +101,8 @@ module.exports.template.update = function(req, res) {
 };
 
 /* delete company */
-module.exports.template.delete = function(req, res) {
-    Company.findById(req.params.id, function(err, c) {
+module.exports.template.delete = /**/ function(req, res) {
+    Company.findById(req.params.id, /**/ function(err, c) {
         if(err)
             res.status(400).json({error: 'Could Not Find'});
         c.remove(function(err) {
@@ -126,7 +126,7 @@ module.exports.template.resetCredentials = function(req, res) {
         if(!c.validPassword(req.body.password))
             return res.status(400).send('loginMessage', 'Oops! Wrong password');
 
-        // upadate password
+        // update password
         if (req.body.newpassword !== undefined)
             c.password = c.generateHash(req.body.newpassword);
 
@@ -142,7 +142,7 @@ module.exports.template.resetCredentials = function(req, res) {
         if (req.body.new_company_phone_number !== undefined)
             c.company_phone_number = req.body.new_company_phone_number;
 
-        c.save(function(err) {
+        c.save(/**/function(err) {
             if(err) {
                 res.status(400).send({error: 'Could Not Save'});
             }
@@ -151,6 +151,7 @@ module.exports.template.resetCredentials = function(req, res) {
     });
 };
 
+/* */
 function showCompanyPublicInfo(c) {
     return {
         _id: c._id,
