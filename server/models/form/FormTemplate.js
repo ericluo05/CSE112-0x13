@@ -6,7 +6,7 @@ let Schema = mongoose.Schema;
  * @memberOf Schema
  * @typedef {FormTemplateSchema} Form
  * @property {int} _admin_id - object id of company schema
- * @property {object} template - ??????????????
+ * @property {object} template - unknown
  */
 let formTemplate = new Schema({
   _admin_id: {

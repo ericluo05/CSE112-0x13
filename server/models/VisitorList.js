@@ -24,8 +24,8 @@ let appointmentSchema = new Schema({
  * @property {String} last_name -  last name of visitor
  * @property {Boolean} phone_number -  visitor's phone number
  * @property {Boolean} checkin_time - time when the visitor checked in
- * @property {AppointmentSchema} appointments - ???
- * @property {object} additional_info - ???
+ * @property {Appointment} appointments - associated appointment
+ * @property {object} additional_info - additional info
  */
 let visitorSchema = new Schema({
     company_id: {type: Schema.Types.ObjectId, ref: 'Company', required: true},
@@ -42,7 +42,7 @@ let visitorSchema = new Schema({
  * @memberOf Schema
  * @typedef {VisitorListSchema} VisitorList
  * @property {int} company_id -  object id of company schema
- * @property {visitorSchema[]} visitors - list of visitors
+ * @property {Array<Visitor>} visitors - list of visitors
  */
 let visitorListSchema = new Schema({
     company_id: {type: Schema.Types.ObjectId, ref: 'Company', required: true},

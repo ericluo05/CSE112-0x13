@@ -40,14 +40,7 @@
 			<li class="dropdown">
 				<a href="modules.list.html" class="dropdown-toggle" data-toggle="dropdown">Modules<b class="caret"></b></a>
 				<ul class="dropdown-menu ">
-					<li><a href="module-routes_company.html">routes/company</a></li><li><a href="module-routes_form.html">routes/form</a></li>
-				</ul>
-			</li>
-			
-			<li class="dropdown">
-				<a href="global.html" class="dropdown-toggle" data-toggle="dropdown">Global<b class="caret"></b></a>
-				<ul class="dropdown-menu ">
-					<li><a href="global.html#checkVL">checkVL</a></li><li><a href="global.html#createServer">createServer</a></li><li><a href="global.html#formatPhoneNumber">formatPhoneNumber</a></li><li><a href="global.html#notifyError">notifyError</a></li><li><a href="global.html#notifyNewList">notifyNewList</a></li>
+					<li><a href="module-routes_appointment.html">routes/appointment</a></li><li><a href="module-routes_company.html">routes/company</a></li><li><a href="module-routes_employee.html">routes/employee</a></li><li><a href="module-routes_form.html">routes/form</a></li><li><a href="module-routes_payment.html">routes/payment</a></li><li><a href="module-routes_theme.html">routes/theme</a></li><li><a href="module-routes_visitorlist.html">routes/visitorlist</a></li><li><a href="module-socket.html">socket</a></li>
 				</ul>
 			</li>
 			
@@ -157,7 +150,7 @@
             
 <hr>
 <dt>
-    <h4 class="name" id="~create"><span class="type-signature">&lt;inner> </span>create()</h4>
+    <h4 class="name" id="~create"><span class="type-signature">&lt;inner> </span>create(req, res)</h4>
     
     
 </dt>
@@ -165,7 +158,7 @@
 
     
     <div class="description">
-        express handler to sign up a user
+        handler to sign up a user
     </div>
     
 
@@ -174,6 +167,80 @@
     
 
     
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>req</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">request object</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>res</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">response object</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
     
 
     
@@ -235,7 +302,7 @@
             
 <hr>
 <dt>
-    <h4 class="name" id="~delete"><span class="type-signature">&lt;inner> </span>delete()</h4>
+    <h4 class="name" id="~delete"><span class="type-signature">&lt;inner> </span>delete(req, res)</h4>
     
     
 </dt>
@@ -243,7 +310,7 @@
 
     
     <div class="description">
-        delete company
+        handler to delete company
     </div>
     
 
@@ -252,6 +319,80 @@
     
 
     
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>req</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">request object</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>res</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">response object</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
     
 
     
@@ -313,7 +454,7 @@
             
 <hr>
 <dt>
-    <h4 class="name" id="~get"><span class="type-signature">&lt;inner> </span>get()</h4>
+    <h4 class="name" id="~get"><span class="type-signature">&lt;inner> </span>get(req, res)</h4>
     
     
 </dt>
@@ -321,7 +462,7 @@
 
     
     <div class="description">
-        logs in a user
+        handler to log in a user
     </div>
     
 
@@ -330,6 +471,80 @@
     
 
     
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>req</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">request object</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>res</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">response object</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
     
 
     
@@ -391,7 +606,7 @@
             
 <hr>
 <dt>
-    <h4 class="name" id="~getAll"><span class="type-signature">&lt;inner> </span>getAll()</h4>
+    <h4 class="name" id="~getAll"><span class="type-signature">&lt;inner> </span>getAll(req, res)</h4>
     
     
 </dt>
@@ -399,7 +614,7 @@
 
     
     <div class="description">
-        get all the companies
+        handler to  ???
     </div>
     
 
@@ -408,6 +623,80 @@
     
 
     
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>req</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">request object</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>res</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">response object</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
     
 
     
@@ -469,7 +758,7 @@
             
 <hr>
 <dt>
-    <h4 class="name" id="~resetCredentials"><span class="type-signature">&lt;inner> </span>resetCredentials()</h4>
+    <h4 class="name" id="~resetCredentials"><span class="type-signature">&lt;inner> </span>resetCredentials(req, res)</h4>
     
     
 </dt>
@@ -477,7 +766,7 @@
 
     
     <div class="description">
-        resets a user's credentials
+        handler to resets a user's credentials
     </div>
     
 
@@ -486,6 +775,80 @@
     
 
     
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>req</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">request object</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>res</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">response object</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
     
 
     
@@ -547,7 +910,7 @@
             
 <hr>
 <dt>
-    <h4 class="name" id="~showCompanyPublicInfo"><span class="type-signature">&lt;private, inner> </span>showCompanyPublicInfo(company)</h4>
+    <h4 class="name" id="~showCompanyPublicInfo"><span class="type-signature">&lt;private, inner> </span>showCompanyPublicInfo(c)</h4>
     
     
 </dt>
@@ -590,7 +953,7 @@
 
         <tr>
             
-                <td class="name"><code>company</code></td>
+                <td class="name"><code>c</code></td>
             
 
             <td class="type">
@@ -699,7 +1062,7 @@
             
 <hr>
 <dt>
-    <h4 class="name" id="~update"><span class="type-signature">&lt;inner> </span>update()</h4>
+    <h4 class="name" id="~update"><span class="type-signature">&lt;inner> </span>update(req, res)</h4>
     
     
 </dt>
@@ -707,7 +1070,7 @@
 
     
     <div class="description">
-        update the company info
+        handler to update the company info
     </div>
     
 
@@ -716,6 +1079,80 @@
     
 
     
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>req</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">request object</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>res</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">response object</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
     
 
     
@@ -1043,7 +1480,7 @@
 <span class="jsdoc-message">
 	Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.3</a>
 	
-		on 2017-05-25T00:32:26-07:00
+		on 2017-05-25T02:05:21-07:00
 	
 	using the <a href="https://github.com/docstrap/docstrap">DocStrap template</a>.
 </span>

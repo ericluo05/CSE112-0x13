@@ -45,16 +45,6 @@ function isValidPhone(CC, PN) {
   return handleError(data_g[CC]['Error']);
 }
 
-/**
- * @function checkVL
-* @description Usage: Check PN by first checking if its length is valid, then check
- *        further by using data on its length
- * @param {string} PN Phone Number
- * @param {string} data Dictionary that contains information that can check PN
- * @return {Boolean} "isValid": validity of PN
- * @return {String} "E.164 Format" : E.164 Format of PN (Unformatted PN)
- * @return {String} "Error" : Errors
- **/
 function checkVL(PN, data) {
   let PN_Length = PN.length.toString();
 
@@ -119,14 +109,6 @@ function checkVL(PN, data) {
     return handleError(data_l['Error']);
 }
 
-/**
- * @function formatPhoneNumber
- * @description formats a phone number
- * @param {String} cc Country Code
- * @param {String} number phone number
- * @return {Boolean} "isValid": validity of PN
- * @return {String} "Format" : formatted number
- **/
 function formatPhoneNumber(cc, number) {
     let validJSON = isValidPhone(cc, number);
     if ( validJSON.isValid ) {

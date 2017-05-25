@@ -4,7 +4,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width">
-	<title>Documentation Class: Employee</title>
+	<title>Documentation Module: routes/theme</title>
 
 	<!--[if lt IE 9]>
 	<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
@@ -31,16 +31,16 @@
 		<ul class="nav navbar-nav">
 			
 			<li class="dropdown">
-				<a href="classes.list.html" class="dropdown-toggle" data-toggle="dropdown">Classes<b class="caret"></b></a>
+				<a href="namespaces.list.html" class="dropdown-toggle" data-toggle="dropdown">Namespaces<b class="caret"></b></a>
 				<ul class="dropdown-menu ">
-					<li><a href="Appointment.html">Appointment</a></li><li><a href="Employee.html">Employee</a></li><li><a href="FormTemplate.html">FormTemplate</a></li>
+					<li><a href="Schema.html">Schema</a></li>
 				</ul>
 			</li>
 			
 			<li class="dropdown">
-				<a href="global.html" class="dropdown-toggle" data-toggle="dropdown">Global<b class="caret"></b></a>
+				<a href="modules.list.html" class="dropdown-toggle" data-toggle="dropdown">Modules<b class="caret"></b></a>
 				<ul class="dropdown-menu ">
-					<li><a href="global.html#checkVL">checkVL</a></li><li><a href="global.html#createServer">createServer</a></li><li><a href="global.html#formatPhoneNumber">formatPhoneNumber</a></li><li><a href="global.html#notifyError">notifyError</a></li><li><a href="global.html#notifyNewList">notifyNewList</a></li><li><a href="global.html#showCompanyPublicInfo">showCompanyPublicInfo</a></li><li><a href="global.html#submitted_form">submitted_form</a></li><li><a href="global.html#template">template</a></li>
+					<li><a href="module-routes_appointment.html">routes/appointment</a></li><li><a href="module-routes_company.html">routes/company</a></li><li><a href="module-routes_employee.html">routes/employee</a></li><li><a href="module-routes_form.html">routes/form</a></li><li><a href="module-routes_payment.html">routes/payment</a></li><li><a href="module-routes_theme.html">routes/theme</a></li><li><a href="module-routes_visitorlist.html">routes/visitorlist</a></li><li><a href="module-socket.html">socket</a></li>
 				</ul>
 			</li>
 			
@@ -72,17 +72,10 @@
 		<div id="main">
 			
 
-	<h1 class="page-title">Class: Employee</h1>
+	<h1 class="page-title">Module: routes/theme</h1>
 <section>
 
 <header>
-    
-        <h2>
-        Employee
-        </h2>
-        
-            <div class="class-description">Manage schema for employee.</div>
-        
     
 </header>
 
@@ -91,24 +84,10 @@
     <div class="container-overview">
     
         
-<hr>
-<dt>
-    <h4 class="name" id="Employee"><span class="type-signature"></span>new Employee()</h4>
-    
-    
-</dt>
-<dd>
+            <div class="description">Module that house all the API routes that pertains to theme settings</div>
+        
 
-    
-
-    
-
-    
-
-    
-    
-
-    
+        
 <dl class="details">
     
 
@@ -148,21 +127,7 @@
 </dl>
 
 
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-</dd>
-
+        
     
     </div>
 
@@ -185,7 +150,7 @@
             
 <hr>
 <dt>
-    <h4 class="name" id=".generateHash"><span class="type-signature">&lt;static> </span>generateHash(password)</h4>
+    <h4 class="name" id="~create"><span class="type-signature">&lt;inner> </span>create(req, res)</h4>
     
     
 </dt>
@@ -193,7 +158,7 @@
 
     
     <div class="description">
-        encrypt input password to hash
+        handler to create a theme
     </div>
     
 
@@ -228,13 +193,13 @@
 
         <tr>
             
-                <td class="name"><code>password</code></td>
+                <td class="name"><code>req</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">string</span>
+<span class="param-type">Object</span>
 
 
 
@@ -245,7 +210,31 @@
 
             
 
-            <td class="description last">password to hash</td>
+            <td class="description last">request object</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>res</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">response object</td>
         </tr>
 
     
@@ -305,30 +294,6 @@
     
 
     
-    <h5>Returns:</h5>
-    
-            
-<div class="param-desc">
-    hashed password
-</div>
-
-
-
-<dl>
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">string</span>
-
-
-
-    </dd>
-</dl>
-
-
-        
 
     
 </dd>
@@ -337,7 +302,7 @@
             
 <hr>
 <dt>
-    <h4 class="name" id=".validPassword"><span class="type-signature">&lt;static> </span>validPassword(password)</h4>
+    <h4 class="name" id="~delete"><span class="type-signature">&lt;inner> </span>delete(req, res)</h4>
     
     
 </dt>
@@ -345,7 +310,7 @@
 
     
     <div class="description">
-        check if password is correct
+        handler to delete a theme by user id
     </div>
     
 
@@ -380,13 +345,13 @@
 
         <tr>
             
-                <td class="name"><code>password</code></td>
+                <td class="name"><code>req</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">string</span>
+<span class="param-type">Object</span>
 
 
 
@@ -397,7 +362,31 @@
 
             
 
-            <td class="description last">password (don't know if salted or not)</td>
+            <td class="description last">request object</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>res</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">response object</td>
         </tr>
 
     
@@ -457,77 +446,36 @@
     
 
     
-    <h5>Returns:</h5>
-    
-            
-<div class="param-desc">
-    password is correct or not
-</div>
-
-
-
-<dl>
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">boolean</span>
-
-
-
-    </dd>
-</dl>
-
-
-        
 
     
 </dd>
 
-        </dl>
-    
-
-    
-        <h3 class="subsection-title">Type Definitions</h3>
-
-        <dl>
-                
+        
+            
 <hr>
-<dt class="name" id=".EmployeeSchema">
-    <h4 id=".EmployeeSchema">EmployeeSchema</h4>
-
+<dt>
+    <h4 class="name" id="~get"><span class="type-signature">&lt;inner> </span>get(req, res)</h4>
+    
     
 </dt>
 <dd>
+
     
     <div class="description">
-        schema for employee
+        handler to get a theme by user id
     </div>
     
 
     
-        <h5>Type:</h5>
-        <ul>
-            <li>
-                
-<span class="param-type">EmployeeSchema</span>
 
-
-
-            </li>
-        </ul>
     
 
     
-<dl class="details">
     
+        <h5>Parameters:</h5>
+        
 
-    <h5 class="subsection-title">Properties:</h5>
-
-    <dl>
-
-<table class="props table table-striped">
+<table class="params table table-striped">
     <thead>
     <tr>
         
@@ -549,13 +497,13 @@
 
         <tr>
             
-                <td class="name"><code>first_name</code></td>
+                <td class="name"><code>req</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">String</span>
+<span class="param-type">Object</span>
 
 
 
@@ -566,20 +514,20 @@
 
             
 
-            <td class="description last">first name of employee</td>
+            <td class="description last">request object</td>
         </tr>
 
     
 
         <tr>
             
-                <td class="name"><code>last_name</code></td>
+                <td class="name"><code>res</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">String</span>
+<span class="param-type">Object</span>
 
 
 
@@ -590,135 +538,17 @@
 
             
 
-            <td class="description last">last name of employee</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>email</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">String</span>
-
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">email of employee</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>password</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">String</span>
-
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">hashed password of the employee</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>phone_number</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">string</span>
-
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">phone number of the employee</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>role</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">string</span>
-
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">role of the employee</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>company_id</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">int</span>
-
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">id of the company in which the
- employee belongs to</td>
+            <td class="description last">response object</td>
         </tr>
 
     
     </tbody>
 </table>
-</dl>
 
+    
+
+    
+<dl class="details">
     
 
 	
@@ -756,11 +586,177 @@
 	
 </dl>
 
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
 
     
 </dd>
 
-            </dl>
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id="~update"><span class="type-signature">&lt;inner> </span>update(req, res)</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        handler to update a theme by user id
+    </div>
+    
+
+    
+
+    
+
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>req</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">request object</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>res</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">response object</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dd>
+
+        </dl>
+    
+
     
 
     
@@ -808,7 +804,7 @@
 <span class="jsdoc-message">
 	Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.3</a>
 	
-		on 2017-05-24T21:03:56-07:00
+		on 2017-05-25T02:05:21-07:00
 	
 	using the <a href="https://github.com/docstrap/docstrap">DocStrap template</a>.
 </span>

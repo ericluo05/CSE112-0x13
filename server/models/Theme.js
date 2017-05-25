@@ -6,13 +6,13 @@ let Schema = mongoose.Schema;
  * MongoDB Schema for Theme
  * @memberOf Schema
  * @typedef {ThemeSchema} Theme
- * @property {String} user_id - ???
- * @property {String} form_color - color in hex ??? no idea why string
- * @property {String} background_img - ...
- * @property {Boolean} displayPhone - ...
- * @property {Boolean} displayClock - ...
- * @property {Boolean} displaySignature - ...
- * @property {Boolean} additionalComments - ...
+ * @property {String} user_id - user's id
+ * @property {String} form_color - color as hex string ?
+ * @property {String} background_img - background image
+ * @property {Boolean} displayPhone - display phone number or not
+ * @property {Boolean} displayClock - display clock or not
+ * @property {Boolean} displaySignature - display signature or not
+ * @property {Boolean} additionalComments - display additional comments or not
  */
 let ThemeSchema = new Schema({
     user_id: String,

@@ -1,5 +1,9 @@
 /* eslint-disable camelcase */
 'use strict';
+/**
+ *  Module that house all the API routes that pertains to forms
+ * @module routes/visitorlist
+ */
 // let Email = require('../../notification/email');
 // let TextModel = require('../../notification/text');
 // let Employee = require('../../models/Employee');

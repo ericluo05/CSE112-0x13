@@ -1,6 +1,9 @@
 /* eslint-disable camelcase */
 'use strict';
-
+/**
+ *  Module that house all the API routes that pertains to forms
+ * @module socket
+ */
 let server;
 let io = require('socket.io')();
 

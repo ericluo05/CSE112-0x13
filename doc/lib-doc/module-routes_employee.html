@@ -4,7 +4,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width">
-	<title>Documentation Module: routes/form</title>
+	<title>Documentation Module: routes/employee</title>
 
 	<!--[if lt IE 9]>
 	<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
@@ -72,7 +72,7 @@
 		<div id="main">
 			
 
-	<h1 class="page-title">Module: routes/form</h1>
+	<h1 class="page-title">Module: routes/employee</h1>
 <section>
 
 <header>
@@ -84,7 +84,7 @@
     <div class="container-overview">
     
         
-            <div class="description">Module that house all the API routes that pertains to forms</div>
+            <div class="description">Module that house all the API routes that pertains to employee/user</div>
         
 
         
@@ -150,158 +150,6 @@
             
 <hr>
 <dt>
-    <h4 class="name" id="~create"><span class="type-signature">&lt;inner> </span>create(req, res)</h4>
-    
-    
-</dt>
-<dd>
-
-    
-    <div class="description">
-        handler to create a new template form
-    </div>
-    
-
-    
-
-    
-
-    
-    
-        <h5>Parameters:</h5>
-        
-
-<table class="params table table-striped">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>req</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Object</span>
-
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">request object</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>res</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Object</span>
-
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">response object</td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-    
-
-    
-<dl class="details">
-    
-
-	
-
-	
-
-	
-
-    
-
-    
-
-    
-
-    
-
-	
-
-	
-
-	
-
-	
-
-	
-
-
-
-	
-
-	
-
-	
-
-	
-</dl>
-
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-</dd>
-
-        
-            
-<hr>
-<dt>
     <h4 class="name" id="~delete"><span class="type-signature">&lt;inner> </span>delete(req, res)</h4>
     
     
@@ -310,7 +158,7 @@
 
     
     <div class="description">
-        handler to find delete template form
+        handler to delete an employee
     </div>
     
 
@@ -454,7 +302,7 @@
             
 <hr>
 <dt>
-    <h4 class="name" id="~findByAdminId"><span class="type-signature">&lt;inner> </span>findByAdminId(req, res)</h4>
+    <h4 class="name" id="~getAllEmployees"><span class="type-signature">&lt;inner> </span>getAllEmployees(req, res)</h4>
     
     
 </dt>
@@ -462,7 +310,7 @@
 
     
     <div class="description">
-        handler to find form with admin id
+        handler to get all employees of a company
     </div>
     
 
@@ -606,7 +454,7 @@
             
 <hr>
 <dt>
-    <h4 class="name" id="~findByCompanyId"><span class="type-signature">&lt;inner> </span>findByCompanyId(req, res)</h4>
+    <h4 class="name" id="~getById"><span class="type-signature">&lt;inner> </span>getById(req, res)</h4>
     
     
 </dt>
@@ -614,7 +462,7 @@
 
     
     <div class="description">
-        handler to find form with company id
+        handler to get employee with given id
     </div>
     
 
@@ -758,7 +606,7 @@
             
 <hr>
 <dt>
-    <h4 class="name" id="~sendByAdminId"><span class="type-signature">&lt;inner> </span>sendByAdminId(req, res)</h4>
+    <h4 class="name" id="~insert"><span class="type-signature">&lt;inner> </span>insert(req, res)</h4>
     
     
 </dt>
@@ -766,7 +614,7 @@
 
     
     <div class="description">
-        handler to find template form with admin id
+        handler to create a new employee
     </div>
     
 
@@ -910,7 +758,7 @@
             
 <hr>
 <dt>
-    <h4 class="name" id="~submitted_form_create"><span class="type-signature">&lt;inner> </span>submitted_form_create(req, res)</h4>
+    <h4 class="name" id="~login"><span class="type-signature">&lt;inner> </span>login(req, res)</h4>
     
     
 </dt>
@@ -918,311 +766,7 @@
 
     
     <div class="description">
-        handler to create submitted form
-    </div>
-    
-
-    
-
-    
-
-    
-    
-        <h5>Parameters:</h5>
-        
-
-<table class="params table table-striped">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>req</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Object</span>
-
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">request object</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>res</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Object</span>
-
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">response object</td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-    
-
-    
-<dl class="details">
-    
-
-	
-
-	
-
-	
-
-    
-
-    
-
-    
-
-    
-
-	
-
-	
-
-	
-
-	
-
-	
-
-
-
-	
-
-	
-
-	
-
-	
-</dl>
-
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-</dd>
-
-        
-            
-<hr>
-<dt>
-    <h4 class="name" id="~submitted_form_findById"><span class="type-signature">&lt;inner> </span>submitted_form_findById(req, res)</h4>
-    
-    
-</dt>
-<dd>
-
-    
-    <div class="description">
-        handler to find submitted form with  id
-    </div>
-    
-
-    
-
-    
-
-    
-    
-        <h5>Parameters:</h5>
-        
-
-<table class="params table table-striped">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>req</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Object</span>
-
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">request object</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>res</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Object</span>
-
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">response object</td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-    
-
-    
-<dl class="details">
-    
-
-	
-
-	
-
-	
-
-    
-
-    
-
-    
-
-    
-
-	
-
-	
-
-	
-
-	
-
-	
-
-
-
-	
-
-	
-
-	
-
-	
-</dl>
-
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-</dd>
-
-        
-            
-<hr>
-<dt>
-    <h4 class="name" id="~submitted_form_findByPatientInfo"><span class="type-signature">&lt;inner> </span>submitted_form_findByPatientInfo(req, res)</h4>
-    
-    
-</dt>
-<dd>
-
-    
-    <div class="description">
-        handler to find form with company id
+        handler to login as an employee
     </div>
     
 
@@ -1374,7 +918,7 @@
 
     
     <div class="description">
-        handler to update template form
+        handler to update an employee
     </div>
     
 
