@@ -18,8 +18,7 @@ let htmlhint = require('gulp-htmlhint');
 */
 gulp.task('lint:js:backend', () => {
     // lint backend and testing js files
-    return gulp.src(['**/*.js', '!client/**',
-        '!build/', '!node_modules/**'])
+    return gulp.src(['server/**/*.js'])
       .pipe(eslint({
           fix: true,
       }))
@@ -30,8 +29,7 @@ gulp.task('lint:js:backend', () => {
 
 gulp.task('lint:js:frontend', () => {
     // lint frontend js files
-    return gulp.src(['client/js_es6/**/*.js', 'client/emissary/js/*.js',
-        '!node_modules/**'])
+    return gulp.src(['client/js_es6/**/*.js', 'client/emissary/js/*.js'])
         .pipe(eslint({
             fix: true,
         }))

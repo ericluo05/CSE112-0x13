@@ -4,12 +4,12 @@ module.exports = {
         "sourceType": "module",
     },
     "env":{
-      "node": true,
-      "jquery": true
+        "node": true,
+        "jquery": true,
+        "browser": true
     },
+    globals: ['jQuery', '$'],
     rules: {
-     //   "apidoc/rule-name": 2,
-
         // The rules below are listed in the order they appear on the eslint
         // rules page. All rules are listed to make it easier to keep in sync
         // as new ESLint rules are added.
@@ -51,7 +51,7 @@ module.exports = {
         // 'no-unsafe-finally': 2, // eslint:recommended
         // 'no-unsafe-negation': 0,
         // 'use-isnan': 2 // eslint:recommended
-        'valid-jsdoc': [2, {
+        'valid-jsdoc': [0, {
             requireParamDescription: false,
             requireReturnDescription: false,
             requireReturn: false,
@@ -95,7 +95,7 @@ module.exports = {
         // 'no-implicit-coercion': 0,
         // 'no-implicit-globals': 0,
         // 'no-implied-eval': 0,
-        'no-invalid-this': 0,
+         'no-invalid-this': 0,
         // 'no-iterator': 0,
         // 'no-labels': 0,
         // 'no-lone-blocks': 0,

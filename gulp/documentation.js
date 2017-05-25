@@ -17,7 +17,7 @@ gulp.task('doc', function(cb) {
 */
 gulp.task('api', function(done) {
    apidoc({
-      src: 'server/routes/',
-      dest: 'doc/api',
+       src: 'server/routes/',
+       dest: 'doc/api',
    }, done);
 });
