@@ -87,11 +87,12 @@ $(document).ready(function() {
     updateClock();
     setInterval(updateClock, 60 * 1000);
 
-    /** *
-     * Find a specific cookie name
-     * @param cName
-     * @return {string|*}
-     */
+
+    /*
+    * Find a specific cookie name
+    * @param {string} cName - cookie name
+    * @return {string|*} ???
+    */
     function getCookie(cName) {
         let name = cName + '=';
         let cookieArray = document.cookie.split(';');

@@ -3,7 +3,7 @@
 let express = require('express');
 let controller = require('./appointment.controller');
 
-let router = express.Router();
+let router = new express.Router();
 
 router.post('/', 			controller.template.create);
 router.get('/:id', 			controller.template.get);

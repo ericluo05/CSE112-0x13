@@ -3,6 +3,10 @@ module.exports = {
         "ecmaVersion": 6,
         "sourceType": "module",
     },
+    "env":{
+      "node": true,
+      "jquery": true
+    },
     rules: {
      //   "apidoc/rule-name": 2,
 
