@@ -1,25 +1,25 @@
 /**
  * Created by kevingu on 2/26/16.
  */
-let io = require('socket.io-client');
-let config = require('../../../server/config/config');
-let Company = require('../../../server/models/Company');
-let Appointment = require('../../../server/models/Appointment');
-let VisitorList = require('../../../server/models/VisitorList');
+//let io = require('socket.io-client');
+//let config = require('../../../server/config/config');
+//let Company = require('../../../server/models/Company');
+//let Appointment = require('../../../server/models/Appointment');
+//let VisitorList = require('../../../server/models/VisitorList');
 
-let socketURL = 'http://localhost:' + config.port;
+//let socketURL = 'http://localhost:' + config.port;
 
-let options ={
-    'transports': ['websocket'],
-    'force new connection': true,
-};
+// let options ={
+//     'transports': ['websocket'],
+//     'force new connection': true,
+// };
 
 // Constants for listening to Sockets
-let VALIDATE_COMPANY_ID = 'validate_company_id';
-let VISITOR_LIST_UPDATE = 'visitor_list_update';
-let REMOVE_VISITOR = 'remove_visitor';
-let ADD_VISITOR = 'add_visitor';
-let NOTIFY_ERROR = 'notify_error';
+// let VALIDATE_COMPANY_ID = 'validate_company_id';
+// let VISITOR_LIST_UPDATE = 'visitor_list_update';
+// let REMOVE_VISITOR = 'remove_visitor';
+// let ADD_VISITOR = 'add_visitor';
+// let NOTIFY_ERROR = 'notify_error';
 
 
 /*
@@ -110,18 +110,23 @@ describe("Visitor List Socket",function(){
                 appointment2 = new Appointment();
                 appointment2.first_name = second_appointment_info.first_name;
                 appointment2.last_name = second_appointment_info.last_name;
-                appointment2.phone_number = second_appointment_info.phone_number;
+                appointment2.phone_number =
+                  second_appointment_info.phone_number;
                 appointment2.date = second_appointment_info.date;
                 appointment2.company_id = c._id;
-                appointment2.provider_name = second_appointment_info.provider_name;
+                appointment2.provider_name =
+                  second_appointment_info.provider_name;
                 appointment2.save(function(err, a2){
                     if(err) throw(err);
                     appointment2=a2;
                     client1 = io.connect(socketURL, options);
                     client1.once("connect", function () {
-                        client1.emit(VALIDATE_COMPANY_ID, {company_id:currCompany._id});
-                        client1.on(VISITOR_LIST_UPDATE, updateList=function(data) {
-                            client1.removeListener(VISITOR_LIST_UPDATE, updateList);
+                        client1.emit(VALIDATE_COMPANY_ID,
+                          {company_id:currCompany._id});
+                        client1.on(VISITOR_LIST_UPDATE,
+                          updateList=function(data) {
+                            client1
+                            .removeListener(VISITOR_LIST_UPDATE, updateList);
                             done();
                         });
                     });
@@ -227,7 +232,8 @@ describe("Visitor List Socket",function(){
                 if(err) throw(err);
                 Company.remove({_id:currCompany._id}, function(err, _){
                     if(err) throw(err);
-                    VisitorList.remove({_id: currVisitorList._id}, function(err, _){
+                    VisitorList.remove({_id: currVisitorList._id},
+                      function(err, _){
                         if(err) throw(err);
                         client1.disconnect();
                         done();

@@ -6,21 +6,21 @@ let should = chai.should();
 
 describe('Company Test', function() {
     let url = 'localhost:' + config.port;
-    let token;
+    //let token;
     let currCompany;
 
     let email = 'test@test.edu';
     let name = 'test';
-    let expiration_date='6/17';
-    let phone_number='1234567890';
+    let expirationDate='6/17';
+    let phoneNumber='1234567890';
 
-    let new_email = 'test1@test.edu'; ;
-    let new_name = 'test1';
-    let new_expiration_date='3/19';
-    let new_phone_number='1231267890';
+    let newEmail = 'test1@test.edu'; ;
+    let newName = 'test1';
+    //let newExpirationDate='3/19';
+    let newPhoneNumber='1231267890';
 
 
-      let userID = null;
+      //let userID = null;
 
 
     before(function(done) {
@@ -29,7 +29,7 @@ describe('Company Test', function() {
             .send({
                 'email': email,
                 'name': name,
-                'phone_number': phone_number,
+                'phone_number': phoneNumber,
             })
             .expect(200)
             .end(function(err, res) {
@@ -49,8 +49,8 @@ describe('Company Test', function() {
                 {
                     email: email,
                     name: name,
-                    expiration_date: expiration_date,
-                    phone_number: phone_number,
+                    expiration_date: expirationDate,
+                    phone_number: phoneNumber,
                 })
             .expect(400)
             .end(function(err, res) {
@@ -97,9 +97,9 @@ describe('Company Test', function() {
             .put('/api/companies/'+currCompany._id)
             .send(
                 {
-                    email: new_email,
-                    name: new_name,
-                    phone_number: new_phone_number,
+                    email: newEmail,
+                    name: newName,
+                    phone_number: newPhoneNumber,
                 }
             )
             .expect(200)
@@ -107,11 +107,11 @@ describe('Company Test', function() {
                 if(err)
                     throw(err);
                 res.body.should.have.property('email');
-                res.body.email.should.equal(new_email);
+                res.body.email.should.equal(newEmail);
                 res.body.should.have.property('name');
-                res.body.name.should.equal(new_name);
+                res.body.name.should.equal(newName);
                 res.body.should.have.property('phone_number');
-                res.body.phone_number.should.equal(new_phone_number);
+                res.body.phone_number.should.equal(newPhoneNumber);
                 done();
             });
     });

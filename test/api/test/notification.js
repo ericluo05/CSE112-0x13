@@ -1,8 +1,10 @@
-let request = require('supertest');
-let config = require('../../../server/config/config');
+/* eslint-disable no-invalid-this */
+
+//let request = require('supertest');
+//let config = require('../../../server/config/config');
 // Wrapper that creates admin user to allow api calls
-let ConfigureAuth = require('./ConfigureAuth');
-let Employee = require('../../../server/models/Employee');
+//let ConfigureAuth = require('./ConfigureAuth');
+//let Employee = require('../../../server/models/Employee');
 
 
 let Email = require('../../../server/notification/email');

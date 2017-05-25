@@ -161,154 +161,165 @@ let submittedForm = {
 
 
 describe('Forms', function() {
-    let url = 'localhost:' + config.port;
+  let url = 'localhost:' + config.port;
 
-    let credentials;
+  let credentials;
 
-    before(function(done) {
-      ConfigureAuth.setupAdmin(function(cred) {
-        credentials = cred;
-        done();
-      });
+  before(function(done) {
+    ConfigureAuth.setupAdmin(function(cred) {
+      credentials = cred;
+      done();
     });
+  });
 
 
-    /** ******** TEMPLATE TESTING **********/
+  /** ******** TEMPLATE TESTING **********/
 
-    let templateFormId = null;
-    describe('Form Templates', function() {
-      describe('POST /api/form/template', function() {
-        it('should save the template', function(done) {
-          request(url)
-            .post('/api/form/template')
-            .query({email: credentials.email, token: credentials.token, isAdmin: true})
-            .expect(200)
-            .send({
-              _admin_id: credentials.admin._id,
-              template: templateForm,
-            })
-            .end(function(err, res) {
-              templateFormId = res.body._id;
-              res.body.should.have.property('_admin_id').and.be.equal(''+credentials.admin._id);
-              res.body.should.have.property('template').and.be.instanceof(Object);
-              done();
-            });
-        });
-      });
-
-      describe('GET /api/form/template/company/:id', function() {
-        it('Should respond with company template data', function(done) {
-          request(url)
-            .get('/api/form/template/company/' + credentials.admin._id)
-            .query({email: credentials.email, token: credentials.token, isAdmin: true})
-            .end(function(err, res) {
-              res.body.should.have.property('_id');
-              res.body.should.have.property('_admin_id');
-              res.body.should.have.property('template').and.be.instanceof(Object);
-
-              res.body.template.should.deep.equal(templateForm);
-              res.body._id.should.equal(templateFormId);
-              done();
-            });
-        });
-      });
-
-      describe('DELETE /api/form/template/:template_id', function() {
-        it('Should delete the template data', function(done) {
-          request(url)
-            .delete('/api/form/template/' + templateFormId)
-            .query({email: credentials.email, token: credentials.token, isAdmin: true})
-            .end(function(err, res) {
-              res.body.should.have.property('_id');
-              res.body.should.have.property('_admin_id');
-              res.body.should.have.property('template').and.be.instanceof(Object);
-
-              res.body.template.should.deep.equal(templateForm);
-              res.body._id.should.equal(templateFormId);
-              done();
-            });
+  let templateFormId = null;
+  describe('Form Templates', function() {
+    describe('POST /api/form/template', function() {
+      it('should save the template', function(done) {
+        request(url)
+        .post('/api/form/template')
+        .query({email: credentials.email,
+          token: credentials.token, isAdmin: true})
+        .expect(200)
+        .send({
+          _admin_id: credentials.admin._id,
+          template: templateForm,
+        })
+        .end(function(err, res) {
+          templateFormId = res.body._id;
+          res.body.should.have.property('_admin_id')
+            .and.be.equal(''+credentials.admin._id);
+          res.body.should.have.property('template')
+            .and.be.instanceof(Object);
+          done();
         });
       });
     });
 
+    describe('GET /api/form/template/company/:id', function() {
+      it('Should respond with company template data', function(done) {
+        request(url)
+        .get('/api/form/template/company/' + credentials.admin._id)
+        .query({email: credentials.email,
+          token: credentials.token, isAdmin: true})
+        .end(function(err, res) {
+          res.body.should.have.property('_id');
+          res.body.should.have.property('_admin_id');
+          res.body.should.have.property('template')
+            .and.be.instanceof(Object);
 
-    /** ******** PATIENT FORM TESTING **********/
-
-
-    describe('Submitted Forms', function() {
-      describe('POST /api/form/visitorList', function() {
-        it('should save submitted form', function(done) {
-          request(url)
-            .post('/api/form/visitorList')
-            .query({email: credentials.email, token: credentials.token, isAdmin: true})
-            .send({
-              _admin_id: credentials.admin._id,
-              form: submittedForm,
-              firstName: 'Jimbo',
-              lastName: 'Cruise',
-              patientEmail: 'jcruise@tomcruise.com',
-            })
-            .end(function(err, res) {
-              // console.log(err);
-              // console.log(res);
-              res.body.should.have.property('form').and.be.instanceof(Object);
-              res.body.should.have.property('_admin_id').and.be.equal(''+credentials.admin._id);
-              submittedFormId = res.body._id;
-              submittedFormFirstName = res.body.firstName;
-              submittedFormLastName = res.body.lastName;
-              submittedFormEmail = res.body.patientEmail;
-              done();
-            });
-        });
-      });
-
-      describe('GET /api/form/:form_id', function() {
-        it('should respond with submitted form data', function(done) {
-          request(url)
-            .get('/api/form/visitorList/' + submittedFormId)
-            .query({email: credentials.email, token: credentials.token, isAdmin: true})
-            .end(function(err, res) {
-              res.body.should.have.property('_id');
-              res.body.should.have.property('firstName');
-              res.body.should.have.property('lastName');
-              res.body.should.have.property('patientEmail');
-              res.body.should.have.property('_admin_id');
-              res.body.should.have.property('date');
-              res.body.should.have.property('form').and.be.instanceof(Object);
-
-              res.body.form.should.deep.equal(submittedForm);
-              res.body._id.should.equal(submittedFormId);
-              done();
-            });
-        });
-      });
-
-      describe('GET /api/form/', function() {
-        it('should respond with submitted form data', function(done) {
-          request(url)
-            .get('/api/form/visitorList/')
-            .query({firstName: submittedFormFirstName, lastName: submittedFormLastName, patientEmail: submittedFormEmail})
-            .end(function(err, res) {
-              res.body.should.have.property('firstName');
-              res.body.should.have.property('lastName');
-              res.body.should.have.property('patientEmail');
-              res.body.should.have.property('_admin_id');
-              res.body.should.have.property('date');
-              res.body.should.have.property('form').and.be.instanceof(Object);
-
-              res.body.form.should.deep.equal(submittedForm);
-              res.body.patientEmail.should.equal(submittedFormEmail);
-              res.body.firstName.should.equal(submittedFormFirstName);
-              res.body.lastName.should.equal(submittedFormLastName);
-              done();
-            });
+          res.body.template.should.deep.equal(templateForm);
+          res.body._id.should.equal(templateFormId);
+          done();
         });
       });
     });
 
+    describe('DELETE /api/form/template/:template_id', function() {
+      it('Should delete the template data', function(done) {
+        request(url)
+        .delete('/api/form/template/' + templateFormId)
+        .query({email: credentials.email,
+          token: credentials.token, isAdmin: true})
+        .end(function(err, res) {
+          res.body.should.have.property('_id');
+          res.body.should.have.property('_admin_id');
+          res.body.should.have.property('template')
+            .and.be.instanceof(Object);
 
-    after(function(done) {
-      ConfigureAuth.cleanupAuth(credentials.email, done);
+          res.body.template.should.deep.equal(templateForm);
+          res.body._id.should.equal(templateFormId);
+          done();
+        });
+      });
     });
-  }
+  });
+
+
+  /** ******** PATIENT FORM TESTING **********/
+
+
+  describe('Submitted Forms', function() {
+    describe('POST /api/form/visitorList', function() {
+      it('should save submitted form', function(done) {
+        request(url)
+        .post('/api/form/visitorList')
+        .query({email: credentials.email,
+          token: credentials.token, isAdmin: true})
+        .send({
+          _admin_id: credentials.admin._id,
+          form: submittedForm,
+          firstName: 'Jimbo',
+          lastName: 'Cruise',
+          patientEmail: 'jcruise@tomcruise.com',
+        })
+        .end(function(err, res) {
+          // console.log(err);
+          // console.log(res);
+          res.body.should.have.property('form').and.be.instanceof(Object);
+          res.body.should.have.property('_admin_id')
+            .and.be.equal(''+credentials.admin._id);
+          submittedFormId = res.body._id;
+          submittedFormFirstName = res.body.firstName;
+          submittedFormLastName = res.body.lastName;
+          submittedFormEmail = res.body.patientEmail;
+          done();
+        });
+      });
+    });
+
+    describe('GET /api/form/:form_id', function() {
+      it('should respond with submitted form data', function(done) {
+        request(url)
+        .get('/api/form/visitorList/' + submittedFormId)
+        .query({email: credentials.email,
+          token: credentials.token, isAdmin: true})
+        .end(function(err, res) {
+          res.body.should.have.property('_id');
+          res.body.should.have.property('firstName');
+          res.body.should.have.property('lastName');
+          res.body.should.have.property('patientEmail');
+          res.body.should.have.property('_admin_id');
+          res.body.should.have.property('date');
+          res.body.should.have.property('form').and.be.instanceof(Object);
+
+          res.body.form.should.deep.equal(submittedForm);
+          res.body._id.should.equal(submittedFormId);
+          done();
+        });
+      });
+    });
+
+    describe('GET /api/form/', function() {
+      it('should respond with submitted form data', function(done) {
+        request(url)
+        .get('/api/form/visitorList/')
+        .query({firstName: submittedFormFirstName,
+          lastName: submittedFormLastName, patientEmail: submittedFormEmail})
+        .end(function(err, res) {
+          res.body.should.have.property('firstName');
+          res.body.should.have.property('lastName');
+          res.body.should.have.property('patientEmail');
+          res.body.should.have.property('_admin_id');
+          res.body.should.have.property('date');
+          res.body.should.have.property('form').and.be.instanceof(Object);
+
+          res.body.form.should.deep.equal(submittedForm);
+          res.body.patientEmail.should.equal(submittedFormEmail);
+          res.body.firstName.should.equal(submittedFormFirstName);
+          res.body.lastName.should.equal(submittedFormLastName);
+          done();
+        });
+      });
+    });
+  });
+
+
+  after(function(done) {
+    ConfigureAuth.cleanupAuth(credentials.email, done);
+  });
+}
 );

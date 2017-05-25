@@ -1,5 +1,5 @@
-let chai = require('chai');
-let should = chai.should();
+//let chai = require('chai');
+//let should = chai.should();
 let Theme = require('../../../server/models/Theme');
 let config = require('../../../server/config/config');
 let ConfigureAuth = require('./ConfigureAuth.js');
@@ -76,13 +76,17 @@ describe('Theme Settings Model', function() {
 // Route Tests need to be changed to work with auth
 
 describe('Themes Route Test', function() {
-        let credentials;  // variable to hold all the need authentication variables.
+        // variable to hold all the need authentication variables.
+        let credentials;
 
-        // before function is called at the very beginning of the 'Forms' test suite,
+        // before function is called at the very beginning of the
+        // 'Forms' test suite,
         // no tests are run until the done() callback is called.
         before(function(done) {
-            // setupAdmin will create and admin and log you in, give it a callback that will give you
-            // the credentials you need. Make sure to call done() inside ConfigureAuth's callback!
+            // setupAdmin will create and admin and log you in,
+            // give it a callback that will give you
+            // the credentials you need. Make sure to call done()
+            // inside ConfigureAuth's callback!
             ConfigureAuth.setupAdmin(function(cred) {
                 credentials = cred;
                 done();
@@ -91,21 +95,23 @@ describe('Themes Route Test', function() {
 
 
         describe('POST /api/:user_id/theme', function() {
-            it('should respond with theme info for respective user_id settings that were created for first time user', function(done) {
+            it('should respond with theme info for respective user_id ' +
+              'settings that were created for first time user',
+              function(done) {
                 let url = 'localhost:' + config.port;
-                let _user_id = '1';
-                let _form_color = 'default';
-                let _background_img = 'default';
+                let _userId = '1';
+                let _formColor = 'default';
+                let _backgroundImg = 'default';
                 let _displayPhone = false;
                 let _displayClock = false;
                 let _displaySignature = false;
                 let _additionalComments = false;
                 request(url)
-                    .post('/api/' + _user_id + '/theme')
+                    .post('/api/' + _userId + '/theme')
                     .query({email: credentials.email, token: credentials.token})
                     .send({
-                        form_color: _form_color,
-                        background_img: _background_img,
+                        form_color: _formColor,
+                        background_img: _backgroundImg,
                         displayPhone: _displayPhone,
                         displayClock: _displayClock,
                         displaySignature: _displaySignature,
@@ -121,13 +127,15 @@ describe('Themes Route Test', function() {
                         res.body.should.have.property('displaySignature');
                         res.body.should.have.property('additionalComments');
 
-                        res.body.user_id.should.equal(_user_id);
-                        res.body.form_color.should.equal(_form_color);
-                        res.body.background_img.should.equal(_background_img);
+                        res.body.user_id.should.equal(_userId);
+                        res.body.form_color.should.equal(_formColor);
+                        res.body.background_img.should.equal(_backgroundImg);
                         res.body.displayPhone.should.equal(_displayPhone);
                         res.body.displayClock.should.equal(_displayClock);
-                        res.body.displaySignature.should.equal(_displaySignature);
-                        res.body.additionalComments.should.equal(_additionalComments);
+                        res.body.displaySignature
+                          .should.equal(_displaySignature);
+                        res.body.additionalComments
+                          .should.equal(_additionalComments);
 
                         done();
                     });
@@ -135,11 +143,12 @@ describe('Themes Route Test', function() {
         });
 
         describe('GET /api/:user_id/theme', function() {
-            it('should respond with theme info for respective user_id', function(done) {
+            it('should respond with theme info for respective user_id',
+              function(done) {
                 let url = 'localhost:' + config.port;
-                let user_id = '1';
+                let userId = '1';
                 request(url)
-                    .get('/api/' + user_id + '/theme')
+                    .get('/api/' + userId + '/theme')
                     .query({email: credentials.email, token: credentials.token})
                     .end(function(err, res) {
                         res.body.should.have.property('_id');
@@ -158,21 +167,22 @@ describe('Themes Route Test', function() {
 
 
         describe('PUT /api/:user_id/theme', function() {
-            it('should respond with theme info for respective user_id settings that were updated', function(done) {
+            it('should respond with theme info for respective user_id' +
+              ' settings that were updated', function(done) {
                 let url = 'localhost:' + config.port;
-                let _user_id = '1';
-                let _form_color = '1';
-                let _background_img = '1';
+                let _userId = '1';
+                let _formColor = '1';
+                let _backgroundImg = '1';
                 let _displayPhone = false;
                 let _displayClock = false;
                 let _displaySignature = false;
                 let _additionalComments = false;
                 request(url)
-                    .put('/api/' + _user_id + '/theme')
+                    .put('/api/' + _userId + '/theme')
                     .query({email: credentials.email, token: credentials.token})
                     .send({
-                        form_color: _form_color,
-                        background_img: _background_img,
+                        form_color: _formColor,
+                        background_img: _backgroundImg,
                         displayPhone: _displayPhone,
                         displayClock: _displayClock,
                         displaySignature: _displaySignature,
@@ -187,13 +197,15 @@ describe('Themes Route Test', function() {
                         res.body.should.have.property('displaySignature');
                         res.body.should.have.property('additionalComments');
 
-                        res.body.user_id.should.equal(_user_id);
-                        res.body.form_color.should.equal(_form_color);
-                        res.body.background_img.should.equal(_background_img);
+                        res.body.user_id.should.equal(_userId);
+                        res.body.form_color.should.equal(_formColor);
+                        res.body.background_img.should.equal(_backgroundImg);
                         res.body.displayPhone.should.equal(_displayPhone);
                         res.body.displayClock.should.equal(_displayClock);
-                        res.body.displaySignature.should.equal(_displaySignature);
-                        res.body.additionalComments.should.equal(_additionalComments);
+                        res.body.displaySignature
+                          .should.equal(_displaySignature);
+                        res.body.additionalComments
+                          .should.equal(_additionalComments);
 
                         done();
                     });
@@ -203,9 +215,9 @@ describe('Themes Route Test', function() {
         describe('DELETE /api/:user_id/theme', function() {
             it('should respond with successful delete', function(done) {
                 let url = 'localhost:' + config.port;
-                let user_id = '1';
+                let userId = '1';
                 request(url)
-                    .delete('/api/' + user_id + '/theme')
+                    .delete('/api/' + userId + '/theme')
                     .query({email: credentials.email, token: credentials.token})
                     .expect(200)
                     .end(function(err, res) {

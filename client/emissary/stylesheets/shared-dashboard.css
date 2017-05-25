@@ -1,21 +1,20 @@
-#company-name > h1{
-   font-size: 18px;
+#company-name > h1 {
+  font-size: 18px;
 }
 
-.pull-right{
-	margin-right: 25px;
-
+.pull-right {
+  margin-right: 25px;
 }
 
-.fa-cog:hover{
-	cursor: pointer;
-	color: #a9a9a9;
+.fa-cog:hover {
+  cursor: pointer;
+  color: #a9a9a9;
 }
 
-tr:nth-last-child(1){
-   border-bottom: 1px solid rgb(215,215,215) !important;
+tr:nth-last-child(1) {
+  border-bottom: 1px solid rgb(215, 215, 215) !important;
 }
 
-body{
-	color: #5b677b !important
+body {
+  color: #5b677b !important;
 }
