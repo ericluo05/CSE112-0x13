@@ -3,11 +3,13 @@ $(document).ready(function() {
     let myCompanyId = companyData._id;
     let curUser = JSON.parse(localStorage.getItem('currentUser'));
 
-
     $('#user-name').text(curUser.first_name + ' ' + curUser.last_name);
 
     let appts = getAppts();
-
+    /** initializing the appts
+     * @param {json} appts
+     * @return {appts}
+     **/
     function initializeAppts(appts) {
       appts.sort(function(a, b) {
         return new Date(a.date) - new Date(b.date);
@@ -27,11 +29,11 @@ $(document).ready(function() {
     $('#appt-list').html(compiledHtml);
     $('.save-btn').click(submitForm);
 
-   /** *
-     * Makes a get request to display list of appts
-     * @param none
-     * @return displays the appt list
-     */
+
+    /**
+    * Makes a get request to display list of appts
+    * @return {json}
+    **/
     function getAppts() {
        let json;
        $.ajax({
@@ -48,11 +50,9 @@ $(document).ready(function() {
        return json;
    }
 
-   /** *
-     * When a patient submits their form
-     * @param none
-     * @return updates the appt list
-     */
+    /**
+    * When a patient submits their form
+    **/
     function submitForm() {
         let d = grabFormElements();
         console.log(d);
@@ -63,11 +63,10 @@ $(document).ready(function() {
         document.getElementById('appt-form').reset();
     }
 
-    /** *
-     * Makes a post request to update list of appts when adding a new employee
-     * @param none
-     * @return updates the appt list
-     */
+   /**
+   * Makes a post request to update list of appts when adding a new employee
+   * @param {json} obj
+   **/
    function updateApptList(obj) {
       $.ajax({
         dataType: 'json',
@@ -82,12 +81,10 @@ $(document).ready(function() {
       });
     }
 
-
-    /** *
+    /**
      * Grabs elements from the check in and puts it into an object
-     * @param none
-     * @returns new appt object
-     */
+     * @return {object}
+     **/
     function grabFormElements() {
       let newAppt = {};
       let userTime;
@@ -122,13 +119,18 @@ $(document).ready(function() {
 
 
     /** ********* FUNCTIONS TO FORMAT JAVASCRIPT DATES *************/
-
+    /**
+    * function to format the date
+    * @param {Date} date
+    * @return {string}
+    **/
     function formatDate(date) {
       let d = new Date(Date.parse(date));
       let mm = d.getMonth() + 1;
       let yyyy = d.getFullYear();
       let dd = d.getDate();
-      // var monthArray = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug","Sep","Nov","Dec"];
+      // var monthArray = ["Jan", "Feb", "Mar", "Apr", "May",
+      //                   "Jun", "Jul", "Aug","Sep","Nov","Dec"];
       if(dd < 10) {
         dd = '0' + dd;
       }
@@ -138,12 +140,19 @@ $(document).ready(function() {
       // console.log(monthArray[mm]);
       return mm + '/' + dd + '/' + + yyyy;
     }
-    function formatNumber(number) {
-      return '(' + number.substr(0, 3) + ')' + number.substr(3, 3)
-                + '-' + number.substr(6, 4);
-    }
 
-    // FUNCTION TO FORMAT DATE OBJECT IN JS
+    // Not being used now but might be used later
+    // function formatNumber(number) {
+    //  return '(' + number.substr(0, 3) + ')' + number.substr(3, 3)
+    //            + '-' + number.substr(6, 4);
+    // }
+
+    /**
+    * FUNCTION TO FORMAT DATE OBJECT IN JS
+    * @param {Date} date
+    * @param {Time} time
+    * @return {string}
+    **/
     function jsDate(date, time) {
       let jsDate = reFormatDate(date);
       let jsTime = reFormatTime(time);
@@ -151,7 +160,11 @@ $(document).ready(function() {
       return jsDateObj;
     }
 
-    // FUNCTION TO FORMAT DATE TO JS FOR ROBOTS
+    /**
+     * FUNCTION TO FORMAT DATE TO JS FOR ROBOTS
+     * @param {Date} date
+     * @return {string}
+     **/
     function reFormatDate(date) {
       let d = new Date(Date.parse(date));
       let mm = d.getMonth() + 1;
@@ -168,7 +181,11 @@ $(document).ready(function() {
     }
 
 
-    // FUNCTION TO FORMAT TIME TO JS FOR ROBOTS
+    /**
+    * FUNCTION TO FORMAT TIME TO JS FOR ROBOTS
+    * @param {Time} time
+    * @return {string}
+    **/
     function reFormatTime(time) {
       let ampm = time.substr(-2, 2);
       let formattedTime;
@@ -199,7 +216,11 @@ $(document).ready(function() {
     }
 
 
-    // FUNCTION TO FORMAT TIME TO AM AND PM FOR HUMANS
+    /**
+    * FUNCTION TO FORMAT TIME TO AM AND PM FOR HUMANS
+    * @param {Time} time
+    * @return {string}
+    **/
     function formatTime(time) {
         let currentTime = new Date(Date.parse(time));
         let hour = currentTime.getHours();

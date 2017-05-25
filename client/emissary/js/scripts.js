@@ -16,20 +16,20 @@ jQuery(document).ready(function() {
 
   // next step
   $('.registration-form .btn-next').on('click', function() {
-    let parent_fieldset = $(this).parents('fieldset');
-    let next_step = true;
+    let parentFieldset = $(this).parents('fieldset');
+    let nextStep = true;
 
-    parent_fieldset.find('input[type="text"], input[type="password"], textarea').each(function() {
+    parentFieldset.find('input[type="text"], input[type="password"], textarea').each(function() {
       if( $(this).val() == '' ) {
         $(this).addClass('input-error');
-        next_step = false;
+        nextStep = false;
       } else {
         $(this).removeClass('input-error');
       }
     });
 
-    if( next_step ) {
-      parent_fieldset.fadeOut(400, function() {
+    if( nextStep ) {
+      parentFieldset.fadeOut(400, function() {
         $(this).next().fadeIn();
       });
     }
