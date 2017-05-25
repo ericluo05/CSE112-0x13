@@ -18,7 +18,11 @@ $(function() {
    });
 });
 
-// Ajax function to create a POST request to server
+/**
+  * Ajax function to create a POST request to server
+  * @param {Object} url
+  * @param {Object} data
+  */
 function ajaxPostUser(url, data) {
    $.ajax({
        type: 'POST',
@@ -44,8 +48,11 @@ function ajaxPostUser(url, data) {
         },
    });
 }
-// ex) company_id : 56e8a51293a19986040e93fe
-// Ajax function to create a POST request to server
+
+/**
+  * Ajax function to create a GET request to server
+  * @param {Object} url
+  */
 function ajaxGetCompanyInfo(url) {
    $.ajax({
        type: 'GET',
@@ -61,7 +68,10 @@ function ajaxGetCompanyInfo(url) {
    });
 }
 
-// Grab user data from form
+/**
+  * Grab user data from form
+  * @return {Object} user
+  */
 function grabUserData() {
    let user = {};
    user.email = $('#username').val();
@@ -69,7 +79,10 @@ function grabUserData() {
    return user;
 }
 
-
+/**
+  * Grab user data from form
+  * @return {Boolean}
+  */
 function handleError() {
    errorlog.innerHTML='Not Valid Username and Password, please type valid one.';
    return true;
