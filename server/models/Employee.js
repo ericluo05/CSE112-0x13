@@ -1,16 +1,11 @@
 'use strict';
-/**
- * @class Employee
- * @classdesc Manage schema for each mployee.
- */
 let mongoose = require('mongoose');
 let Schema = mongoose.Schema;
 let bcrypt = require('bcrypt-nodejs');
-
 /**
- * MongoDB Schema for Emplyee
- * @memberOf Employee
- * @typedef {EmployeeSchema}
+ * MongoDB Schema for Employee
+ * @memberOf Schema
+ * @typedef {EmployeeSchema} Employee
  * @property {String} first_name - first name of employee
  * @property {String} last_name - last name of employee
  * @property {String} email - email of employee

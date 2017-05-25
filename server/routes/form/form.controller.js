@@ -1,8 +1,9 @@
 /* eslint-disable max-len */
 'use strict';
 
-/* This module is meant to house all of the API
- * routes that pertain to forms
+/**
+ *  Module that house all the API routes that pertains to forms
+ * @module routes/form
  */
 let express = require('express');
 new express.Router();
@@ -10,8 +11,7 @@ new express.Router();
 let SubmittedForm = require('../../models/form/SubmittedForm');
 let mongoose = require('mongoose');
 let TemplateForm = require('../../models/form/FormTemplate');
-
-/** ******** FORM TEMPLATE ROUTES **********/
+/* * ******** FORM TEMPLATE ROUTES **********/
 module.exports.template = {};
 
 module.exports.template.findByCompanyId = function(req, res) {

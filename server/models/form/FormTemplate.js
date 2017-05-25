@@ -1,14 +1,10 @@
 'use strict';
-/**
- * @class FormTemplate
- * @classdesc ???
- */
 let mongoose = require('mongoose');
 let Schema = mongoose.Schema;
 
 /** MongoDB Schema for FormTemplate
- * @memberOf FormTemplate
- * @typedef {FormTemplateSchema}
+ * @memberOf Schema
+ * @typedef {FormTemplateSchema} Form
  * @property {int} _admin_id - object id of company schema
  * @property {object} template - ??????????????
  */

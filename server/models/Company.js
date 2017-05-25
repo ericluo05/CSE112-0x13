@@ -1,14 +1,10 @@
 'use strict';
-/**
- * @class Company
- * @classdesc  Manage schema for each company.
- */
 let mongoose = require('mongoose');
 let Schema = mongoose.Schema;
 
 /** MongoDB Schema for Company
- * @memberOf Company
- * @typedef {CompanySchema}
+ * @memberOf Schema
+ * @typedef {CompanySchema} Company
  * @property {String} email - the company's email address
  * @property {String} name - name of the company
  * @property {String} phone_number - the company's phone number

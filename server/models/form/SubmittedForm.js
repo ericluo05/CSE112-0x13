@@ -1,14 +1,11 @@
 'use strict';
-/**
- * @class SubmittedForm
- * @classdesc ???
- */
+
 let mongoose = require('mongoose');
 let Schema = mongoose.Schema;
 
 /** MongoDB Schema for SubmittedForm
- * @memberOf SubmittedForm
- * @typedef {SubmittedFormSchema}
+ * @memberOf Schema
+ * @typedef {SubmittedFormSchema} SubmittedForm
  * @property {String} firstName - first name of person submitted the form
  * @property {String} lastName - first name of person submitted the form
  * @property {String} patientEmail - email of the patient

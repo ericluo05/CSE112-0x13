@@ -3,7 +3,7 @@
 let express = require('express');
 let controller = require('./form.controller');
 
-let router = express.Router();
+let router = new express.Router();
 
 let bodyparser = require('body-parser');
 // let urlparser = bodyparser.urlencoded({extended: false});

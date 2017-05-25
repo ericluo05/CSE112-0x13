@@ -17,7 +17,7 @@
  */
 let Appointment = require('../../models/Appointment');
 
-/** **** Company TEMPLATE ROUTES ******/
+/* * **** Company TEMPLATE ROUTES ******/
 module.exports.template = {};
 
 module.exports.template.create = function(req, res) {
