@@ -1,13 +1,11 @@
-/**
- * Created by kevingu on 2/26/16.
- */
-//let io = require('socket.io-client');
-//let config = require('../../../server/config/config');
-//let Company = require('../../../server/models/Company');
-//let Appointment = require('../../../server/models/Appointment');
-//let VisitorList = require('../../../server/models/VisitorList');
+// let io = require('socket.io-client');
+// let config = require('../../../server/config/config');
+// let Company = require('../../../server/models/Company');
+// let Appointment = require('../../../server/models/Appointment');
+// let VisitorList = require('../../../server/models/VisitorList');
 
-//let socketURL = 'http://localhost:' + config.port;
+// let socketURL = 'http://localhost:' + config.port;
+
 
 // let options ={
 //     'transports': ['websocket'],
