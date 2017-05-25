@@ -17,7 +17,9 @@ $(document).ready(function() {
     $('#tap-to-check').on('click', startCheckIn);
     $('.check-in').on('submit', submitForm);
 
-    // When a user starts their check in
+    /**
+      * When a user starts their check in
+      */
     function startCheckIn() {
         $('.check-in').addClass('show');
         $('.check-in').animate({
@@ -28,7 +30,9 @@ $(document).ready(function() {
         $('#clock').addClass('hide');
     }
 
-    // When a patient submits their form
+    /**
+      * When a patient submits their form
+      */
     function submitForm() {
         // event.preventDefault();
         let data = grabFormElements();
@@ -52,7 +56,11 @@ $(document).ready(function() {
             opacity: '0',
         }, 0);
     }
-    // Grabs elements from the check in and puts it into an object
+
+    /**
+      * Grabs elements from the check in and puts it into an object
+      * @return {Object} newVisitor
+      */
     function grabFormElements() {
         let newVisitor = {};
         newVisitor.company_id = companyData._id;
@@ -63,7 +71,9 @@ $(document).ready(function() {
         return newVisitor;
     }
 
-    // CLOCK
+    /**
+      * Clock
+      */
     function updateClock() {
         let currentTime = new Date( );
         let currentHours = currentTime.getHours( );
@@ -88,11 +98,11 @@ $(document).ready(function() {
     setInterval(updateClock, 60 * 1000);
 
 
-    /*
-    * Find a specific cookie name
-    * @param {string} cName - cookie name
-    * @return {string|*} ???
-    */
+    /**
+      * Find a specific cookie name
+      * @param {String} cName - cookie name
+      * @return {string|*} ???
+      */
     function getCookie(cName) {
         let name = cName + '=';
         let cookieArray = document.cookie.split(';');
