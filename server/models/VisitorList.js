@@ -1,12 +1,6 @@
-/**
- * Created by kevingu on 2/23/16.
- */
-
-
 'use strict';
 
 let mongoose = require('mongoose');
-// TODO figure out why I need this
 mongoose.models = {};
 mongoose.modelSchemas = {};
 

@@ -22,12 +22,12 @@ exports.login = function(req, res) {
 };
 
 exports.getAllEmployees = function(req, res) {
-  Employee.find({company_id: req.params.id}, {password: 0}, function(err, result) {
-    if(err) {
-      return res.status(400).send({error: 'Can not Find'});
-    }
-    return res.status(200).json(result);
-  });
+    Employee.find({company_id: req.params.id}, {password: 0}, function(err, result) {
+        if(err) {
+            return res.status(400).send({error: 'Can not Find'});
+        }
+        return res.status(200).json(result);
+    });
 };
 
 exports.getById = function(req, res) {
@@ -43,8 +43,6 @@ exports.getById = function(req, res) {
 
 exports.insert = function(req, res) {
     let employee = new Employee();
-
-    /* required info */
     employee.first_name = req.body.first_name;
     employee.last_name = req.body.last_name;
     employee.email = req.body.email,
@@ -79,7 +77,6 @@ exports.update = function(req, res) {
 
         employee.save(function(err) {
             console.log(err);
-            console.log(employee);
             if(err)
                 return res.status(400).json({error: 'Can not Save'});
             let employeeJSON=employee.toJSON();

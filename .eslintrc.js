@@ -197,7 +197,7 @@ module.exports = {
         // 'lines-around-directive': 0,
         // 'max-depth': 0,
         'max-len': [2, {
-            code: 80,
+            code: 90,
             tabWidth: 2,
             ignoreUrls: true,
             ignorePattern: '^goog\.(module|require)',

@@ -67,11 +67,11 @@ exports.createServer = function(io_in) {
         });
 
 // requires the company_id to be sent
-        socket.on(VISITOR_LIST_UPDATE, /**/ function(data) {
+        socket.on(VISITOR_LIST_UPDATE,  function(data) {
             let company_id = data.company_id;
            // console.log('Visitor List Update' + data);
             VisitorListCtr.getCompanyVisitorList(company_id,
-                /**/ function(err_msg, result) {
+                 function(err_msg, result) {
                 if(err_msg) {
                     exports.notifyError(company_id, {error: err_msg});
                 } else
@@ -79,8 +79,8 @@ exports.createServer = function(io_in) {
             });
         });
 
-        socket.on(DISCONNECT, /**/ function() {
-             console.log('user disconnected from ' + company_id);
+        socket.on(DISCONNECT, function(data) {
+             console.log('user disconnected from ' + data.company_id);
         });
 
         // requires the company_id and visitor_id to be sent
@@ -89,7 +89,7 @@ exports.createServer = function(io_in) {
             let visitor_id = data.visitor_id;
             if(!company_id || !visitor_id) return;
             VisitorListCtr.deleteVisitor(company_id, visitor_id,
-                /**/function(err_msg, result) {
+                  function(err_msg, result) {
                 if(err_msg) {
                     console.log('error');
                     exports.notifyError(company_id, {error: err_msg});

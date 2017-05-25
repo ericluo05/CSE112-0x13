@@ -1,8 +1,21 @@
+'use strict';
+/**
+ * @class SubmittedForm
+ * @classdesc ???
+ */
 let mongoose = require('mongoose');
 let Schema = mongoose.Schema;
 
-
-let submittedForm = new mongoose.Schema({
+/** MongoDB Schema for SubmittedForm
+ * @memberOf SubmittedForm
+ * @typedef {SubmittedFormSchema}
+ * @property {String} firstName - first name of person submitted the form
+ * @property {String} lastName - first name of person submitted the form
+ * @property {String} patientEmail - email of the patient
+ * @property {Date} date - date the schema created
+ * @property {int} _admin_id - object id of company schema for which the form belongs to
+ */
+let submittedForm = new Schema({
   form: {type: Object},
   firstName: {type: String},
   lastName: {type: String},

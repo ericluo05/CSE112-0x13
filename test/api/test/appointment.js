@@ -10,14 +10,14 @@ let should = chai.should();
 
 describe('Appointment Test', function() {
     let url = 'localhost:' + config.port;
-    //let token;
+    // let token;
     let currAppointment;
     let currCompany;
 
     // old appointment info
     let firstName = 'test';
     let lastName = 'test';
-    var phoneNumber='1234567890';
+    let phoneNumber='1234567890';
     let date='2016-04-23T18:25:43.511Z';
     let providerName = 'test test';
 
@@ -33,9 +33,9 @@ describe('Appointment Test', function() {
     let creditCardNumber='1231231241251';
     let name = 'test';
     let expirationDate='6/17';
-    //var phoneNumber='1234567890';
+    // var phoneNumber='1234567890';
 
-    //let userID = null;
+    // let userID = null;
 
 
     before(function(done) {

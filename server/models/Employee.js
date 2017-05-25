@@ -1,15 +1,25 @@
 'use strict';
-
 /**
- * @file Employee.js
+ * @class Employee
+ * @classdesc Manage schema for each mployee.
  */
-
-
-/* Require mongoose to interact with mongoDB */
 let mongoose = require('mongoose');
 let Schema = mongoose.Schema;
 let bcrypt = require('bcrypt-nodejs');
 
+/**
+ * MongoDB Schema for Emplyee
+ * @memberOf Employee
+ * @typedef {EmployeeSchema}
+ * @property {String} first_name - first name of employee
+ * @property {String} last_name - last name of employee
+ * @property {String} email - email of employee
+ * @property {String} password - hashed password of the employee
+ * @property {string} phone_number - phone number of the employee
+ * @property {string} role - role of the employee
+ * @property {int} company_id - object id of company schema for which the
+ *  employee belongs to
+ */
 
 let employeeSchema = new Schema({
     first_name: {type: String, required: true},
@@ -22,7 +32,7 @@ let employeeSchema = new Schema({
 });
 
 /**
- * @memberOf
+ * @memberOf Employee
  * @function validPassword
  * @description check if password is correct
  * @param {string} password - password (don't know if salted or not)
@@ -33,6 +43,7 @@ employeeSchema.methods.validPassword = function(password) {
 };
 
 /**
+ * @memberOf Employee
  * @function generateHash
  * @description encrypt input password to hash
  * @param {string} password - password to hash
