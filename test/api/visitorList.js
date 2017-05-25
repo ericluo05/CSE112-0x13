@@ -2,10 +2,10 @@
 
 let request = require('supertest');
 
-let config = require('../../../server/config/config');
-let Company = require('../../../server/models/Company');
-let Appointment = require('../../../server/models/Appointment');
-let VisitorList = require('../../../server/models/VisitorList');
+let config = require('../../server/config/config');
+let Company = require('../../server/models/Company');
+let Appointment = require('../../server/models/Appointment');
+let VisitorList = require('../../server/models/VisitorList');
 let should = require('chai').should();
 
 describe('VisitorList', function() {

@@ -1,10 +1,10 @@
 let request = require('supertest');
 
-let config = require('../../../server/config/config');
+let config = require('../../server/config/config');
 let should = require('chai').should();
 
 // Wrapper that creates admin user to allow api calls
-let ConfigureAuth = require('./ConfigureAuth');
+var ConfigureAuth = require('./ConfigureAuth');
 
 
 describe('Employee', function() {
@@ -17,16 +17,16 @@ describe('Employee', function() {
   // no tests are run until the done() callback is called.
   before(function(done) {
     // setupAdmin will create and admin and log you in,
-    //give it a callback that will give you
+    // give it a callback that will give you
     // the credentials you need. Make sure to call done()
-    //inside ConfigureAuth's callback!
+    // inside ConfigureAuth's callback!
     ConfigureAuth.setupAdmin(function(cred) {
       credentials = cred;
       done();
     });
   });
 
-  //let templateFormId = null;
+  // let templateFormId = null;
 
 
   describe('Employee Testing', function() {

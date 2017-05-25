@@ -1,6 +1,6 @@
 let request = require('supertest');
 
-let config = require('../../../server/config/config');
+let config = require('../../server/config/config');
 
 // Wrapper that creates admin user to allow api calls
 let ConfigureAuth = require('./ConfigureAuth');

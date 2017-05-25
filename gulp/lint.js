@@ -18,7 +18,7 @@ let htmlhint = require('gulp-htmlhint');
 */
 gulp.task('lint:js:backend', () => {
     // lint backend and testing js files
-    return gulp.src(['**/*.js', 'test/**.js', '!client/**',
+    return gulp.src(['**/*.js', '!client/**',
         '!build/', '!node_modules/**'])
       .pipe(eslint({
           fix: true,
@@ -34,19 +34,24 @@ gulp.task('lint:js:frontend', () => {
         '!node_modules/**'])
         .pipe(eslint({
             fix: true,
-            globals: ['jQuery', '$'],
-            envs: ['browser'],
-            rules: {
-                'no-invalid-this': 0,
-                'no-unused-vars': 0,
-            },
+        }))
+        .pipe(eslint.format())
+        .pipe(eslint.failAfterError());
+});
+
+gulp.task('lint:js:test', () => {
+    // lint backend and testing js files
+    return gulp.src(['test/**/*.js', '!client/**',
+        '!build/', '!node_modules/**'])
+        .pipe(eslint({
+            fix: true,
         }))
         .pipe(eslint.format())
         .pipe(eslint.failAfterError());
 });
 
 
-gulp.task('lint:js', ['lint:js:backend', 'lint:js:frontend']);
+gulp.task('lint:js', ['lint:js:backend', 'lint:js:frontend', 'lint:js:test']);
 
 
 /**

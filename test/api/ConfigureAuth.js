@@ -1,9 +1,9 @@
 let request = require('supertest');
 
-let config = require('../../../server/config/config');
+let config = require('../../server/config/config');
 
-let AdminUser = require('../../../server/models/Company');
-let Employee = require('../../../server/models/Employee');
+let AdminUser = require('../../server/models/Company');
+let Employee = require('../../server/models/Employee');
 
 /**
  * Employee login feature

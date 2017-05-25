@@ -1,12 +1,12 @@
 let request = require('supertest');
-let config = require('../../../server/config/config');
-let Company = require('../../../server/models/Company');
+let config = require('../../server/config/config');
+let Company = require('../../server/models/Company');
 let chai = require('chai');
 let should = chai.should();
 
 describe('Company Test', function() {
     let url = 'localhost:' + config.port;
-    //let token;
+    // let token;
     let currCompany;
 
     let email = 'test@test.edu';
@@ -16,11 +16,11 @@ describe('Company Test', function() {
 
     let newEmail = 'test1@test.edu'; ;
     let newName = 'test1';
-    //let newExpirationDate='3/19';
+    // let newExpirationDate='3/19';
     let newPhoneNumber='1231267890';
 
 
-      //let userID = null;
+      // let userID = null;
 
 
     before(function(done) {
