@@ -38,7 +38,7 @@ $(document).ready(function() {
     socket.on(VISITOR_LIST_UPDATE, function(data) {
         visitorList = data.visitors;
         // Parse Visitor List to format Date
-        for(var i = 0, len = visitorList.length; i< len; i++) {
+        for(let i = 0, len = visitorList.length; i< len; i++) {
             visitorList[i].checkin_time = formatTime(visitorList[i].checkin_time);
         }
 
@@ -108,21 +108,28 @@ $(document).ready(function() {
 */
     /** *
      * Compare appointment Date to today's Date
-     */
+     * @param {Date} appointment
+     * @return {boolean}
+     */   
     function compareDate(appointment) {
       let today = new Date();
       appointment = new Date(Date.parse(appointment));
 
-      let appointmentDate = appointment.getFullYear() + ' ' + appointment.getDate() + ' ' + appointment.getMonth();
-      let todayDate = today.getFullYear() + ' ' + today.getDate() + ' ' + today.getMonth();
+      let appointmentDate = appointment.getFullYear() +
+          ' ' + appointment.getDate() +
+          ' ' + appointment.getMonth();
+        
+      let todayDate = today.getFullYear() +
+          ' ' + today.getDate() +
+          ' ' + today.getMonth();
 
       return (appointmentDate == todayDate);
     }
 
     /** *
      * Find Specific Visitor Given Visitor ID within the Visitor Array
-     * @param id
-     * @returns {string}
+     * @param {Schema.Types.ObjectId} id
+     * @return {string}
      */
     function findVisitor(id) {
         for(let visitor in visitorList) {
@@ -137,7 +144,8 @@ $(document).ready(function() {
 
     /** *
      * Function to format a JSON date object into a string
-     * @param time
+     * @param {Time} time
+     * @return {Time}
      */
     function formatTime(time) {
         let currentTime = new Date(Date.parse(time));
@@ -167,19 +175,4 @@ $(document).ready(function() {
     });
 
 
-    /** *
-     * TODO order the list by increasing order
-     * @param key
-     */
-    function increasingOrder(key) {
-
-    }
-
-    /** *
-     * TODO order the list by decreasing order
-     * @param key
-     */
-    function decreasingOrder(key) {
-
-    }
 });

@@ -18,7 +18,10 @@ $(document).ready(function() {
         ajaxPost('/api/companies', companyData);
     });
 
-    // Grab Company Data from form
+
+    /** Grab Company Data from form
+     * @return {obj}
+     **/
     function grabCompanyData() {
         let company = {};
         company.name = $('#form-company-name').val();
@@ -27,7 +30,10 @@ $(document).ready(function() {
         return company;
     }
 
-    // Grab employee data from form
+
+    /** Grab employee data from form
+     * @return {obj}
+     **/
     function grabEmployeeData() {
         let employee = {};
         employee.first_name = $('#form-employee-first').val();
@@ -40,7 +46,11 @@ $(document).ready(function() {
         return employee;
     }
 
-    // Ajax function to create a POST request to server
+
+    /** Ajax function to create a POST request to server
+     * @param {obj} url
+     * @param {obj} data
+     **/    
     function ajaxPost(url, data) {
         $.ajax({
             type: 'POST',
@@ -68,6 +78,9 @@ $(document).ready(function() {
         });
     }
 
+
+    /**  Validating the company
+     **/ 
     function validateCompany() {
         let companyName = $('#form-company-name').val();
         let companyEmail = $('#form-email').val();
@@ -82,12 +95,27 @@ $(document).ready(function() {
         }
     }
 
-
+    /**  Validating the email
+    @param {string} email
+    @return {boolean}
+     **/
     function validateEmail(email) {
-        let re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        let re = new RegExp (
+            ['/^(([^<>()\[\]\\.,;:\s@"]',
+            '+(\.[^<>()\[\]\\.,;:\s@"]+)*)',
+            '|(".+"))@((\[[0-9]{1,3}\.[0-9]',
+            '{1,3}\.[0-9]{1,3}\.[0-9]{1,3}',
+            '])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]',
+            '{2,}))$/'].join('')
+        );
+        
         return re.test(email);
     }
-
+    
+    /**  Validating the password
+    * @param {object} form
+    * @return {boolean}
+     **/
     function checkPassword(form) {
         if(form.first.value == '') {
           alert('Error: Username cannot be blank!');
@@ -116,25 +144,32 @@ $(document).ready(function() {
           }
           re = /[a-z]/;
           if(!re.test(password.value)) {
-            console.log('Error: password must contain at least one lowercase letter (a-z)!');
+            console.log(
+                'Error: password must contain' +
+                'at least one lowercase letter (a-z)!'
+            );
             password.focus();
             return false;
           }
           re = /[A-Z]/;
           if(!re.test(form.pwd1.value)) {
-            console.log('Error: password must contain at least one uppercase letter (A-Z)!');
+            console.log(
+                'Error: password must contain' +
+                'at least one uppercase letter (A-Z)!'
+            );
             password.focus();
             return false;
           }
         } else {
-          console.log('Error: Please check that you\'ve entered and confirmed your password!');
+          console.log(
+              'Error: Please check that you\'ve' +
+              'entered and confirmed your password!'
+          );
           password.focus();
           return false;
         }
         console.log('You entered a valid password: ' + password.value);
         return true;
     }
-    function validateForm() {
-
-    }
+    
 });
