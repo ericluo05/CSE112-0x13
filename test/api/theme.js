@@ -1,6 +1,6 @@
-var Theme = require('../../server/models/Theme');
-var config = require('../../server/config/config');
-var ConfigureAuth = require('./ConfigureAuth.js');
+let Theme = require('../../server/models/Theme');
+let config = require('../../server/config/config');
+let ConfigureAuth = require('./ConfigureAuth.js');
 let request = require('supertest');
 
 // Schema Test

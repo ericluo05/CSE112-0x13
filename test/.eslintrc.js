@@ -8,6 +8,8 @@ module.exports = {
       "jquery": true
     },
     rules: {
+     //   "apidoc/rule-name": 2,
+
         // The rules below are listed in the order they appear on the eslint
         // rules page. All rules are listed to make it easier to keep in sync
         // as new ESLint rules are added.
@@ -245,7 +247,7 @@ module.exports = {
         'padded-blocks': [2, 'never'],
         'quote-props': [2, 'consistent'],
         'quotes': [2, 'single', {allowTemplateLiterals: true}],
-        'require-jsdoc': [2, {
+        'require-jsdoc': [0, {
             require: {
                 FunctionDeclaration: true,
                 MethodDefinition: true,

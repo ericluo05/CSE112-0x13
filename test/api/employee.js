@@ -4,7 +4,7 @@ let config = require('../../server/config/config');
 let should = require('chai').should();
 
 // Wrapper that creates admin user to allow api calls
-var ConfigureAuth = require('./ConfigureAuth');
+let ConfigureAuth = require('./ConfigureAuth');
 
 
 describe('Employee', function() {
