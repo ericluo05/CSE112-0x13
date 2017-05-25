@@ -9,6 +9,12 @@ let bodyparser = require('body-parser');
 // let urlparser = bodyparser.urlencoded({extended: false});
 bodyparser.urlencoded({extended: false});
 
+/**
+ *
+ * @apiGroup Employee
+ *
+ */
+
 router.get('/template/company/:id', controller.template.findByCompanyId);
 router.get('/template/:adminid', controller.template.findByAdminId);
 router.post('/template/:adminid', controller.template.sendByAdminId);

@@ -11,9 +11,7 @@ mongoose.models = {};
 mongoose.modelSchemas = {};
 
 let Schema = mongoose.Schema;
-/*
- * Appointment schema
- */
+
 let appointmentSchema = new Schema({
     first_name: {type: String, required: true},
     last_name: {type: String, required: true},

@@ -15,9 +15,9 @@ exports.login = function(req, res) {
         }
         if(!e.validPassword(req.body.password))
           return res.status(400).send({error: 'Incorrect Credentials'});
-        let employee_json=e.toJSON();
-        delete employee_json.password;
-        return res.status(200).json(employee_json);
+        let employeeJSON=e.toJSON();
+        delete employeeJSON.password;
+        return res.status(200).json(employeeJSON);
     });
 };
 
@@ -57,9 +57,9 @@ exports.insert = function(req, res) {
         if(err) {
             return res.status(400).json({error: 'Can not Save'});
         }
-        let employee_json=e.toJSON();
-        delete employee_json.password;
-        return res.status(200).json(employee_json);
+        let employeeJSON=e.toJSON();
+        delete employeeJSON.password;
+        return res.status(200).json(employeeJSON);
     });
 };
 
@@ -82,9 +82,9 @@ exports.update = function(req, res) {
             console.log(employee);
             if(err)
                 return res.status(400).json({error: 'Can not Save'});
-            let employee_json=employee.toJSON();
-            delete employee_json.password;
-            return res.status(200).send(employee_json);
+            let employeeJSON=employee.toJSON();
+            delete employeeJSON.password;
+            return res.status(200).send(employeeJSON);
         });
    });
 };
@@ -95,9 +95,9 @@ exports.delete = function(req, res) {
       if(err) {
         res.status(400).json({error: 'Can not Find'});
       } else {
-          let employee_json=employee.toJSON();
-          delete employee_json.password;
-          return res.status(200).send(employee_json);
+          let employeeJSON=employee.toJSON();
+          delete employeeJSON.password;
+          return res.status(200).send(employeeJSON);
       }
     });
   });
