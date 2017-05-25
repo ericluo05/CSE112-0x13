@@ -16,11 +16,9 @@ $(document).ready(function() {
     $('#employee-list').html(compiledHtml);
     $('.save-btn').click(submitForm);
 
-
-   /** *
+   /**
      * Makes a get request to display list of employees
-     * @param none
-     * @returns displays the employee list
+     * @return {Object} displays the employee list
      */
     function getEmployees() {
        let json;
@@ -38,10 +36,10 @@ $(document).ready(function() {
        return json;
    }
 
-   /** *
-     * Makes a post request to update list of employees when adding a new employee
-     * @param none
-     * @returns updates the employee list
+   /**
+     * Makes a post request to update list of employees
+     * when adding a new employee
+     * @param {Object} obj
      */
    function updateEmployeeList(obj) {
       $.ajax({
@@ -57,11 +55,9 @@ $(document).ready(function() {
       });
     }
 
-     /** *
-     * When a patient submits their form
-     * @param none
-     * @returns updates the employee list
-     */
+    /**
+      * When a patient submits their form
+      */
     function submitForm() {
         let d = grabFormElements();
         console.log(d);
@@ -70,11 +66,10 @@ $(document).ready(function() {
         document.getElementById('employee-form').reset();
     }
 
-    /** *
-     * Grabs elements from the check in and puts it into an object
-     * @param none
-     * @returns new employee object
-     */
+    /**
+      * Grabs elements from the check in and puts it into an object
+      * @return {Object} new employee object
+      */
     function grabFormElements() {
         let newEmployee = {};
         newEmployee.company_id = myCompanyId;
@@ -88,21 +83,21 @@ $(document).ready(function() {
         return newEmployee;
     }
 
-     /** *
-     * Find Specific Employee Given Employee ID within the Employee Array
-     * @param id
-     * @returns {string}
-     */
-    function findEmployee(id) {
-        for(let employee in employeeList) {
-           if(employeeList.hasOwnProperty(employee)) {
-              if(employeeList[employee]._id === id) {
-                  if(DEBUG) // console.log(employeeList[employee]);
-                  return employeeList[employee];
-              }
-           }
-        }
-    }
+    // /**
+    //   * Find Specific Employee Given Employee ID within the Employee Array
+    //   * @param {Oject} id
+    //   * @return {String}
+    //   */
+    // function findEmployee(id) {
+    //     for(let employee in employeeList) {
+    //        if(employeeList.hasOwnProperty(employee)) {
+    //           if(employeeList[employee]._id === id) {
+    //               if(DEBUG) // console.log(employeeList[employee]);
+    //               return employeeList[employee];
+    //           }
+    //        }
+    //     }
+    // }
 
     $('#logoutButton').on('click', function() {
       localStorage.setItem('userState', 0);
