@@ -17,12 +17,29 @@ let htmlhint = require('gulp-htmlhint');
 * CLI options: http://eslint.org/docs/developer-guide/nodejs-api#cliengine
 */
 gulp.task('lint:js', () => {
-    return gulp.src(['**/*.js', 'test/**.js', '!node_modules/**'])
-        .pipe(eslint({
-            fix: true,
-        }))
-        .pipe(eslint.format())
-        .pipe(eslint.failAfterError());
+    // lint backend and testing js files
+    gulp.src(['**/*.js', 'test/**.js', '!node_modules/**'])
+      .pipe(eslint({
+        fix: true,
+      }))
+      .pipe(eslint.format())
+      .pipe(eslint.failAfterError());
+
+
+    // lint frontend js files
+    gulp.src(['client/js_es6/**/*.js', 'client/emissary/js/*.js',
+        '!node_modules/**'])
+       .pipe(eslint({
+         fix: true,
+         globals: ['jQuery', '$'],
+         envs: ['browser'],
+         rules: {
+             'no-invalid-this': 0,
+             'no-unused-vars': 0,
+         },
+       }))
+      .pipe(eslint.format())
+      .pipe(eslint.failAfterError());
 });
 
 

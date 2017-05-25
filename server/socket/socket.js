@@ -1,7 +1,10 @@
 /* eslint-disable camelcase */
 'use strict';
+<<<<<<< HEAD
 
 // let express = require('express');
+=======
+>>>>>>> origin/develop
 let server;
 let io = require('socket.io')();
 
@@ -13,10 +16,10 @@ let DISCONNECT = 'disconnect';
 let REMOVE_VISITOR = 'remove_visitor';
 let ADD_VISITOR = 'add_visitor';
 let NOTIFY_ERROR = 'notify_error';
-
 let VisitorListCtr = require('../routes/visitorList/visitorList.controller');
 let Company = require('../models/Company');
 
+<<<<<<< HEAD
 /**
  *
  * @api function createServer
@@ -29,6 +32,14 @@ let Company = require('../models/Company');
 
 /* ******** Socket IO Module **********/
 exports.createServer = /**/function(io_in) {
+=======
+/*
+ * Create the Socket.io server
+ * @param {server} io_in - The server to add io events to
+ * @return {server} server with added io events
+ */
+exports.createServer = function(io_in) {
+>>>>>>> origin/develop
     io = io_in;
 
     /*
@@ -41,8 +52,13 @@ exports.createServer = /**/function(io_in) {
      */
     io.on(CONNECTION, /**/ function(socket) {
         /* company_id is required to connect to join right socket to listen to*/
+<<<<<<< HEAD
         socket.on(VALIDATE_COMPANY_ID, /**/ function(data) {
             console.log(data);
+=======
+        socket.on(VALIDATE_COMPANY_ID, function(data) {
+          //  console.log(data);
+>>>>>>> origin/develop
             let company_id = data.company_id;
             Company.findOne({_id: company_id}, /**/function(err, c) {
                 if(err || !c)
@@ -64,7 +80,7 @@ exports.createServer = /**/function(io_in) {
         // requires the company_id to be sent
         socket.on(VISITOR_LIST_UPDATE, /**/ function(data) {
             let company_id = data.company_id;
-            console.log('Visitor List Update' + data);
+            // console.log('Visitor List Update' + data);
             VisitorListCtr.getCompanyVisitorList(company_id,
                 /**/ function(err_msg, result) {
                 if(err_msg) {
@@ -77,7 +93,7 @@ exports.createServer = /**/function(io_in) {
 // requires the company_id to be sent
         socket.on(VISITOR_LIST_UPDATE, /**/ function(data) {
             let company_id = data.company_id;
-            console.log('Visitor List Update' + data);
+           // console.log('Visitor List Update' + data);
             VisitorListCtr.getCompanyVisitorList(company_id,
                 /**/ function(err_msg, result) {
                 if(err_msg) {
@@ -92,8 +108,13 @@ exports.createServer = /**/function(io_in) {
         });
 
         // requires the company_id and visitor_id to be sent
+<<<<<<< HEAD
         socket.on(REMOVE_VISITOR, /**/function(data) {
             console.log(data.company_id);
+=======
+        socket.on(REMOVE_VISITOR, function(data) {
+           // console.log(data.company_id);
+>>>>>>> origin/develop
             let company_id = data.company_id;
             let visitor_id = data.visitor_id;
             if(!company_id || !visitor_id) return;
@@ -108,10 +129,17 @@ exports.createServer = /**/function(io_in) {
         });
 
         // require the params to be set with info of the visitor
+<<<<<<< HEAD
         socket.on(ADD_VISITOR, /**/ function(data) {
             console.log('ADDING VISITOR');
             console.log(data);
             console.log(data.company_id);
+=======
+        socket.on(ADD_VISITOR, function(data) {
+          //  console.log('ADDING VISITOR');
+          //  console.log(data);
+          //  console.log(data.company_id);
+>>>>>>> origin/develop
             let company_id = data.company_id;
             VisitorListCtr.create(data, /**/function(err_msg, result) {
                 if(err_msg) {
@@ -168,7 +196,7 @@ exports.notifyError = /**/function(company_id, data) {
  * On the client side get the socket as follows to robobetty:
  *   var socket = io('/visitorList');
  */
-let nsp = io.of('/visitorList');
+// let nsp = io.of('/visitorList');
 
 // To be used with authorization.
 // io.set('authorization', socketioJwt.authorize({

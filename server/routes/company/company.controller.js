@@ -10,15 +10,17 @@
  authResetCredentials()
  */
 
-
+/* No encryption yet
 let config = require('../../config/config');
+let jwt = require('jwt-simple');
+*/
 
 /* need this to enable cross origin resource sharing.If disabled, we might
  * not need this later. This is just to get the example to work
  * when front end is served from a something other than our app server.
  */
 let Company = require('../../models/Company');
-let jwt = require('jwt-simple');
+
 
 /** **** Company TEMPLATE ROUTES ******/
 module.exports.template = {};
@@ -113,7 +115,7 @@ module.exports.template.delete = /**/ function(req, res) {
     });
 };
 
-/** authResetCredentials- resets a user's credentials*/
+/* authResetCredentials- resets a user's credentials*/
 module.exports.template.resetCredentials = function(req, res) {
     Company.findOne({email: req.params.user}, function(err, c) {
         if(err || !c)
@@ -123,7 +125,6 @@ module.exports.template.resetCredentials = function(req, res) {
         // if the user is found but the password is wrong
         if(!c.validPassword(req.body.password))
             return res.status(400).send('loginMessage', 'Oops! Wrong password');
-        // update password
 
         // update password
         if (req.body.newpassword !== undefined)
