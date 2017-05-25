@@ -1,10 +1,7 @@
 /* eslint-disable camelcase */
 'use strict';
-<<<<<<< HEAD
 
 // let express = require('express');
-=======
->>>>>>> origin/develop
 let server;
 let io = require('socket.io')();
 
@@ -19,7 +16,6 @@ let NOTIFY_ERROR = 'notify_error';
 let VisitorListCtr = require('../routes/visitorList/visitorList.controller');
 let Company = require('../models/Company');
 
-<<<<<<< HEAD
 /**
  *
  * @api function createServer
@@ -31,15 +27,12 @@ let Company = require('../models/Company');
  */
 
 /* ******** Socket IO Module **********/
-exports.createServer = /**/function(io_in) {
-=======
 /*
  * Create the Socket.io server
  * @param {server} io_in - The server to add io events to
  * @return {server} server with added io events
  */
 exports.createServer = function(io_in) {
->>>>>>> origin/develop
     io = io_in;
 
     /*
@@ -50,15 +43,10 @@ exports.createServer = function(io_in) {
      * the '_admin_id' needs to be set so that the client can be added to the
      * room and notified when changes are being made.
      */
-    io.on(CONNECTION, /**/ function(socket) {
+    io.on(CONNECTION,  function(socket) {
         /* company_id is required to connect to join right socket to listen to*/
-<<<<<<< HEAD
-        socket.on(VALIDATE_COMPANY_ID, /**/ function(data) {
-            console.log(data);
-=======
         socket.on(VALIDATE_COMPANY_ID, function(data) {
           //  console.log(data);
->>>>>>> origin/develop
             let company_id = data.company_id;
             Company.findOne({_id: company_id}, /**/function(err, c) {
                 if(err || !c)
@@ -108,13 +96,9 @@ exports.createServer = function(io_in) {
         });
 
         // requires the company_id and visitor_id to be sent
-<<<<<<< HEAD
-        socket.on(REMOVE_VISITOR, /**/function(data) {
-            console.log(data.company_id);
-=======
+
         socket.on(REMOVE_VISITOR, function(data) {
            // console.log(data.company_id);
->>>>>>> origin/develop
             let company_id = data.company_id;
             let visitor_id = data.visitor_id;
             if(!company_id || !visitor_id) return;
@@ -129,17 +113,10 @@ exports.createServer = function(io_in) {
         });
 
         // require the params to be set with info of the visitor
-<<<<<<< HEAD
-        socket.on(ADD_VISITOR, /**/ function(data) {
-            console.log('ADDING VISITOR');
-            console.log(data);
-            console.log(data.company_id);
-=======
         socket.on(ADD_VISITOR, function(data) {
           //  console.log('ADDING VISITOR');
           //  console.log(data);
           //  console.log(data.company_id);
->>>>>>> origin/develop
             let company_id = data.company_id;
             VisitorListCtr.create(data, /**/function(err_msg, result) {
                 if(err_msg) {
