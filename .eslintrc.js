@@ -95,7 +95,7 @@ module.exports = {
         // 'no-implicit-coercion': 0,
         // 'no-implicit-globals': 0,
         // 'no-implied-eval': 0,
-        'no-invalid-this': 2,
+        'no-invalid-this': 0,
         // 'no-iterator': 0,
         // 'no-labels': 0,
         // 'no-lone-blocks': 0,
@@ -149,7 +149,7 @@ module.exports = {
         // 'no-undef-init': 0,
         // 'no-undef': 2, // eslint:recommended
         // 'no-undefined': 0,
-        'no-unused-vars': [2, {args: 'none'}], // eslint:recommended
+        'no-unused-vars': [0, {args: 'none'}], // eslint:recommended
         // 'no-use-before-define': 0,
 
         // Node.js and CommonJS
