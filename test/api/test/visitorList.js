@@ -19,7 +19,7 @@ describe('VisitorList', function() {
 
     let today = new Date();
     today.setHours(0, 0, 0, 0);
-    var tomorrow = new Date();
+    let tomorrow = new Date();
     tomorrow = tomorrow.setDate(today.getDate()+2);
 
     // info for the company
@@ -207,7 +207,7 @@ describe('VisitorList', function() {
             .get('/api/visitorLists/company/'+currCompany._id)
             .end(function(err, res) {
                 let prevLen=0;
-                //let patientId;
+                // let patientId;
                 res.body.should.have.property('visitors');
                 res.body.visitors.should.be.an.instanceof(Array);
                 for(let i=0; i< res.body.visitors.length; i++) {

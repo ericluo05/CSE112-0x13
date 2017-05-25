@@ -3,7 +3,7 @@
 let express = require('express');
 let controller = require('./company.controller');
 
-let router = express.Router();
+let router = new express.Router();
 
 /**
  *
@@ -17,7 +17,6 @@ let router = express.Router();
                                   be what was passed in in JSON Format
  * @apiError CouldnotSave failed to save to server
  */
-
 router.post('/', 			controller.template.create);
 
 /**
@@ -32,7 +31,6 @@ router.post('/', 			controller.template.create);
  * @apiError CouldnotSave failed connection
  * @apiError CouldnotFind company does not exist
  */
-
 router.get('/:id', 			controller.template.get);
 
 /**
@@ -75,8 +73,8 @@ router.put('/:id', controller.template.update);
  * @apiError CouldNotFind wrong company ID
  * @apiError CouldnotSave a connection problem
  */
-
 router.delete('/:id', controller.template.delete);
+
 /**
  *
  * @api {put} /company/setting/:user resetCredentials
@@ -91,7 +89,6 @@ router.delete('/:id', controller.template.delete);
  * @apiError CouldNotFind wrong company ID
  * @apiError CouldnotSave a connection problem
  */
-
 router.put('/setting/:user', 	controller.template.resetCredentials);
 
 module.exports = router;

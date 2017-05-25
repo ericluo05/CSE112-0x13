@@ -34,7 +34,7 @@ db.once('open', function callback() {
 
 // uncomment after placing your favicon in /public
 app.use(favicon(__dirname + './../build/images/favicon.ico'));
-app.use(logger('dev'));
+// app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(cookieParser());

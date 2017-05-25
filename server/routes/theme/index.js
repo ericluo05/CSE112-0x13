@@ -12,9 +12,6 @@ let controller = require('./theme.controller');
  * not need this later. This is just to get the example to work
  * when front end is served from a something other than our app server.
  */
-let cors = require('cors');
-
-let Theme = require('../../models/Theme');
 
 
 // post with default values

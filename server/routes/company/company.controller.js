@@ -1,32 +1,18 @@
+/* eslint-disable valid-jsdoc */
 'use strict';
-
-/* This module is meant to house the functions
- * used by the authorization (auth) API. The
- * actual API is set up in index.js
-
- Functions:
- authSignup()
- authLogin()
- authResetCredentials()
+/**
+ * @file Company Controller
  */
 
-/* No encryption yet
-let config = require('../../config/config');
-let jwt = require('jwt-simple');
-*/
 
-/* need this to enable cross origin resource sharing.If disabled, we might
- * not need this later. This is just to get the example to work
- * when front end is served from a something other than our app server.
- */
 let Company = require('../../models/Company');
 
 
-/** **** Company TEMPLATE ROUTES ******/
+/* **** Company TEMPLATE ROUTES ******/
 module.exports.template = {};
 
-/** signup- Used to sign up a user.*/
-module.exports.template.create = /**/ function(req, res) {
+/* signup- Used to sign up a user.*/
+module.exports.template.create = function(req, res) {
     let company = new Company();
 
     // require provided info
@@ -49,8 +35,8 @@ module.exports.template.create = /**/ function(req, res) {
     });
 };
 
-/** get All the companies*/
-module.exports.template.getAll = /**/ function(req, res) {
+/* get All the companies*/
+module.exports.template.getAll = function(req, res) {
     Company.find({},
         {
             credit_card_number: false,
@@ -64,7 +50,7 @@ module.exports.template.getAll = /**/ function(req, res) {
     });
 };
 
-/** authLogin- logs in a user*/
+/* authLogin- logs in a user*/
 module.exports.template.get = /**/function(req, res) {
     Company.findOne({_id: req.params.id}, /**/ function(err, company) {
         if(err)
@@ -101,8 +87,8 @@ module.exports.template.update = /**/ function(req, res) {
 };
 
 /* delete company */
-module.exports.template.delete = /**/ function(req, res) {
-    Company.findById(req.params.id, /**/ function(err, c) {
+module.exports.template.delete = function(req, res) {
+    Company.findById(req.params.id, function(err, c) {
         if(err)
             res.status(400).json({error: 'Could Not Find'});
         c.remove(function(err) {
@@ -151,7 +137,22 @@ module.exports.template.resetCredentials = function(req, res) {
     });
 };
 
-/* */
+
+/**
+ * @typedef {Object} CompanyInfo
+ * @property {int} _id id of the company
+ * @property {string} name name of the company
+ * @property {string} email email of the company
+ * @property {string} phone_number phone number of the company
+ * @property {string} paid_time time when the company made payment
+ */
+
+/**
+ * @function showCompanyPublicInfo
+ * @description convert company info into array
+ * @param {Object} company - company object
+ * @return {CompanyInfo} company info object
+ */
 function showCompanyPublicInfo(c) {
     return {
         _id: c._id,
