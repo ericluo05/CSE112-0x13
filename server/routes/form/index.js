@@ -12,7 +12,7 @@ bodyparser.urlencoded({
 });
 
 /**
- * @api {get} /template/company/:id
+ * @api {get} /template/company/:id getTemplateByCompanyId
  * @apiDescription This is used for finding a form for a company by its ID.
  * @apiName FindFormByCompanyId
  * @apiGroup Form
@@ -23,7 +23,7 @@ bodyparser.urlencoded({
 router.get('/template/company/:id', controller.findByCompanyId);
 
 /**
- * @api {get} /template/:adminid
+ * @api {get} /template/:adminid getTemplateByAdminId
  * @apiDescription This is used for finding a form for a particular admin by their adminID
  * @apiName FindFormByAdminId
  * @apiGroup Form
@@ -34,7 +34,7 @@ router.get('/template/company/:id', controller.findByCompanyId);
 router.get('/template/:adminid', controller.findByAdminId);
 
 /**
- * @api {post} /template/:adminid
+ * @api {post} /template/:adminid postTemplateByAdminId
  * @apiDescription This is used for submitting a new form template for a particular admin.
  * @apiName PostTemplateByAdminId
  * @apiGroup Form
@@ -45,7 +45,7 @@ router.get('/template/:adminid', controller.findByAdminId);
 router.post('/template/:adminid', controller.sendByAdminId);
 
 /**
- * @api {post} /template
+ * @api {post} /template postTemplate
  * @apiDescription This call to create a new template with a random adminID.
  * @apiName PostTemplate
  * @apiGroup Form
@@ -55,7 +55,7 @@ router.post('/template/:adminid', controller.sendByAdminId);
 router.post('/template', controller.create);
 
 /**
- * @api {put} /template
+ * @api {put} /template putTemplate
  * @apiDescription This call updates the template.
  * @apiName PutTemplate
  * @apiGroup Form
@@ -65,7 +65,7 @@ router.post('/template', controller.create);
 router.put('/template', controller.update);
 
 /**
- * @api {delete} /template/:template_id
+ * @api {delete} /template/:template_id deleteTemplateByTemplateId
  * @apiDescription This is used to delete a particular template.
  * @apiName DeleteTemplateByTemplateId
  * @apiGroup Form
@@ -77,7 +77,7 @@ router.put('/template', controller.update);
 router.delete('/template/:template_id', controller.delete);
 
 /**
- * @api {get} /visitorList/:form_id
+ * @api {get} /visitorList/:form_id getVisitorListByFormId
  * @apiDescription This is used to get the visitor list with a specific form ID.
  * @apiName GetVisitorListByFormId
  * @apiGroup VisitorList
@@ -91,7 +91,7 @@ router.get('/visitorList/:form_id', controller.submitted_form_findById);
   let lastName = req.query.lastName;
   let patientEmail = req.query.patientEmail;
 /**
- * @api {get} /visitorList
+ * @api {get} /visitorList getVisitorListByPatientInfo
  * @apiDescription This is used to get a visitor list by patient info.
  * @apiName GetVisitorList
  * @apiGroup VisitorList
@@ -104,7 +104,7 @@ router.get('/visitorList/:form_id', controller.submitted_form_findById);
 router.get('/visitorList', controller.submitted_form_findByPatientInfo);
 
 /**
- * @api {post} /visitorList
+ * @api {post} /visitorList postVisitorList
  * @apiDescription This is used to create a new visitor list.
  * @apiName PostVisitorList
  * @apiGroup VisitorList

@@ -369,15 +369,6 @@ define({ "api": [
     "groupTitle": "Company"
   },
   {
-    "group": "Employee",
-    "type": "",
-    "url": "",
-    "version": "0.0.0",
-    "filename": "server/routes/form/index.js",
-    "groupTitle": "Employee",
-    "name": ""
-  },
-  {
     "type": "delete",
     "url": "/employee/:id",
     "title": "delete",
@@ -442,6 +433,279 @@ define({ "api": [
     "version": "0.0.0",
     "filename": "server/routes/employee/index.js",
     "groupTitle": "Employee"
+  },
+  {
+    "type": "delete",
+    "url": "/template/:template_id",
+    "title": "deleteTemplateByTemplateId",
+    "description": "<p>This is used to delete a particular template.</p>",
+    "name": "DeleteTemplateByTemplateId",
+    "group": "Form",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "template_id",
+            "optional": false,
+            "field": "TemplateID",
+            "description": "<p>the ID of the template we want to delete.</p>"
+          }
+        ]
+      }
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "JSON",
+            "optional": false,
+            "field": "A",
+            "description": "<p>success code from the TemplateForm.findOneAndRemove() call, in JSON format.</p>"
+          }
+        ]
+      }
+    },
+    "error": {
+      "fields": {
+        "Error 4xx": [
+          {
+            "group": "Error 4xx",
+            "type": "JSON",
+            "optional": false,
+            "field": "error",
+            "description": "<p>Need a template id.</p>"
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "server/routes/form/index.js",
+    "groupTitle": "Form"
+  },
+  {
+    "type": "get",
+    "url": "/template/:adminid",
+    "title": "getTemplateByAdminId",
+    "description": "<p>This is used for finding a form for a particular admin by their adminID</p>",
+    "name": "FindFormByAdminId",
+    "group": "Form",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "adminid",
+            "optional": false,
+            "field": "AdminID",
+            "description": "<p>the ID of the company we want to see.</p>"
+          }
+        ]
+      }
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "JSON",
+            "optional": false,
+            "field": "form",
+            "description": "<p>the templated form for a specific admin.</p>"
+          }
+        ]
+      }
+    },
+    "error": {
+      "fields": {
+        "Error 4xx": [
+          {
+            "group": "Error 4xx",
+            "type": "JSON",
+            "optional": false,
+            "field": "error",
+            "description": "<p>There was an error finding the template form.</p>"
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "server/routes/form/index.js",
+    "groupTitle": "Form"
+  },
+  {
+    "type": "get",
+    "url": "/template/company/:id",
+    "title": "getTemplateByCompanyId",
+    "description": "<p>This is used for finding a form for a company by its ID.</p>",
+    "name": "FindFormByCompanyId",
+    "group": "Form",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "id",
+            "optional": false,
+            "field": "CompanyID",
+            "description": "<p>the ID of the company we want to see.</p>"
+          }
+        ]
+      }
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "JSON",
+            "optional": false,
+            "field": "form",
+            "description": "<p>the form containing the particular public company info in JSON format.</p>"
+          }
+        ]
+      }
+    },
+    "error": {
+      "fields": {
+        "Error 4xx": [
+          {
+            "group": "Error 4xx",
+            "type": "JSON",
+            "optional": false,
+            "field": "error",
+            "description": "<p>There was an error finding the template form.</p>"
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "server/routes/form/index.js",
+    "groupTitle": "Form"
+  },
+  {
+    "type": "post",
+    "url": "/template",
+    "title": "postTemplate",
+    "description": "<p>This call to create a new template with a random adminID.</p>",
+    "name": "PostTemplate",
+    "group": "Form",
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "JSON",
+            "optional": false,
+            "field": "successJson",
+            "description": "<p>resultant JSON form of the newly created template.</p>"
+          }
+        ]
+      }
+    },
+    "error": {
+      "fields": {
+        "Error 4xx": [
+          {
+            "group": "Error 4xx",
+            "type": "JSON",
+            "optional": false,
+            "field": "errorJson",
+            "description": "<p>Error from Mongoose as a JSON.</p>"
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "server/routes/form/index.js",
+    "groupTitle": "Form"
+  },
+  {
+    "type": "post",
+    "url": "/template/:adminid",
+    "title": "postTemplateByAdminId",
+    "description": "<p>This is used for submitting a new form template for a particular admin.</p>",
+    "name": "PostTemplateByAdminId",
+    "group": "Form",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "adminid",
+            "optional": false,
+            "field": "AdminID",
+            "description": "<p>the ID of the admin this new form pertains to.</p>"
+          }
+        ]
+      }
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "optional": false,
+            "field": "The",
+            "description": "<p>template, if not existing, is created. Else, it is updated.</p>"
+          }
+        ]
+      }
+    },
+    "error": {
+      "fields": {
+        "Error 4xx": [
+          {
+            "group": "Error 4xx",
+            "type": "JSON",
+            "optional": false,
+            "field": "error",
+            "description": "<p>There was an error finding the template form.</p>"
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "server/routes/form/index.js",
+    "groupTitle": "Form"
+  },
+  {
+    "type": "put",
+    "url": "/template",
+    "title": "putTemplate",
+    "description": "<p>This call updates the template.</p>",
+    "name": "PutTemplate",
+    "group": "Form",
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "JSON",
+            "optional": false,
+            "field": "json",
+            "description": "<p>resultant JSON form of the updated form.</p>"
+          }
+        ]
+      }
+    },
+    "error": {
+      "fields": {
+        "Error 4xx": [
+          {
+            "group": "Error 4xx",
+            "type": "JSON",
+            "optional": false,
+            "field": "error",
+            "description": "<p>There was problem removing the form template.</p>"
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "server/routes/form/index.js",
+    "groupTitle": "Form"
   },
   {
     "type": "post",
@@ -544,5 +808,156 @@ define({ "api": [
     "version": "0.0.0",
     "filename": "server/routes/phone.js",
     "groupTitle": "PhoneApps"
+  },
+  {
+    "type": "get",
+    "url": "/visitorList",
+    "title": "getVisitorListByPatientInfo",
+    "description": "<p>This is used to get a visitor list by patient info.</p>",
+    "name": "GetVisitorList",
+    "group": "VisitorList",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "firstName",
+            "description": "<p>The patient's first name.</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "lastName",
+            "description": "<p>The patient's last name.</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "patientEmail",
+            "description": "<p>The patient's email.</p>"
+          }
+        ]
+      }
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "JSON",
+            "optional": false,
+            "field": "SubmittedForm",
+            "description": "<p>The form containing the visitor list for the particular patient.</p>"
+          }
+        ]
+      }
+    },
+    "error": {
+      "fields": {
+        "Error 4xx": [
+          {
+            "group": "Error 4xx",
+            "type": "JSON",
+            "optional": false,
+            "field": "error",
+            "description": "<p>An error occured while finding visitorList form</p>"
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "server/routes/form/index.js",
+    "groupTitle": "VisitorList"
+  },
+  {
+    "type": "get",
+    "url": "/visitorList/:form_id",
+    "title": "getVisitorListByFormId",
+    "description": "<p>This is used to get the visitor list with a specific form ID.</p>",
+    "name": "GetVisitorListByFormId",
+    "group": "VisitorList",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "form_id",
+            "optional": false,
+            "field": "FormId",
+            "description": "<p>the form ID containg the visitor list we want to see.</p>"
+          }
+        ]
+      }
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "JSON",
+            "optional": false,
+            "field": "SubmittedForm",
+            "description": "<p>The form containing the visitor list.</p>"
+          }
+        ]
+      }
+    },
+    "error": {
+      "fields": {
+        "Error 4xx": [
+          {
+            "group": "Error 4xx",
+            "type": "JSON",
+            "optional": false,
+            "field": "error",
+            "description": "<p>An error occured while finding visitorList form</p>"
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "server/routes/form/index.js",
+    "groupTitle": "VisitorList"
+  },
+  {
+    "type": "post",
+    "url": "/visitorList",
+    "title": "postVisitorList",
+    "description": "<p>This is used to create a new visitor list.</p>",
+    "name": "PostVisitorList",
+    "group": "VisitorList",
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "JSON",
+            "optional": false,
+            "field": "SubmittedForm",
+            "description": "<p>The newly created form containing the visitor list.</p>"
+          }
+        ]
+      }
+    },
+    "error": {
+      "fields": {
+        "Error 4xx": [
+          {
+            "group": "Error 4xx",
+            "type": "JSON",
+            "optional": false,
+            "field": "error",
+            "description": "<p>An error occured while finding visitorList form</p>"
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "server/routes/form/index.js",
+    "groupTitle": "VisitorList"
   }
 ] });
