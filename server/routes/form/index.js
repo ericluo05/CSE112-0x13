@@ -34,9 +34,9 @@ router.get('/template/company/:id', controller.findByCompanyId);
 router.get('/template/:adminid', controller.findByAdminId);
 
 /**
- * @api {post} /template/:adminid postTemplateByAdminId
+ * @api {post} /template/:adminid createTemplateByAdminId
  * @apiDescription This is used for submitting a new form template for a particular admin.
- * @apiName PostTemplateByAdminId
+ * @apiName CreateTemplateByAdminId
  * @apiGroup Form
  * @apiParam {adminid} AdminID the ID of the admin this new form pertains to.
  * @apiSuccess The template, if not existing, is created. Else, it is updated.
@@ -45,9 +45,9 @@ router.get('/template/:adminid', controller.findByAdminId);
 router.post('/template/:adminid', controller.sendByAdminId);
 
 /**
- * @api {post} /template postTemplate
+ * @api {post} /template createTemplate
  * @apiDescription This call to create a new template with a random adminID.
- * @apiName PostTemplate
+ * @apiName CreateTemplate
  * @apiGroup Form
  * @apiSuccess {JSON} successJson resultant JSON form of the newly created template.
  * @apiError {JSON} errorJson Error from Mongoose as a JSON.
@@ -55,9 +55,9 @@ router.post('/template/:adminid', controller.sendByAdminId);
 router.post('/template', controller.create);
 
 /**
- * @api {put} /template putTemplate
+ * @api {put} /template updateTemplate
  * @apiDescription This call updates the template.
- * @apiName PutTemplate
+ * @apiName UpdateTemplate
  * @apiGroup Form
  * @apiSuccess {JSON} json resultant JSON form of the updated form.
  * @apiError {JSON} error There was problem removing the form template.
@@ -87,26 +87,20 @@ router.delete('/template/:template_id', controller.delete);
  */
 router.get('/visitorList/:form_id', controller.submitted_form_findById);
 
-  let firstName = req.query.firstName;
-  let lastName = req.query.lastName;
-  let patientEmail = req.query.patientEmail;
 /**
- * @api {get} /visitorList getVisitorListByPatientInfo
+ * @api {get} /visitorList getAllVisitorLists
  * @apiDescription This is used to get a visitor list by patient info.
- * @apiName GetVisitorList
+ * @apiName GetAllVisitorLists
  * @apiGroup VisitorList
- * @apiParam {String} firstName The patient's first name.
- * @apiParam {String} lastName The patient's last name.
- * @apiParam {String} patientEmail The patient's email.
- * @apiSuccess {JSON} SubmittedForm The form containing the visitor list for the particular patient.
+ * @apiSuccess {JSON} SubmittedForm The form containing the visitor lists.
  * @apiError {JSON} error An error occured while finding visitorList form
  */
 router.get('/visitorList', controller.submitted_form_findByPatientInfo);
 
 /**
- * @api {post} /visitorList postVisitorList
+ * @api {post} /visitorList CreateVisitorList
  * @apiDescription This is used to create a new visitor list.
- * @apiName PostVisitorList
+ * @apiName CreateVisitorList
  * @apiGroup VisitorList
  * @apiSuccess {JSON} SubmittedForm The newly created form containing the visitor list.
  * @apiError {JSON} error An error occured while finding visitorList form
