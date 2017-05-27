@@ -11,6 +11,17 @@ let router = new express.Router();
  * @apiName AppointmentCreate
  * @apiGroup Appointment
  *
+ * @apiParam {String} first_name first name of person
+ * @apiParam {String} last_name last name of person
+ * @apiParam {String} phone_number phone number of person
+ * @apiParam {Date} date date of appointment
+ * @apiParam {int} company_id id of the company that this appointment belongs to
+ * @apiParam {String} provider_name Don't know
+ * @apiSuccess {JSON} appointment the newly created appointment
+ * @apiError CouldNotFind no company exists with that company ID
+ * @apiError CouldNotSave failed connection
+ * @apiError AlreadyCreated an appointment already exists at that time
+ *
  */
 router.post('/', controller.create);
 
@@ -22,6 +33,9 @@ router.post('/', controller.create);
  * @apiName AppointmentGet
  * @apiGroup Appointment
  *
+ * @apiParam {int} id the ID of the appointment you seek
+ * @apiSuccess {JSON} appointment the appointment with that id
+ * @apiError CouldNotFind appointment does not exist
  */
 router.get('/:id', controller.get);
 
@@ -33,6 +47,9 @@ router.get('/:id', controller.get);
  * @apiName AppointmentCreate
  * @apiGroup Appointment
  *
+ * @apiParam {int} id the ID for a company
+ * @apiSuccess {JSON} allAppointments The set of all appointments for a company
+ * @apiError CouldNotFind company doesn't exist
  */
 router.get('/company/:id', controller.getAll);
 
@@ -44,6 +61,16 @@ router.get('/company/:id', controller.getAll);
  * @apiName AppointmentUpdate
  * @apiGroup Appointment
  *
+ * @apiParam {int} id the ID for an appointment
+ * @apiParam {String} first_name first name of person
+ * @apiParam {String} last_name last name of person
+ * @apiParam {String} phone_number phone number of person
+ * @apiParam {Date} date date of appointment
+ * @apiParam {int} company_id id of the company that this appointment belongs to
+ * @apiParam {String} provider_name Don't know
+ * @apiSuccess {JSON} appointment the new updated appointment
+ * @apiError CouldNotFind could not find appointment with that ID
+ * @apiError CouldNotSave connection error
  */
 router.put('/:id', controller.update);
 
@@ -55,6 +82,10 @@ router.put('/:id', controller.update);
  * @apiName AppointmentDelete
  * @apiGroup Appointment
  *
+ * @apiParam {int} id the ID for an appointment
+ * @apiSuccess {JSON} appointment JSON for the appointment you just deleted
+ * @apiError CouldNotSave connection Error
+ * @apiError CouldNotFind no such id
  */
 router.delete('/:id', controller.delete);
 
