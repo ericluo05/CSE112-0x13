@@ -8,3 +8,5 @@ Deployed Site:  [Click me](https://team0x13.herokuapp.com/)
 [![Issue Count](https://codeclimate.com/repos/58f5897ac0bc68025a0005e6/badges/cd5da23be8aa1b51e429/issue_count.svg)](https://codeclimate.com/repos/58f5897ac0bc68025a0005e6/)
 [![Test Coverage](https://codeclimate.com/repos/58f5897ac0bc68025a0005e6/badges/cd5da23be8aa1b51e429/coverage.svg)](https://codeclimate.com/repos/58f5897ac0bc68025a0005e6/coverage)
 
+Team Email: cse112team0x13@gmail.com
+password: team0x13
