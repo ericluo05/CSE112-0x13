@@ -9,30 +9,23 @@
     <title>Login</title>
 
     <!-- CSS -->
-    <link rel="stylesheet" href="emissary/assets/native/css/signup.css">
+    <link rel="stylesheet" href="/emissary/stylesheets/signup.css">
     <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:400,100,300,500">
-    <link rel="stylesheet" href="emissary/assets/css/bootstrap.min.css">
-    <link rel="stylesheet" href="emissary/assets/font-awesome/css/font-awesome.min.css">
-
-    <link rel="stylesheet" href="emissary/assets/css/style.css">
-
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
+    <link rel="stylesheet" href="/emissary/stylesheets/libs/bootstrap.css">
+    <link rel="stylesheet" href="/emissary/stylesheets/font-icons/font-awesome/css/font-awesome.css">
+    <link rel="stylesheet" href="/emissary/stylesheets/style.css">
 
     <!-- Favicon and touch icons -->
-    <link rel="icon" href="emissary/assets/images/logo-emissary.png">
-    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="emissary/assets/ico/apple-touch-icon-144-precomposed.png">
-    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="emissary/assets/ico/apple-touch-icon-114-precomposed.png">
-    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="emissary/assets/ico/apple-touch-icon-72-precomposed.png">
-    <link rel="apple-touch-icon-precomposed" href="emissary/assets/ico/apple-touch-icon-57-precomposed.png">
+    <link rel="icon" href="/images/logo-emissary.png">
+   <!--  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/emissary/ico/apple-touch-icon-144-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/emissary/ico/apple-touch-icon-114-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="/emissary/ico/apple-touch-icon-72-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" href="/emissary/ico/apple-touch-icon-57-precomposed.png"> -->
 
 </head>
 
-<body id = "sign-up-body">
+<body id ="sign-up-body">
+
 <!-- Top menu -->
 <nav class="navbar navbar-inverse navbar-no-bg" role="navigation">
     <div class="container">
@@ -43,7 +36,9 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="index.html">Bootstrap Multi Step Registration Form Template</a>
+            <a href="index.html">
+                <img src="/images/emissary.png" width="150" alt="logo" />
+            </a>
         </div>
 
     </div>
@@ -51,7 +46,6 @@
 
 <!-- Top content -->
 <div class="top-content">
-
     <div class="inner-bg">
         <div class="container">
             <div class="row">
@@ -64,16 +58,12 @@
             </div>
             <div class="row">
                 <div class="form-box">
-
                     <form role="form" class="registration-form">
-
                         <fieldset>
                             <div class="form-top">
                                 <h1>Step 1/2:</h1>
                                 <p>Create a company</p>
-
                             </div>
-
                             <div class="form-bottom">
                                 <div class="form-group">
                                     <label class="sr-only" for="form-company-name">Company name</label>
@@ -87,16 +77,6 @@
                                     <label class="sr-only" for="form-phone">Phone Number</label>
                                     <input type="text" name="phone_number" placeholder="Phone Number" class="form-phone form-control" id="form-phone">
                                 </div>
-                                <!--<div class="form-group">
-                                    <label class="sr-only" for="form-card">Phone Number</label>
-                                    <input type="text" name="credit_card" placeholder="Credit Card Number" class="form-card form-control" id="form-card">
-                                </div>
-                                <div class="form-group">
-                                    <label class="sr-only" for="form-card-exp">Phone Number</label>
-                                    <input type="text" name="credit_card_exp" placeholder="Credit Card Expiration Date" class="form-card-exp form-control" id="form-card-exp">
-                                </div>
-                                -->
-
                                 <button id="submit-company-btn" type="button" class="btn btn-next">Next</button>
                             </div>
                         </fieldset>
@@ -105,9 +85,7 @@
                             <div class="form-top">
                                 <h1>Step 2/2:</h1>
                                 <p>Create an user account</p>
-
                             </div>
-
                             <div class="form-bottom">
                                 <div class="form-group">
                                     <label class="sr-only" for="form-employee-first">First Name</label>
@@ -137,25 +115,19 @@
                                 <button id="submit-btn" type="button" class="btn btn-next">Next</button>
                             </div>
                         </fieldset>
-
-
                     </form>
-
                 </div>
             </div>
         </div>
     </div>
-
 </div>
 
-
 <!-- Javascript -->
-<script src="emissary/assets/js/jquery-1.11.3.min.js"></script>
-<script src="emissary/assets/native/js/signup.js"></script>
-
-<script src="emissary/assets/js/bootstrap.min.js"></script>
-<script src="emissary/assets/js/jquery.backstretch.min.js"></script>
-<script src="emissary/assets/js/retina-1.1.0.min.js"></script>
+<script src="/emissary/js/js_libs/jquery/jquery-1.11.3.min.js"></script>
+<script src="/emissary/js/signup.js"></script>
+<script src="/emissary/js/js_libs/bootstrap.js"></script>
+<script src="/emissary/js/js_libs/jquery/jquery.backstretch.min.js"></script>
+<script src="/emissary/js/js_libs/retina-1.1.0.min.js"></script>
 <!-- google analytics -->
     <script>
         (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -165,12 +137,7 @@
         ga('create', 'UA-74424228-1', {'cookieDomain': 'none'});
         ga('send', 'pageview');
     </script>
-<script src="emissary/assets/js/scripts.js"></script>
-
-<!--[if lt IE 10]>
-    <script src="emissary/assets/js/placeholder.js"></script>
-<![endif]-->
-
+<script src="/emissary/js/scripts.js"></script>
 </body>
 
 </html>

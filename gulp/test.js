@@ -26,7 +26,7 @@ gulp.task('mocha:route', () =>
 gulp.task('mocha:api', () =>
 //    gulp.src(['test/api/*.js'], {read: false})
 //        .pipe(mocha({reporter: 'list'}))
-    gulp.src(['test/api/test/*.js'], {read: false})
+    gulp.src(['test/api/*.js'], {read: false})
         .pipe(mocha({reporter: 'list'}))
 );
 

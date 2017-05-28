@@ -2,8 +2,8 @@
   "name": "app",
   "version": "0.0.0",
   "private": true,
-  "engine" :{
-     "node": "7.9.0"
+  "engine": {
+    "node": "7.9.0"
   },
   "scripts": {
     "start": "node ./server/bin/www",
@@ -32,7 +32,7 @@
       "node_modules",
       "bin",
       "coverage",
-      "test/*"
+      "server/routes/*/*.controller.js"
     ]
   },
   "dependencies": {
@@ -68,6 +68,7 @@
     "mongoose": "^4.9.9",
     "mongoose-encryption": "^1.5.0",
     "morgan": "~1.8.1",
+    "newrelic": "^1.39.1",
     "nodemailer": "^4.0.1",
     "require-dir": "^0.3.1",
     "serve-favicon": "~2.4.2",
@@ -80,6 +81,7 @@
     "chai": "^3.5.0",
     "eslint": "^3.19.0",
     "eslint-config-google": "^0.7.1",
+    "gulp": "^3.9.1",
     "istanbul": "^0.4.5",
     "mocha": "^3.2.0",
     "nightwatch": "^0.9.14",

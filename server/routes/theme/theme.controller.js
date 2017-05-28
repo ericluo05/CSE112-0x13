@@ -1,30 +1,17 @@
 'use strict';
-
-/*
- * This module is meant to house all of the API
- * routes that pertain to theme settings
- */
-let express = require('express');
-let router = express.Router();
-
-/* need this to enable cross origin resource sharing.If disabled, we might
- * not need this later. This is just to get the example to work
- * when front end is served from a something other than our app server.
- */
-let cors = require('cors');
-
+/**
+*  Module that house all the API routes that pertains to theme settings
+* @module routes/theme
+*/
 let Theme = require('../../models/Theme');
 
-/** ********************* THEME TEMPLATE ROUTES ***********************/
-module.exports.template = {};
-
-module.exports.template.use = function(req, res, next) {
-    // do logging
-    console.log('Intializing.....');
-    next();
-};
-
-module.exports.template.create = function(req, res) {
+/**
+ * @function create
+ * @description  handler to create a theme
+ * @param {Object} req - request object
+ * @param {Object} res - response object
+ */
+exports.create = function(req, res) {
     let theme = new Theme();
     theme.user_id = req.params.user_id; // company or user id
     theme.form_color = 'default';
@@ -42,7 +29,13 @@ module.exports.template.create = function(req, res) {
     });
 };
 
-module.exports.template.get = function(req, res) {
+/**
+ * @function get
+ * @description  handler to get a theme by user id
+ * @param {Object} req - request object
+ * @param {Object} res - response object
+ */
+exports.get = function(req, res) {
     Theme.findOne({
         user_id: req.params.user_id,
     }, function(err, theme) {
@@ -53,7 +46,13 @@ module.exports.template.get = function(req, res) {
     });
 };
 
-module.exports.template.update = function(req, res) {
+/**
+ * @function update
+ * @description  handler to update a theme by user id
+ * @param {Object} req - request object
+ * @param {Object} res - response object
+ */
+exports.update = function(req, res) {
     Theme.findOne({
         user_id: req.params.user_id,
     }, function(err, theme) {
@@ -83,13 +82,18 @@ module.exports.template.update = function(req, res) {
     });
 };
 
-module.exports.template.delete = function(req, res) {
+/**
+ * @function delete
+ * @description  handler to delete a theme by user id
+ * @param {Object} req - request object
+ * @param {Object} res - response object
+ */
+exports.delete = function(req, res) {
     Theme.remove({
         user_id: req.params.user_id,
     }, function(err, theme) {
         if (err)
             res.status(400).send(err);
-
         res.status(200).json({msg: 'OK'});
     });
 };

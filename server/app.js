@@ -10,13 +10,8 @@ let config = require('./config/config')[process.env.NODE_ENV || 'development'];
 let staticSiteMapping = require('./routes/staticmapping');
 let apiMapping = require('./routes/apimapping');
 let app = express();
-
 // slack notification is done on client side currently.. not safe
 // let slack = require('slack-notify')('https://hooks.slack.com/services/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');
-
-// let http = require('http').Server(app);
-// let io = require('socket.io')(http);
-// require('./socket/socket').createServer(require('http').Server(app));
 
 
 // view engine setup
@@ -32,9 +27,21 @@ db.once('open', function callback() {
     console.log('Connected to a mongo database at ' + config.mongoDBUrl);
 });
 
+// these are not used in production environment
+if(process.env.NODE_ENV !== 'production') {
+    app.use(logger('dev'));
+};
+
+
+// these are used only in production environment
+if(process.env.NODE_ENV === 'production') {
+// eslint-disable-next-line no-unused-vars
+    let newrelic = require('newrelic');
+};
+
+
 // uncomment after placing your favicon in /public
 app.use(favicon(__dirname + './../build/images/favicon.ico'));
-app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(cookieParser());
@@ -77,8 +84,7 @@ app.use(function(err, req, res, next) {
 });
 
 console.log('Express server listening on port %d in %s mode',
-    app.get('port') || 3000,
-    app.get('env'));
+    app.get('port') || 3000, app.get('env'));
 
 
 module.exports = app;

@@ -1,19 +1,22 @@
-/* Require mongoose to interact with mongoDB */
-var mongoose = require('mongoose');
-var Schema = mongoose.Schema;
+'use strict';
+let mongoose = require('mongoose');
+let Schema = mongoose.Schema;
 
-/**
- * This will be the Schema for the Form Template Documents.
- **/
-var formTemplate = new mongoose.Schema({
+/** MongoDB Schema for FormTemplate
+ * @memberOf Schema
+ * @typedef {FormTemplateSchema} Form
+ * @property {int} _admin_id - object id of company schema
+ * @property {object} template - unknown
+ */
+let formTemplate = new Schema({
   _admin_id: {
       type: Schema.Types.ObjectId,
       ref: 'Company',
-      required: true
+      required: true,
   },
   template: {
-      type: Object
-  }
+      type: Object,
+  },
 });
 
 module.exports = mongoose.model('FormTemplate', formTemplate);

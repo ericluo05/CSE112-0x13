@@ -1,18 +1,26 @@
 'use strict';
-
-let BASIC_PLAN_ID = 'emissary_basic';
-
+/**
+ *  Module that house all the API routes that pertains to payment
+ * @module routes/payment
+ */
+const BASIC_PLAN_ID = 'emissary_basic';
 let Company = require('../../models/Company');
 
 let stripe = require('stripe')(
   'sk_test_dqzYJJ6xWGgg6U1hgQr3hNye'
-); // TODO: do i need to do this for every js file that uses stripe?
+);
 
+/**
+ * @function createSubscription
+ * @description  handler to create subscription
+ * @param {Object} req - request object
+ * @param {Object} res - response object
+ */
 exports.createSubscription = function(req, res) {
 	// create customer, TODO: could there be an existing stripe customer ID?
 	stripe.customers.create({ // calls stripe customer create
 		description: 'Customer for '+req.body.stripeEmail,
-		plan: BASIC_PLAN_ID, // TODO: move this string to a global constant
+		plan: BASIC_PLAN_ID,
 		source: req.body.stripeToken,
 	}, function(err, customer) { // passes err and customer to  cb for handling
 		if (err) {
@@ -24,6 +32,12 @@ exports.createSubscription = function(req, res) {
 	});
 };
 
+/**
+ * @function getSubscription
+ * @description  handler to get subscription
+ * @param {Object} req - request object
+ * @param {Object} res - response object
+ */
 exports.getSubscription = function(req, res) {
 	Company.findOne({_id: req.params.id}, function(err, result) {
 		let stripeCustomerID = result.stripeCustomerID;
@@ -40,6 +54,13 @@ exports.getSubscription = function(req, res) {
 	});
 };
 
+/**
+ * @private
+ * @function basicPlanIndex
+ * @description don't know what this is doing
+ * @param {array} arr - array of subscribed company
+ * @return {int} return index of subscribed company, -1 if not subscribed
+ */
 function basicPlanIndex(arr) {
 	let arrLength = arr.length;
 	for(let i = 0; i < arrLength; i++) {

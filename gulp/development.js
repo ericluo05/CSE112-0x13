@@ -34,7 +34,6 @@ gulp.task('dev', ['dev:backend'], function() {
         files: ['build/**/*.*'],
         port: 7000,
     });
-
 });
 
 /*

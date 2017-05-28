@@ -1,19 +1,19 @@
 'use strict';
-
-/* This module is meant to house all of the API
- * routes that pertain to forms
+/**
+ *  Module that house all the API routes that pertains to forms
+ * @module routes/form
  */
-let express = require('express');
-let router = express.Router();
-
 let SubmittedForm = require('../../models/form/SubmittedForm');
 let mongoose = require('mongoose');
 let TemplateForm = require('../../models/form/FormTemplate');
 
-/** ******** FORM TEMPLATE ROUTES **********/
-module.exports.template = {};
-
-module.exports.template.findByCompanyId = function(req, res) {
+/**
+ * @function findByCompanyId
+ * @description  handler to find form with company id
+ * @param {Object} req - request object
+ * @param {Object} res - response object
+ */
+exports.findByCompanyId = function(req, res) {
   TemplateForm.findOne({'_admin_id': req.params.id}, function(err, template) {
     if(err)
       res.status(400).json(
@@ -23,7 +23,13 @@ module.exports.template.findByCompanyId = function(req, res) {
   });
 };
 
-module.exports.template.findByAdminId = function(req, res) {
+/**
+ * @function findByAdminId
+ * @description  handler to find form with admin id
+ * @param {Object} req - request object
+ * @param {Object} res - response object
+ */
+exports.findByAdminId = function(req, res) {
   TemplateForm.findOne({'_admin_id': req.params.adminid},
       function(err, template) {
     if(err)
@@ -34,7 +40,13 @@ module.exports.template.findByAdminId = function(req, res) {
   });
 };
 
-module.exports.template.sendByAdminId = function(req, res) {
+/**
+ * @function sendByAdminId
+ * @description  handler to find template form with admin id
+ * @param {Object} req - request object
+ * @param {Object} res - response object
+ */
+exports.sendByAdminId = function(req, res) {
   TemplateForm.findOne({'_admin_id': req.params.adminid},
       function(err, template) {
     if(err)
@@ -48,33 +60,13 @@ module.exports.template.sendByAdminId = function(req, res) {
   });
 };
 
-function createWithAdminId(req, res) {
-  let newTemplate = new TemplateForm();
-  newTemplate._admin_id = req.params.adminid;
-  newTemplate.template = req.body.template;
-
-  newTemplate.save(function(err, template) {
-    if(err)
-        return res.status(400).json(err);
-    else
-        return res.status(200).json(template);
-  });
-}
-
-function updateWithAdminId(req, res) {
-  let update = {template: req.body.template};
-
-  TemplateForm.findOneAndUpdate({_admin_id: req.params.adminid}, update,
-    function(err, template) {
-        if(err)
-          return res.status(400).json(
-              {error: 'There was an error updating a template.'});
-        else
-          return res.status(200).json(template);
-    });
-}
-
-module.exports.template.create = function(req, res) {
+/**
+ * @function create
+ * @description  handler to create a new template form
+ * @param {Object} req - request object
+ * @param {Object} res - response object
+ */
+exports.create = function(req, res) {
   let newTemplate = new TemplateForm();
   newTemplate._admin_id = new mongoose.Types.ObjectId(req.body._admin_id);
   newTemplate.template = req.body.template;
@@ -87,9 +79,13 @@ module.exports.template.create = function(req, res) {
   });
 };
 
-
-/* Accept PUT request at /form/template */
-module.exports.template.update = function(req, res) {
+/**
+ * @function update
+ * @description  handler to update template form
+ * @param {Object} req - request object
+ * @param {Object} res - response object
+ */
+exports.update = function(req, res) {
     let update = {template: req.body.template};
     let options = {new: true};
 
@@ -102,8 +98,13 @@ module.exports.template.update = function(req, res) {
       });
 };
 
-/* accept DELETE request at /form/template/:template_id */
-module.exports.template.delete = function(req, res) {
+/**
+ * @function delete
+ * @description  handler to find delete template form
+ * @param {Object} req - request object
+ * @param {Object} res - response object
+ */
+exports.delete = function(req, res) {
     /* Get id param from request */
     let templateID = req.params.template_id;
 
@@ -121,10 +122,14 @@ module.exports.template.delete = function(req, res) {
     });
 };
 
-/** ******** PATIENT FORM ROUTES **********/
-module.exports.submitted_form = {};
 
-module.exports.submitted_form.findById = function(req, res) {
+/**
+ * @function submitted_form_findById
+ * @description  handler to find submitted form with  id
+ * @param {Object} req - request object
+ * @param {Object} res - response object
+ */
+exports.submitted_form_findById = function(req, res) {
   SubmittedForm.findOne({'_id': req.params.form_id}, function(err, submittedForm) {
     if (err) {
       res.status(400).json({error: 'An error occured while finding visitorList form'});
@@ -134,7 +139,13 @@ module.exports.submitted_form.findById = function(req, res) {
   });
 };
 
-module.exports.submitted_form.create = function(req, res) {
+/**
+ * @function submitted_form_create
+ * @description  handler to create submitted form
+ * @param {Object} req - request object
+ * @param {Object} res - response object
+ */
+module.exports.submitted_form_create = function(req, res) {
   let form = new SubmittedForm();
   form.form = req.body.form;
   form._admin_id = req.body._admin_id;
@@ -150,21 +161,27 @@ module.exports.submitted_form.create = function(req, res) {
   });
 };
 
-module.exports.submitted_form.findByPatientInfo = function(req, res) {
-  let query = {},
-    firstName = req.query.firstName,
-    lastName = req.query.lastName,
-    patientEmail = req.query.patientEmail;
+/**
+ * @function submitted_form_findByPatientInfo
+ * @description  handler to find form with company id
+ * @param {Object} req - request object
+ * @param {Object} res - response object
+ */
+module.exports.submitted_form_findByPatientInfo = function(req, res) {
+  let query = {};
+  let firstName = req.query.firstName;
+  let lastName = req.query.lastName;
+  let patientEmail = req.query.patientEmail;
 
 
   if(!((firstName && lastName) || patientEmail)) {
-    res.status(400).json({error: 'You must specify either both first and last name or email'});
+    res.status(400).json({error: 'You must specify either both ' +
+    'first and last name or email'});
     return;
   }
   if(firstName) query.firstName = firstName;
   if(lastName) query.lastName = lastName;
   if(patientEmail) query.patientEmail = patientEmail;
-
 
   if(req.query.mostRecent == 'true') {
     SubmittedForm.findOne(query).sort('-date').exec(function(err, submittedForm) {
@@ -184,3 +201,36 @@ module.exports.submitted_form.findByPatientInfo = function(req, res) {
     });
   }
 };
+
+
+/*
+ // not used, even though it makes sense for only allowing
+ // admin to create form
+ function createWithAdminId(req, res) {
+ let newTemplate = new TemplateForm();
+ newTemplate._admin_id = req.params.adminid;
+ newTemplate.template = req.body.template;
+
+ newTemplate.save(function(err, template) {
+ if(err)
+ return res.status(400).json(err);
+ else
+ return res.status(200).json(template);
+ });
+ }
+
+ // not used, even though it makes sense for only allowing
+ // admin to update form
+ function updateWithAdminId(req, res) {
+ let update = {template: req.body.template};
+
+ TemplateForm.findOneAndUpdate({_admin_id: req.params.adminid}, update,
+ function(err, template) {
+ if(err)
+ return res.status(400).json(
+ {error: 'There was an error updating a template.'});
+ else
+ return res.status(200).json(template);
+ });
+ }
+ */

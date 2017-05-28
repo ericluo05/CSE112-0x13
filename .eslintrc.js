@@ -3,9 +3,11 @@ module.exports = {
         "ecmaVersion": 6,
         "sourceType": "module",
     },
+    "env":{
+      "node": true,
+      "jquery": true
+    },
     rules: {
-     //   "apidoc/rule-name": 2,
-
         // The rules below are listed in the order they appear on the eslint
         // rules page. All rules are listed to make it easier to keep in sync
         // as new ESLint rules are added.
@@ -193,7 +195,7 @@ module.exports = {
         // 'lines-around-directive': 0,
         // 'max-depth': 0,
         'max-len': [2, {
-            code: 80,
+            code: 90,
             tabWidth: 2,
             ignoreUrls: true,
             ignorePattern: '^goog\.(module|require)',
