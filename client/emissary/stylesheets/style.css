@@ -211,6 +211,11 @@ ul.navbar-nav {
   padding-top: 40px;
 }
 
+.col-centered {
+  float: none;
+  margin: 0 auto;
+}
+
 .form-top {
   overflow: hidden;
   padding: 0 25px 15px;

@@ -10,11 +10,11 @@ exports.config = {
   /**
    * Array of application names.
    */
-  app_name: ['Emissary'],
+  app_name: ['Team0x13'],
   /**
    * Your New Relic license key.
    */
-  license_key: 'dd3f32b3d975c810cdc193297ebef5035d54e940f30f652',
+  license_key: '057be615da9860c99d951fc07e5279a35f30f652',
   logging: {
     /**
      * Level at which to log. 'trace' is most useful to New Relic when diagnosing
@@ -22,11 +22,5 @@ exports.config = {
      * production applications.
      */
     level: 'info'
-  }
-
-   rules : {
-    ignore : [
-      '^/socket.io/.*/xhr-polling'
-    ]
   }
 }
