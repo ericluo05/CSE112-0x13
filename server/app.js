@@ -1,4 +1,9 @@
 'use strict';
+// these are used only in production environment
+if(process.env.NODE_ENV === 'production') {
+// eslint-disable-next-line no-unused-vars
+    let newrelic = require('newrelic');
+};
 let express = require('express');
 let path = require('path');
 let favicon = require('serve-favicon');
@@ -33,11 +38,6 @@ if(process.env.NODE_ENV !== 'production') {
 };
 
 
-// these are used only in production environment
-if(process.env.NODE_ENV === 'production') {
-// eslint-disable-next-line no-unused-vars
-    let newrelic = require('newrelic');
-};
 
 
 // uncomment after placing your favicon in /public
