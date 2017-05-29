@@ -2,8 +2,7 @@
 <html lang="en">
 <head>
 	<script>
-		var userState = JSON.parse(localStorage.getItem("userState"));
-  		if(userState != 2)
+  		if(localStorage.userState != 2)
     		location.href= "login.html";
 	</script>
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -17,10 +16,10 @@
 
 	<title>Admin | Dashboard</title>
 
-	<link rel="stylesheet" href="./../assets/js/jquery-ui/css/no-theme/jquery-ui-1.10.3.custom.min.css">
+	<link rel="stylesheet" href="emissary/js/js_libs/jquery/jquery-ui-1.10.3.minimal.min.js">
 	<link rel="stylesheet" href="./../assets/css/font-icons/entypo/css/entypo.css">
 	<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Noto+Sans:400,700,400italic">
-	<link rel="stylesheet" href="./../assets/css/bootstrap.css">
+	<link rel="stylesheet" href="emissary/stylesheets/libs/bootstrap.css">
 		<link rel="stylesheet" href="./../assets/css/loader.css">
 
 	<link rel="stylesheet" href="./../assets/css/neon-core.css">
