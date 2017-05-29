@@ -3,7 +3,14 @@ let express = require('express');
 let router = express.Router();
 let path = require('path');
 let phoneGeneral = require('../lib/phone_general');
-
+let nodemailer = require('nodemailer');
+let transporter = nodemailer.createTransport({
+    service: 'gmail',
+    auth: {
+        user: 'cse112team0x13@gmail.com',
+        pass: 'team0x13',
+    },
+});
 
 router.get('/', function(req, res, next) {
     res.sendFile(path.join(__dirname+ './../../build/html/phone.html'));
@@ -25,12 +32,23 @@ router.get('/', function(req, res, next) {
  * version of the passed in number
  * @apiSuccess {Boolean} isPhoneValid Whether the number is valid or not
  */
+
 router.post('/isValidPhone', function(req, res) {
-    if (req.query.cc && req.query.number) {
-         res.json(phoneGeneral.isValidPhone(req.query.cc, req.query.number));
-     } else {
-         res.json({'isPhoneValid': false, 'E.164 Format': 'NA'});
-     }
+    let mailOptions = {
+        from: '"Fred Foo 👻" <foo@blurdybloop.com>', // sender address
+        to: 'eric_luo@ymail.com', // list of receivers
+        subject: 'Hello ✔', // Subject line
+        text: 'Hello world ?', // plain text body
+        html: '<b>Hello world ?</b>', // html body
+    };
+    transporter.sendMail(mailOptions, (error, info)=>{
+       if(error) {
+           console.log(error);
+
+       }
+       console.log('Message %s sent: %s', info.messageId, info.response);
+    });
+    res.send('Hi');
 });
 
 

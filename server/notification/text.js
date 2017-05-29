@@ -1,9 +1,4 @@
 'use strict';
-
-// let express = require('express');
-// let router = express.Router();
-// let bodyparser = require('body-parser');
-
 // Load the twilio module
 let twilio = require('twilio');
 

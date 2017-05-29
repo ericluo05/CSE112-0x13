@@ -4,9 +4,9 @@
  *  Module that house all the API routes that pertains to forms
  * @module routes/visitorlist
  */
-// let Email = require('../../notification/email');
+ let Email = require('../../notification/email');
 // let TextModel = require('../../notification/text');
-// let Employee = require('../../models/Employee');
+ let Employee = require('../../models/Employee');
 let VisitorList = require('../../models/VisitorList');
 let Appointment = require('../../models/Appointment');
 
@@ -38,7 +38,7 @@ exports.getCompanyVisitorListReq = function(req, res) {
 // This route will be called when a visitor checks in
 /**
  * @function createReq
- * @description  handler to ???
+ * @description  handler to create a check in
  * @param {Object} req - request object
  * @param {Object} res - response object
  */
@@ -155,7 +155,7 @@ exports.delete = function(list_id, callback) {
 
 /**
  * @function create
- * @description  don't know what this is doing
+ * @description  this is used by handler that creates visitor
  * @param {array} param - list of parameters
  * @param {callback} callback - callback function
  */
@@ -210,10 +210,32 @@ exports.create = function(param, callback) {
                 list.visitors.push(visitor);
                 list.save(function(err) {
                     if(err) return callback({error: 'an error in saving'}, null);
+                    emailEmployees(company_id, first_name + ' '+ last_name);
                     return callback(null, list);
                 });
             }
         );
     });
 };
+
+
+/**
+ * @function EmailEmployees
+ * @description  email all employees of the company that a visitor checked in
+ * @param {string} company_id - id of the company
+ * @param {string} visitor_name - name of visitor
+ */
+function emailEmployees(company_id, visitor_name) {
+   // console.log('email company %s about %s', company_id, visitor_name);
+    Employee.find({company_id: company_id}, function(err, result) {
+        if(err) {
+            console.log('error while trying to find employees of company ' + company_id);
+            return;
+        }
+       if(result) {
+           Email.sendEmail(visitor_name, result, null);
+       }
+    });
+}
+
 
