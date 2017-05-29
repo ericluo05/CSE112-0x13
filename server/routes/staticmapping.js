@@ -70,4 +70,12 @@ router.get('/index', function(req, res) {
     res.sendFile(path.join(htmlPath, 'index.html'));
 });
 
+router.get('/admin-panel', function(req, res) {
+  res.sendFile(path.join(htmlPath, 'admin-panel.html'));
+});
+
+router.get('/company-dashboard', function(req, res) {
+  res.sendFile(path.join(htmlPath, 'company-dashboard.html'));
+});
+
 module.exports = router;

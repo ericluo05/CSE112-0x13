@@ -1,0 +1,84 @@
+.page-title {
+  margin: 35px auto;
+}
+
+.patient-table-header > .form-control {
+  width: 150px;
+  margin-bottom: 10px;
+}
+
+.patient-table-header > h3 {
+  display: inline-block;
+  font-size: 1.8em;
+}
+
+.patient-check-out > td {
+  font-size: 1.2em;
+}
+
+table {
+  border-radius: 4px !important;
+}
+
+#admin-panel-list tr:nth-last-child(1) {
+  border-bottom: 1px solid rgb(215, 215, 215) !important;
+}
+
+.table > thead > tr > th {
+  border-bottom: none !important;
+}
+
+.table thead > tr {
+  border-color: rgb(215, 215, 215) !important;
+}
+
+.table tr td {
+  border-color: rgb(215, 215, 215) !important;
+}
+
+.table th {
+  font-size: 1.2em;
+}
+
+.modal-body {
+  font-size: 1em;
+  overflow: auto;
+  padding: 15px;
+}
+
+.modal-title {
+  font-size: 1.2em;
+}
+
+.modal-body p > span {
+  color: black;
+  font-weight: bold;
+  margin-right: 10px;
+}
+
+.modal-left {
+  float: left;
+  width: 50%;
+}
+
+.modal-right {
+  float: left;
+  width: 50%;
+}
+
+.admin-panel-container {
+  max-width: 980px;
+}
+
+.admin-panel-container table tbody tr:hover {
+  background-color: rgb(235, 235, 235);
+  cursor: pointer;
+}
+
+hr {
+  border-top: 3px solid #01b2bd !important;
+}
+
+.modal-dialog {
+  top: 150px !important;
+}

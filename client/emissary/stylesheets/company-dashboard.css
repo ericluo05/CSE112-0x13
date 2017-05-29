@@ -1,0 +1,16 @@
+.page-title {
+  margin: 35px auto;
+}
+
+.company-dashboard-container {
+  max-width: 980px;
+}
+
+.company-dashboard-container table tbody tr:hover {
+  background-color: rgb(235, 235, 235);
+  cursor: pointer;
+}
+
+hr {
+  border-top: 3px solid #01b2bd !important;
+}

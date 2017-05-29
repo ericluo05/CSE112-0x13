@@ -9,7 +9,7 @@
 
 	<link rel="icon" href="/images/logo-emissary.png">
 
-	<title>Emissary | Visitors</title>
+	<title>Emissary | company Dashboard</title>
 
 	<link rel="stylesheet" href="/emissary/stylesheets/font-icons/font-awesome/css/font-awesome.css">
   <link rel="stylesheet" href="/emissary/stylesheets/jquery/jquery-ui-1.10.3.custom.min.css">
@@ -19,7 +19,7 @@
 	<link rel="stylesheet" href="/emissary/stylesheets/neon/neon-core.css">
 	<link rel="stylesheet" href="/emissary/stylesheets/neon/neon-theme.css">
 	<link rel="stylesheet" href="/emissary/stylesheets/neon/neon-forms.css">
-  <link rel="stylesheet" href="/emissary/stylesheets/visitors.css">
+  <link rel="stylesheet" href="/emissary/stylesheets/company-dashboard.css">
 
 </head>
 <body class="page-body gray" data-url="http://neon.dev">
@@ -52,15 +52,14 @@
 			<ul id="main-menu" class="main-menu">
 				<!-- add class "multiple-expanded" to allow multiple submenus to open -->
 				<!-- class "auto-inherit-active-class" will automatically add "active" class for parent elements who are marked already with class "active" -->
-				
-                <li>
+				<li>
 					<a href="admin-panel.html">
 						<i class="entypo-clipboard"></i>
 						<span class="title">Admin Panel</span>
 					</a>
 				</li>
                 <li>
-					<a href="#">
+					<a href="visitors.html">
 						<i class="entypo-users"></i>
 						<span class="title">Visitors</span>
 					</a>
@@ -94,7 +93,7 @@
 		</div>
 	</div>
 
-	<div class="main-content">
+    <div class="main-content">
 		<div class="row">
 			<!-- Profile Info and Notifications -->
 			<div class=" col-md-6 col-sm-8 clearfix">
@@ -102,7 +101,7 @@
 					<!-- Profile Info -->
 					<li class="profile-info dropdown"><!-- add class "pull-right" if you want to place this from right -->
 						<div id="company-name">
-							<h1>Hello, <span id="user-name"> </span></h1>
+							<h1>Hi admin, <span id="user-name"> </span></h1>
 						</div>
 					</li>
 				</ul>
@@ -125,69 +124,75 @@
 		</div>
 
 		<hr />
-		<div class="visitor-container" >
-      <div id="visitor-queue">
-        <h1 class="page-title">Visitors</h1>   
-        <table class="table">
-          <thead>
-            <tr>
-              <th st-sort="Name">First</th>
-              <th st-sort="Appointment">Last</th>
-              <th st-sort="Appointment">Appointment Time</th>
-              <th st-sort="Time">Check-in Time</th>
-            </tr>
-          </thead>
-
-          <tbody id= "visitor-list">
-            <!-- PATIENT QUEUE TEMPLATE GOES HERE -->
-            <div class="modal fade" id="myModal" role="dialog">
-              <div class="modal-dialog"></div>
+		<div class="company-dashboard-container" >
+            <div id="company-dashboard-queue">  
+                <ol class="breadcrumb bc-3">
+                    <li>
+                    <a href="admin-panel.html">
+                        <i class="entypo-folder"></i>
+                    Admin Panel
+                    </a>
+                    </li>
+                    <li class="active">Company Dashboard</li>
+                </ol>
             </div>
-          </tbody>
-        </table>
-      </div>
+        </div>
+   
+        <div class="row">
+            <div class="col-sm-4 col-xs-12">
+                <div class="tile-stats tile-red">
+				    <div class="icon"><i class="entypo-chart-line"></i></div>
+				    <div class="num" data-start="" data-end="" >0</div>
+				    <h3>Profit</h3>
+				    <p>All the revenue from this company</p>
+                </div>
+            </div>
+		
+            <div class="col-sm-4 col-xs-12">
+                <div class="tile-stats tile-green">
+				    <div class="icon"><i class="entypo-chart-bar"></i></div>
+				    <div class="num" data-start="0" data-end="">0</div>
+		
+				    <h3>Visits</h3>
+				    <p>The average number of visits</p>
+                </div>
+            </div>
+            <div class="clear visible-xs"></div>
+		
+            <div class="col-sm-4 col-xs-12">
+                <div class="tile-stats tile-aqua">
+				    <div class="icon"><i class=""></i></div>
+				    <div class="num" data-start="0" data-end="">0</div>
+				    <h3>Some other info</h3>
+				    <p>short description of infor</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="panel panel-primary" id="charts_line">
+
+            <div class="panel-heading">
+                <div class="panel-title">Line Chart</div>
+            </div>
+
+            <div class="panel-body"> 
+            </div>
+
+        </div>
+        
+        <div class="panel panel-primary" id="charts_pie">
+
+            <div class="panel-heading">
+                <div class="panel-title">Pie Chart</div>
+            </div>
+
+            <div class="panel-body"> 
+            </div>
+
+        </div>
+        
     </div>
-
-    <!-- HANDLE BAR TEMPLATES -->
-    <script type = "text/x-handlebars-template" id = "visitor-list-template">
-      {{#each []}}
-      <tr class="patient-check-out" data-toggle="modal" data-target="#myModal" value="{{this._id}}">
-          <td class="patient-queue-text">{{this.first_name}}</td>
-          <td class="patient-queue-text">{{this.last_name}}</td>
-          <td class="patient-queue-text appt-id">{{this.appointmentTime}}</td>
-          <td class="patient-queue-text"> {{this.checkin_time}}</td>
-  
-          <!-- Modal -->
-      </tr>
-      {{/each}}
-    </script>
-
-    <script type = "text/x-handlebars-template" id="visitor-info-template">
-      <div class="modal-content">
-        <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal">&times;</button>
-            <h1 class="modal-title">Check in visitor</h1>
-        </div>
-        <div class="modal-body" value = "{{this._id}}">
-			    <div class="modal-left" value = "{{this._apptId}}">
-    				<p><span>First:</span> {{this.first_name}}</p>
-    				<p><span>Last:</span> {{this.last_name}}</p>
-    				<p><span>Appointment Time:</span> {{this.appointmentTime}}</p>
-			    </div>
-    			<div class="modal-right">
-        		<p><span>Check-In Time:</span> {{this.checkin_time}}</p>
-        		<p><span>Phone Number:</span> {{this.phone_number}}</p>
-    			</div>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="check-in-btn btn btn-default" data-dismiss="modal">Remove</button>
-          <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-        </div>
-      </div>
-    </script>
-
-		</div>
-	</div>
+</div>
 
   <!-- Bottom scripts (common) -->
   <!-- script src="/emissary/js/shared.js"></script> -->

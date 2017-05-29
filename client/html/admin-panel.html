@@ -9,7 +9,7 @@
 
 	<link rel="icon" href="/images/logo-emissary.png">
 
-	<title>Emissary | Visitors</title>
+	<title>Emissary | Admin Panel</title>
 
 	<link rel="stylesheet" href="/emissary/stylesheets/font-icons/font-awesome/css/font-awesome.css">
   <link rel="stylesheet" href="/emissary/stylesheets/jquery/jquery-ui-1.10.3.custom.min.css">
@@ -19,7 +19,7 @@
 	<link rel="stylesheet" href="/emissary/stylesheets/neon/neon-core.css">
 	<link rel="stylesheet" href="/emissary/stylesheets/neon/neon-theme.css">
 	<link rel="stylesheet" href="/emissary/stylesheets/neon/neon-forms.css">
-  <link rel="stylesheet" href="/emissary/stylesheets/visitors.css">
+  <link rel="stylesheet" href="/emissary/stylesheets/admin-panel.css">
 
 </head>
 <body class="page-body gray" data-url="http://neon.dev">
@@ -52,15 +52,14 @@
 			<ul id="main-menu" class="main-menu">
 				<!-- add class "multiple-expanded" to allow multiple submenus to open -->
 				<!-- class "auto-inherit-active-class" will automatically add "active" class for parent elements who are marked already with class "active" -->
-				
-                <li>
-					<a href="admin-panel.html">
+				<li>
+					<a href="#">
 						<i class="entypo-clipboard"></i>
 						<span class="title">Admin Panel</span>
 					</a>
 				</li>
                 <li>
-					<a href="#">
+					<a href="visitors.html">
 						<i class="entypo-users"></i>
 						<span class="title">Visitors</span>
 					</a>
@@ -102,7 +101,7 @@
 					<!-- Profile Info -->
 					<li class="profile-info dropdown"><!-- add class "pull-right" if you want to place this from right -->
 						<div id="company-name">
-							<h1>Hello, <span id="user-name"> </span></h1>
+							<h1>Hi admin, <span id="user-name"> </span></h1>
 						</div>
 					</li>
 				</ul>
@@ -125,20 +124,20 @@
 		</div>
 
 		<hr />
-		<div class="visitor-container" >
-      <div id="visitor-queue">
-        <h1 class="page-title">Visitors</h1>   
+		<div class="admin-panel-container" >
+      <div id="admin-panel-queue">
+        <h1 class="page-title">Admin Panel</h1>   
         <table class="table">
           <thead>
             <tr>
-              <th st-sort="Name">First</th>
-              <th st-sort="Appointment">Last</th>
-              <th st-sort="Appointment">Appointment Time</th>
-              <th st-sort="Time">Check-in Time</th>
+              <th st-sort="Name">Company</th>
+              <th st-sort="Appointment">Duration of subscription</th>
+              <th st-sort="Appointment">Number of Employees</th>
+              <th st-sort="Time">Time of usage</th>
             </tr>
           </thead>
 
-          <tbody id= "visitor-list">
+          <tbody id= "admin-panel-list">
             <!-- PATIENT QUEUE TEMPLATE GOES HERE -->
             <div class="modal fade" id="myModal" role="dialog">
               <div class="modal-dialog"></div>
@@ -148,8 +147,13 @@
       </div>
     </div>
 
+    <a href="company-dashboard.html">
+        <span class="title">temp link to company dashboard page</span>
+    </a>    
+        
     <!-- HANDLE BAR TEMPLATES -->
-    <script type = "text/x-handlebars-template" id = "visitor-list-template">
+<!--
+    <script type = "text/x-handlebars-template" id = "admin-panel-list-template">
       {{#each []}}
       <tr class="patient-check-out" data-toggle="modal" data-target="#myModal" value="{{this._id}}">
           <td class="patient-queue-text">{{this.first_name}}</td>
@@ -157,16 +161,16 @@
           <td class="patient-queue-text appt-id">{{this.appointmentTime}}</td>
           <td class="patient-queue-text"> {{this.checkin_time}}</td>
   
-          <!-- Modal -->
+           Modal 
       </tr>
       {{/each}}
     </script>
 
-    <script type = "text/x-handlebars-template" id="visitor-info-template">
+    <script type = "text/x-handlebars-template" id="admin-panel-info-template">
       <div class="modal-content">
         <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal">&times;</button>
-            <h1 class="modal-title">Check in visitor</h1>
+            <h1 class="modal-title">Check in admin-panel</h1>
         </div>
         <div class="modal-body" value = "{{this._id}}">
 			    <div class="modal-left" value = "{{this._apptId}}">
@@ -185,6 +189,7 @@
         </div>
       </div>
     </script>
+-->
 
 		</div>
 	</div>
