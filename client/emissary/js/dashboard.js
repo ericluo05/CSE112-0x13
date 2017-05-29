@@ -43,7 +43,7 @@ $(document).ready(function() {
         }
 
         // Parse Visitors appoitments
-        for(i = 0; i < len; i++) {
+        for(let i = 0, len=visitorList.length; i < len; i++) {
           let appList = visitorList[i].appointments;
           if(appList[0]) {
             for(let j = 0, appLen = appList.length; j < appLen; j++) {
@@ -110,7 +110,7 @@ $(document).ready(function() {
      * Compare appointment Date to today's Date
      * @param {Date} appointment
      * @return {boolean}
-     */   
+     */
     function compareDate(appointment) {
       let today = new Date();
       appointment = new Date(Date.parse(appointment));
@@ -118,7 +118,7 @@ $(document).ready(function() {
       let appointmentDate = appointment.getFullYear() +
           ' ' + appointment.getDate() +
           ' ' + appointment.getMonth();
-        
+
       let todayDate = today.getFullYear() +
           ' ' + today.getDate() +
           ' ' + today.getMonth();
@@ -173,6 +173,4 @@ $(document).ready(function() {
     $('#logoutButton').on('click', function() {
       localStorage.setItem('userState', 0);
     });
-
-
 });
