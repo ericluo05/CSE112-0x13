@@ -1,6 +1,6 @@
 module.exports = {
     "development":{
-        mongoDBUrl: 'mongodb://localhost:27017/team0x13',
+        mongoDBUrl: process.env.CUSTOMDB || 'mongodb://localhost:27017/team0x13',
         secret: 'areyoucuriousnow?'
     },
     "production": {
