@@ -183,3 +183,40 @@ function showCompanyPublicInfo(c) {
         paid_time: c.paid_time,
     };
 }
+
+/**
+ * @function getSubDuration
+ * @description user data analystic for admin panel
+ * @param {Object} req - request object
+ * @param {Object} res - response object
+ * @return {CompanyInfoAdmin} duration of subscription in days
+ */
+exports.getSubDuration = function(req, res) {
+    Company.findById(req.params.id, function(err, c) {
+        if(err)
+            res.status(400).json({error: 'Could Not Find'});
+        let cur_time = new Date();
+        let sub_time = company.paid_time;
+        c.sub_duration = (cur_time - sub_time) / 1000 * 60 * 60 * 24;
+        // TODO: probably need to check flag such as isSubscribed
+        return res.status(200).json(showCompanyPrivateInfo(c));
+    });
+};
+
+/**
+ * @private
+ * @function showCompanyPrivateInfo
+ * @description convert company info into array
+ * @param {Object} c - company object
+ * @return {CompanyInfoAdmin} company info object
+ */
+function showCompanyPrivateInfo(c) {
+    return {
+        _id: c._id,
+        name: c.name,
+        email: c.email,
+        phone_number: c.phone_number,
+        paid_time: c.paid_time,
+        sub_duration: c.sub_duration,
+    };
+}

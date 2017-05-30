@@ -15,6 +15,7 @@ let companySchema = new Schema({
     name: {type: String, required: true},
     phone_number: {type: String, required: true},
     paid_time: {type: Date, required: true},
+    sub_duration: {type: Number},
 });
 
 // create the model for users and expose it to our app
