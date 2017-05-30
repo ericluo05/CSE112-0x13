@@ -89,4 +89,18 @@ router.delete('/:id', controller.delete);
  */
 router.put('/setting/:user', controller.resetCredentials);
 
+/**
+ *
+ * @api {put} /company/:id getSubDuration
+ * @apiDescription Get user subscription duration for admin panel
+ * @apiName CompanyGetSubDuration
+ * @apiGroup Company
+ *
+ * @apiParam {companyID} ID the companies ID
+ * @apiSuccess {JSON} companyPrivateInfo the companies info in JSON format
+ * @apiError CouldNotFind wrong company ID
+ * @apiError CouldnotSave a connection problem
+ */
+router.put('/:id', controller.getSubDuration);
+
 module.exports = router;

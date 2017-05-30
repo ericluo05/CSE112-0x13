@@ -195,9 +195,9 @@ exports.getSubDuration = function(req, res) {
     Company.findById(req.params.id, function(err, c) {
         if(err)
             res.status(400).json({error: 'Could Not Find'});
-        let cur_time = new Date();
-        let sub_time = company.paid_time;
-        c.sub_duration = (cur_time - sub_time) / 1000 * 60 * 60 * 24;
+        let curTime = new Date();
+        let subTime = company.paid_time;
+        c.sub_duration = (curTime - subTime) / 1000 * 60 * 60 * 24;
         // TODO: probably need to check flag such as isSubscribed
         return res.status(200).json(showCompanyPrivateInfo(c));
     });
