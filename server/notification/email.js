@@ -37,8 +37,8 @@ exports.sendEmail = function(patientName, employees, done) {
       from: '"Emissary" <cse112team0x13@gmail.com>', // sender address
       to: employees[index].email, // list of receivers
       subject: subject, // Subject line
-      text: 'Visitor ' + patientName + ' is here.', // plaintext body
-      html: '<b>Visitor ' + patientName + ' is here.</b>', // html body
+      text: patientName + ' is here.', // plaintext body
+      html: '<b>' + patientName + ' is here.</b>', // html body
     };
 
     // send mail with defined transport object

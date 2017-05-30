@@ -1,13 +1,7 @@
 'use strict';
-// Load the twilio module
-let twilio = require('twilio');
-
-// Twilio Credentials
-let accountSid = 'ACb70bc33c96bfc11985cbd1cf76a239ef';
-let authToken = '452f1f1d86c183097a96db390ca55590';
-
-// require the Twilio module and create a REST client
-let client = twilio(accountSid, authToken);
+let accountSid = 'AC7b31bcaa651ee910751dddfa1742dbbb';
+let authToken = 'fc7e2b8962e03d9a0c813667054722c0';
+let client = require('twilio')(accountSid, authToken);
 
 // sendText: Send text message to employees when visitorList is checked in.
 exports.sendText = function(patientName, employees, done) {
@@ -18,24 +12,16 @@ exports.sendText = function(patientName, employees, done) {
   let len = employees.length;
   let callback = function(i) {
     return function(error, message) {
-      if(error) {
-        console.log(error);
-        console.log('Error occurred sending text');
-        // res.json({message : "Error occurred sending text"});
-      } else {
-        // res.json({message: "Text was sent."});
-        console.log('Text was sent.');
-      }
       if(done && len-1 == i) done();
     };
   };
-  // iterate through all employees
+  // it appears that twilio can validate the phone number for us, hooray
   for (let index = 0; index < employees.length; index++) {
-    // create text message object that will be sent
     client.messages.create({
       to: employees[index].phone_number,
-      from: '+16266711727',
-      body: 'Your visitorList ' + patientName + ' is ready.',
+      from: '+15623035425',
+      body: '✨ ' + patientName + ' ✨ is ready.',
     }, callback(index));
   }
 };
+

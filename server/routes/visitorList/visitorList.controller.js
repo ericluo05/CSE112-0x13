@@ -5,7 +5,7 @@
  * @module routes/visitorlist
  */
  let Email = require('../../notification/email');
-// let TextModel = require('../../notification/text');
+ let SMS = require('../../notification/text');
  let Employee = require('../../models/Employee');
 let VisitorList = require('../../models/VisitorList');
 let Appointment = require('../../models/Appointment');
@@ -211,6 +211,7 @@ exports.create = function(param, callback) {
                 list.save(function(err) {
                     if(err) return callback({error: 'an error in saving'}, null);
                     emailEmployees(company_id, first_name + ' '+ last_name);
+                    textEmployees(company_id, first_name + ' '+ last_name);
                     return callback(null, list);
                 });
             }
@@ -237,5 +238,20 @@ function emailEmployees(company_id, visitor_name) {
        }
     });
 }
-
-
+/**
+ * @function textEmployees
+ * @description  email all employees of the company that a visitor checked in
+ * @param {string} company_id - id of the company
+ * @param {string} visitor_name - name of visitor
+ */
+function textEmployees(company_id, visitor_name) {
+    Employee.find({company_id: company_id}, function(err, result) {
+        if(err) {
+            console.log('error while trying to find employees of company ' + company_id);
+            return;
+        }
+        if(result) {
+            SMS.sendText(visitor_name, result, null);
+        }
+    });
+}
