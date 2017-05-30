@@ -6,6 +6,91 @@ define({ "api": [
     "description": "<p>This is used for Creating an appointment. Look at appointment.controller.js create for more info</p>",
     "name": "AppointmentCreate",
     "group": "Appointment",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "first_name",
+            "description": "<p>first name of person</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "last_name",
+            "description": "<p>last name of person</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "phone_number",
+            "description": "<p>phone number of person</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Date",
+            "optional": false,
+            "field": "date",
+            "description": "<p>date of appointment</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "int",
+            "optional": false,
+            "field": "company_id",
+            "description": "<p>id of the company that this appointment belongs to</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "provider_name",
+            "description": "<p>Don't know</p>"
+          }
+        ]
+      }
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "JSON",
+            "optional": false,
+            "field": "appointment",
+            "description": "<p>the newly created appointment</p>"
+          }
+        ]
+      }
+    },
+    "error": {
+      "fields": {
+        "Error 4xx": [
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "CouldNotFind",
+            "description": "<p>no company exists with that company ID</p>"
+          },
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "CouldNotSave",
+            "description": "<p>failed connection</p>"
+          },
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "AlreadyCreated",
+            "description": "<p>an appointment already exists at that time</p>"
+          }
+        ]
+      }
+    },
     "version": "0.0.0",
     "filename": "server/routes/appointment/index.js",
     "groupTitle": "Appointment"
@@ -17,6 +102,44 @@ define({ "api": [
     "description": "<p>This is for getting all existant appointments. Look at appointment.controller.js getAll for more info</p>",
     "name": "AppointmentCreate",
     "group": "Appointment",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "int",
+            "optional": false,
+            "field": "id",
+            "description": "<p>the ID for a company</p>"
+          }
+        ]
+      }
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "JSON",
+            "optional": false,
+            "field": "allAppointments",
+            "description": "<p>The set of all appointments for a company</p>"
+          }
+        ]
+      }
+    },
+    "error": {
+      "fields": {
+        "Error 4xx": [
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "CouldNotFind",
+            "description": "<p>company doesn't exist</p>"
+          }
+        ]
+      }
+    },
     "version": "0.0.0",
     "filename": "server/routes/appointment/index.js",
     "groupTitle": "Appointment"
@@ -28,6 +151,50 @@ define({ "api": [
     "description": "<p>This is used for deleting an appointment. Look at appointment.controller.js delete for more info</p>",
     "name": "AppointmentDelete",
     "group": "Appointment",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "int",
+            "optional": false,
+            "field": "id",
+            "description": "<p>the ID for an appointment</p>"
+          }
+        ]
+      }
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "JSON",
+            "optional": false,
+            "field": "appointment",
+            "description": "<p>JSON for the appointment you just deleted</p>"
+          }
+        ]
+      }
+    },
+    "error": {
+      "fields": {
+        "Error 4xx": [
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "CouldNotSave",
+            "description": "<p>connection Error</p>"
+          },
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "CouldNotFind",
+            "description": "<p>no such id</p>"
+          }
+        ]
+      }
+    },
     "version": "0.0.0",
     "filename": "server/routes/appointment/index.js",
     "groupTitle": "Appointment"
@@ -39,6 +206,44 @@ define({ "api": [
     "description": "<p>This is used for looking up existant appointments. Look at appointment.controller.js get for more info</p>",
     "name": "AppointmentGet",
     "group": "Appointment",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "int",
+            "optional": false,
+            "field": "id",
+            "description": "<p>the ID of the appointment you seek</p>"
+          }
+        ]
+      }
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "JSON",
+            "optional": false,
+            "field": "appointment",
+            "description": "<p>the appointment with that id</p>"
+          }
+        ]
+      }
+    },
+    "error": {
+      "fields": {
+        "Error 4xx": [
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "CouldNotFind",
+            "description": "<p>appointment does not exist</p>"
+          }
+        ]
+      }
+    },
     "version": "0.0.0",
     "filename": "server/routes/appointment/index.js",
     "groupTitle": "Appointment"
@@ -50,6 +255,92 @@ define({ "api": [
     "description": "<p>This is used for updating an appointment. Look at appointment.controller.js update for more info</p>",
     "name": "AppointmentUpdate",
     "group": "Appointment",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "int",
+            "optional": false,
+            "field": "id",
+            "description": "<p>the ID for an appointment</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "first_name",
+            "description": "<p>first name of person</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "last_name",
+            "description": "<p>last name of person</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "phone_number",
+            "description": "<p>phone number of person</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Date",
+            "optional": false,
+            "field": "date",
+            "description": "<p>date of appointment</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "int",
+            "optional": false,
+            "field": "company_id",
+            "description": "<p>id of the company that this appointment belongs to</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "provider_name",
+            "description": "<p>Don't know</p>"
+          }
+        ]
+      }
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "JSON",
+            "optional": false,
+            "field": "appointment",
+            "description": "<p>the new updated appointment</p>"
+          }
+        ]
+      }
+    },
+    "error": {
+      "fields": {
+        "Error 4xx": [
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "CouldNotFind",
+            "description": "<p>could not find appointment with that ID</p>"
+          },
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "CouldNotSave",
+            "description": "<p>connection error</p>"
+          }
+        ]
+      }
+    },
     "version": "0.0.0",
     "filename": "server/routes/appointment/index.js",
     "groupTitle": "Appointment"
@@ -229,6 +520,68 @@ define({ "api": [
             "optional": false,
             "field": "companyInfo",
             "description": "<p>all the companies info in JSON format</p>"
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "server/routes/company/index.js",
+    "groupTitle": "Company"
+  },
+  {
+    "type": "get",
+    "url": "/company/dur/:id",
+    "title": "getSubDuration",
+    "description": "<p>Get user subscription duration for admin panel</p>",
+    "examples": [
+      {
+        "title": "Example usage:",
+        "content": "curl -i http://localhost/compnay/dur/id5",
+        "type": "curl"
+      }
+    ],
+    "name": "CompanyGetSubDuration",
+    "group": "Company",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "companyID",
+            "optional": false,
+            "field": "ID",
+            "description": "<p>the companies ID</p>"
+          }
+        ]
+      }
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "JSON",
+            "optional": false,
+            "field": "companyPrivateInfo",
+            "description": "<p>the companies info in JSON format</p>"
+          }
+        ]
+      }
+    },
+    "error": {
+      "fields": {
+        "Error 4xx": [
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "CouldNotFind",
+            "description": "<p>wrong company ID</p>"
+          },
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "CouldnotSave",
+            "description": "<p>a connection problem</p>"
           }
         ]
       }
