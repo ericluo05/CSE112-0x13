@@ -37,7 +37,6 @@ $(document).ready(function() {
             companies.push(comp);
           }
         }
-        // console.log(companies);
       }
     });
     return companies;
@@ -94,6 +93,21 @@ $(document).ready(function() {
     return totalLen;
   }
   
+  $('.company-row').click(function() {
+    console.log($(this).attr('value'));
+    $.ajax({
+       type: 'GET',
+       url: 'api/companies/' + $(this).attr('value'),
+       data: $('#response').serialize(),
+       async: false,
+       dataType: 'json',
+       success: function(response) {
+           localStorage.setItem('currentCompany', JSON.stringify(response));
+       },
+    });
+    window.location = "company-dashboard.html";
+  });
+
   $('#logoutButton').on('click', function() {
     localStorage.setItem('userState', 0);
   });

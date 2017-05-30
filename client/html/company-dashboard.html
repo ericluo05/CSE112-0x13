@@ -31,7 +31,7 @@
       <header class="logo-env">
 				<!-- logo -->
 				<div class="logo">
-					<a href="#">
+					<a href="admin-panel.html">
 						<img src="/images/emissary.png" width="150" alt="logo" />
 					</a>
 				</div>
@@ -58,42 +58,12 @@
 						<span class="title">Admin Panel</span>
 					</a>
 				</li>
-                <li>
-					<a href="visitors.html">
-						<i class="entypo-users"></i>
-						<span class="title">Visitors</span>
-					</a>
-				</li>
-				<li>
-					<a href="employees.html">
-						<i class="entypo-user"></i>
-						<span class="title">Employees</span>
-					</a>
-				</li>
-				<li>
-					<a href="appointments.html">
-						<i class="entypo-calendar"></i>
-						<span class="title">Appointments</span>
-					</a>
-				</li>
-				<li>
-					<a href="form-builder.html">
-						<i class="entypo-clipboard"></i>
-						<span class="title">Forms</span>
-					</a>
-				</li>
-				<li>
-					<a href="settings.html">
-						<i class="entypo-tools"></i>
-						<span class="title">Settings</span>
-					</a>
-				</li>
 			</ul>
 
 		</div>
 	</div>
 
-    <div class="main-content">
+  <div class="main-content">
 		<div class="row">
 			<!-- Profile Info and Notifications -->
 			<div class=" col-md-6 col-sm-8 clearfix">
@@ -101,7 +71,7 @@
 					<!-- Profile Info -->
 					<li class="profile-info dropdown"><!-- add class "pull-right" if you want to place this from right -->
 						<div id="company-name">
-							<h1>Hi admin, <span id="user-name"> </span></h1>
+							<h1>Hi, <span id="user-name"> </span></h1>
 						</div>
 					</li>
 				</ul>
@@ -113,7 +83,6 @@
 					<div class="dropdown">
             <i class="fa fa-3x fa-cog dropdown-toggle" data-toggle="dropdown"></i>
               <ul class="dropdown-menu">
-                <li><a href="checkin.html">Check-In</a></li>
                 <li><a id="logoutButton" href="index.html">
                   Log Out <i class="entypo-logout right"></i></a>
                 </li>
@@ -124,78 +93,70 @@
 		</div>
 
 		<hr />
-		<div class="company-dashboard-container" >
-            <div id="company-dashboard-queue">  
-                <ol class="breadcrumb bc-3">
-                    <li>
-                    <a href="admin-panel.html">
-                        <i class="entypo-folder"></i>
-                    Admin Panel
-                    </a>
-                    </li>
-                    <li class="active">Company Dashboard</li>
-                </ol>
-            </div>
-        </div>
-   
-        <div class="row">
-            <div class="col-sm-4 col-xs-12">
-                <div class="tile-stats tile-red">
-				    <div class="icon"><i class="entypo-chart-line"></i></div>
-				    <div class="num" data-start="" data-end="" >0</div>
-				    <h3>Profit</h3>
-				    <p>All the revenue from this company</p>
-                </div>
-            </div>
-		
-            <div class="col-sm-4 col-xs-12">
-                <div class="tile-stats tile-green">
-				    <div class="icon"><i class="entypo-chart-bar"></i></div>
-				    <div class="num" data-start="0" data-end="">0</div>
-		
-				    <h3>Visits</h3>
-				    <p>The average number of visits</p>
-                </div>
-            </div>
-            <div class="clear visible-xs"></div>
-		
-            <div class="col-sm-4 col-xs-12">
-                <div class="tile-stats tile-aqua">
-				    <div class="icon"><i class=""></i></div>
-				    <div class="num" data-start="0" data-end="">0</div>
-				    <h3>Some other info</h3>
-				    <p>short description of infor</p>
-                </div>
-            </div>
-        </div>
-
-        <div class="panel panel-primary" id="charts_line">
-
-            <div class="panel-heading">
-                <div class="panel-title">Line Chart</div>
-            </div>
-
-            <div class="panel-body"> 
-            </div>
-
-        </div>
-        
-        <div class="panel panel-primary" id="charts_pie">
-
-            <div class="panel-heading">
-                <div class="panel-title">Pie Chart</div>
-            </div>
-
-            <div class="panel-body"> 
-            </div>
-
-        </div>
-        
+		<div class="company-dashboard-container">
+      <div id="company-dashboard-queue">  
+        <ol class="breadcrumb bc-3">
+          <li><a href="admin-panel.html">
+            <i class="entypo-folder"></i>Admin Panel
+          </a></li>
+          <li class="active">Company Dashboard</li>
+        </ol>
+        <h1 class="page-title"><span id="comp-name"> </span></h1>   
+      </div>
     </div>
+   
+    <div class="row">
+      <div class="col-sm-4 col-xs-12">
+        <div class="tile-stats tile-red">
+          <div class="icon"><i class="entypo-chart-line"></i></div>
+          <div class="num" data-start="" data-end="" >0</div>
+          <h3>Profit</h3>
+          <p>Total revenue from this company</p>
+        </div>
+      </div>
+
+      <div class="col-sm-4 col-xs-12">
+        <div class="tile-stats tile-green">
+          <div class="icon"><i class="entypo-chart-bar"></i></div>
+          <div class="num" data-start="0" data-end="">0</div>
+          <h3>Visits</h3>
+          <p>Average number of visits</p>
+        </div>
+      </div>
+      
+      <div class="clear visible-xs"></div>
+
+      <div class="col-sm-4 col-xs-12">
+        <div class="tile-stats tile-aqua">
+          <div class="icon"><i class="entypo-hourglass"></i></div>
+          <div class="num" data-start="0" data-end="">0</div>
+          <h3>Session Length</h3>
+          <p>Average length of sessions</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="panel panel-primary" id="charts_line">
+      <div class="panel-heading">
+        <div class="panel-title">Number of Sessions</div>
+      </div>
+      <div class="panel-body"> 
+      </div>
+    </div>
+    
+    <div class="panel panel-primary" id="charts_line">
+      <div class="panel-heading">
+        <div class="panel-title">Session Length</div>
+      </div>
+      <div class="panel-body"> 
+      </div>
+    </div>
+        
+  </div>
 </div>
 
   <!-- Bottom scripts (common) -->
-  <script src="/emissary/js/shared.js"></script>
+  <script src="/emissary/js/admin-login.js"> </script>
   <script src="/emissary/js/js_libs/jquery/jquery-1.11.3.min.js"></script>
   <script src="/emissary/js/js_libs/TweenMax.min.js"></script>
   <script src="/emissary/js/js_libs/jquery/jquery-ui-1.10.3.minimal.min.js"></script>
@@ -203,7 +164,7 @@
   <script src="/emissary/js/js_libs/joinable.js"></script>
   <script src="/emissary/js/js_libs/resizeable.js"></script>
   <script src="/emissary/js/js_libs/neon/neon-api.js"></script>
-  <script src="/emissary/js/dashboard.js"> </script>
+  <script src="/emissary/js/company-dashboard.js"> </script>
 
   <!-- JavaScripts initializations and stuff -->
   <script src="/emissary/js/js_libs/neon/neon-custom.js"></script>

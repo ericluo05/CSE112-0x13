@@ -95,12 +95,12 @@
 		<hr />
 		<div class="admin-panel-container" >
       <div id="admin-panel-queue">
-        <h1 class="page-title">Admin Panel</h1>   
+        <h1 class="page-title">Admin Panel</h1>
         <table class="table">
           <thead>
             <tr>
               <th>Company</th>
-              <th>Duration of subscription</th>
+              <th>Duration of Subscription</th>
               <th>Number of Employees</th>
             </tr>
           </thead>
@@ -114,22 +114,19 @@
     <!-- HANDLE BAR TEMPLATE -->
     <script type = "text/x-handlebars-template" id = "company-list-template">
       {{#each []}}
-      <tr class="company-row">
-        <td class="company-data">{{this.name}}</td>
-        <td class="company-data">{{this.subLength}}</td>
-        <td class="company-data">{{this.employeeNum}}</td>
+      <tr class="company-row" value="{{this.compId}}"> 
+          <td class="company-data">{{this.name}}</td>
+          <td class="company-data">{{this.subLength}}</td>
+          <td class="company-data">{{this.employeeNum}}</td>
       </tr>
       {{/each}}
     </script>
 
-    <a href="company-dashboard.html">
-        <span class="title">temp link to company dashboard page</span>
-    </a>    
-        
 		</div>
 	</div>
 
   <!-- Bottom scripts (common) -->
+  <script src="/emissary/js/admin-login.js"> </script>
   <script src="/emissary/js/js_libs/jquery/jquery-1.11.3.min.js"></script>
   <script src="/emissary/js/js_libs/TweenMax.min.js"></script>
   <script src="/emissary/js/js_libs/jquery/jquery-ui-1.10.3.minimal.min.js"></script>

@@ -151,8 +151,8 @@ body .carousel-inner > .active {
   display: table-cell;
   position: relative;
   vertical-align: middle;
-  padding-top: 40px;
-  padding-bottom: 40px;
+  padding-top: 20px;
+  padding-bottom: 20px;
 }
 .site-header .site-logo a {
   display: inline-block;
