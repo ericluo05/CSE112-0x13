@@ -33,13 +33,13 @@ function ajaxPostUser(url, data) {
            console.log(response);
            if(response.role == 'a_admin') {
              localStorage.setItem('userState', 2);
-             location.href = '/admin-dashboard.html';
+             location.href = '/admin-panel.html';
            } else{
              localStorage.setItem('userState', 1);
-             localStorage.setItem('currentUser', JSON.stringify(response));
-             ajaxGetCompanyInfo('/api/companies/' + response.company_id);
              location.href = '/visitors.html';
-         }
+           }
+           localStorage.setItem('currentUser', JSON.stringify(response));
+           ajaxGetCompanyInfo('/api/companies/' + response.company_id);
        },
        error: function() {
            window.onerror=handleError();
