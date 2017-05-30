@@ -17,7 +17,8 @@ bodyparser.urlencoded({
  * @apiName FindFormByCompanyId
  * @apiGroup Form
  * @apiParam {id} CompanyID the ID of the company we want to see.
- * @apiSuccess {JSON} form the form containing the particular public company info in JSON format.
+ * @apiSuccess {JSON} form the form containing the particular public company 
+ * info in JSON format.
  * @apiError {JSON} error There was an error finding the template form.
  */
 router.get('/template/company/:id', controller.findByCompanyId);
@@ -70,7 +71,8 @@ router.put('/template', controller.update);
  * @apiName DeleteTemplateByTemplateId
  * @apiGroup Form
  * @apiParam {template_id} TemplateID the ID of the template we want to delete.
- * @apiSuccess {JSON} A success code from the TemplateForm.findOneAndRemove() call, in JSON format.
+ * @apiSuccess {JSON} A success code from the TemplateForm.findOneAndRemove() 
+ * call, in JSON format.
  * @apiError {JSON} error Need a template id.
  * @apiError {JSON} error There was problem removing the form template.
  */
