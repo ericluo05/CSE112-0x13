@@ -5,7 +5,7 @@ let router = new express.Router();
 
 /**
  *
- * @api {post} /company/ create
+ * @api {post} /api/companies/create
  * @apiDescription This is used for user sign up. Account creation.
  * @apiName CompanyCreate
  * @apiGroup Company
@@ -19,7 +19,7 @@ router.post('/', controller.create);
 
 /**
  *
- * @api {get}  /company/:id get
+ * @api {get}  /api/companies/:id get
  * @apiDescription This is used for user login
  * @apiName CompanyGet
  * @apiGroup Company
@@ -33,7 +33,7 @@ router.get('/:id', controller.get);
 
 /**
  *
- * @api {get} /company/ getAll
+ * @api {get} /api/companies/ getAll
  * @apiDescription This is used to acquire all companies public info
  * @apiName CompanyGetAll
  * @apiGroup Company
@@ -45,7 +45,7 @@ router.get('/', controller.getAll);
 
 /**
  *
- * @api {put} /company/:id update
+ * @api {put} /api/companies/:id update
  * @apiDescription Change the info for a company
  * @apiName CompanyUpdate
  * @apiGroup Company
@@ -61,7 +61,7 @@ router.put('/:id', controller.update);
 
 /**
  *
- * @api {delete} /company/:id delete
+ * @api {delete} /api/companies/:id delete
  * @apiDescription deletes a comapny from company db
  * @apiName CompanyDelete
  * @apiGroup Company
@@ -75,7 +75,7 @@ router.delete('/:id', controller.delete);
 
 /**
  *
- * @api {put} /company/setting/:user resetCredentials
+ * @api {put} /api/companies/setting/:user resetCredentials
  * @apiDescription Change the info for a user in a company
  * @apiName CompanyResetCredentials
  * @apiGroup Company
@@ -91,18 +91,40 @@ router.put('/setting/:user', controller.resetCredentials);
 
 /**
  *
- * @api {get} /company/dur/:id getSubDuration
+ * @api {get} /api/companies/dur/:id getSubDuration
  * @apiDescription Get user subscription duration for admin panel
  * @apiExample {curl} Example usage:
- *              curl -i http://localhost/company/dur/IDhere123456
+ *              curl -i http://localhost/api/companies/dur/IDhere123456
  * @apiName CompanyGetSubDuration
  * @apiGroup Company
  *
- * @apiParam {companyID} ID the companies ID
+ * @apiParam {string} ID the companies ID
  * @apiSuccess {JSON} companyPrivateInfo the companies info in JSON format
  * @apiError CouldNotFind wrong company ID
  * @apiError CouldnotSave a connection problem
  */
 router.get('/dur/:id', controller.getSubDuration);
+
+/**
+ *
+ * @api {get} /api/companies/search/:match searchCompanies
+ * @apiDescription Search for companies that contains user-inputted string
+ * @apiExample {curl} Example usage:
+ *               This will search for all companies whose name has 'Emis' in it
+ *              curl -i http://localhost/api/companies/search/Emis
+ * @apiName SearchForCompanies
+ * @apiGroup Company
+ *
+ * @apiParam {string} match String to search for in companies
+ * @apiSuccess {Company[]} Companies Companies in JSON format
+ * @apiSuccess {string} Companies.name Name of company
+ * @apiSuccess {string} Companies._id id of company
+ * @apiSuccess {time} Companies.paid_time Time in which the company last made a payment
+ * @apiSuccess {string} Companies.phone_number the company's phone number
+ * @apiSuccess {string} Companies.email the company's email
+ * @apiSuccess {uhh} Companies._v No idea what this is for
+ * @apiError CouldNotSearch database error
+ */
+router.get('/search/:match', controller.searchCompanies);
 
 module.exports = router;

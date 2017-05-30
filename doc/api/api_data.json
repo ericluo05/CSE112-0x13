@@ -347,8 +347,8 @@
   },
   {
     "type": "post",
-    "url": "/company/",
-    "title": "create",
+    "url": "/api/companies/create",
+    "title": "",
     "description": "<p>This is used for user sign up. Account creation.</p>",
     "name": "CompanyCreate",
     "group": "Company",
@@ -396,7 +396,7 @@
   },
   {
     "type": "delete",
-    "url": "/company/:id",
+    "url": "/api/companies/:id",
     "title": "delete",
     "description": "<p>deletes a comapny from company db</p>",
     "name": "CompanyDelete",
@@ -451,7 +451,7 @@
   },
   {
     "type": "get",
-    "url": "/company/:id",
+    "url": "/api/companies/:id",
     "title": "get",
     "description": "<p>This is used for user login</p>",
     "name": "CompanyGet",
@@ -506,7 +506,7 @@
   },
   {
     "type": "get",
-    "url": "/company/",
+    "url": "/api/companies/",
     "title": "getAll",
     "description": "<p>This is used to acquire all companies public info</p>",
     "name": "CompanyGetAll",
@@ -530,13 +530,13 @@
   },
   {
     "type": "get",
-    "url": "/company/dur/:id",
+    "url": "/api/companies/dur/:id",
     "title": "getSubDuration",
     "description": "<p>Get user subscription duration for admin panel</p>",
     "examples": [
       {
         "title": "Example usage:",
-        "content": "curl -i http://localhost/compnay/dur/id5",
+        "content": "curl -i http://localhost/api/companies/dur/IDhere123456",
         "type": "curl"
       }
     ],
@@ -547,7 +547,7 @@
         "Parameter": [
           {
             "group": "Parameter",
-            "type": "companyID",
+            "type": "string",
             "optional": false,
             "field": "ID",
             "description": "<p>the companies ID</p>"
@@ -592,7 +592,7 @@
   },
   {
     "type": "put",
-    "url": "/company/setting/:user",
+    "url": "/api/companies/setting/:user",
     "title": "resetCredentials",
     "description": "<p>Change the info for a user in a company</p>",
     "name": "CompanyResetCredentials",
@@ -661,7 +661,7 @@
   },
   {
     "type": "put",
-    "url": "/company/:id",
+    "url": "/api/companies/:id",
     "title": "update",
     "description": "<p>Change the info for a company</p>",
     "name": "CompanyUpdate",
@@ -713,6 +713,104 @@
             "optional": false,
             "field": "CouldnotSave",
             "description": "<p>a connection problem</p>"
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "server/routes/company/index.js",
+    "groupTitle": "Company"
+  },
+  {
+    "type": "get",
+    "url": "/api/companies/search/:match",
+    "title": "searchCompanies",
+    "description": "<p>Search for companies that contains user-inputted string</p>",
+    "examples": [
+      {
+        "title": "Example usage:",
+        "content": " This will search for all companies with 'Emis' in their names\ncurl -i http://localhost/api/companies/search/Emis",
+        "type": "curl"
+      }
+    ],
+    "name": "SearchForCompanies",
+    "group": "Company",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "string",
+            "optional": false,
+            "field": "match",
+            "description": "<p>String to search for in companies</p>"
+          }
+        ]
+      }
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "Company[]",
+            "optional": false,
+            "field": "Companies",
+            "description": "<p>Companies in JSON format</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "string",
+            "optional": false,
+            "field": "Companies.name",
+            "description": "<p>Name of company</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "string",
+            "optional": false,
+            "field": "Companies._id",
+            "description": "<p>id of company</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "time",
+            "optional": false,
+            "field": "Companies.paid_time",
+            "description": "<p>Time in which the company last made a payment</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "string",
+            "optional": false,
+            "field": "Companies.phone_number",
+            "description": "<p>the company's phone number</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "string",
+            "optional": false,
+            "field": "Companies.email",
+            "description": "<p>the company's email</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "uhh",
+            "optional": false,
+            "field": "Companies._v",
+            "description": "<p>No idea what this is for</p>"
+          }
+        ]
+      }
+    },
+    "error": {
+      "fields": {
+        "Error 4xx": [
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "CouldNotSearch",
+            "description": "<p>database error</p>"
           }
         ]
       }

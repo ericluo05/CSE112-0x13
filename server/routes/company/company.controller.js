@@ -193,12 +193,27 @@ function showCompanyPublicInfo(c) {
 exports.getSubDuration = function(req, res) {
     Company.findById(req.params.id, function(err, c) {
         if(err)
-            res.status(400).json({error: 'Could Not Find'});
+            return res.status(400).json({error: 'Could Not Find'});
         let curTime = new Date();
         let subTime = company.paid_time;
         c.sub_duration = (curTime - subTime) / 1000 * 60 * 60 * 24;
         // TODO: probably need to check flag such as isSubscribed
         return res.status(200).json(showCompanyPrivateInfo(c));
+    });
+};
+
+/**
+ * @function searchCompanies
+ * @description search company given string to match
+ * @param {Object} req - request object
+ * @param {Object} res - response object
+ */
+exports.searchCompanies = function(req, res) {
+    let regexToSearch = new RegExp('.*'+req.params.match.trim()+'.*');
+    Company.find({name: regexToSearch}, function(error, result) {
+       if(error)
+           return res.status(400).json({error: 'CouldNotSearch '});
+       return res.json(result);
     });
 };
 
@@ -219,3 +234,5 @@ function showCompanyPrivateInfo(c) {
         sub_duration: c.sub_duration,
     };
 }
+
+
