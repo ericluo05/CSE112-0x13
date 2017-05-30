@@ -189,7 +189,6 @@ function showCompanyPublicInfo(c) {
  * @description user data analystic for admin panel
  * @param {Object} req - request object
  * @param {Object} res - response object
- * @return {CompanyInfoAdmin} duration of subscription in days
  */
 exports.getSubDuration = function(req, res) {
     Company.findById(req.params.id, function(err, c) {
