@@ -91,7 +91,7 @@ router.put('/setting/:user', controller.resetCredentials);
 
 /**
  *
- * @api {put} /company/:id getSubDuration
+ * @api {get} /company/:id getSubDuration
  * @apiDescription Get user subscription duration for admin panel
  * @apiName CompanyGetSubDuration
  * @apiGroup Company
@@ -101,6 +101,6 @@ router.put('/setting/:user', controller.resetCredentials);
  * @apiError CouldNotFind wrong company ID
  * @apiError CouldnotSave a connection problem
  */
-router.put('/:id', controller.getSubDuration);
+router.get('/:id', controller.getSubDuration);
 
 module.exports = router;
