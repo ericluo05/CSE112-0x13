@@ -1,253 +1,238 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<script>
-        if(localStorage.userState != 2)
-            location.href= "login.html";
-	</script>
-	
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1" />
-	<meta name="description" content="Admin Panel" />
-	<meta name="author" content="" />
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Admin Panel" />
+  <meta name="author" content="" />
 
-	<link rel="icon" href="assets/images/logo-emissary.png">
+  <link rel="icon" href="assets/images/logo-emissary.png">
 
-	<title>Admin | Settings</title>
+  <title>Admin | Settings</title>
 
-	<link rel="stylesheet" href="/emissary/stylesheets/jquery/jquery-ui-1.10.3.custom.min.css">
-	<link rel="stylesheet" href="/emissary/stylesheets/font-icons/entypo/css/entypo.css">
-	<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Noto+Sans:400,700,400italic">
-	<link rel="stylesheet" href="/emissary/stylesheets/libs/bootstrap.css">
-	<link rel="stylesheet" href="/emissary/stylesheets/neon/neon-core.css">
-	<link rel="stylesheet" href="/emissary/stylesheets/neon/neon-theme.css">
-	<link rel="stylesheet" href="/emissary/stylesheets/neon/neon-forms.css">
-	<link rel="stylesheet" href="/emissary/stylesheets/neon/custom.css">
-
-	<script src="./emissary/js/js_libs/jquery/jquery-1.11.3.min.js"></script>
-
-	<!--[if lt IE 9]><script src="assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
-	
-	<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-	<!--[if lt IE 9]>
-		<script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-		<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-	<![endif]-->
-
+  <link rel="stylesheet" href="/emissary/stylesheets/jquery/jquery-ui-1.10.3.custom.min.css">
+  <link rel="stylesheet" href="/emissary/stylesheets/font-icons/font-awesome/css/font-awesome.css">
+  <link rel="stylesheet" href="/emissary/stylesheets/font-icons/entypo/css/entypo.css">
+  <link rel="stylesheet" href="/emissary/stylesheets/shared-dashboard.css">
+  <link rel="stylesheet" href="/emissary/stylesheets/libs/bootstrap.css">
+  <link rel="stylesheet" href="/emissary/stylesheets/neon/neon-core.css">
+  <link rel="stylesheet" href="/emissary/stylesheets/neon/neon-theme.css">
+  <link rel="stylesheet" href="/emissary/stylesheets/neon/neon-forms.css">
+  <link rel="stylesheet" href="/emissary/stylesheets/admin-settings.css">
 
 </head>
-<body class="page-body" data-url="http://neon.dev">
+<body class="page-body gray" data-url="http://neon.dev">
 
 <div class="page-container"><!-- add class "sidebar-collapsed" to close sidebar by default, "chat-visible" to make chat appear always -->
-	
 	<div class="sidebar-menu">
-
 		<div class="sidebar-menu-inner">
 			
 			<header class="logo-env">
-
 				<!-- logo -->
 				<div class="logo">
-					<a href="admin-dashboard.html">
-						<img src="./../images/emissary.png" width="150" alt="" />
+					<a href="admin-panel.html">
+						<img src="/images/emissary.png" width="150" alt="logo" />
 					</a>
 				</div>
-
 				<!-- logo collapse icon -->
 				<div class="sidebar-collapse">
 					<a href="#" class="sidebar-collapse-icon"><!-- add class "with-animation" if you want sidebar to have animation during expanding/collapsing transition -->
 						<i class="entypo-menu"></i>
 					</a>
 				</div>
-
-								
 				<!-- open/close menu icon (do not remove if you want to enable menu on mobile devices) -->
 				<div class="sidebar-mobile-menu visible-xs">
 					<a href="#" class="with-animation"><!-- add class "with-animation" to support animation -->
 						<i class="entypo-menu"></i>
 					</a>
 				</div>
-
 			</header>
 			
-									
 			<ul id="main-menu" class="main-menu">
 				<!-- add class "multiple-expanded" to allow multiple submenus to open -->
 				<!-- class "auto-inherit-active-class" will automatically add "active" class for parent elements who are marked already with class "active" -->
 				<li>
-					<a href="admin-dashboard.html">
-						<span class="title">Admin Dashboard</span>
+					<a href="admin-panel.html">
+            <i class="entypo-clipboard"></i>
+						<span class="title">Admin Panel</span>
 					</a>
 				</li>
+        <li>
+          <a href="admin-monitoring.html">
+              <i class="entypo-clock"></i>
+              <span class="title">Monitoring</span>
+          </a>
+        </li>
 				<li>
-					<a href="admin-companies.html">
-						<span class="title">Companies</span>
-					</a>
-				</li>
-				<li>
-					<a href="admin-settings.html">
+					<a href="#">
+            <i class="entypo-tools"></i>
 						<span class="title">Settings</span>
 					</a>
 				</li>
 			</ul>
-			
 		</div>
 	</div>
 
 	<div class="main-content">
-				
 		<div class="row">
-		
-			<!-- Profile Info and Notifications -->
-			<div class="col-md-6 col-sm-8 clearfix">
-		
-				<ul class="user-info pull-left pull-none-xsm">
-		
-					<!-- Profile Info -->
-					<li class="profile-info dropdown"><!-- add class "pull-right" if you want to place this from right -->
-		
-						<a href="#" class="dropdown-toggle" data-toggle="dropdown">
-							<img src="./../assets/images/thumb-1@2x.png" alt="" class="img-circle" width="44" />
-							Peter
-						</a>
-					</li>
-		
-				</ul>	
-			</div>
-		
-		
-			<!-- Raw Links -->
-			<div class="col-md-6 col-sm-4 clearfix hidden-xs">
-		
-				<ul class="list-inline links-list pull-right">	
-					<li>
-						<a href="login.html">
-							Log Out <i class="entypo-logout right"></i>
-						</a>
-					</li>
-				</ul>
-		
-			</div>
-		
-		</div>
+      <!-- Profile Info and Notifications -->
+      <div class=" col-md-6 col-sm-8 clearfix">
+        <ul class="user-info pull-left pull-none-xsm">
+          <!-- Profile Info -->
+          <li class="profile-info dropdown"><!-- add class "pull-right" if you want to place this from right -->
+            <div id="company-name">
+              <h1>Hi, <span id="user-name"> </span></h1>
+            </div>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Raw Links -->
+      <div class="col-md-6 col-sm-4 clearfix hidden-xs">
+        <ul class="list-inline links-list pull-right">
+          <div class="dropdown">
+            <i class="fa fa-3x fa-cog dropdown-toggle" data-toggle="dropdown"></i>
+              <ul class="dropdown-menu">
+                <li><a id="logoutButton" href="index.html">
+                  Log Out <i class="entypo-logout right"></i></a>
+                </li>
+              </ul>
+          </div>
+        </ul>
+      </div>
+    </div>
 		
 		<hr />
-		
-		<h1 class="margin-bottom">Settings</h1>
-					
-		<br />
-		
-		<form role="form" method="post" class="form-horizontal form-groups-bordered validate" action="">
-		
-			<div class="row">
-				<div class="col-md-12">
-					
-					<div class="panel panel-primary" data-collapsed="0">
-					
-						<div class="panel-heading">
-							<div class="panel-title">
-								General Settings
-							</div>
-							
-							<div class="panel-options">
-								<a href="#" data-rel="collapse"><i class="entypo-down-open"></i></a>
-								<a href="#" data-rel="reload"><i class="entypo-arrows-ccw"></i></a>
-							</div>
-						</div>
-						
-						<div class="panel-body">
-				
-							<div class="form-group">
-								<label for="field-1" class="col-sm-3 control-label">Name</label>
-								
-								<div class="col-sm-5">
-									<input type="text" class="form-control" id="field-1" value="Peter">
-								</div>
-							</div>
-					
-							<div class="form-group">
-								<label for="field-4" class="col-sm-3 control-label">Email address</label>
-								
-								<div class="col-sm-5">
-									<input type="text" class="form-control" name="email" id="field-4" data-validate="required,email" value="peter@doe.com">
-									<span class="description">Here you will receive site notifications.</span>
-								</div>
-							</div>
-							
-						</div>
-					
-					</div>
-				
-				</div>
-			</div>
-															
-			<div class="form-group default-padding">
-				<button type="button" class="btn btn-success" data-toggle="modal" data-target="#setting-modal">Save Changes</button>
-			</div>				
-		</form>
+    <div class="admin-settings-container">
+      <div>
+        <h1 class="page-title">Settings</h1>
+        <div class="account-info">
+          <div class="row">
+            <p class="col-sm-3 col-sm-offset-1 lead field-color">First Name</p>
+            <div class="col-sm-5">
+              <p class="lead"><span id="first-name"> </span></p>
+            </div>
+          </div>
+          <div class="row">
+            <p class="col-sm-3 col-sm-offset-1 lead field-color">Last Name</p>
+            <div class="col-sm-5">
+              <p class="lead"><span id="last-name"> </span></p>
+            </div>
+          </div>
+          <div class="row">
+            <p class="col-sm-3 col-sm-offset-1 lead field-color">Email Address</p>
+            <div class="col-sm-5">
+              <p class="lead"><span id="email"> </span></p>
+            </div>
+          </div>
+          <div class="row">
+            <p class="col-sm-3 col-sm-offset-1 lead field-color">Phone Number</p>
+            <div class="col-sm-5">
+              <p class="lead"><span id="phone"> </span></p>
+            </div>
+          </div>
+          <div class="row">
+            <p class="col-sm-3 col-sm-offset-1 lead field-color">Password</p>
+            <div class="col-sm-5">
+              <p class="lead"><span id="password">*****</span></p>
+            </div>
+          </div>
+        </div>
+      </div>
 
-		<!-- Modal -->
-		<div class="modal fade" id="setting-modal" tabindex="-1" role="dialog" 
-		     aria-labelledby="myModalLabel" aria-hidden="true">
-		    <div class="modal-dialog">
-		        <div class="modal-content">
-		            <!-- Modal Header -->
-		            <div class="modal-header">
-		                <button type="button" class="close" 
-		                   data-dismiss="modal">
-		                       <span aria-hidden="true">&times;</span>
-		                       <span class="sr-only">Close</span>
-		                </button>
-		                <h4 class="modal-title" id="myModalLabel">
-		                    Change Settings
-		                </h4>
-		            </div>
-		            
-		            <!-- Modal Body -->
-		            <div class="modal-body">
-		                 <h6>
-		                    Settings have been saved.
-		                </h6>
-		                
-		            </div>
-		        </div>
-		    </div>
-		</div>
-						
-		<!-- Footer -->
-		<footer class="main">
-			
-			&copy; 2015 <strong>Emissary</strong>
-		
-		</footer>
+      <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <!-- Modal Header -->
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal">
+                <span aria-hidden="true">&times;</span>
+                <span class="sr-only">Close</span>
+              </button>
+              <h4 class="modal-title" id="myModalLabel">
+                Edit Account Information
+              </h4>
+            </div>
+
+            <!-- Modal Body -->
+            <div class="modal-body">
+              <form class="form-horizontal" role="form" id="account-form">
+                <div class="form-group">
+                  <label class="col-sm-2 control-label" for="modal-first">First Name</label>
+                  <div class="col-sm-10">
+                    <input type="text" class="form-control" id="modal-first" value=""/>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="col-sm-2 control-label" for="modal-last" >Last Name</label>
+                  <div class="col-sm-10">
+                    <input type="text" class="form-control" id="modal-last" value=""/>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="col-sm-2 control-label" for="modal-email" >Email Address</label>
+                  <div class="col-sm-10">
+                    <input type="text" class="form-control" id="modal-email" value=""/>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="col-sm-2 control-label" for="modal-phone" >Phone Number</label>
+                  <div class="col-sm-10">
+                    <input type="text" class="form-control" id="modal-phone" value=""/>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="col-sm-2 control-label" for="modal-password" >Password</label>
+                  <div class="col-sm-10">
+                    <input type="text" class="form-control" id="modal-password" value=""/>
+                  </div>
+                </div>
+              </form>
+
+            </div>
+
+            <!-- Modal Footer -->
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">
+                Cancel
+              </button>
+              <button type="button" class="btn btn-info save-btn" data-dismiss="modal">Save</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="row">
+        <div class="col-sm-offset-3 edit-button" data-toggle="modal" data-target="#myModal">Edit</div>
+      </div>
+    </div>
+
 	</div>	
 </div>
 
+  <!-- Bottom scripts (common) -->
+  <script src="/emissary/js/admin-login.js"> </script>
+  <script src="/emissary/js/js_libs/jquery/jquery-1.11.3.min.js"></script>
+  <script src="/emissary/js/js_libs/TweenMax.min.js"></script>
+  <script src="/emissary/js/js_libs/jquery/jquery-ui-1.10.3.minimal.min.js"></script>
+  <script src="/emissary/js/js_libs/bootstrap.js"></script>
+  <script src="/emissary/js/js_libs/joinable.js"></script>
+  <script src="/emissary/js/js_libs/resizeable.js"></script>
+  <script src="/emissary/js/js_libs/neon/neon-api.js"></script>
+  <script src="/emissary/js/admin-settings.js"> </script>
 
+  <!-- Imported scripts on this page -->
+  <script src="/emissary/js/js_libs/jquery/jquery.validate.min.js"></script>
+  <script src="/emissary/js/js_libs/neon/neon-chat.js"></script>
 
+  <!-- JavaScripts initializations and stuff -->
+  <script src="/emissary/js/js_libs/neon/neon-custom.js"></script>
 
-	<!-- Bottom scripts (common) -->
-	<script src="/emissary/js/js_libs/TweenMax.min.js"></script>
-	<script src="/emissary/js/js_libs/jquery/jquery-ui-1.10.3.minimal.min.js"></script>
-	<script src="/emissary/js/js_libs/bootstrap.js"></script>
-	<script src="/emissary/js/js_libs/joinable.js"></script>
-	<script src="/emissary/js/js_libs/resizeable.js"></script>
-	<script src="/emissary/js/js_libs/neon/neon-api.js"></script>
-
-
-	<!-- Imported scripts on this page -->
-	<script src="./../assets/js/jquery.validate.min.js"></script>
-	<script src="./../assets/js/neon-chat.js"></script>
-
-
-	<!-- JavaScripts initializations and stuff -->
-	<script src="./../assets/js/neon-custom.js"></script>
-
-
-	<!-- Demo Settings -->
-	<script src="./../assets/js/neon-demo.js"></script>
+  <!-- Demo Settings -->
+  <script src="/emissary/js/js_libs/neon/neon-demo.js"></script>
+  <script src="/emissary/js/login.js"></script>
 
 </body>
 </html>
