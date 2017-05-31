@@ -209,7 +209,7 @@ exports.create = function(param, callback) {
                 }
                 list.visitors.push(visitor);
                 list.save(function(err) {
-                    if(err) return callback({error: 'an error in saving'}, null);
+                    if(err) return callback({error: 'error occured in saving'}, null);
                     emailEmployees(company_id, first_name + ' '+ last_name);
                     textEmployees(company_id, first_name + ' '+ last_name);
                     return callback(null, list);

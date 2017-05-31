@@ -8,8 +8,8 @@ let router = new express.Router();
 
 /**
  *
- * @api {get} api/employee/company/:id getAllEmployees
- * @apiDescription This is for getting all existant employees. Look at
+ * @api {get} api/employees/company/:id getAllEmployees
+ * @apiDescription This is for getting all existent employees. Look at
  * employee.controller.js getAllEmployees for more info
  * @apiName EmployeeGetAll
  * @apiGroup Employee
@@ -18,12 +18,11 @@ let router = new express.Router();
  * @apiSuccess {JSON} result all the employees in JSON format
  * @apiError CanNotFind there is not company with that id
  */
-
 router.get('/company/:id', controller.getAllEmployees);
 
 /**
  *
- * @api {get} /employee/:id getById
+ * @api {get} /employees/:id getById
  * @apiDescription This is for getting 1 existant employees using ID. Look at
  * employee.controller.js getById for more info.
  * @apiName EmployeeGetById
@@ -33,14 +32,17 @@ router.get('/company/:id', controller.getAllEmployees);
  * @apiSuccess {JSON} employee employee in JSON format
  * @apiError CanNotFind no employee with that id exists
  */
-
 router.get('/:id', controller.getById);
 
 /**
  *
- * @api {post} api/employee/ insert
- * @apiDescription This is for creating an employee. Look at
- * employee.controller.js insert for more info
+ * @api {post} api/employees/ insert
+ * @apiDescription This is for creating an employee.
+ *  Roles:
+ *   c_admin: company admin
+ *   c_receptionist: company receptionist
+ *   c_employee: company employee
+ *   a_admin: app administrator
  * @apiName EmployeeInsert
  * @apiGroup Employee
  *
@@ -58,29 +60,28 @@ router.post('/', controller.insert);
 
 /**
  *
- * @api {put} api/employee/:id update
+ * @api {put} api/employees/:id update
  * @apiDescription This is for modifying an employee. Do not send values if you
  * don't want them to be updated. Look at employee.controller  for more info
  * @apiName EmployeeUpdate
  * @apiGroup Employee
  *
  * @apiParam {int} employee_id unique identifier for employee
- * @apiParam {string} first_name employees first name
- * @apiParam {string} last_name employees last name
- * @apiParam {string} email email tied to users account
- * @apiParam {string} phone_number employees phone number
- * @apiParam {string} password employees password. This is hashed then removed
- * @apiParam {string} role employees role in the company
+ * @apiParam {string} [first_name] employees first name
+ * @apiParam {string} [last_name] employees last name
+ * @apiParam {string} [email] email tied to users account
+ * @apiParam {string} [phone_number] employees phone number
+ * @apiParam {string} [password] employees password. This is hashed then removed
+ * @apiParam {string} [role] employees role in the company
  * @apiSuccess {JSON} employee the newly create employee in JSON format
  * @apiError CanNotUpdate caused by employee not existing I think
  * @apiError CanNotSave failed db connection
  */
-
 router.put('/:id', controller.update);
 
 /**
  *
- * @api {delete} api/employee/:id delete
+ * @api {delete} api/employees/:id delete
  * @apiDescription This is for deleting an employee. Look at
  * employee.controller.js delete for more info
  * @apiName EmployeeDelete
@@ -90,12 +91,11 @@ router.put('/:id', controller.update);
  * @apiSuccess {JSON} employee the JSON of the employee that was just deleted
  * @apiError CanNotFind DNE error
  */
-
 router.delete('/:id', controller.delete);
 
 /**
  *
- * @api {post} /employee/login login
+ * @api {post} /employees/login login
  * @apiDescription This is for login it returns an employee JSON. Look at
  * employee.controller.js login for more info
  * @apiName EmployeeLogin
@@ -107,7 +107,6 @@ router.delete('/:id', controller.delete);
  * @apiError CanNotFind not employee has that email
  * @apiError IncorrectCredentials password does not match
  */
-
 router.post('/login', controller.login);
 
 module.exports = router;

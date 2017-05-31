@@ -1,0 +1,418 @@
+{
+	"variables": [],
+	"info": {
+		"name": "Team0x13",
+		"_postman_id": "80c7d83f-7d5e-0a29-4772-099a79e7662c",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Company",
+			"description": "",
+			"item": [
+				{
+					"name": "Create Company",
+					"request": {
+						"url": "localhost:3000/api/companies",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "name",
+									"value": "testcompany",
+									"type": "text",
+									"description": ""
+								},
+								{
+									"key": "email",
+									"value": "aaaa@gg.com",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "phone_number",
+									"value": "over9000",
+									"description": "",
+									"type": "text"
+								}
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Get Company by ID",
+					"request": {
+						"url": "localhost:3000/api/companies/592e71899ea9032c183a65a",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Companies",
+					"request": {
+						"url": "localhost:3000/api/companies/",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"description": ""
+							}
+						],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Search Companies",
+					"request": {
+						"url": "localhost:3000/api/companies/search/Emi",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Update Companies  by ID",
+					"request": {
+						"url": "localhost:3000/api/companies/592e8131bec62933942f4e75",
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "name",
+									"value": "newCompanyName",
+									"description": "",
+									"type": "text"
+								}
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Companies by ID",
+					"request": {
+						"url": "localhost:3000/api/companies/592e8131bec62933942f4e75",
+						"method": "DELETE",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "ResetCredential - Broken",
+					"request": {
+						"url": "localhost:3000/api/companies/settings/useridhere",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Employee",
+			"description": "",
+			"item": [
+				{
+					"name": "Get employees by company id",
+					"request": {
+						"url": "localhost:3000/api/employees/company/592e8f8312aafe2f6c251e9e",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Get employee by id",
+					"request": {
+						"url": "localhost:3000/api/employees/592e8f9312aafe2f6c251e9f",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Add employee to company",
+					"request": {
+						"url": "localhost:3000/api/employees/",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "first_name",
+									"value": "Employee_First_Name",
+									"type": "text",
+									"description": ""
+								},
+								{
+									"key": "last_name",
+									"value": "Employee_Last_Name",
+									"type": "text",
+									"description": ""
+								},
+								{
+									"key": "email",
+									"value": "hardlife@gg.com",
+									"type": "text",
+									"description": ""
+								},
+								{
+									"key": "phone_number",
+									"value": "911",
+									"type": "text",
+									"description": ""
+								},
+								{
+									"key": "company_id",
+									"value": "592e8f8312aafe2f6c251e9e",
+									"type": "text",
+									"description": ""
+								},
+								{
+									"key": "password",
+									"value": "0000",
+									"type": "text",
+									"description": ""
+								},
+								{
+									"key": "role",
+									"value": "c_employee",
+									"type": "text",
+									"description": ""
+								}
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Update employee info by id",
+					"request": {
+						"url": "localhost:3000/api/employees/592e9412a8210d1d90a99431",
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "first_name",
+									"value": "New_first_name",
+									"description": "",
+									"type": "text"
+								}
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Delete employee by id",
+					"request": {
+						"url": "localhost:3000/api/employees/592e9412a8210d1d90a99431",
+						"method": "DELETE",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Employee login",
+					"request": {
+						"url": "localhost:3000/api/employees/login",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "email",
+									"value": "hardlife@gg.com",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "0000",
+									"description": "",
+									"type": "text"
+								}
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Phone",
+			"description": "",
+			"item": [
+				{
+					"name": "Validate - US Valid",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Status code is 200\"] = responseCode.code === 200;",
+									"",
+									"",
+									"var jsonData = JSON.parse(responseBody);",
+									"tests[\"Valid is true\"] = jsonData.isValid === true;"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "localhost:3000/phone/isValidPhone?cc=1&number=5622131234",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "country_code_1",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "country_code_0",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "number",
+									"value": "5622131234",
+									"type": "text"
+								}
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Format - US",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Status code is 200\"] = responseCode.code === 200;",
+									"",
+									"",
+									"var jsonData = JSON.parse(responseBody);",
+									"tests[\"Valid is true\"] = jsonData.isValid === true;",
+									"tests[\"Correct format\"] = jsonData.Format === '(562)213-1234';"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "localhost:3000/phone/format?cc=1&number=5622131234",
+						"method": "POST",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "VisitorList",
+			"description": "",
+			"item": [
+				{
+					"name": "Get VisitorList by company id",
+					"request": {
+						"url": "localhost:3000/api/visitorLists/company/592e8f8312aafe2f6c251e9e",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Create visitor - not done",
+					"request": {
+						"url": "localhost:3000/api/visitorLists/",
+						"method": "POST",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

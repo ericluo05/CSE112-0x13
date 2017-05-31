@@ -1,7 +1,7 @@
 [
   {
     "type": "post",
-    "url": "/appointment/",
+    "url": "api/appointment/",
     "title": "create",
     "description": "<p>This is used for Creating an appointment. Look at appointment.controller.js create for more info</p>",
     "name": "AppointmentCreate",
@@ -99,7 +99,7 @@
     "type": "get",
     "url": "/appointment/company/:id",
     "title": "getAll",
-    "description": "<p>This is for getting all existant appointments. Look at appointment.controller.js getAll for more info</p>",
+    "description": "<p>This is for getting all existant appointments for a specific company. Look at appointment.controller.js getAll for more info</p>",
     "name": "AppointmentCreate",
     "group": "Appointment",
     "parameter": {
@@ -146,7 +146,7 @@
   },
   {
     "type": "delete",
-    "url": "/appointment/:id",
+    "url": "api/appointment/:id",
     "title": "delete",
     "description": "<p>This is used for deleting an appointment. Look at appointment.controller.js delete for more info</p>",
     "name": "AppointmentDelete",
@@ -201,7 +201,7 @@
   },
   {
     "type": "get",
-    "url": "/appointment/",
+    "url": "api/appointment/:id",
     "title": "get",
     "description": "<p>This is used for looking up existant appointments. Look at appointment.controller.js get for more info</p>",
     "name": "AppointmentGet",
@@ -250,7 +250,7 @@
   },
   {
     "type": "put",
-    "url": "/appointment/:id",
+    "url": "api/appointment/:id",
     "title": "update",
     "description": "<p>This is used for updating an appointment. Look at appointment.controller.js update for more info</p>",
     "name": "AppointmentUpdate",
@@ -347,9 +347,9 @@
   },
   {
     "type": "post",
-    "url": "/api/companies/create",
-    "title": "",
-    "description": "<p>This is used for user sign up. Account creation.</p>",
+    "url": "/api/companies",
+    "title": "create",
+    "description": "<p>This is used for create a company account</p>",
     "name": "CompanyCreate",
     "group": "Company",
     "parameter": {
@@ -357,23 +357,72 @@
         "Parameter": [
           {
             "group": "Parameter",
-            "type": "FormInfo",
+            "type": "string",
             "optional": false,
             "field": "email",
-            "description": "<p>,name,phone_number,paid_time</p>"
+            "description": "<p>Email of the company to create</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "string",
+            "optional": false,
+            "field": "name",
+            "description": "<p>Name of the company to create</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "string",
+            "optional": false,
+            "field": "phone_number",
+            "description": "<p>Phone number of the company to create</p>"
           }
         ]
       }
     },
+    "examples": [
+      {
+        "title": "Example usage:",
+        "content": "curl -X POST  -d {\"email\":\"newEmail@email.com\", \"name\":\"companyName\", \"phone_number\":\"6261234567\"} http://localhost/api/companies",
+        "type": "curl"
+      }
+    ],
     "success": {
       "fields": {
         "Success 200": [
           {
             "group": "Success 200",
-            "type": "JSON",
+            "type": "string",
             "optional": false,
-            "field": "companyInfo",
-            "description": "<p>the company Info in JSON format should be what was passed in in JSON Format</p>"
+            "field": "_id",
+            "description": "<p>ID of the company created</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "string",
+            "optional": false,
+            "field": "name",
+            "description": "<p>Name of the company created</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "time",
+            "optional": false,
+            "field": "paid_time",
+            "description": "<p>Time in which the company last made a payment (or created)</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "string",
+            "optional": false,
+            "field": "phone_number",
+            "description": "<p>Phone number of the company just created</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "string",
+            "optional": false,
+            "field": "email",
+            "description": "<p>Email fo the company just created</p>"
           }
         ]
       }
@@ -384,8 +433,8 @@
           {
             "group": "Error 4xx",
             "optional": false,
-            "field": "CouldnotSave",
-            "description": "<p>failed to save to server</p>"
+            "field": "CouldNotCreate",
+            "description": "<p>failed to create the company</p>"
           }
         ]
       }
@@ -406,23 +455,58 @@
         "Parameter": [
           {
             "group": "Parameter",
-            "type": "companyID",
+            "type": "string",
             "optional": false,
-            "field": "ID",
-            "description": "<p>the companies ID</p>"
+            "field": "id",
+            "description": "<p>id of the company to be deleted</p>"
           }
         ]
       }
     },
+    "examples": [
+      {
+        "title": "Example usage:",
+        "content": "curl -X DELETE  http://localhost/api/companies/CompanyIDHere",
+        "type": "curl"
+      }
+    ],
     "success": {
       "fields": {
         "Success 200": [
           {
             "group": "Success 200",
-            "type": "JSON",
+            "type": "string",
             "optional": false,
-            "field": "companyInfo",
-            "description": "<p>the companies info in JSON format</p>"
+            "field": "_id",
+            "description": "<p>id of the company deleted</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "string",
+            "optional": false,
+            "field": "name",
+            "description": "<p>Name of the company deleted</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "time",
+            "optional": false,
+            "field": "paid_time",
+            "description": "<p>Time in which the company last made a payment, or in current case, time in which the company is created using server time</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "string",
+            "optional": false,
+            "field": "phone_number",
+            "description": "<p>the company's phone number</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "string",
+            "optional": false,
+            "field": "email",
+            "description": "<p>the company's email</p>"
           }
         ]
       }
@@ -434,68 +518,13 @@
             "group": "Error 4xx",
             "optional": false,
             "field": "CouldNotFind",
-            "description": "<p>wrong company ID</p>"
+            "description": "<p>Invalid company id</p>"
           },
           {
             "group": "Error 4xx",
             "optional": false,
-            "field": "CouldnotSave",
-            "description": "<p>a connection problem</p>"
-          }
-        ]
-      }
-    },
-    "version": "0.0.0",
-    "filename": "server/routes/company/index.js",
-    "groupTitle": "Company"
-  },
-  {
-    "type": "get",
-    "url": "/api/companies/:id",
-    "title": "get",
-    "description": "<p>This is used for user login</p>",
-    "name": "CompanyGet",
-    "group": "Company",
-    "parameter": {
-      "fields": {
-        "Parameter": [
-          {
-            "group": "Parameter",
-            "type": "companyID",
-            "optional": false,
-            "field": "companyID",
-            "description": "<p>the id of he company you want info on</p>"
-          }
-        ]
-      }
-    },
-    "success": {
-      "fields": {
-        "Success 200": [
-          {
-            "group": "Success 200",
-            "type": "JSON",
-            "optional": false,
-            "field": "companyInfo",
-            "description": "<p>the companies info in JSON format</p>"
-          }
-        ]
-      }
-    },
-    "error": {
-      "fields": {
-        "Error 4xx": [
-          {
-            "group": "Error 4xx",
-            "optional": false,
-            "field": "CouldnotSave",
-            "description": "<p>failed connection</p>"
-          },
-          {
-            "group": "Error 4xx",
-            "optional": false,
-            "field": "CouldnotFind",
-            "description": "<p>company does not exist</p>"
+            "field": "CouldNotRemove",
+            "description": "<p>Can't remove company</p>"
           }
         ]
       }
@@ -516,10 +545,45 @@
         "Success 200": [
           {
             "group": "Success 200",
-            "type": "JSON",
+            "type": "Company[]",
             "optional": false,
-            "field": "companyInfo",
-            "description": "<p>all the companies info in JSON format</p>"
+            "field": "Companies",
+            "description": "<p>All companies in JSON format</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "string",
+            "optional": false,
+            "field": "Companies.name",
+            "description": "<p>Name of company</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "string",
+            "optional": false,
+            "field": "Companies._id",
+            "description": "<p>id of company</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "time",
+            "optional": false,
+            "field": "Companies.paid_time",
+            "description": "<p>Time in which the company last made a payment</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "string",
+            "optional": false,
+            "field": "Companies.phone_number",
+            "description": "<p>the company's phone number</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "string",
+            "optional": false,
+            "field": "Companies.email",
+            "description": "<p>the company's email</p>"
           }
         ]
       }
@@ -580,7 +644,7 @@
           {
             "group": "Error 4xx",
             "optional": false,
-            "field": "CouldnotSave",
+            "field": "CouldNotSave",
             "description": "<p>a connection problem</p>"
           }
         ]
@@ -594,7 +658,7 @@
     "type": "put",
     "url": "/api/companies/setting/:user",
     "title": "resetCredentials",
-    "description": "<p>Change the info for a user in a company</p>",
+    "description": "<p>Change the credentials for a user in a company. DON'T USE THIS, THIS IS BROKEN. STILL NEEDS TO BE FIX</p>",
     "name": "CompanyResetCredentials",
     "group": "Company",
     "parameter": {
@@ -612,14 +676,14 @@
             "type": "string",
             "optional": false,
             "field": "email",
-            "description": "<p>Users associated email</p>"
+            "description": "<p>email of the person to reset</p>"
           },
           {
             "group": "Parameter",
             "type": "string",
             "optional": false,
             "field": "password",
-            "description": "<p>password</p>"
+            "description": "<p>new password</p>"
           }
         ]
       }
@@ -649,7 +713,7 @@
           {
             "group": "Error 4xx",
             "optional": false,
-            "field": "CouldnotSave",
+            "field": "CouldNotSave",
             "description": "<p>a connection problem</p>"
           }
         ]
@@ -671,30 +735,79 @@
         "Parameter": [
           {
             "group": "Parameter",
-            "type": "companyID",
+            "type": "string",
             "optional": false,
-            "field": "ID",
-            "description": "<p>the companies ID</p>"
+            "field": "id",
+            "description": "<p>the company's id</p>"
           },
           {
             "group": "Parameter",
-            "type": "formFields",
-            "optional": false,
+            "type": "string",
+            "optional": true,
             "field": "email",
-            "description": "<p>,name,phone_number only specify them if you want to change them</p>"
+            "description": "<p>only include if you want to update the company's email</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "string",
+            "optional": true,
+            "field": "name",
+            "description": "<p>only include if you want to update the company's name</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "string",
+            "optional": true,
+            "field": "phone_number",
+            "description": "<p>only include if you want to update the company's phone number</p>"
           }
         ]
       }
     },
+    "examples": [
+      {
+        "title": "Example usage:",
+        "content": "curl -X PUT  -d {\"email\":\"newEmail@email.com\"} http://localhost/api/companies/CompanyIDHere",
+        "type": "curl"
+      }
+    ],
     "success": {
       "fields": {
         "Success 200": [
           {
             "group": "Success 200",
-            "type": "JSON",
+            "type": "string",
             "optional": false,
-            "field": "companyInfo",
-            "description": "<p>the companies info in JSON format</p>"
+            "field": "_id",
+            "description": "<p>ID of the company updated</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "string",
+            "optional": false,
+            "field": "name",
+            "description": "<p>[new]Name of the company updated</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "time",
+            "optional": false,
+            "field": "paid_time",
+            "description": "<p>Time in which the company last made a payment, or in current case, time in which the company is created using server time</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "string",
+            "optional": false,
+            "field": "phone_number",
+            "description": "<p>[new]Phone number of the company updated</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "string",
+            "optional": false,
+            "field": "email",
+            "description": "<p>[new]Email of the company updated</p>"
           }
         ]
       }
@@ -711,8 +824,92 @@
           {
             "group": "Error 4xx",
             "optional": false,
-            "field": "CouldnotSave",
-            "description": "<p>a connection problem</p>"
+            "field": "CouldNotSave",
+            "description": "<p>unable to save updated info</p>"
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "server/routes/company/index.js",
+    "groupTitle": "Company"
+  },
+  {
+    "type": "get",
+    "url": "/api/companies/:id",
+    "title": "get",
+    "description": "<p>This is used for retrieving company info</p>",
+    "name": "GetCompanyInfo",
+    "group": "Company",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "string",
+            "optional": false,
+            "field": "id",
+            "description": "<p>the id of he company you want info on</p>"
+          }
+        ]
+      }
+    },
+    "examples": [
+      {
+        "title": "Example usage:",
+        "content": "curl http://localhost/api/companies/CompanyIDHere",
+        "type": "curl"
+      }
+    ],
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "string",
+            "optional": false,
+            "field": "name",
+            "description": "<p>Name of the company retrieved</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "string",
+            "optional": false,
+            "field": "_id",
+            "description": "<p>ID of the company retrieved</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "time",
+            "optional": false,
+            "field": "paid_time",
+            "description": "<p>Time in which the company last made a payment, or in current case, time in which the company is created using server time</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "string",
+            "optional": false,
+            "field": "phone_number",
+            "description": "<p>Phone number of the company retrieved</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "string",
+            "optional": false,
+            "field": "email",
+            "description": "<p>Email of the company retrieved</p>"
+          }
+        ]
+      }
+    },
+    "error": {
+      "fields": {
+        "Error 4xx": [
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "CouldNotFind",
+            "description": "<p>can't find company with given id</p>"
           }
         ]
       }
@@ -729,7 +926,7 @@
     "examples": [
       {
         "title": "Example usage:",
-        "content": " This will search for all companies with 'Emis' in their names\ncurl -i http://localhost/api/companies/search/Emis",
+        "content": "curl -i http://localhost/api/companies/search/TextToMatch",
         "type": "curl"
       }
     ],
@@ -792,13 +989,6 @@
             "optional": false,
             "field": "Companies.email",
             "description": "<p>the company's email</p>"
-          },
-          {
-            "group": "Success 200",
-            "type": "uhh",
-            "optional": false,
-            "field": "Companies._v",
-            "description": "<p>No idea what this is for</p>"
           }
         ]
       }
@@ -821,66 +1011,397 @@
   },
   {
     "type": "delete",
-    "url": "/employee/:id",
+    "url": "api/employees/:id",
     "title": "delete",
     "description": "<p>This is for deleting an employee. Look at employee.controller.js delete for more info</p>",
     "name": "EmployeeDelete",
     "group": "Employee",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "int",
+            "optional": false,
+            "field": "employee_id",
+            "description": "<p>unique identifier for employee</p>"
+          }
+        ]
+      }
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "JSON",
+            "optional": false,
+            "field": "employee",
+            "description": "<p>the JSON of the employee that was just deleted</p>"
+          }
+        ]
+      }
+    },
+    "error": {
+      "fields": {
+        "Error 4xx": [
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "CanNotFind",
+            "description": "<p>DNE error</p>"
+          }
+        ]
+      }
+    },
     "version": "0.0.0",
     "filename": "server/routes/employee/index.js",
     "groupTitle": "Employee"
   },
   {
     "type": "get",
-    "url": "/employee/company/:id",
+    "url": "api/employees/company/:id",
     "title": "getAllEmployees",
-    "description": "<p>This is for getting all existant employees. Look at employee.controller.js getAllEmployees for more info</p>",
+    "description": "<p>This is for getting all existent employees. Look at employee.controller.js getAllEmployees for more info</p>",
     "name": "EmployeeGetAll",
     "group": "Employee",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "int",
+            "optional": false,
+            "field": "Company_id",
+            "description": "<p>the id of our company</p>"
+          }
+        ]
+      }
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "JSON",
+            "optional": false,
+            "field": "result",
+            "description": "<p>all the employees in JSON format</p>"
+          }
+        ]
+      }
+    },
+    "error": {
+      "fields": {
+        "Error 4xx": [
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "CanNotFind",
+            "description": "<p>there is not company with that id</p>"
+          }
+        ]
+      }
+    },
     "version": "0.0.0",
     "filename": "server/routes/employee/index.js",
     "groupTitle": "Employee"
   },
   {
     "type": "get",
-    "url": "/employee/:id",
+    "url": "/employees/:id",
     "title": "getById",
-    "description": "<p>This is for getting 1 existant employees using ID. Look at employee.controller.js getById for more info</p>",
+    "description": "<p>This is for getting 1 existant employees using ID. Look at employee.controller.js getById for more info.</p>",
     "name": "EmployeeGetById",
     "group": "Employee",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "int",
+            "optional": false,
+            "field": "Employee_id",
+            "description": ""
+          }
+        ]
+      }
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "JSON",
+            "optional": false,
+            "field": "employee",
+            "description": "<p>employee in JSON format</p>"
+          }
+        ]
+      }
+    },
+    "error": {
+      "fields": {
+        "Error 4xx": [
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "CanNotFind",
+            "description": "<p>no employee with that id exists</p>"
+          }
+        ]
+      }
+    },
     "version": "0.0.0",
     "filename": "server/routes/employee/index.js",
     "groupTitle": "Employee"
   },
   {
     "type": "post",
-    "url": "/employee/",
+    "url": "api/employees/",
     "title": "insert",
-    "description": "<p>This is for creating an employee. Look at employee.controller.js insert for more info</p>",
+    "description": "<p>This is for creating an employee. Roles: c_admin: company admin c_receptionist: company receptionist c_employee: company employee a_admin: app administrator</p>",
     "name": "EmployeeInsert",
     "group": "Employee",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "string",
+            "optional": false,
+            "field": "first_name",
+            "description": "<p>employees first name</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "string",
+            "optional": false,
+            "field": "last_name",
+            "description": "<p>employees last name</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "string",
+            "optional": false,
+            "field": "email",
+            "description": "<p>email tied to users account</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "string",
+            "optional": false,
+            "field": "phone_number",
+            "description": "<p>employees phone number</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "int",
+            "optional": false,
+            "field": "company_id",
+            "description": "<p>company for employee to be associated to</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "string",
+            "optional": false,
+            "field": "password",
+            "description": "<p>employees password. This is hashed then removed</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "string",
+            "optional": false,
+            "field": "role",
+            "description": "<p>employees role in the company</p>"
+          }
+        ]
+      }
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "JSON",
+            "optional": false,
+            "field": "employee",
+            "description": "<p>complete new employee in JSON format</p>"
+          }
+        ]
+      }
+    },
+    "error": {
+      "fields": {
+        "Error 4xx": [
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "CanNotSave",
+            "description": "<p>failed to connect to db</p>"
+          }
+        ]
+      }
+    },
     "version": "0.0.0",
     "filename": "server/routes/employee/index.js",
     "groupTitle": "Employee"
   },
   {
     "type": "post",
-    "url": "/employee/login",
+    "url": "/employees/login",
     "title": "login",
     "description": "<p>This is for login it returns an employee JSON. Look at employee.controller.js login for more info</p>",
     "name": "EmployeeLogin",
     "group": "Employee",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "string",
+            "optional": false,
+            "field": "email",
+            "description": "<p>employee's email</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "string",
+            "optional": false,
+            "field": "password",
+            "description": "<p>employee's password</p>"
+          }
+        ]
+      }
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "JSON",
+            "optional": false,
+            "field": "return",
+            "description": "<p>employee JSON - the password</p>"
+          }
+        ]
+      }
+    },
+    "error": {
+      "fields": {
+        "Error 4xx": [
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "CanNotFind",
+            "description": "<p>not employee has that email</p>"
+          },
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "IncorrectCredentials",
+            "description": "<p>password does not match</p>"
+          }
+        ]
+      }
+    },
     "version": "0.0.0",
     "filename": "server/routes/employee/index.js",
     "groupTitle": "Employee"
   },
   {
     "type": "put",
-    "url": "/employee/:id",
+    "url": "api/employees/:id",
     "title": "update",
-    "description": "<p>This is for modifying an employee. Look at employee.controller.js update for more info</p>",
+    "description": "<p>This is for modifying an employee. Do not send values if you don't want them to be updated. Look at employee.controller  for more info</p>",
     "name": "EmployeeUpdate",
     "group": "Employee",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "int",
+            "optional": false,
+            "field": "employee_id",
+            "description": "<p>unique identifier for employee</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "string",
+            "optional": true,
+            "field": "first_name",
+            "description": "<p>employees first name</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "string",
+            "optional": true,
+            "field": "last_name",
+            "description": "<p>employees last name</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "string",
+            "optional": true,
+            "field": "email",
+            "description": "<p>email tied to users account</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "string",
+            "optional": true,
+            "field": "phone_number",
+            "description": "<p>employees phone number</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "string",
+            "optional": true,
+            "field": "password",
+            "description": "<p>employees password. This is hashed then removed</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "string",
+            "optional": true,
+            "field": "role",
+            "description": "<p>employees role in the company</p>"
+          }
+        ]
+      }
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "JSON",
+            "optional": false,
+            "field": "employee",
+            "description": "<p>the newly create employee in JSON format</p>"
+          }
+        ]
+      }
+    },
+    "error": {
+      "fields": {
+        "Error 4xx": [
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "CanNotUpdate",
+            "description": "<p>caused by employee not existing I think</p>"
+          },
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "CanNotSave",
+            "description": "<p>failed db connection</p>"
+          }
+        ]
+      }
+    },
     "version": "0.0.0",
     "filename": "server/routes/employee/index.js",
     "groupTitle": "Employee"
@@ -892,6 +1413,26 @@
     "description": "<p>This call to create a new template with a random adminID.</p>",
     "name": "CreateTemplate",
     "group": "Form",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "Schema.Types.ObjectId",
+            "optional": false,
+            "field": "_admin_id",
+            "description": "<p>object id of company schema</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Object",
+            "optional": false,
+            "field": "template",
+            "description": "<p>If I could tell you what this is I'd be a god</p>"
+          }
+        ]
+      }
+    },
     "success": {
       "fields": {
         "Success 200": [
@@ -1128,6 +1669,26 @@
     "description": "<p>This call updates the template.</p>",
     "name": "UpdateTemplate",
     "group": "Form",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "int",
+            "optional": false,
+            "field": "template_id",
+            "description": "<p>id of the template you want to modify</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "template",
+            "optional": false,
+            "field": "template",
+            "description": "<p>what you want your new template to look like</p>"
+          }
+        ]
+      }
+    },
     "success": {
       "fields": {
         "Success 200": [
@@ -1157,6 +1718,98 @@
     "version": "0.0.0",
     "filename": "server/routes/form/index.js",
     "groupTitle": "Form"
+  },
+  {
+    "type": "post",
+    "url": "/payment/subscription",
+    "title": "CreateSubscription",
+    "description": "<p>This is used to create a new Service Subscription.</p>",
+    "name": "PaymentcreateSubscription",
+    "group": "Payment",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "string",
+            "optional": false,
+            "field": "stripeEmail",
+            "description": "<p>the email for subscriber</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "int",
+            "optional": false,
+            "field": "stripeToken",
+            "description": "<p>dunno</p>"
+          }
+        ]
+      }
+    },
+    "error": {
+      "fields": {
+        "Error 4xx": [
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "CouldNotCreate",
+            "description": "<p>failed to create because of any reason</p>"
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "server/routes/payment/index.js",
+    "groupTitle": "Payment"
+  },
+  {
+    "type": "get",
+    "url": "/payment/subscription/:id",
+    "title": "getSubscription",
+    "description": "<p>This is used to verify whether a company has a subscription and get that subscription</p>",
+    "name": "PaymentgetSubscription",
+    "group": "Payment",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "int",
+            "optional": false,
+            "field": "company_id",
+            "description": "<p>identifier for a company</p>"
+          }
+        ]
+      }
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "JSON",
+            "optional": false,
+            "field": "subscription",
+            "description": "<p>all the info about the subscription in JSON</p>"
+          }
+        ]
+      }
+    },
+    "error": {
+      "fields": {
+        "Error 4xx": [
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "CouldNotFind",
+            "description": "<p>does not have a sub or company does not exist</p>"
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "server/routes/payment/index.js",
+    "groupTitle": "Payment"
   },
   {
     "type": "post",
@@ -1267,6 +1920,47 @@
     "description": "<p>This is used to create a new visitor list.</p>",
     "name": "CreateVisitorList",
     "group": "VisitorList",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "object",
+            "optional": false,
+            "field": "form",
+            "description": "<p>the form you are submitting</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Schema.Types.ObjectId",
+            "optional": false,
+            "field": "_admin_id",
+            "description": "<p>object id of company schema</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "string",
+            "optional": false,
+            "field": "firstName",
+            "description": "<p>patients first name</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "string",
+            "optional": false,
+            "field": "lastName",
+            "description": "<p>patients last name</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "string",
+            "optional": false,
+            "field": "patientEmail",
+            "description": "<p>patients email</p>"
+          }
+        ]
+      }
+    },
     "success": {
       "fields": {
         "Success 200": [
@@ -1304,6 +1998,33 @@
     "description": "<p>This is used to get a visitor list by patient info.</p>",
     "name": "GetAllVisitorLists",
     "group": "VisitorList",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "string",
+            "optional": false,
+            "field": "first_name",
+            "description": "<p>patient fn</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "string",
+            "optional": false,
+            "field": "last_name",
+            "description": "<p>patient ln</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "string",
+            "optional": false,
+            "field": "email",
+            "description": "<p>patient email</p>"
+          }
+        ]
+      }
+    },
     "success": {
       "fields": {
         "Success 200": [

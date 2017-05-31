@@ -12,6 +12,10 @@ let bcrypt = require('bcrypt-nodejs');
  * @property {String} password - hashed password of the employee
  * @property {string} phone_number - phone number of the employee
  * @property {string} role - role of the employee
+ *       [c_admin - company admin]
+ *       [c_receptionist: compay receptionist]
+ *       [c_employee: company employee]
+ *       [a_admin: app administrator]
  * @property {int} company_id - object id of company schema for which the
  *  employee belongs to
  */
@@ -24,7 +28,7 @@ let employeeSchema = new Schema({
     phone_number: {type: String, required: true},
     role: {type: String, required: true},
     company_id: {type: Schema.Types.ObjectId, ref: 'Company', required: true},
-});
+}, {versionKey: false});
 
 /**
  * @function Employee.validPassword

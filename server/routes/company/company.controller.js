@@ -22,7 +22,7 @@ exports.create = function(req, res) {
 
     company.save(function(err, c) {
         if(err) {
-            return res.status(400).json({error: 'Could Not Save'});
+            return res.status(400).json({error: 'CouldNotCreate'});
         }
         return res.status(200).json(showCompanyPublicInfo(c));
     });
@@ -30,7 +30,7 @@ exports.create = function(req, res) {
 
 /**
  * @function getAll
- * @description  handler to  ???
+ * @description  handler to get all companies
  * @param {Object} req - request object
  * @param {Object} res - response object
  */
@@ -50,14 +50,15 @@ exports.getAll = function(req, res) {
 
 /**
  * @function get
- * @description  handler to log in a user
+ * @description  handler to find a company
  * @param {Object} req - request object
  * @param {Object} res - response object
  */
 exports.get = function(req, res) {
-    Company.findOne({_id: req.params.id}, /**/ function(err, company) {
-        if(err)
-            return res.status(400).json({error: 'Could Not Save'});
+    Company.findOne({_id: req.params.id}, function(err, company) {
+        if(err) {
+            return res.status(400).json({error: 'CouldNotFind'});
+        }
         return res.status(200).json(showCompanyPublicInfo(company));
     });
 };
@@ -72,30 +73,29 @@ exports.get = function(req, res) {
 exports.update = function(req, res) {
     Company.findOne({_id: req.params.id}, function(err, c) {
         if(err || !c)
-            return res.status(401).json({error: 'Could Not Find'});
+            return res.status(401).json({error: 'CouldNotFind'});
 
         // update email
-        if (req.body.email !== undefined)
-            c.email = req.body.email;
+        if (req.body.email)
+            c.email = req.body.email.trim();
 
         // update company name
-        if (req.body.name !== undefined)
-            c.name = req.body.name;
+        if (req.body.name)
+            c.name = req.body.name.trim();
 
         // update company's phone number
-        if (req.body.phone_number !== undefined)
-            c.phone_number = req.body.phone_number;
+        if (req.body.phone_number)
+            c.phone_number = req.body.phone_number.trim();
 
         c.save(function(err) {
             if(err) {
-                return res.status(400).json({error: 'Could Not Save'});
+                return res.status(400).json({error: 'CouldNotSave'});
             }
             return res.status(200).json(showCompanyPublicInfo(c));
         });
     });
 };
 
-/* delete company */
 /**
  * @function delete
  * @description handler to delete company
@@ -105,10 +105,10 @@ exports.update = function(req, res) {
 exports.delete = function(req, res) {
     Company.findById(req.params.id, function(err, c) {
         if(err)
-            res.status(400).json({error: 'Could Not Find'});
+            res.status(400).json({error: 'CouldNotFind'});
         c.remove(function(err) {
             if(err) {
-                res.status(400).json({error: 'Could Not Save'});
+                res.status(400).json({error: 'CouldNotRemove'});
             } else {
                 return res.status(200).json(showCompanyPublicInfo(c));
             }
@@ -123,6 +123,9 @@ exports.delete = function(req, res) {
  * @param {Object} res - response object
  */
 exports.resetCredentials = function(req, res) {
+    // TODO: This is broken, mixing company and employee,
+    // when company doesn't contain validPassword/generateHash method
+
     Company.findOne({email: req.params.user}, function(err, c) {
         if(err || !c)
             return res.status(400).json({error: 'Could Not Find'});
@@ -148,9 +151,9 @@ exports.resetCredentials = function(req, res) {
         if (req.body.new_company_phone_number !== undefined)
             c.company_phone_number = req.body.new_company_phone_number;
 
-        c.save(/**/function(err) {
+        c.save(function(err) {
             if(err) {
-                res.status(400).send({error: 'Could Not Save'});
+                res.status(400).send({error: 'CouldNotSave'});
             }
         });
         return res.status(200).json(showCompanyPublicInfo(c));
@@ -193,10 +196,10 @@ function showCompanyPublicInfo(c) {
 exports.getSubDuration = function(req, res) {
     Company.findById(req.params.id, function(err, c) {
         if(err)
-            return res.status(400).json({error: 'Could Not Find'});
+            return res.status(400).json({error: 'CouldNotFind'});
         let curTime = new Date();
-        let subTime = company.paid_time;
-        c.sub_duration = (curTime - subTime) / 1000 * 60 * 60 * 24;
+        let subTime = c.paid_time;
+        c.sub_duration = (curTime - subTime) / (1000 * 60 * 60 * 24);
         // TODO: probably need to check flag such as isSubscribed
         return res.status(200).json(showCompanyPrivateInfo(c));
     });

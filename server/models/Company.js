@@ -16,7 +16,7 @@ let companySchema = new Schema({
     phone_number: {type: String, required: true},
     paid_time: {type: Date, required: true},
     sub_duration: {type: Number},
-});
+}, {versionKey: false});
 
 // create the model for users and expose it to our app
 module.exports = mongoose.model('Company', companySchema);
