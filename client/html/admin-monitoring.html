@@ -6,6 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <meta name="description" content="Neon Admin Panel"/>
     <meta name="author" content=""/>
+    <meta name="google-signin-client_id"
+          content="690597365609-cc3kdfcec6jltt28j2h35d6i3bbad95o.apps.googleusercontent.com">
+    <meta name="google-signin-scope" content="https://www.googleapis.com/auth/analytics.readonly">
 
     <link rel="icon" href="/images/logo-emissary.png">
 
@@ -32,7 +35,7 @@
             <header class="logo-env">
                 <!-- logo -->
                 <div class="logo">
-                    <a href="#">
+                    <a href="admin-panel.html">
                         <img src="/images/emissary.png" width="150" alt="logo"/>
                     </a>
                 </div>
@@ -55,13 +58,13 @@
                 <!-- add class "multiple-expanded" to allow multiple submenus to open -->
                 <!-- class "auto-inherit-active-class" will automatically add "active" class for parent elements who are marked already with class "active" -->
                 <li>
-                  <a href="#">
+                  <a href="admin-panel.html">
                       <i class="entypo-clipboard"></i>
                       <span class="title">Admin Panel</span>
                   </a>
                 </li>
                 <li>
-                  <a href="admin-monitoring.html">
+                  <a href="#">
                       <i class="entypo-clock"></i>
                       <span class="title">Monitoring</span>
                   </a>
@@ -108,34 +111,17 @@
         </div>
 
         <hr/>
+        <!-- iframe container-->
         <div class="admin-panel-container">
-            <div id="admin-panel-queue">
-                <h1 class="page-title">Admin Panel</h1>
-                <table class="table">
-                    <thead>
-                    <tr>
-                        <th>Company</th>
-                        <th>Duration of Subscription</th>
-                        <th>Number of Employees</th>
-                    </tr>
-                    </thead>
-                    <tbody id="company-list">
-                    </tbody>
-                </table>
-            </div>
+            <h2 class="page-title">NewRelic Monitoring</h2>
+            <iframe src="https://rpm.newrelic.com/public/charts/5WREV8zdatZ"
+                    width="60%" height="300" align="middle" scrolling="no" frameborder="no"></iframe>
         </div>
-
-        <!-- HANDLE BAR TEMPLATE -->
-        <script type="text/x-handlebars-template" id="company-list-template">
-            {{#each []}}
-            <tr class="company-row" value="{{this.compId}}">
-                <td class="company-data">{{this.name}}</td>
-                <td class="company-data">{{this.subLength}}</td>
-                <td class="company-data">{{this.employeeNum}}</td>
-            </tr>
-            {{/each}}
-        </script>
-
+        <hr/>
+        <div class="admin-panel-container">
+            <h2 class="page-title">Google Analytics</h2>
+            <h3>Coming soon!</h3>
+        </div>
     </div>
 </div>
 

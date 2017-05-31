@@ -1915,6 +1915,243 @@
   },
   {
     "type": "post",
+    "url": "/:user_id/theme",
+    "title": "CreateNewDefaultUserTheme",
+    "name": "CreateNewDefaultUserTheme",
+    "group": "Theme",
+    "description": "<p>Creates a new user theme with defaults.</p>",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "user_id",
+            "description": "<p>The ID of the user that will get a new default theme.</p>"
+          }
+        ]
+      }
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "JSON",
+            "optional": false,
+            "field": "theme",
+            "description": "<p>The theme of the user page, formatted as a JSON.</p>"
+          }
+        ]
+      }
+    },
+    "error": {
+      "fields": {
+        "Error 4xx": [
+          {
+            "group": "Error 4xx",
+            "type": "JSON",
+            "optional": false,
+            "field": "error",
+            "description": "<p>The JSONified error code.</p>"
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "server/routes/theme/index.js",
+    "groupTitle": "Theme"
+  },
+  {
+    "type": "put",
+    "url": "/:user_id/theme",
+    "title": "DeleteUserTheme",
+    "name": "DeleteUserTheme",
+    "group": "Theme",
+    "description": "<p>Deletes the user's theme, when they unsubsctibe from the service.</p>",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "user_id",
+            "description": "<p>The ID of the user whose theme we want to change.</p>"
+          }
+        ]
+      }
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "JSON",
+            "optional": false,
+            "field": "msg",
+            "description": "<p>&quot;OK&quot;</p>"
+          }
+        ]
+      }
+    },
+    "error": {
+      "fields": {
+        "Error 4xx": [
+          {
+            "group": "Error 4xx",
+            "type": "JSON",
+            "optional": false,
+            "field": "error",
+            "description": "<p>The JSONified error code.</p>"
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "server/routes/theme/index.js",
+    "groupTitle": "Theme"
+  },
+  {
+    "type": "get",
+    "url": "/:user_id/theme",
+    "title": "GetUserTheme",
+    "name": "GetUserTheme",
+    "group": "Theme",
+    "description": "<p>Gets the theme corresponding to some user.</p>",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "user_id",
+            "description": "<p>The ID of the user whose theme we want to change.</p>"
+          }
+        ]
+      }
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "JSON",
+            "optional": false,
+            "field": "theme",
+            "description": "<p>The theme of the user page, formatted as a JSON.</p>"
+          }
+        ]
+      }
+    },
+    "error": {
+      "fields": {
+        "Error 4xx": [
+          {
+            "group": "Error 4xx",
+            "type": "JSON",
+            "optional": false,
+            "field": "error",
+            "description": "<p>The JSONified error code.</p>"
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "server/routes/theme/index.js",
+    "groupTitle": "Theme"
+  },
+  {
+    "type": "put",
+    "url": "/:user_id/theme",
+    "title": "UpdateUserTheme",
+    "name": "UpdateUserTheme",
+    "group": "Theme",
+    "description": "<p>Update the specific user's theme when they save their settings.</p>",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "user_id",
+            "description": "<p>The ID of the user whose theme we want to change.</p>"
+          }
+        ]
+      }
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "JSON",
+            "optional": false,
+            "field": "theme",
+            "description": "<p>The theme of the new user page theme, formatted as a JSON.</p>"
+          }
+        ]
+      }
+    },
+    "error": {
+      "fields": {
+        "Error 4xx": [
+          {
+            "group": "Error 4xx",
+            "type": "JSON",
+            "optional": false,
+            "field": "error",
+            "description": "<p>The JSONified error code.</p>"
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "server/routes/theme/index.js",
+    "groupTitle": "Theme"
+  },
+  {
+    "type": "post",
+    "url": "/",
+    "title": "CreateNewVisitor",
+    "name": "CreateNewVisitor",
+    "group": "VisitorList",
+    "description": "<p>Creates a new vistor when they check in.</p>",
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "JSON",
+            "optional": false,
+            "field": "result",
+            "description": "<p>The result code upon deletion of the visitor.</p>"
+          }
+        ]
+      }
+    },
+    "error": {
+      "fields": {
+        "Error 4xx": [
+          {
+            "group": "Error 4xx",
+            "type": "JSON",
+            "optional": false,
+            "field": "error_msg",
+            "description": "<p>The JSONified error message.</p>"
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "server/routes/visitorList/index.js",
+    "groupTitle": "VisitorList"
+  },
+  {
+    "type": "post",
     "url": "/visitorList",
     "title": "CreateVisitorList",
     "description": "<p>This is used to create a new visitor list.</p>",
@@ -1992,6 +2229,113 @@
     "groupTitle": "VisitorList"
   },
   {
+    "type": "delete",
+    "url": "/company/:company_id/visitor/:visitor_id",
+    "title": "DeleteVisitorByID",
+    "name": "DeleteVisitorByID",
+    "group": "VisitorList",
+    "description": "<p>Deletes a specific visitor from a company's visitor list.</p>",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "company_id",
+            "description": "<p>The ID of the company whose list we want to modify.</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "visitor_id",
+            "description": "<p>The ID of visitor from that company's visitor list.</p>"
+          }
+        ]
+      }
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "JSON",
+            "optional": false,
+            "field": "result",
+            "description": "<p>The result code upon deletion of the visitor.</p>"
+          }
+        ]
+      }
+    },
+    "error": {
+      "fields": {
+        "Error 4xx": [
+          {
+            "group": "Error 4xx",
+            "type": "JSON",
+            "optional": false,
+            "field": "error_msg",
+            "description": "<p>The JSONified error message.</p>"
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "server/routes/visitorList/index.js",
+    "groupTitle": "VisitorList"
+  },
+  {
+    "type": "delete",
+    "url": "/:id",
+    "title": "DeleteVisitorListByID",
+    "name": "DeleteVisitorListByID",
+    "group": "VisitorList",
+    "description": "<p>Deletes (clears) the specific visitor list.</p>",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "id",
+            "description": "<p>The ID of the visitor list we want to clear.</p>"
+          }
+        ]
+      }
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "JSON",
+            "optional": false,
+            "field": "result",
+            "description": "<p>The result code upon clearing.</p>"
+          }
+        ]
+      }
+    },
+    "error": {
+      "fields": {
+        "Error 4xx": [
+          {
+            "group": "Error 4xx",
+            "type": "JSON",
+            "optional": false,
+            "field": "error_msg",
+            "description": "<p>The JSONified error message.</p>"
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "server/routes/visitorList/index.js",
+    "groupTitle": "VisitorList"
+  },
+  {
     "type": "get",
     "url": "/visitorList",
     "title": "getAllVisitorLists",
@@ -2053,6 +2397,56 @@
     },
     "version": "0.0.0",
     "filename": "server/routes/form/index.js",
+    "groupTitle": "VisitorList"
+  },
+  {
+    "type": "get",
+    "url": "/company/:id",
+    "title": "GetCompanyByID",
+    "name": "GetCompanyByID",
+    "group": "VisitorList",
+    "description": "<p>Gets a company's visitor list by their company ID.</p>",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "id",
+            "description": "<p>The company's ID.</p>"
+          }
+        ]
+      }
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "JSON",
+            "optional": false,
+            "field": "result",
+            "description": "<p>The result code upon deletion of the visitor.</p>"
+          }
+        ]
+      }
+    },
+    "error": {
+      "fields": {
+        "Error 4xx": [
+          {
+            "group": "Error 4xx",
+            "type": "JSON",
+            "optional": false,
+            "field": "error_msg",
+            "description": "<p>The JSONified error message.</p>"
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "server/routes/visitorList/index.js",
     "groupTitle": "VisitorList"
   },
   {
