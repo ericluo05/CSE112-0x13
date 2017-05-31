@@ -1,0 +1,66 @@
+#company-name > h1 {
+  font-size: 18px;
+}
+
+hr {
+  border-top: 3px solid #01b2bd !important;
+}
+
+.delete-appt {
+  margin-left: 15px;
+}
+
+.delete-appt:hover {
+  color: red;
+  cursor: pointer;
+}
+
+.appt-container {
+  max-width: 980px;
+}
+
+.page-title {
+  margin: 35px auto;
+}
+
+.table > thead > tr > th {
+  /* border-bottom: none !important; */
+}
+
+.add-button {
+  float: left;
+  border-radius: 2px;
+  padding: 7px;
+  margin-top: 15px;
+  background-color: #01b2bd;
+  color: white;
+}
+
+.add-button:hover {
+  background-color: #049099;
+  cursor: pointer;
+}
+
+tr:nth-last-child(1) {
+  border-bottom: 1px solid rgb(215, 215, 215) !important;
+}
+
+.table thead th {
+  border-bottom: 1px solid rgb(215, 215, 215) !important;
+}
+
+.message-api {
+  margin-top: 30px;
+  color: #303641;
+  margin-left: 30px;
+  width: 60%;
+  max-width: 480px;
+}
+
+.message-api a {
+  color: #818da2 !important;
+}
+
+.message-api a:hover {
+  color: #5b677b !important;
+}
