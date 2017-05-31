@@ -38,7 +38,7 @@ function createSuperAdminAcc() {
     Company.findOne({name: 'Emissary'}, function(err, result) {
         let superadmin = new Employee();
         superadmin.first_name = 'Peter';
-        superadmin.last_name = '???';
+        superadmin.last_name = 'Venkman';
         superadmin.email = 'peter@emissary.com';
         superadmin.phone_number = '5621234567';
         superadmin.company_id = result._id;
