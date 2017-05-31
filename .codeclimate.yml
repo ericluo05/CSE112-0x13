@@ -23,6 +23,11 @@ exclude_paths:
 - config/
 - doc/
 - drivers/
+- js/js_libs/
 - server/data/
+- stylesheets/font-icons/
+- stylesheets/jquery/
+- stylesheets/libs/
+- stylesheets/neon/
 
 

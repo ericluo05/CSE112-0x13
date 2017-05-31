@@ -9,7 +9,7 @@ let htmlmin = require('gulp-htmlmin');
 let newer = require('gulp-newer');
 let util = require('gulp-util');
 let paths = {
-    js_src: 'client/js_es6/**/*.js',
+    js_src: 'client/js/**/*.js',
     js_dest: 'build/js',
     html_src: 'client/html/**/*.html',
     html_dest: 'build/html',
