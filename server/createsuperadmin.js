@@ -40,7 +40,7 @@ function createSuperAdminAcc() {
             console.log('No SuperAdminAcc "peter@emissary.com" found, creating one');
             let superadmin = new Employee();
             superadmin.first_name = 'Peter';
-            superadmin.last_name = '???';
+            superadmin.last_name = 'Venkman';
             superadmin.email = 'peter@emissary.com';
             superadmin.phone_number = '5621234567';
             superadmin.company_id = EmissaryCompanyID;
