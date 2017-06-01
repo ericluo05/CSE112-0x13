@@ -6,10 +6,57 @@ $(document).ready(function() {
   $('#user-name').text(curUser.first_name);
 
   let companyInfo = getAllComps();
-  let source = $('#company-list-template').html();
-  let template = Handlebars.compile(source);
-  let compiledHtml = template(companyInfo);
-  $('#company-list').html(compiledHtml);
+  updateTable(companyInfo);
+
+  $('#search-input').keyup(function() {
+    console.log($('#search-input').val());
+    companyInfo = updateCompanies($('#search-input').val());
+    updateTable(companyInfo);
+  });
+
+  /**
+     * Makes a get request for list of all companies that match the
+     * search input
+     * 
+     * @param {String} input
+     * @return {Object} list of companies that match input string
+     */
+  function updateCompanies(input) {
+    let searchCompanies = [];
+    $.ajax({
+      type: 'GET',
+      url: '/api/companies/search/'+ input,
+      data: $('#response').serialize(),
+      async: false,
+      dataType: 'json',
+      success: function(response) {
+        for(let i = 0; i < response.length; i++) {
+          if(response[i].name != "Emissary") {
+            let searchComp = {};
+            searchComp.compId = response[i]._id;
+            searchComp.name= response[i].name;
+            searchComp.employeeNum = getEmployeeNum(response[i]._id);
+            searchComp.subLength = getLength(response[i].paid_time.toString());
+            searchCompanies.push(searchComp);
+          }
+        }
+      }
+    });
+    return searchCompanies;
+  }
+
+  /**
+     * Updates the Handlebars template to display the newest 
+     * company list
+     *
+     * @param {Object} data
+     */
+  function updateTable(data) {
+    let source = $('#company-list-template').html();
+    let template = Handlebars.compile(source);
+    let compiledHtml = template(data);
+    $('#company-list').html(compiledHtml);
+  }
 
   /**
      * Makes a get request for list of all companies then uses data
@@ -93,7 +140,7 @@ $(document).ready(function() {
     return totalLen;
   }
   
-  $('.company-row').click(function() {
+  $('body').on('click', '.company-row', function() {
     console.log($(this).attr('value'));
     $.ajax({
        type: 'GET',

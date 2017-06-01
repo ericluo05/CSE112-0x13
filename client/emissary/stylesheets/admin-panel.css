@@ -1,5 +1,14 @@
 .page-title {
-  margin: 30px auto;
+  margin: 15px auto 30px;
+  display: inline-block;
+}
+
+#search-div {
+  padding-right: 25px;
+}
+
+#search-input {
+  margin: 15px auto 30px;
 }
 
 table {
@@ -24,10 +33,6 @@ table {
 
 .table th {
   font-size: 1.2em;
-}
-
-.admin-panel-container {
-  max-width: 980px;
 }
 
 .admin-panel-container table tbody tr:hover {

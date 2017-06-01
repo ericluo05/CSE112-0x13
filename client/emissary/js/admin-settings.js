@@ -4,10 +4,7 @@ $(document).ready(function() {
   let myCompanyId = companyData._id;
 
   $('#user-name').text(curUser.first_name);
-  $('#first-name').text(curUser.first_name);
-  $('#last-name').text(curUser.last_name);
-  $('#email').text(curUser.email);
-  $('#phone').text(curUser.phone_number);
+  showInfo();
 
   $('#modal-first').val(curUser.first_name);
   $('#modal-last').val(curUser.last_name);
@@ -21,17 +18,30 @@ $(document).ready(function() {
     **/
   function updateInfo() {
     let newVals = grabFormValues();
-    console.log(newVals);
     $.ajax({
       dataType: 'json',
-      type: 'POST',
+      type: 'PUT',
       data: newVals,
       async: false,
       url: 'api/employees/' + curUser._id,
       success: function(response) {
         console.log(response);
+        localStorage.setItem('currentUser', JSON.stringify(response));
+        curUser = JSON.parse(localStorage.getItem('currentUser'));
+        showInfo();
       },
     });
+  }
+
+  /**
+    * Use current user saved in local storage to show user information
+    **/
+  function showInfo() {
+    $('#user-name').text(curUser.first_name);
+    $('#first-name').text(curUser.first_name);
+    $('#last-name').text(curUser.last_name);
+    $('#email').text(curUser.email);
+    $('#phone').text(curUser.phone_number);
   }
 
   /**
@@ -44,9 +54,6 @@ $(document).ready(function() {
     newInfo.last_name = $('#modal-last').val();
     newInfo.email = $('#modal-email').val();
     newInfo.phone_number = $('#modal-phone').val();
-    newInfo.company_id = myCompanyId;
-    newInfo.password = $('#modal-password').val();
-    newInfo.role = 'a_admin';
 
     return newInfo;
   }
