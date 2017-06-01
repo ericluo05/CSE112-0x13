@@ -429,9 +429,15 @@
     },
     "error": {
       "fields": {
-        "Error 4xx": [
+        "Error 400": [
           {
-            "group": "Error 4xx",
+            "group": "Error 400",
+            "optional": false,
+            "field": "UniqueEmailNeeded",
+            "description": "<p>email address is already used by a different company</p>"
+          },
+          {
+            "group": "Error 400",
             "optional": false,
             "field": "CouldNotCreate",
             "description": "<p>failed to create the company</p>"
@@ -513,15 +519,15 @@
     },
     "error": {
       "fields": {
-        "Error 4xx": [
+        "Error 400": [
           {
-            "group": "Error 4xx",
+            "group": "Error 400",
             "optional": false,
             "field": "CouldNotFind",
             "description": "<p>Invalid company id</p>"
           },
           {
-            "group": "Error 4xx",
+            "group": "Error 400",
             "optional": false,
             "field": "CouldNotRemove",
             "description": "<p>Can't remove company</p>"
@@ -634,15 +640,15 @@
     },
     "error": {
       "fields": {
-        "Error 4xx": [
+        "Error 400": [
           {
-            "group": "Error 4xx",
+            "group": "Error 400",
             "optional": false,
             "field": "CouldNotFind",
             "description": "<p>wrong company ID</p>"
           },
           {
-            "group": "Error 4xx",
+            "group": "Error 400",
             "optional": false,
             "field": "CouldNotSave",
             "description": "<p>a connection problem</p>"
@@ -703,15 +709,15 @@
     },
     "error": {
       "fields": {
-        "Error 4xx": [
+        "Error 400": [
           {
-            "group": "Error 4xx",
+            "group": "Error 400",
             "optional": false,
             "field": "CouldNotFind",
             "description": "<p>wrong company ID</p>"
           },
           {
-            "group": "Error 4xx",
+            "group": "Error 400",
             "optional": false,
             "field": "CouldNotSave",
             "description": "<p>a connection problem</p>"
@@ -814,15 +820,15 @@
     },
     "error": {
       "fields": {
-        "Error 4xx": [
+        "Error 400": [
           {
-            "group": "Error 4xx",
+            "group": "Error 400",
             "optional": false,
             "field": "CouldNotFind",
             "description": "<p>wrong company ID</p>"
           },
           {
-            "group": "Error 4xx",
+            "group": "Error 400",
             "optional": false,
             "field": "CouldNotSave",
             "description": "<p>unable to save updated info</p>"
@@ -904,9 +910,9 @@
     },
     "error": {
       "fields": {
-        "Error 4xx": [
+        "Error 400": [
           {
-            "group": "Error 4xx",
+            "group": "Error 400",
             "optional": false,
             "field": "CouldNotFind",
             "description": "<p>can't find company with given id</p>"
@@ -995,9 +1001,9 @@
     },
     "error": {
       "fields": {
-        "Error 4xx": [
+        "Error 400": [
           {
-            "group": "Error 4xx",
+            "group": "Error 400",
             "optional": false,
             "field": "CouldNotSearch",
             "description": "<p>database error</p>"
@@ -1044,9 +1050,9 @@
     },
     "error": {
       "fields": {
-        "Error 4xx": [
+        "Error 400": [
           {
-            "group": "Error 4xx",
+            "group": "Error 400",
             "optional": false,
             "field": "CanNotFind",
             "description": "<p>DNE error</p>"
@@ -1093,9 +1099,9 @@
     },
     "error": {
       "fields": {
-        "Error 4xx": [
+        "Error 400": [
           {
-            "group": "Error 4xx",
+            "group": "Error 400",
             "optional": false,
             "field": "CanNotFind",
             "description": "<p>there is not company with that id</p>"
@@ -1142,9 +1148,9 @@
     },
     "error": {
       "fields": {
-        "Error 4xx": [
+        "Error 400": [
           {
-            "group": "Error 4xx",
+            "group": "Error 400",
             "optional": false,
             "field": "CanNotFind",
             "description": "<p>no employee with that id exists</p>"
@@ -1233,9 +1239,9 @@
     },
     "error": {
       "fields": {
-        "Error 4xx": [
+        "Error 400": [
           {
-            "group": "Error 4xx",
+            "group": "Error 400",
             "optional": false,
             "field": "CanNotSave",
             "description": "<p>failed to connect to db</p>"
@@ -1289,15 +1295,15 @@
     },
     "error": {
       "fields": {
-        "Error 4xx": [
+        "Error 400": [
           {
-            "group": "Error 4xx",
+            "group": "Error 400",
             "optional": false,
             "field": "CanNotFind",
             "description": "<p>not employee has that email</p>"
           },
           {
-            "group": "Error 4xx",
+            "group": "Error 400",
             "optional": false,
             "field": "IncorrectCredentials",
             "description": "<p>password does not match</p>"
@@ -1386,15 +1392,15 @@
     },
     "error": {
       "fields": {
-        "Error 4xx": [
+        "Error 400": [
           {
-            "group": "Error 4xx",
+            "group": "Error 400",
             "optional": false,
             "field": "CanNotUpdate",
             "description": "<p>caused by employee not existing I think</p>"
           },
           {
-            "group": "Error 4xx",
+            "group": "Error 400",
             "optional": false,
             "field": "CanNotSave",
             "description": "<p>failed db connection</p>"

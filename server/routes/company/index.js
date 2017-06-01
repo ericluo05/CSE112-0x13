@@ -1,7 +1,9 @@
+/* eslint-disable max-len */
 'use strict';
 let express = require('express');
 let controller = require('./company.controller');
 let router = new express.Router();
+
 
 /**
  *
@@ -21,8 +23,8 @@ let router = new express.Router();
  * @apiSuccess {time} paid_time Time in which the company last made a payment (or created)
  * @apiSuccess {string} phone_number Phone number of the company just created
  * @apiSuccess {string} email Email fo the company just created
- *
- * @apiError CouldNotCreate failed to create the company
+ * @apiError (Error 400) UniqueEmailNeeded  email address is already used by a different company
+ * @apiError (Error 400) CouldNotCreate failed to create the company
  */
 router.post('/', controller.create);
 
@@ -45,7 +47,7 @@ router.post('/', controller.create);
  * @apiSuccess {string} phone_number Phone number of the company retrieved
  * @apiSuccess {string} email Email of the company retrieved
  *
- * @apiError CouldNotFind can't find company with given id
+ * @apiError (Error 400) CouldNotFind can't find company with given id
  */
 router.get('/:id', controller.get);
 
@@ -87,8 +89,8 @@ router.get('/', controller.getAll);
  * @apiSuccess {string} phone_number [new]Phone number of the company updated
  * @apiSuccess {string} email [new]Email of the company updated
  *
- * @apiError CouldNotFind wrong company ID
- * @apiError CouldNotSave unable to save updated info
+ * @apiError (Error 400) CouldNotFind wrong company ID
+ * @apiError (Error 400) CouldNotSave unable to save updated info
  *
  */
 router.put('/:id', controller.update);
@@ -110,8 +112,8 @@ router.put('/:id', controller.update);
  *  or in current case, time in which the company is created using server time
  * @apiSuccess {string} phone_number the company's phone number
  * @apiSuccess {string} email the company's email
- * @apiError CouldNotFind Invalid company id
- * @apiError CouldNotRemove Can't remove company
+ * @apiError (Error 400) CouldNotFind Invalid company id
+ * @apiError (Error 400) CouldNotRemove Can't remove company
  */
 router.delete('/:id', controller.delete);
 
@@ -129,8 +131,8 @@ router.delete('/:id', controller.delete);
  *
  * @apiSuccess {JSON} companyInfo all the companies info in JSON format
  *
- * @apiError CouldNotFind wrong company ID
- * @apiError CouldNotSave a connection problem
+ * @apiError (Error 400) CouldNotFind wrong company ID
+ * @apiError (Error 400) CouldNotSave a connection problem
  */
 router.put('/setting/:user', controller.resetCredentials);
 
@@ -145,8 +147,8 @@ router.put('/setting/:user', controller.resetCredentials);
  *
  * @apiParam {string} ID the companies ID
  * @apiSuccess {JSON} companyPrivateInfo the companies info in JSON format
- * @apiError CouldNotFind wrong company ID
- * @apiError CouldNotSave a connection problem
+ * @apiError (Error 400) CouldNotFind wrong company ID
+ * @apiError (Error 400) CouldNotSave a connection problem
  */
 router.get('/dur/:id', controller.getSubDuration);
 
@@ -167,7 +169,7 @@ router.get('/dur/:id', controller.getSubDuration);
  * @apiSuccess {time} Companies.paid_time Time in which the company last made a payment
  * @apiSuccess {string} Companies.phone_number the company's phone number
  * @apiSuccess {string} Companies.email the company's email
- * @apiError CouldNotSearch database error
+ * @apiError (Error 400) CouldNotSearch database error
  */
 router.get('/search/:match', controller.searchCompanies);
 

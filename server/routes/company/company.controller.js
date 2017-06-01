@@ -22,7 +22,9 @@ exports.create = function(req, res) {
 
     company.save(function(err, c) {
         if(err) {
-            return res.status(400).json({error: 'CouldNotCreate'});
+            if(err.code == 11000)
+                return res.status(400).json({eror: 'Unique Email Needed'});
+            return res.status(400).json({error: 'Could Not Create'});
         }
         return res.status(200).json(showCompanyPublicInfo(c));
     });
@@ -57,7 +59,7 @@ exports.getAll = function(req, res) {
 exports.get = function(req, res) {
     Company.findOne({_id: req.params.id}, function(err, company) {
         if(err) {
-            return res.status(400).json({error: 'CouldNotFind'});
+            return res.status(400).json({error: 'Could Not Find'});
         }
         return res.status(200).json(showCompanyPublicInfo(company));
     });
@@ -73,7 +75,7 @@ exports.get = function(req, res) {
 exports.update = function(req, res) {
     Company.findOne({_id: req.params.id}, function(err, c) {
         if(err || !c)
-            return res.status(401).json({error: 'CouldNotFind'});
+            return res.status(401).json({error: 'Could Not Find'});
 
         // update email
         if (req.body.email)
@@ -89,7 +91,7 @@ exports.update = function(req, res) {
 
         c.save(function(err) {
             if(err) {
-                return res.status(400).json({error: 'CouldNotSave'});
+                return res.status(400).json({error: 'Could Not Save'});
             }
             return res.status(200).json(showCompanyPublicInfo(c));
         });
@@ -108,7 +110,7 @@ exports.delete = function(req, res) {
             res.status(400).json({error: 'CouldNotFind'});
         c.remove(function(err) {
             if(err) {
-                res.status(400).json({error: 'CouldNotRemove'});
+                res.status(400).json({error: 'Could Not Remove'});
             } else {
                 return res.status(200).json(showCompanyPublicInfo(c));
             }
@@ -215,7 +217,7 @@ exports.searchCompanies = function(req, res) {
     let regexToSearch = new RegExp('.*'+req.params.match.trim()+'.*');
     Company.find({name: regexToSearch}, function(error, result) {
        if(error)
-           return res.status(400).json({error: 'CouldNotSearch '});
+           return res.status(400).json({error: 'Could Not Search '});
        return res.json(result);
     });
 };
@@ -233,6 +235,7 @@ function showCompanyPrivateInfo(c) {
         name: c.name,
         email: c.email,
         phone_number: c.phone_number,
+        created: c.created,
         paid_time: c.paid_time,
         sub_duration: c.sub_duration,
     };

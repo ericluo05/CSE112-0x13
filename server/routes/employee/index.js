@@ -16,7 +16,7 @@ let router = new express.Router();
  *
  * @apiParam {int} Company_id the id of our company
  * @apiSuccess {JSON} result all the employees in JSON format
- * @apiError CanNotFind there is not company with that id
+ * @apiError (Error 400) CanNotFind there is not company with that id
  */
 router.get('/company/:id', controller.getAllEmployees);
 
@@ -30,7 +30,7 @@ router.get('/company/:id', controller.getAllEmployees);
  *
  * @apiParam {int} Employee_id
  * @apiSuccess {JSON} employee employee in JSON format
- * @apiError CanNotFind no employee with that id exists
+ * @apiError (Error 400) CanNotFind no employee with that id exists
  */
 router.get('/:id', controller.getById);
 
@@ -54,7 +54,7 @@ router.get('/:id', controller.getById);
  * @apiParam {string}  password employees password. This is hashed then removed
  * @apiParam {string}  role employees role in the company
  * @apiSuccess {JSON} employee complete new employee in JSON format
- * @apiError CanNotSave failed to connect to db
+ * @apiError (Error 400) CanNotSave failed to connect to db
  */
 router.post('/', controller.insert);
 
@@ -74,8 +74,8 @@ router.post('/', controller.insert);
  * @apiParam {string} [password] employees password. This is hashed then removed
  * @apiParam {string} [role] employees role in the company
  * @apiSuccess {JSON} employee the newly create employee in JSON format
- * @apiError CanNotUpdate caused by employee not existing I think
- * @apiError CanNotSave failed db connection
+ * @apiError (Error 400) CanNotUpdate caused by employee not existing I think
+ * @apiError (Error 400) CanNotSave failed db connection
  */
 router.put('/:id', controller.update);
 
@@ -89,7 +89,7 @@ router.put('/:id', controller.update);
  *
  * @apiParam {int} employee_id unique identifier for employee
  * @apiSuccess {JSON} employee the JSON of the employee that was just deleted
- * @apiError CanNotFind DNE error
+ * @apiError (Error 400) CanNotFind DNE error
  */
 router.delete('/:id', controller.delete);
 
@@ -104,8 +104,8 @@ router.delete('/:id', controller.delete);
  * @apiParam {string} email employee's email
  * @apiParam {string} password employee's password
  * @apiSuccess {JSON} return employee JSON - the password
- * @apiError CanNotFind not employee has that email
- * @apiError IncorrectCredentials password does not match
+ * @apiError (Error 400) CanNotFind not employee has that email
+ * @apiError (Error 400) IncorrectCredentials password does not match
  */
 router.post('/login', controller.login);
 

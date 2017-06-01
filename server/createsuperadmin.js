@@ -44,7 +44,7 @@ function createSuperAdminAcc() {
      Employee.findOne({email: 'peter@emissary.com'}, function(err, result) {
         if(err) {
             return console.log('Error trying to find super-admin' +
-                ' account: ' + err.message);
+                ' account: ' + err.code);
         }
         if(!result) {
             console.log('No SuperAdminAcc "peter@emissary.com" found, creating one');
