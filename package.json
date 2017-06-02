@@ -87,6 +87,7 @@
     "nightwatch": "^0.9.14",
     "npm-run-all": "^4.0.2",
     "nyc": "^10.3.0",
+    "smooch-core": "^4.1.0",
     "stylelint": "^7.10.1",
     "stylelint-config-standard": "^16.0.0",
     "supertest": "^3.0.0"

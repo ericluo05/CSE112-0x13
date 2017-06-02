@@ -14,6 +14,7 @@ let mongoose = require('mongoose');
 let config = require('./config/config')[process.env.NODE_ENV || 'development'];
 let staticSiteMapping = require('./routes/staticmapping');
 let apiMapping = require('./routes/apimapping');
+let messagesMapping = require('./routes/messagesMapping');
 let app = express();
 // slack notification is done on client side currently.. not safe
 // let slack = require('slack-notify')('https://hooks.slack.com/services/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');
@@ -52,6 +53,10 @@ app.use(function(req, res, next) {
 
 // map static site routing and api routings
 app.use('/', staticSiteMapping);
+
+// Use messages for Smooch Omni-channel integration
+app.use('/messages', messagesMapping);
+
 apiMapping(app);
 
 // catch 404 and forward to error handler
