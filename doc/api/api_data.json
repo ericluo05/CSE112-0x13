@@ -348,7 +348,7 @@
   {
     "type": "post",
     "url": "/api/companies",
-    "title": "create",
+    "title": "Create company",
     "description": "<p>This is used for create a company account</p>",
     "name": "CompanyCreate",
     "group": "Company",
@@ -382,51 +382,10 @@
     "examples": [
       {
         "title": "Example usage:",
-        "content": "curl -X POST  -d {\"email\":\"newEmail@email.com\", \"name\":\"companyName\", \"phone_number\":\"6261234567\"} http://localhost/api/companies",
-        "type": "curl"
+        "content": "POST /api/companies HTTP/1.1\nHost: localhost\nContent-Type: application/x-www-form-urlencoded\nname=companyName\nemail=email@domain.com\nphone_number=5621234567",
+        "type": "HTTP"
       }
     ],
-    "success": {
-      "fields": {
-        "Success 200": [
-          {
-            "group": "Success 200",
-            "type": "string",
-            "optional": false,
-            "field": "_id",
-            "description": "<p>ID of the company created</p>"
-          },
-          {
-            "group": "Success 200",
-            "type": "string",
-            "optional": false,
-            "field": "name",
-            "description": "<p>Name of the company created</p>"
-          },
-          {
-            "group": "Success 200",
-            "type": "time",
-            "optional": false,
-            "field": "paid_time",
-            "description": "<p>Time in which the company last made a payment (or created)</p>"
-          },
-          {
-            "group": "Success 200",
-            "type": "string",
-            "optional": false,
-            "field": "phone_number",
-            "description": "<p>Phone number of the company just created</p>"
-          },
-          {
-            "group": "Success 200",
-            "type": "string",
-            "optional": false,
-            "field": "email",
-            "description": "<p>Email fo the company just created</p>"
-          }
-        ]
-      }
-    },
     "error": {
       "fields": {
         "Error 400": [
@@ -447,12 +406,53 @@
     },
     "version": "0.0.0",
     "filename": "server/routes/company/index.js",
-    "groupTitle": "Company"
+    "groupTitle": "Company",
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "string",
+            "optional": false,
+            "field": "_id",
+            "description": "<p>ID of the company</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "string",
+            "optional": false,
+            "field": "name",
+            "description": "<p>Name of the company</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "time",
+            "optional": false,
+            "field": "paid_time",
+            "description": "<p>Time in which the company last made a payment (or created)</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "string",
+            "optional": false,
+            "field": "phone_number",
+            "description": "<p>Phone number of the company</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "string",
+            "optional": false,
+            "field": "email",
+            "description": "<p>Email fo the company</p>"
+          }
+        ]
+      }
+    }
   },
   {
     "type": "delete",
     "url": "/api/companies/:id",
-    "title": "delete",
+    "title": "Delete company",
     "description": "<p>deletes a comapny from company db</p>",
     "name": "CompanyDelete",
     "group": "Company",
@@ -472,51 +472,10 @@
     "examples": [
       {
         "title": "Example usage:",
-        "content": "curl -X DELETE  http://localhost/api/companies/CompanyIDHere",
-        "type": "curl"
+        "content": "DELETE /api/companies/id HTTP/1.1\nHost: localhost",
+        "type": "HTTP"
       }
     ],
-    "success": {
-      "fields": {
-        "Success 200": [
-          {
-            "group": "Success 200",
-            "type": "string",
-            "optional": false,
-            "field": "_id",
-            "description": "<p>id of the company deleted</p>"
-          },
-          {
-            "group": "Success 200",
-            "type": "string",
-            "optional": false,
-            "field": "name",
-            "description": "<p>Name of the company deleted</p>"
-          },
-          {
-            "group": "Success 200",
-            "type": "time",
-            "optional": false,
-            "field": "paid_time",
-            "description": "<p>Time in which the company last made a payment, or in current case, time in which the company is created using server time</p>"
-          },
-          {
-            "group": "Success 200",
-            "type": "string",
-            "optional": false,
-            "field": "phone_number",
-            "description": "<p>the company's phone number</p>"
-          },
-          {
-            "group": "Success 200",
-            "type": "string",
-            "optional": false,
-            "field": "email",
-            "description": "<p>the company's email</p>"
-          }
-        ]
-      }
-    },
     "error": {
       "fields": {
         "Error 400": [
@@ -537,15 +496,59 @@
     },
     "version": "0.0.0",
     "filename": "server/routes/company/index.js",
-    "groupTitle": "Company"
+    "groupTitle": "Company",
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "string",
+            "optional": false,
+            "field": "_id",
+            "description": "<p>ID of the company</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "string",
+            "optional": false,
+            "field": "name",
+            "description": "<p>Name of the company</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "time",
+            "optional": false,
+            "field": "paid_time",
+            "description": "<p>Time in which the company last made a payment (or created)</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "string",
+            "optional": false,
+            "field": "phone_number",
+            "description": "<p>Phone number of the company</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "string",
+            "optional": false,
+            "field": "email",
+            "description": "<p>Email fo the company</p>"
+          }
+        ]
+      }
+    }
   },
   {
     "type": "get",
     "url": "/api/companies/",
-    "title": "getAll",
+    "title": "Get info of all companies",
     "description": "<p>This is used to acquire all companies public info</p>",
     "name": "CompanyGetAll",
     "group": "Company",
+    "version": "0.0.0",
+    "filename": "server/routes/company/index.js",
+    "groupTitle": "Company",
     "success": {
       "fields": {
         "Success 200": [
@@ -554,14 +557,7 @@
             "type": "Company[]",
             "optional": false,
             "field": "Companies",
-            "description": "<p>All companies in JSON format</p>"
-          },
-          {
-            "group": "Success 200",
-            "type": "string",
-            "optional": false,
-            "field": "Companies.name",
-            "description": "<p>Name of company</p>"
+            "description": "<p>Info of all companies in <code>JSON</code> format</p>"
           },
           {
             "group": "Success 200",
@@ -569,6 +565,13 @@
             "optional": false,
             "field": "Companies._id",
             "description": "<p>id of company</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "string",
+            "optional": false,
+            "field": "Companies.name",
+            "description": "<p>Name of company</p>"
           },
           {
             "group": "Success 200",
@@ -593,15 +596,12 @@
           }
         ]
       }
-    },
-    "version": "0.0.0",
-    "filename": "server/routes/company/index.js",
-    "groupTitle": "Company"
+    }
   },
   {
     "type": "get",
     "url": "/api/companies/dur/:id",
-    "title": "getSubDuration",
+    "title": "Get SubDuration",
     "description": "<p>Get user subscription duration for admin panel</p>",
     "examples": [
       {
@@ -621,19 +621,6 @@
             "optional": false,
             "field": "ID",
             "description": "<p>the companies ID</p>"
-          }
-        ]
-      }
-    },
-    "success": {
-      "fields": {
-        "Success 200": [
-          {
-            "group": "Success 200",
-            "type": "JSON",
-            "optional": false,
-            "field": "companyPrivateInfo",
-            "description": "<p>the companies info in JSON format</p>"
           }
         ]
       }
@@ -658,12 +645,53 @@
     },
     "version": "0.0.0",
     "filename": "server/routes/company/index.js",
-    "groupTitle": "Company"
+    "groupTitle": "Company",
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "string",
+            "optional": false,
+            "field": "_id",
+            "description": "<p>ID of the company</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "string",
+            "optional": false,
+            "field": "name",
+            "description": "<p>Name of the company</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "time",
+            "optional": false,
+            "field": "paid_time",
+            "description": "<p>Time in which the company last made a payment (or created)</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "string",
+            "optional": false,
+            "field": "phone_number",
+            "description": "<p>Phone number of the company</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "string",
+            "optional": false,
+            "field": "email",
+            "description": "<p>Email fo the company</p>"
+          }
+        ]
+      }
+    }
   },
   {
     "type": "put",
     "url": "/api/companies/setting/:user",
-    "title": "resetCredentials",
+    "title": "Reset Credentials",
     "description": "<p>Change the credentials for a user in a company. DON'T USE THIS, THIS IS BROKEN. STILL NEEDS TO BE FIX</p>",
     "name": "CompanyResetCredentials",
     "group": "Company",
@@ -694,19 +722,6 @@
         ]
       }
     },
-    "success": {
-      "fields": {
-        "Success 200": [
-          {
-            "group": "Success 200",
-            "type": "JSON",
-            "optional": false,
-            "field": "companyInfo",
-            "description": "<p>all the companies info in JSON format</p>"
-          }
-        ]
-      }
-    },
     "error": {
       "fields": {
         "Error 400": [
@@ -727,12 +742,53 @@
     },
     "version": "0.0.0",
     "filename": "server/routes/company/index.js",
-    "groupTitle": "Company"
+    "groupTitle": "Company",
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "string",
+            "optional": false,
+            "field": "_id",
+            "description": "<p>ID of the company</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "string",
+            "optional": false,
+            "field": "name",
+            "description": "<p>Name of the company</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "time",
+            "optional": false,
+            "field": "paid_time",
+            "description": "<p>Time in which the company last made a payment (or created)</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "string",
+            "optional": false,
+            "field": "phone_number",
+            "description": "<p>Phone number of the company</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "string",
+            "optional": false,
+            "field": "email",
+            "description": "<p>Email fo the company</p>"
+          }
+        ]
+      }
+    }
   },
   {
     "type": "put",
     "url": "/api/companies/:id",
-    "title": "update",
+    "title": "Update company info",
     "description": "<p>Change the info for a company</p>",
     "name": "CompanyUpdate",
     "group": "Company",
@@ -773,51 +829,10 @@
     "examples": [
       {
         "title": "Example usage:",
-        "content": "curl -X PUT  -d {\"email\":\"newEmail@email.com\"} http://localhost/api/companies/CompanyIDHere",
-        "type": "curl"
+        "content": "PUT /api/companies/id HTTP/1.1\nHost: localhost\nContent-Type: application/x-www-form-urlencoded\nname=NewCompanyName",
+        "type": "HTTP"
       }
     ],
-    "success": {
-      "fields": {
-        "Success 200": [
-          {
-            "group": "Success 200",
-            "type": "string",
-            "optional": false,
-            "field": "_id",
-            "description": "<p>ID of the company updated</p>"
-          },
-          {
-            "group": "Success 200",
-            "type": "string",
-            "optional": false,
-            "field": "name",
-            "description": "<p>[new]Name of the company updated</p>"
-          },
-          {
-            "group": "Success 200",
-            "type": "time",
-            "optional": false,
-            "field": "paid_time",
-            "description": "<p>Time in which the company last made a payment, or in current case, time in which the company is created using server time</p>"
-          },
-          {
-            "group": "Success 200",
-            "type": "string",
-            "optional": false,
-            "field": "phone_number",
-            "description": "<p>[new]Phone number of the company updated</p>"
-          },
-          {
-            "group": "Success 200",
-            "type": "string",
-            "optional": false,
-            "field": "email",
-            "description": "<p>[new]Email of the company updated</p>"
-          }
-        ]
-      }
-    },
     "error": {
       "fields": {
         "Error 400": [
@@ -838,12 +853,53 @@
     },
     "version": "0.0.0",
     "filename": "server/routes/company/index.js",
-    "groupTitle": "Company"
+    "groupTitle": "Company",
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "string",
+            "optional": false,
+            "field": "_id",
+            "description": "<p>ID of the company</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "string",
+            "optional": false,
+            "field": "name",
+            "description": "<p>Name of the company</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "time",
+            "optional": false,
+            "field": "paid_time",
+            "description": "<p>Time in which the company last made a payment (or created)</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "string",
+            "optional": false,
+            "field": "phone_number",
+            "description": "<p>Phone number of the company</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "string",
+            "optional": false,
+            "field": "email",
+            "description": "<p>Email fo the company</p>"
+          }
+        ]
+      }
+    }
   },
   {
     "type": "get",
     "url": "/api/companies/:id",
-    "title": "get",
+    "title": "Get company info",
     "description": "<p>This is used for retrieving company info</p>",
     "name": "GetCompanyInfo",
     "group": "Company",
@@ -863,51 +919,15 @@
     "examples": [
       {
         "title": "Example usage:",
-        "content": "curl http://localhost/api/companies/CompanyIDHere",
+        "content": "GET /api/companies/id HTTP/1.1\nHost: localhost",
+        "type": "HTTP"
+      },
+      {
+        "title": "Example usage:",
+        "content": "curl http://localhost/api/companies/id",
         "type": "curl"
       }
     ],
-    "success": {
-      "fields": {
-        "Success 200": [
-          {
-            "group": "Success 200",
-            "type": "string",
-            "optional": false,
-            "field": "name",
-            "description": "<p>Name of the company retrieved</p>"
-          },
-          {
-            "group": "Success 200",
-            "type": "string",
-            "optional": false,
-            "field": "_id",
-            "description": "<p>ID of the company retrieved</p>"
-          },
-          {
-            "group": "Success 200",
-            "type": "time",
-            "optional": false,
-            "field": "paid_time",
-            "description": "<p>Time in which the company last made a payment, or in current case, time in which the company is created using server time</p>"
-          },
-          {
-            "group": "Success 200",
-            "type": "string",
-            "optional": false,
-            "field": "phone_number",
-            "description": "<p>Phone number of the company retrieved</p>"
-          },
-          {
-            "group": "Success 200",
-            "type": "string",
-            "optional": false,
-            "field": "email",
-            "description": "<p>Email of the company retrieved</p>"
-          }
-        ]
-      }
-    },
     "error": {
       "fields": {
         "Error 400": [
@@ -922,17 +942,63 @@
     },
     "version": "0.0.0",
     "filename": "server/routes/company/index.js",
-    "groupTitle": "Company"
+    "groupTitle": "Company",
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "string",
+            "optional": false,
+            "field": "_id",
+            "description": "<p>ID of the company</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "string",
+            "optional": false,
+            "field": "name",
+            "description": "<p>Name of the company</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "time",
+            "optional": false,
+            "field": "paid_time",
+            "description": "<p>Time in which the company last made a payment (or created)</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "string",
+            "optional": false,
+            "field": "phone_number",
+            "description": "<p>Phone number of the company</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "string",
+            "optional": false,
+            "field": "email",
+            "description": "<p>Email fo the company</p>"
+          }
+        ]
+      }
+    }
   },
   {
     "type": "get",
     "url": "/api/companies/search/:match",
-    "title": "searchCompanies",
+    "title": "Search Companies",
     "description": "<p>Search for companies that contains user-inputted string</p>",
     "examples": [
       {
-        "title": "Example usage:",
-        "content": "curl -i http://localhost/api/companies/search/TextToMatch",
+        "title": "HTTP usage:",
+        "content": "GET /api/companies/search/match HTTP/1.1\nHost: localhost",
+        "type": "HTTP"
+      },
+      {
+        "title": "curl usage:",
+        "content": "curl -i http://localhost/api/companies/search/match",
         "type": "curl"
       }
     ],
@@ -951,6 +1017,21 @@
         ]
       }
     },
+    "error": {
+      "fields": {
+        "Error 400": [
+          {
+            "group": "Error 400",
+            "optional": false,
+            "field": "CouldNotSearch",
+            "description": "<p>database error</p>"
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "server/routes/company/index.js",
+    "groupTitle": "Company",
     "success": {
       "fields": {
         "Success 200": [
@@ -959,14 +1040,7 @@
             "type": "Company[]",
             "optional": false,
             "field": "Companies",
-            "description": "<p>Companies in JSON format</p>"
-          },
-          {
-            "group": "Success 200",
-            "type": "string",
-            "optional": false,
-            "field": "Companies.name",
-            "description": "<p>Name of company</p>"
+            "description": "<p>Info of all companies in <code>JSON</code> format</p>"
           },
           {
             "group": "Success 200",
@@ -974,6 +1048,13 @@
             "optional": false,
             "field": "Companies._id",
             "description": "<p>id of company</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "string",
+            "optional": false,
+            "field": "Companies.name",
+            "description": "<p>Name of company</p>"
           },
           {
             "group": "Success 200",
@@ -998,22 +1079,7 @@
           }
         ]
       }
-    },
-    "error": {
-      "fields": {
-        "Error 400": [
-          {
-            "group": "Error 400",
-            "optional": false,
-            "field": "CouldNotSearch",
-            "description": "<p>database error</p>"
-          }
-        ]
-      }
-    },
-    "version": "0.0.0",
-    "filename": "server/routes/company/index.js",
-    "groupTitle": "Company"
+    }
   },
   {
     "type": "delete",
@@ -1035,19 +1101,6 @@
         ]
       }
     },
-    "success": {
-      "fields": {
-        "Success 200": [
-          {
-            "group": "Success 200",
-            "type": "JSON",
-            "optional": false,
-            "field": "employee",
-            "description": "<p>the JSON of the employee that was just deleted</p>"
-          }
-        ]
-      }
-    },
     "error": {
       "fields": {
         "Error 400": [
@@ -1062,7 +1115,55 @@
     },
     "version": "0.0.0",
     "filename": "server/routes/employee/index.js",
-    "groupTitle": "Employee"
+    "groupTitle": "Employee",
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "string",
+            "optional": false,
+            "field": "_id",
+            "description": "<p>ID of the employee</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "string",
+            "optional": false,
+            "field": "first_name",
+            "description": "<p>first name of the employee</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "string",
+            "optional": false,
+            "field": "last_name",
+            "description": "<p>last name of the employee</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "string",
+            "optional": false,
+            "field": "email",
+            "description": "<p>email of the employee</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "string",
+            "optional": false,
+            "field": "phone_number",
+            "description": "<p>phone number of the employee</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "string",
+            "optional": false,
+            "field": "role",
+            "description": "<p>role of the employee, can be one of the following: <br> [c_admin: company admin]<br> [c_receptionist: company receptionist] <br> [c_employee: company employee] <br> [a_admin: app administrator]</p>"
+          }
+        ]
+      }
+    }
   },
   {
     "type": "get",
@@ -1084,19 +1185,6 @@
         ]
       }
     },
-    "success": {
-      "fields": {
-        "Success 200": [
-          {
-            "group": "Success 200",
-            "type": "JSON",
-            "optional": false,
-            "field": "result",
-            "description": "<p>all the employees in JSON format</p>"
-          }
-        ]
-      }
-    },
     "error": {
       "fields": {
         "Error 400": [
@@ -1111,7 +1199,62 @@
     },
     "version": "0.0.0",
     "filename": "server/routes/employee/index.js",
-    "groupTitle": "Employee"
+    "groupTitle": "Employee",
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "Employee[]",
+            "optional": false,
+            "field": "Employees",
+            "description": "<p>Info of all employees in given company in <code>JSON</code> format</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "string",
+            "optional": false,
+            "field": "Employees._id",
+            "description": "<p>ID of the employee</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "string",
+            "optional": false,
+            "field": "Employees.first_name",
+            "description": "<p>first name of the employee</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "string",
+            "optional": false,
+            "field": "Employees.last_name",
+            "description": "<p>last name of the employee</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "string",
+            "optional": false,
+            "field": "Employees.email",
+            "description": "<p>email of the employee</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "string",
+            "optional": false,
+            "field": "Employees.phone_number",
+            "description": "<p>phone number of the employee</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "string",
+            "optional": false,
+            "field": "Employees.role",
+            "description": "<p>role of the employee, can be one of the following: <br> [c_admin - company admin] <br> [c_receptionist: company receptionist] <br> [c_employee: company employee] <br> [a_admin: app administrator]</p>"
+          }
+        ]
+      }
+    }
   },
   {
     "type": "get",
@@ -1133,19 +1276,6 @@
         ]
       }
     },
-    "success": {
-      "fields": {
-        "Success 200": [
-          {
-            "group": "Success 200",
-            "type": "JSON",
-            "optional": false,
-            "field": "employee",
-            "description": "<p>employee in JSON format</p>"
-          }
-        ]
-      }
-    },
     "error": {
       "fields": {
         "Error 400": [
@@ -1160,7 +1290,55 @@
     },
     "version": "0.0.0",
     "filename": "server/routes/employee/index.js",
-    "groupTitle": "Employee"
+    "groupTitle": "Employee",
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "string",
+            "optional": false,
+            "field": "_id",
+            "description": "<p>ID of the employee</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "string",
+            "optional": false,
+            "field": "first_name",
+            "description": "<p>first name of the employee</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "string",
+            "optional": false,
+            "field": "last_name",
+            "description": "<p>last name of the employee</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "string",
+            "optional": false,
+            "field": "email",
+            "description": "<p>email of the employee</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "string",
+            "optional": false,
+            "field": "phone_number",
+            "description": "<p>phone number of the employee</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "string",
+            "optional": false,
+            "field": "role",
+            "description": "<p>role of the employee, can be one of the following: <br> [c_admin: company admin]<br> [c_receptionist: company receptionist] <br> [c_employee: company employee] <br> [a_admin: app administrator]</p>"
+          }
+        ]
+      }
+    }
   },
   {
     "type": "post",
@@ -1224,19 +1402,6 @@
         ]
       }
     },
-    "success": {
-      "fields": {
-        "Success 200": [
-          {
-            "group": "Success 200",
-            "type": "JSON",
-            "optional": false,
-            "field": "employee",
-            "description": "<p>complete new employee in JSON format</p>"
-          }
-        ]
-      }
-    },
     "error": {
       "fields": {
         "Error 400": [
@@ -1251,7 +1416,55 @@
     },
     "version": "0.0.0",
     "filename": "server/routes/employee/index.js",
-    "groupTitle": "Employee"
+    "groupTitle": "Employee",
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "string",
+            "optional": false,
+            "field": "_id",
+            "description": "<p>ID of the employee</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "string",
+            "optional": false,
+            "field": "first_name",
+            "description": "<p>first name of the employee</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "string",
+            "optional": false,
+            "field": "last_name",
+            "description": "<p>last name of the employee</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "string",
+            "optional": false,
+            "field": "email",
+            "description": "<p>email of the employee</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "string",
+            "optional": false,
+            "field": "phone_number",
+            "description": "<p>phone number of the employee</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "string",
+            "optional": false,
+            "field": "role",
+            "description": "<p>role of the employee, can be one of the following: <br> [c_admin: company admin]<br> [c_receptionist: company receptionist] <br> [c_employee: company employee] <br> [a_admin: app administrator]</p>"
+          }
+        ]
+      }
+    }
   },
   {
     "type": "post",
@@ -1280,19 +1493,6 @@
         ]
       }
     },
-    "success": {
-      "fields": {
-        "Success 200": [
-          {
-            "group": "Success 200",
-            "type": "JSON",
-            "optional": false,
-            "field": "return",
-            "description": "<p>employee JSON - the password</p>"
-          }
-        ]
-      }
-    },
     "error": {
       "fields": {
         "Error 400": [
@@ -1313,7 +1513,55 @@
     },
     "version": "0.0.0",
     "filename": "server/routes/employee/index.js",
-    "groupTitle": "Employee"
+    "groupTitle": "Employee",
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "string",
+            "optional": false,
+            "field": "_id",
+            "description": "<p>ID of the employee</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "string",
+            "optional": false,
+            "field": "first_name",
+            "description": "<p>first name of the employee</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "string",
+            "optional": false,
+            "field": "last_name",
+            "description": "<p>last name of the employee</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "string",
+            "optional": false,
+            "field": "email",
+            "description": "<p>email of the employee</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "string",
+            "optional": false,
+            "field": "phone_number",
+            "description": "<p>phone number of the employee</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "string",
+            "optional": false,
+            "field": "role",
+            "description": "<p>role of the employee, can be one of the following: <br> [c_admin: company admin]<br> [c_receptionist: company receptionist] <br> [c_employee: company employee] <br> [a_admin: app administrator]</p>"
+          }
+        ]
+      }
+    }
   },
   {
     "type": "put",
@@ -1377,19 +1625,6 @@
         ]
       }
     },
-    "success": {
-      "fields": {
-        "Success 200": [
-          {
-            "group": "Success 200",
-            "type": "JSON",
-            "optional": false,
-            "field": "employee",
-            "description": "<p>the newly create employee in JSON format</p>"
-          }
-        ]
-      }
-    },
     "error": {
       "fields": {
         "Error 400": [
@@ -1410,7 +1645,55 @@
     },
     "version": "0.0.0",
     "filename": "server/routes/employee/index.js",
-    "groupTitle": "Employee"
+    "groupTitle": "Employee",
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "string",
+            "optional": false,
+            "field": "_id",
+            "description": "<p>ID of the employee</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "string",
+            "optional": false,
+            "field": "first_name",
+            "description": "<p>first name of the employee</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "string",
+            "optional": false,
+            "field": "last_name",
+            "description": "<p>last name of the employee</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "string",
+            "optional": false,
+            "field": "email",
+            "description": "<p>email of the employee</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "string",
+            "optional": false,
+            "field": "phone_number",
+            "description": "<p>phone number of the employee</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "string",
+            "optional": false,
+            "field": "role",
+            "description": "<p>role of the employee, can be one of the following: <br> [c_admin: company admin]<br> [c_receptionist: company receptionist] <br> [c_employee: company employee] <br> [a_admin: app administrator]</p>"
+          }
+        ]
+      }
+    }
   },
   {
     "type": "post",

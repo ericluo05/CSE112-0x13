@@ -59,7 +59,7 @@ exports.getAll = function(req, res) {
 exports.get = function(req, res) {
     Company.findOne({_id: req.params.id}, function(err, company) {
         if(err) {
-            return res.status(400).json({error: 'Could Not Find'});
+            return res.status(400).json({error: 'Could not find'});
         }
         return res.status(200).json(showCompanyPublicInfo(company));
     });
@@ -75,7 +75,7 @@ exports.get = function(req, res) {
 exports.update = function(req, res) {
     Company.findOne({_id: req.params.id}, function(err, c) {
         if(err || !c)
-            return res.status(401).json({error: 'Could Not Find'});
+            return res.status(401).json({error: 'Could not save'});
 
         // update email
         if (req.body.email)
@@ -91,7 +91,7 @@ exports.update = function(req, res) {
 
         c.save(function(err) {
             if(err) {
-                return res.status(400).json({error: 'Could Not Save'});
+                return res.status(400).json({error: 'Could not save'});
             }
             return res.status(200).json(showCompanyPublicInfo(c));
         });
@@ -110,7 +110,7 @@ exports.delete = function(req, res) {
             res.status(400).json({error: 'CouldNotFind'});
         c.remove(function(err) {
             if(err) {
-                res.status(400).json({error: 'Could Not Remove'});
+                res.status(400).json({error: 'Could not remove'});
             } else {
                 return res.status(200).json(showCompanyPublicInfo(c));
             }
@@ -130,7 +130,7 @@ exports.resetCredentials = function(req, res) {
 
     Company.findOne({email: req.params.user}, function(err, c) {
         if(err || !c)
-            return res.status(400).json({error: 'Could Not Find'});
+            return res.status(400).json({error: 'Could not find'});
 
 
         // if the user is found but the password is wrong
@@ -155,7 +155,7 @@ exports.resetCredentials = function(req, res) {
 
         c.save(function(err) {
             if(err) {
-                res.status(400).send({error: 'CouldNotSave'});
+                res.status(400).send({error: 'Could not save'});
             }
         });
         return res.status(200).json(showCompanyPublicInfo(c));

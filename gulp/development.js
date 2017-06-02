@@ -64,7 +64,7 @@ gulp.task('dev:backend', ['build'], function(cb) {
     let started = false;
     return nodemon({
         script: './server/bin/www',
-        ignore: ['config/', 'build', 'coverage/', 'drivers/', 'node_modules/',
+        ignore: ['config/', 'build', 'coverage/', 'doc/', 'drivers/', 'node_modules/',
             'reports/', 'test/'],
         env: {'NODE_ENV': 'development'},
     }).on('start', function() {

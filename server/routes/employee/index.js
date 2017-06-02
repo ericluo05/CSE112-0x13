@@ -7,6 +7,38 @@ let router = new express.Router();
 
 
 /**
+ * @apiDefine EmployeeData
+ * @apiSuccess {string} _id ID of the employee
+ * @apiSuccess {string} first_name first name of the employee
+ * @apiSuccess {string } last_name last name of the employee
+ * @apiSuccess {string} email email of the employee
+ * @apiSuccess {string} phone_number phone number of the employee
+ * @apiSuccess {string} role role of the employee, can be one of the following: <br>
+ *       [c_admin: company admin]<br>
+ *       [c_receptionist: company receptionist] <br>
+ *       [c_employee: company employee] <br>
+ *       [a_admin: app administrator]
+ */
+
+/**
+ * @apiDefine EmployeesData
+ * @apiSuccess {Employee[]}Employees Info of all employees in given company
+ *                  in <code>JSON</code> format
+ * @apiSuccess {string} Employees._id ID of the employee
+ * @apiSuccess {string} Employees.first_name first name of the employee
+ * @apiSuccess {string } Employees.last_name last name of the employee
+ * @apiSuccess {string} Employees.email email of the employee
+ * @apiSuccess {string} Employees.phone_number phone number of the employee
+ * @apiSuccess {string} Employees.role role of the employee,
+ *         can be one of the following: <br>
+ *       [c_admin - company admin] <br>
+ *       [c_receptionist: company receptionist] <br>
+ *       [c_employee: company employee] <br>
+ *       [a_admin: app administrator]
+ */
+
+
+/**
  *
  * @api {get} api/employees/company/:id getAllEmployees
  * @apiDescription This is for getting all existent employees. Look at
@@ -15,7 +47,7 @@ let router = new express.Router();
  * @apiGroup Employee
  *
  * @apiParam {int} Company_id the id of our company
- * @apiSuccess {JSON} result all the employees in JSON format
+ * @apiUse EmployeesData
  * @apiError (Error 400) CanNotFind there is not company with that id
  */
 router.get('/company/:id', controller.getAllEmployees);
@@ -29,7 +61,7 @@ router.get('/company/:id', controller.getAllEmployees);
  * @apiGroup Employee
  *
  * @apiParam {int} Employee_id
- * @apiSuccess {JSON} employee employee in JSON format
+ * @apiUse EmployeeData
  * @apiError (Error 400) CanNotFind no employee with that id exists
  */
 router.get('/:id', controller.getById);
@@ -53,7 +85,7 @@ router.get('/:id', controller.getById);
  * @apiParam {int}  company_id company for employee to be associated to
  * @apiParam {string}  password employees password. This is hashed then removed
  * @apiParam {string}  role employees role in the company
- * @apiSuccess {JSON} employee complete new employee in JSON format
+ * @apiUse EmployeeData
  * @apiError (Error 400) CanNotSave failed to connect to db
  */
 router.post('/', controller.insert);
@@ -73,7 +105,7 @@ router.post('/', controller.insert);
  * @apiParam {string} [phone_number] employees phone number
  * @apiParam {string} [password] employees password. This is hashed then removed
  * @apiParam {string} [role] employees role in the company
- * @apiSuccess {JSON} employee the newly create employee in JSON format
+ * @apiUse EmployeeData
  * @apiError (Error 400) CanNotUpdate caused by employee not existing I think
  * @apiError (Error 400) CanNotSave failed db connection
  */
@@ -88,7 +120,7 @@ router.put('/:id', controller.update);
  * @apiGroup Employee
  *
  * @apiParam {int} employee_id unique identifier for employee
- * @apiSuccess {JSON} employee the JSON of the employee that was just deleted
+ * @apiUse EmployeeData
  * @apiError (Error 400) CanNotFind DNE error
  */
 router.delete('/:id', controller.delete);
@@ -103,7 +135,7 @@ router.delete('/:id', controller.delete);
  *
  * @apiParam {string} email employee's email
  * @apiParam {string} password employee's password
- * @apiSuccess {JSON} return employee JSON - the password
+ * @apiUse EmployeeData
  * @apiError (Error 400) CanNotFind not employee has that email
  * @apiError (Error 400) IncorrectCredentials password does not match
  */
