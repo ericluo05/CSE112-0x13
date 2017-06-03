@@ -73,6 +73,7 @@
     "require-dir": "^0.3.1",
     "serve-favicon": "~2.4.2",
     "slack-notify": "^0.1.6",
+    "smooch-core": "^4.1.0",
     "socket.io": "^2.0.1",
     "stripe": "^4.19.0",
     "twilio": "^3.0.0"
@@ -87,7 +88,6 @@
     "nightwatch": "^0.9.14",
     "npm-run-all": "^4.0.2",
     "nyc": "^10.3.0",
-    "smooch-core": "^4.1.0",
     "stylelint": "^7.10.1",
     "stylelint-config-standard": "^16.0.0",
     "supertest": "^3.0.0"
