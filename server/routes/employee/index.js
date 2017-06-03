@@ -31,10 +31,10 @@ let router = new express.Router();
  * @apiSuccess {string} Employees.phone_number phone number of the employee
  * @apiSuccess {string} Employees.role role of the employee,
  *         can be one of the following: <br>
- *       [c_admin - company admin] <br>
- *       [c_receptionist: company receptionist] <br>
- *       [c_employee: company employee] <br>
- *       [a_admin: app administrator]
+ *        [c_admin - company admin] <br>
+ *        [c_receptionist: company receptionist] <br>
+ *        [c_employee: company employee] <br>
+ *        [a_admin: app administrator]
  */
 
 

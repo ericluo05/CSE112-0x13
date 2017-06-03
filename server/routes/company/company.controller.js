@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 'use strict';
 /**
  *  Module that house all the API routes that pertains to company
@@ -172,7 +173,7 @@ exports.resetCredentials = function(req, res) {
  * @property {string} paid_time time when the company made payment
  * @property {Date} create_time - time in which the company is created
  * @property {Date} sub_expiration - time in which the subscription expires
- * @property {Number} num_months_subscribed - number of months the number is subscribed
+ * @property {Number} num_months_subscribed - number of months the company is subscribed
  * @property {Number} revenue: total amount paid by this company thus far, include
  *             payments for subscriptions for future months, it is probably better
  *             to not allow advanced payment as it can lead to "bogus" sale/data
@@ -201,24 +202,6 @@ function showCompanyPublicInfo(c) {
         num_employees: c.num_employees,
     };
 }
-
-/**
- * @function getSubDuration
- * @description user data analystic for admin panel
- * @param {Object} req - request object
- * @param {Object} res - response object
- */
-exports.getSubDuration = function(req, res) {
-    Company.findById(req.params.id, function(err, c) {
-        if(err)
-            return res.status(400).json({error: 'CouldNotFind'});
-        let curTime = new Date();
-        let subTime = c.paid_time;
-        c.sub_duration = (curTime - subTime) / (1000 * 60 * 60 * 24);
-        // TODO: probably need to check flag such as isSubscribed
-        return res.status(200).json(showCompanyPrivateInfo(c));
-    });
-};
 
 /**
  * @function searchCompanies
@@ -250,7 +233,6 @@ function showCompanyPrivateInfo(c) {
         phone_number: c.phone_number,
         created: c.created,
         paid_time: c.paid_time,
-        sub_duration: c.sub_duration,
     };
 }
 

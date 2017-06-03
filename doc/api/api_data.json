@@ -444,6 +444,41 @@
             "optional": false,
             "field": "email",
             "description": "<p>Email fo the company</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Date",
+            "optional": false,
+            "field": "create_time",
+            "description": "<p>time in which the company is created</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Date",
+            "optional": false,
+            "field": "sub_expiration",
+            "description": "<p>time in which the subscription expires</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "int",
+            "optional": false,
+            "field": "num_months_subscribed",
+            "description": "<p>number of months subscribed thus far</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "int",
+            "optional": false,
+            "field": "revenue:",
+            "description": "<p>total amount paid by this company thus far</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "int",
+            "optional": false,
+            "field": "num_employees",
+            "description": "<p>number of registered employees</p>"
           }
         ]
       }
@@ -534,6 +569,41 @@
             "optional": false,
             "field": "email",
             "description": "<p>Email fo the company</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Date",
+            "optional": false,
+            "field": "create_time",
+            "description": "<p>time in which the company is created</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Date",
+            "optional": false,
+            "field": "sub_expiration",
+            "description": "<p>time in which the subscription expires</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "int",
+            "optional": false,
+            "field": "num_months_subscribed",
+            "description": "<p>number of months subscribed thus far</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "int",
+            "optional": false,
+            "field": "revenue:",
+            "description": "<p>total amount paid by this company thus far</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "int",
+            "optional": false,
+            "field": "num_employees",
+            "description": "<p>number of registered employees</p>"
           }
         ]
       }
@@ -593,6 +663,41 @@
             "optional": false,
             "field": "Companies.email",
             "description": "<p>the company's email</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Date",
+            "optional": false,
+            "field": "Companies.create_time",
+            "description": "<ul> <li>time in which the company is created</li> </ul>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Date",
+            "optional": false,
+            "field": "Companies.sub_expiration",
+            "description": "<ul> <li>time in which the subscription expires</li> </ul>"
+          },
+          {
+            "group": "Success 200",
+            "type": "int",
+            "optional": false,
+            "field": "Companies.num_months_subscribed",
+            "description": "<ul> <li>number of months subscribed thus far</li> </ul>"
+          },
+          {
+            "group": "Success 200",
+            "type": "int",
+            "optional": false,
+            "field": "Companies.revenue:",
+            "description": "<p>total amount paid by this company thus far</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "int",
+            "optional": false,
+            "field": "Companies.num_employees",
+            "description": "<p>number of registered employees</p>"
           }
         ]
       }
@@ -683,6 +788,41 @@
             "optional": false,
             "field": "email",
             "description": "<p>Email fo the company</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Date",
+            "optional": false,
+            "field": "create_time",
+            "description": "<p>time in which the company is created</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Date",
+            "optional": false,
+            "field": "sub_expiration",
+            "description": "<p>time in which the subscription expires</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "int",
+            "optional": false,
+            "field": "num_months_subscribed",
+            "description": "<p>number of months subscribed thus far</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "int",
+            "optional": false,
+            "field": "revenue:",
+            "description": "<p>total amount paid by this company thus far</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "int",
+            "optional": false,
+            "field": "num_employees",
+            "description": "<p>number of registered employees</p>"
           }
         ]
       }
@@ -780,6 +920,41 @@
             "optional": false,
             "field": "email",
             "description": "<p>Email fo the company</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Date",
+            "optional": false,
+            "field": "create_time",
+            "description": "<p>time in which the company is created</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Date",
+            "optional": false,
+            "field": "sub_expiration",
+            "description": "<p>time in which the subscription expires</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "int",
+            "optional": false,
+            "field": "num_months_subscribed",
+            "description": "<p>number of months subscribed thus far</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "int",
+            "optional": false,
+            "field": "revenue:",
+            "description": "<p>total amount paid by this company thus far</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "int",
+            "optional": false,
+            "field": "num_employees",
+            "description": "<p>number of registered employees</p>"
           }
         ]
       }
@@ -891,6 +1066,41 @@
             "optional": false,
             "field": "email",
             "description": "<p>Email fo the company</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Date",
+            "optional": false,
+            "field": "create_time",
+            "description": "<p>time in which the company is created</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Date",
+            "optional": false,
+            "field": "sub_expiration",
+            "description": "<p>time in which the subscription expires</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "int",
+            "optional": false,
+            "field": "num_months_subscribed",
+            "description": "<p>number of months subscribed thus far</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "int",
+            "optional": false,
+            "field": "revenue:",
+            "description": "<p>total amount paid by this company thus far</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "int",
+            "optional": false,
+            "field": "num_employees",
+            "description": "<p>number of registered employees</p>"
           }
         ]
       }
@@ -980,6 +1190,41 @@
             "optional": false,
             "field": "email",
             "description": "<p>Email fo the company</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Date",
+            "optional": false,
+            "field": "create_time",
+            "description": "<p>time in which the company is created</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Date",
+            "optional": false,
+            "field": "sub_expiration",
+            "description": "<p>time in which the subscription expires</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "int",
+            "optional": false,
+            "field": "num_months_subscribed",
+            "description": "<p>number of months subscribed thus far</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "int",
+            "optional": false,
+            "field": "revenue:",
+            "description": "<p>total amount paid by this company thus far</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "int",
+            "optional": false,
+            "field": "num_employees",
+            "description": "<p>number of registered employees</p>"
           }
         ]
       }
@@ -1076,6 +1321,41 @@
             "optional": false,
             "field": "Companies.email",
             "description": "<p>the company's email</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Date",
+            "optional": false,
+            "field": "Companies.create_time",
+            "description": "<ul> <li>time in which the company is created</li> </ul>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Date",
+            "optional": false,
+            "field": "Companies.sub_expiration",
+            "description": "<ul> <li>time in which the subscription expires</li> </ul>"
+          },
+          {
+            "group": "Success 200",
+            "type": "int",
+            "optional": false,
+            "field": "Companies.num_months_subscribed",
+            "description": "<ul> <li>number of months subscribed thus far</li> </ul>"
+          },
+          {
+            "group": "Success 200",
+            "type": "int",
+            "optional": false,
+            "field": "Companies.revenue:",
+            "description": "<p>total amount paid by this company thus far</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "int",
+            "optional": false,
+            "field": "Companies.num_employees",
+            "description": "<p>number of registered employees</p>"
           }
         ]
       }
@@ -2007,6 +2287,16 @@
     "version": "0.0.0",
     "filename": "server/routes/form/index.js",
     "groupTitle": "Form"
+  },
+  {
+    "type": "post",
+    "url": "/messages",
+    "title": "Messenger integration",
+    "name": "send_greeting",
+    "group": "Omni_channel",
+    "version": "0.0.0",
+    "filename": "server/routes/messagesMapping.js",
+    "groupTitle": "Omni_channel"
   },
   {
     "type": "post",
