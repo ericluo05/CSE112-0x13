@@ -50,9 +50,9 @@ let test = {
     // client.click('.//button[@type="submit"]').pause(2000);
 
 
-    client.click('//select[@id="cc2"]').pause(1000);
-    client.setValue('//input[@id="telnum"]', '5622131234').pause(500);
-    client.click('.//button[@id="formatsubmit"]').pause(2000);
+    //client.click('//select[@id="cc2"]').pause(1000);
+    //client.setValue('//input[@id="telnum"]', '5622131234').pause(500);
+    //client.click('.//button[@id="formatsubmit"]').pause(2000);
 
     client.end();
   },
@@ -66,7 +66,7 @@ let test = {
     client.verify.title('Login');
     client.expect.element('//img[@alt="logo"]').to.be.present;
     client.assert.containsText('//div[@class="form-top"]/h1', "Step 1/2");
-    client.assert.containsText('//div[@class="form-top"]/p', 
+    client.assert.containsText('//div[@class="form-top"]/p',
       "Create a company");
 
     client.expect
