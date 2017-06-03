@@ -13,7 +13,7 @@ let router = new express.Router();
  * @apiSuccess {Date} create_time  time in which the company is created
  * @apiSuccess {Date} sub_expiration  time in which the subscription expires
  * @apiSuccess {int} num_months_subscribed  number of months subscribed thus far
- * @apiSuccess {int} revenue: total amount paid by this company thus far
+ * @apiSuccess {int} revenue total amount paid by this company thus far
  * @apiSuccess {int} num_employees number of registered employees
  */
 

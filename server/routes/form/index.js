@@ -8,7 +8,7 @@ let router = new express.Router();
 let bodyparser = require('body-parser');
 // let urlparser = bodyparser.urlencoded({extended: false});
 bodyparser.urlencoded({
-    extended: false
+    extended: false,
 });
 
 /**

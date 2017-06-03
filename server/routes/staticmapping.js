@@ -78,7 +78,7 @@ router.get('/company-dashboard', function(req, res) {
   res.sendFile(path.join(htmlPath, 'company-dashboard.html'));
 });
 
-router.get('/admin-monitoring', function (req, res) {
+router.get('/admin-monitoring', function(req, res) {
   res.sendFile(path.join(htmlPath, 'admin-monitoring.html'));
 });
 
