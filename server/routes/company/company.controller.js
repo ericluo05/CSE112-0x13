@@ -170,6 +170,14 @@ exports.resetCredentials = function(req, res) {
  * @property {string} email email of the company
  * @property {string} phone_number phone number of the company
  * @property {string} paid_time time when the company made payment
+ * @property {Date} create_time - time in which the company is created
+ * @property {Date} sub_expiration - time in which the subscription expires
+ * @property {Number} num_months_subscribed - number of months the number is subscribed
+ * @property {Number} revenue: total amount paid by this company thus far, include
+ *             payments for subscriptions for future months, it is probably better
+ *             to not allow advanced payment as it can lead to "bogus" sale/data
+ *             in case of cancellation
+ * @property {Number} num_employees number of registered employees
  */
 
 /**
@@ -186,6 +194,11 @@ function showCompanyPublicInfo(c) {
         email: c.email,
         phone_number: c.phone_number,
         paid_time: c.paid_time,
+        create_time: c.create_time,
+        sub_expiration: c.sub_expiration,
+        num_months_subscribed: c.num_months_subscribed,
+        revenue: c.revenue,
+        num_employees: c.num_employees,
     };
 }
 

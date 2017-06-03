@@ -1,7 +1,3 @@
-/**
- * Created by JACK on 6/2/17.
- * This application is only for testing purposes
- */
 'use strict';
 const express = require('express');
 let router = new express.Router();

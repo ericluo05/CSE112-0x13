@@ -8,7 +8,7 @@
 
 
 let Email = require('../../server/notification/email');
-let TextModel = require('../../server/notification/text');
+let TextModel = require('../../server/notification/sms');
 
 // SAMPLE : [{phone_number: "XXX-XXX-XXXX", email: "XXXXX@XXXXX.com"}];
 let employees = [];

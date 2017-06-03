@@ -4,9 +4,9 @@
  *  Module that house all the API routes that pertains to forms
  * @module routes/visitorlist
  */
- let Email = require('../../notification/email');
- let SMS = require('../../notification/text');
- let Employee = require('../../models/Employee');
+let Email = require('../../notification/email');
+let SMS = require('../../notification/sms');
+let Employee = require('../../models/Employee');
 let VisitorList = require('../../models/VisitorList');
 let Appointment = require('../../models/Appointment');
 

@@ -82,6 +82,9 @@ exports.insert = function(req, res) {
     });
 };
 
+//
+
+
 /**
  * @function update
  * @description  handler to update an employee
