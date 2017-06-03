@@ -58,8 +58,8 @@ gulp.task('lint:js', ['lint:js:backend', 'lint:js:frontend', 'lint:js:test']);
 gulp.task('lint:html', () => {
     gulp.src('./client/html/**/*.html')
         .pipe(htmlhint())
-        .pipe(htmlhint.reporter());
-        // .pipe(htmlhint.failReporter());
+        .pipe(htmlhint.reporter())
+        .pipe(htmlhint.failReporter());
 });
 
 /**

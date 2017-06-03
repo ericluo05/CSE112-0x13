@@ -9,8 +9,7 @@ ratings:
   paths:
   - client/emissary/js/*.js
   - client/emissary/stylesheets/*.css
-  - client/js_es6
-  - client/stylesheets
+  - client/js
   - server/lib/
   - server/routes/
 exclude_paths:
@@ -20,14 +19,14 @@ exclude_paths:
 - client/emissary/stylesheets/libs/
 - client/emissary/stylesheets/neon/
 - client/emissary/js/js_libs/
+- client/stylesheets/font-icons/
+- client/stylesheets/jquery/
+- client/stylesheets/libs/
+- client/stylesheets/neon/
 - config/
 - doc/
 - drivers/
 - js/js_libs/
 - server/data/
-- stylesheets/font-icons/
-- stylesheets/jquery/
-- stylesheets/libs/
-- stylesheets/neon/
 
 
