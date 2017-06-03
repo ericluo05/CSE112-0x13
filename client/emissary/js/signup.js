@@ -4,18 +4,77 @@
 $(document).ready(function() {
     let companyId;
 
+    $('.registration-form fieldset:first-child').fadeIn('slow');
+
+    jQuery(function($){
+       $("#form-phone").mask("(999) 999-9999");
+    });
+
+    jQuery(function($){
+       $("#form-employee-phone").mask("(999) 999-9999");
+    });
+
     // Listener for Initial Sign up of an Employee
     $('#submit-btn').on('click', function() {
         let employeeData = grabEmployeeData();
         console.log(employeeData);
-        ajaxPost('/api/employees', employeeData);
+
+        let next = true;
+        if(employeeData.first_name == "") {
+          $('#per-first-name').addClass('has-error');
+          $('#per-first-msg').removeClass('hidden');
+          next = false;
+        }
+        if(employeeData.email == "") {
+          $('#per-email').addClass('has-error');
+          $('#per-email-msg').removeClass('hidden');
+          next = false;
+        }
+        if(employeeData.phone_number == "") {
+          $('#per-phone').addClass('has-error');
+          $('#per-phone-msg').removeClass('hidden');
+          next = false;
+        }
+        if(employeeData.password == "") {
+          $('#per-password').addClass('has-error');
+          $('#per-pw-msg').removeClass('hidden');
+          $('#per-password-repeat').addClass('has-error');
+          $('#per-pw-repeat-msg').removeClass('hidden');
+          next = false;
+        }
+        if(employeeData.last_name == "") {
+          $('#per-last-name').addClass('has-error');
+          $('#per-last-msg').removeClass('hidden');
+          next = false;
+        }
+        if(next)
+          ajaxPost('/api/employees', employeeData);
     });
 
     // Listener for creating a company
     $('#submit-company-btn').on('click', function() {
         let companyData = grabCompanyData();
         console.log(companyData);
-        ajaxPost('/api/companies', companyData);
+        
+        let next = true;
+        if(companyData.name == "") {
+          $('#comp-name').addClass('has-error');
+          $('#comp-name-msg').removeClass('hidden');
+          next = false;
+        }
+        if(companyData.email == "") {
+          $('#comp-email').addClass('has-error');
+          $('#comp-email-msg').removeClass('hidden');
+          next = false;
+        }
+        if(companyData.phone_number == "") {
+          $('#comp-phone').addClass('has-error');
+          $('#comp-phone-msg').removeClass('hidden');
+          next = false;
+        }
+
+        if(next)
+          ajaxPost('/api/companies', companyData);
     });
 
 
@@ -58,7 +117,6 @@ $(document).ready(function() {
             data: data,
             dataType: 'json',
             success: function(response) {
-                // console.log(response);
                 if(url == '/api/employees') {
                     localStorage.setItem('userState', 1);
                     localStorage.setItem('currentUser', JSON.stringify(response));
@@ -66,18 +124,39 @@ $(document).ready(function() {
                 } else if (url == '/api/companies') {
                     localStorage.setItem('currentCompany', JSON.stringify(response));
                     companyId = response._id;
+                    $('#first-fs').fadeOut(400, function() {
+                      $('#second-fs').fadeIn();
+                    });
                 }
             },
             error: function(response) {
-                console.log(response);
                 let resJSON = JSON.stringify(response);
-                alert(jQuery.parseJSON(resJSON).responseText);
-                event.preventDefault();
-                location.href = '/signup.html';
+                let message = response.responseText;
+
+                $('#comp-name').removeClass('has-error');
+                $('#comp-name-msg').addClass('hidden');
+                $('#comp-email').removeClass('has-error');
+                $('#comp-email-msg').addClass('hidden');
+                $('#comp-phone').removeClass('has-error');
+                $('#comp-phone-msg').addClass('hidden');
+
+                if(message == "{\"eror\":\"Unique Email Needed\"}") {
+                  $('#comp-email').addClass('has-error');
+                  $('#comp-unique-email-msg').removeClass('hidden');
+                }
             },
         });
     }
-
+   
+    // submit
+    $('.registration-form').on('submit', function(e) {
+      $(this).find('input[type="text"], input[type="password"], ' +
+        ' textarea').each(function() {
+        if( $(this).val() == '' ) {
+          e.preventDefault();
+        } 
+      });
+    });
 
     /**  Validating the company
      **/ 

@@ -51,60 +51,70 @@
             <div class="row">
                 <div class="form-box col-xs-10 col-centered">
                     <form role="form" class="registration-form">
-                        <fieldset>
+                        <fieldset id="first-fs">
                             <div class="form-top">
                                 <h1>Step 1/2:</h1>
                                 <p>Create a company</p>
                             </div>
                             <div class="form-bottom">
-                                <div class="form-group">
+                                <div id="comp-name" class="form-group">
                                     <label class="sr-only" for="form-company-name">Company Name</label>
                                     <input type="text" name="name" placeholder="Company Name" class="form-company-name form-control" id="form-company-name">
+                                    <span id="comp-name-msg" class="help-block hidden">Please enter a company name</span>
                                 </div>
-                                <div class="form-group">
+                                <div id="comp-email" class="form-group">
                                     <label class="sr-only" for="form-email">Email</label>
                                     <input type="text" name="email" placeholder="Company Email" class="form-email form-control" id="form-email">
+                                    <span id="comp-email-msg" class="help-block hidden">Please enter a company email</span>   
+                                    <span id="comp-unique-email-msg" class="help-block hidden">Email address is already used by a different company</span>
                                 </div>
-                                <div class="form-group">
+                                <div id="comp-phone" class="form-group">
                                     <label class="sr-only" for="form-phone">Phone Number</label>
                                     <input type="text" name="phone_number" placeholder="Company Phone Number" class="form-phone form-control" id="form-phone">
+                                    <span id="comp-phone-msg" class="help-block hidden">Please enter a company phone number</span>
                                 </div>
                                 <button id="submit-company-btn" type="button" class="btn btn-next">Next</button>
                             </div>
                         </fieldset>
 
-                        <fieldset>
+                        <fieldset id="second-fs">
                             <div class="form-top">
                                 <h1>Step 2/2:</h1>
                                 <p>Create your personal user account</p>
                             </div>
                             <div class="form-bottom">
-                                <div class="form-group">
+                                <div id="per-first-name" class="form-group">
                                     <label class="sr-only" for="form-employee-first">First Name</label>
                                     <input type="text" name="first" placeholder="First Name" class="first form-control" id="form-employee-first">
+                                    <span id="per-first-msg" class="help-block hidden">Please enter your first name</span>
                                 </div>
-                                <div class="form-group">
+                                <div id="per-last-name" class="form-group">
                                     <label class="sr-only" for="form-employee-last">Last Name</label>
                                     <input type="text" name="last" placeholder="Last Name" class="form-control" id="form-employee-last">
+                                    <span id="per-last-msg" class="help-block hidden">Please enter your last name</span>
                                 </div>
-                                <div class="form-group">
+                                <div id="per-email" class="form-group">
                                     <label class="sr-only" for="form-employee-email">Email</label>
                                     <input type="text" name="email" placeholder="Personal Email" class="form-email form-control" id="form-employee-email">
+                                    <span id="per-email-msg" class="help-block hidden">Please enter your email</span>
                                 </div>
-                                <div class="form-group">
+                                <div id="per-phone" class="form-group">
                                     <label class="sr-only" for="form-employee-phone">Phone Number</label>
                                     <input type="text" name="phone_number" placeholder="Personal Phone Number" class="form-phone form-control" id="form-employee-phone">
+                                    <span id="per-phone-msg" class="help-block hidden">Please enter your phone number</span>
                                 </div>
-                                <div class="form-group">
+                                <div id="per-password" class="form-group">
                                     <label class="sr-only" for="form-password">Password</label>
                                     <input type="password" name="form-password" placeholder="Password" class="form-password form-control" id="form-password">
+                                    <span id="per-pw-msg" class="help-block hidden">Please enter your password</span>
                                 </div>
-                                <div class="form-group">
+                                <div id="per-password-repeat" class="form-group">
                                     <label class="sr-only" for="form-repeat-password">Repeat password</label>
                                     <input type="password" name="form-repeat-password" placeholder="Confirm Password"
                                            class="form-repeat-password form-control" id="form-repeat-password">
+                                    <span id="per-pw-repeat-msg" class="help-block hidden">Please enter your password</span>
                                 </div>
-                                <button id="submit-btn" type="button" class="btn btn-next">Next</button>
+                                <button id="submit-btn" type="button" class="btn btn-next">Submit</button>
                             </div>
                         </fieldset>
                     </form>
@@ -116,6 +126,7 @@
 
 <!-- Javascript -->
 <script src="/emissary/js/js_libs/jquery/jquery-1.11.3.min.js"></script>
+<script src="/emissary/js/js_libs/jquery/jquery.maskedinput.js"></script>
 <script src="/emissary/js/signup.js"></script>
 <script src="/emissary/js/js_libs/bootstrap.js"></script>
 <script src="/emissary/js/js_libs/jquery/jquery.backstretch.min.js"></script>
