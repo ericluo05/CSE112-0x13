@@ -4,21 +4,34 @@
  * @module routes/employee
  */
 let Employee = require('../../models/Employee');
+let Company = require('../../models/Company');
 
 /**
-* @function login
-* @description  handler to login as an employee
-* @param {Object} req - request object
-* @param {Object} res - response object
-*/
+ * @typedef{Object} Employee
+ * @property {string} first_name employees first name
+ * @property {string} last_name employees last name
+ * @property {string} email email tied to users account
+ * @property {string}  phone_number employees phone number
+ * @property {int}  company_id company for employee to be associated to
+ * @property {string}  password employees password. This is hashed then removed
+ * @property {string}  role employees role in the company
+ */
+
+
+/**
+ * @function login
+ * @description  handler to login as an employee
+ * @param {Object} req - request object
+ * @param {Object} res - response object
+ */
 exports.login = function(req, res) {
     Employee.findOne({email: req.body.email}, function(err, e) {
-        if(err || !e) {
-          return res.status(400).send({error: 'Can not Find'});
+        if (err || !e) {
+            return res.status(400).send({error: 'Can not Find'});
         }
-        if(!e.validPassword(req.body.password))
-          return res.status(400).send({error: 'Incorrect Credentials'});
-        let employeeJSON=e.toJSON();
+        if (!e.validPassword(req.body.password))
+            return res.status(400).send({error: 'Incorrect Credentials'});
+        let employeeJSON = e.toJSON();
         delete employeeJSON.password;
         return res.status(200).json(employeeJSON);
     });
@@ -32,7 +45,7 @@ exports.login = function(req, res) {
  */
 exports.getAllEmployees = function(req, res) {
     Employee.find({company_id: req.params.id}, {password: 0}, function(err, result) {
-        if(err) {
+        if (err) {
             return res.status(400).send({error: 'Can not Find'});
         }
         return res.status(200).json(result);
@@ -46,13 +59,13 @@ exports.getAllEmployees = function(req, res) {
  * @param {Object} res - response object
  */
 exports.getById = function(req, res) {
-   Employee.findById(req.params.id, {password: 0}, function(err, employee) {
-      if(err) {
-          return res.status(400).json({error: 'Can not Find'});
-      } else {
-          console.log(employee);
-          return res.status(200).json(employee);
-      }
+    Employee.findById(req.params.id, {password: 0}, function(err, employee) {
+        if (err) {
+            return res.status(400).json({error: 'Can not Find'});
+        } else {
+            console.log(employee);
+            return res.status(200).json(employee);
+        }
     });
 };
 
@@ -66,24 +79,82 @@ exports.insert = function(req, res) {
     let employee = new Employee();
     employee.first_name = req.body.first_name;
     employee.last_name = req.body.last_name;
-    employee.email = req.body.email,
-    employee.phone_number = req.body.phone_number,
-    employee.company_id = req.body.company_id,
-    employee.password = employee.generateHash(req.body.password),
+    employee.email = req.body.email;
+    employee.phone_number = req.body.phone_number;
+    employee.company_id = req.body.company_id;
+    employee.password = employee.generateHash(req.body.password);
     employee.role = req.body.role;
 
-    employee.save(function(err, e) {
-        if(err) {
-            return res.status(400).json({error: 'Can not Save'});
-        }
-        let employeeJSON=e.toJSON();
-        delete employeeJSON.password;
-        return res.status(200).json(employeeJSON);
-    });
+    // chain the promises to create the employee and updating company employee count
+    createEmployeePromise(employee)
+        .then(updateCompanyEmployeeCount)
+        .then(function(result) {
+            res.status(result.statusCode).json(result.body);
+        })
+        .catch((error) => {
+            res.status(error.statusCode).json(error.body);
+        });
 };
+/**
+ * @private
+ * @function createEmployeePromise
+ * @description create employee in the data base
+ * @param {EmployeeSchema} employee - Employee schema to be saved
+ * @return {Promise} promised to be chained to increment employee count
+ *   of the company.
+ *   Reject: { statusCode: 4xx, body: {error: 'error message'} }
+ *   Resolve: { action 'create', body: employeeData }
+ */
+function createEmployeePromise(employee) {
+    let promise = new Promise((resolve, reject) => {
+        employee.save(function(err, e) {
+            if (err) {
+                reject({statusCode: 400, body: {error: 'Can not create'}});
+            } else {
+                resolve({action: 'create', body: e});
+            }
+        });
+    });
+    return promise;
+}
 
-//
-
+/**
+ * @private
+ * @function updateCompanyEmployeeCount
+ * @description update company employeeCount, this method is intended to be
+ * be used as chained promise after createEmployeePromise
+ * @param {Object} actionAndEmployeeData - Employee schema to be saved
+ * @param {string} actionAndEmployeeData.action - create/delete, create will +1,
+ *      delete will -1 from employee count
+ * @param {Employee} actionAndEmployeeData.body - data of the employee
+ * @return {Promise} a promise that can be chained to extract correspoin
+ *  Reject: { statusCode: 4xx, body: {error: 'error message'} }
+ *  Resolve: { statusCode: 2xx, body: EmployeeData }
+ */
+function updateCompanyEmployeeCount(actionAndEmployeeData) {
+    let promise = new Promise((resolve, reject) => {
+        let action = actionAndEmployeeData.action;
+        let employee = actionAndEmployeeData.body;
+        Company.findOne({_id: employee.company_id}, function(err, c) {
+            if (err) {
+                reject({statusCode: 400, body: {error: 'Could not save'}});
+            }
+            if(action === 'create')
+                 c.num_employees = c.num_employees + 1;
+            else if(action === 'delete')
+                c.num_employees = c.num_employees - 1;
+            c.save(function(err) {
+                if (err) {
+                    reject({statusCode: 400, body: {error: 'Could not increment Count'}});
+                }
+                let employeeJSON = employee.toJSON();
+                delete employeeJSON.password;
+                resolve({statusCode: 200, body: employeeJSON});
+            });
+        });
+    });
+    return promise;
+}
 
 /**
  * @function update
@@ -93,7 +164,7 @@ exports.insert = function(req, res) {
  */
 exports.update = function(req, res) {
     Employee.findById(req.params.id, function(err, employee) {
-        if(err)
+        if (err)
             return res.status(400).json({error: 'Can not Update'});
 
         employee.first_name = req.body.first_name || employee.first_name;
@@ -106,13 +177,13 @@ exports.update = function(req, res) {
 
         employee.save(function(err) {
             console.log(err);
-            if(err)
+            if (err)
                 return res.status(400).json({error: 'Can not Save'});
-            let employeeJSON=employee.toJSON();
+            let employeeJSON = employee.toJSON();
             delete employeeJSON.password;
             return res.status(200).send(employeeJSON);
         });
-   });
+    });
 };
 
 /**
@@ -122,15 +193,15 @@ exports.update = function(req, res) {
  * @param {Object} res - response object
  */
 exports.delete = function(req, res) {
-  Employee.findById(req.params.id, function(err, employee) {
-    return employee.remove(function(err) {
-      if(err) {
-        res.status(400).json({error: 'Can not Find'});
-      } else {
-          let employeeJSON=employee.toJSON();
-          delete employeeJSON.password;
-          return res.status(200).send(employeeJSON);
-      }
+    Employee.findById(req.params.id, function(err, employee) {
+        return employee.remove(function(err) {
+            if (err) {
+                res.status(400).json({error: 'Can not Find'});
+            } else {
+                let employeeJSON = employee.toJSON();
+                delete employeeJSON.password;
+                return res.status(200).send(employeeJSON);
+            }
+        });
     });
-  });
 };

@@ -76,7 +76,7 @@ exports.get = function(req, res) {
 exports.update = function(req, res) {
     Company.findOne({_id: req.params.id}, function(err, c) {
         if(err || !c)
-            return res.status(401).json({error: 'Could not save'});
+            return res.status(400).json({error: 'Could not save'});
 
         // update email
         if (req.body.email)
