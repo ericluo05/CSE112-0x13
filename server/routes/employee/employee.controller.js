@@ -91,7 +91,7 @@ exports.insert = function(req, res) {
         .then(function(result) {
             res.status(result.statusCode).json(result.body);
         })
-        .catch((error) => {
+        .catch(function(error) {
             res.status(error.statusCode).json(error.body);
         });
 };
@@ -106,7 +106,7 @@ exports.insert = function(req, res) {
  *   Resolve: { action 'create', body: employeeData }
  */
 function createEmployeePromise(employee) {
-    let promise = new Promise((resolve, reject) => {
+    let promise = new Promise(function(resolve, reject)  {
         employee.save(function(err, e) {
             if (err) {
                 reject({statusCode: 400, body: {error: 'Can not create'}});
@@ -132,7 +132,7 @@ function createEmployeePromise(employee) {
  *  Resolve: { statusCode: 2xx, body: EmployeeData }
  */
 function updateCompanyEmployeeCount(actionAndEmployeeData) {
-    let promise = new Promise((resolve, reject) => {
+    let promise = new Promise(function(resolve, reject) {
         let action = actionAndEmployeeData.action;
         let employee = actionAndEmployeeData.body;
         Company.findOne({_id: employee.company_id}, function(err, c) {
