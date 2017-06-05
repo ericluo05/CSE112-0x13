@@ -26,199 +26,297 @@
 <body class="page-body gray" data-url="http://neon.dev">
 
 <div class="page-container"><!-- add class "sidebar-collapsed" to close sidebar by default, "chat-visible" to make chat appear always -->
-	<div class="sidebar-menu">
-		<div class="sidebar-menu-inner">
+  <div class="sidebar-menu">
+    <div class="sidebar-menu-inner">
 
-			<header class="logo-env">
-				<!-- logo -->
-				<div class="logo">
-					<a href="visitors.html">
-						<img src="/images/emissary.png" width="150" alt="logo" />
-					</a>
-				</div>
-				<!-- logo collapse icon -->
-				<div class="sidebar-collapse">
-					<a href="#" class="sidebar-collapse-icon"><!-- add class "with-animation" if you want sidebar to have animation during expanding/collapsing transition -->
-						<i class="entypo-menu"></i>
-					</a>
-				</div>
-				<!-- open/close menu icon (do not remove if you want to enable menu on mobile devices) -->
-				<div class="sidebar-mobile-menu visible-xs">
-					<a href="#" class="with-animation"><!-- add class "with-animation" to support animation -->
-						<i class="entypo-menu"></i>
-					</a>
-				</div>
-			</header>
+      <header class="logo-env">
+        <!-- logo -->
+        <div class="logo">
+          <a href="visitors.html">
+            <img src="/images/emissary.png" width="150" alt="logo" />
+          </a>
+        </div>
+          
+        <!-- logo collapse icon -->
+        <div class="sidebar-collapse">
+          <a href="#" class="sidebar-collapse-icon"><!-- add class "with-animation" if you want sidebar to have animation during expanding/collapsing transition -->
+            <i class="entypo-menu"></i>
+          </a>
+        </div>
+          
+        <!-- open/close menu icon (do not remove if you want to enable menu on mobile devices) -->
+        <div class="sidebar-mobile-menu visible-xs">
+          <a href="#" class="with-animation"><!-- add class "with-animation" to support animation -->
+            <i class="entypo-menu"></i>
+          </a>
+        </div>
+      </header>
 
-			<ul id="main-menu" class="main-menu">
-				<!-- add class "multiple-expanded" to allow multiple submenus to open -->
-				<!-- class "auto-inherit-active-class" will automatically add "active" class for parent elements who are marked already with class "active" -->
+      <ul id="main-menu" class="main-menu">
+      <!-- add class "multiple-expanded" to allow multiple submenus to open -->
+      <!-- class "auto-inherit-active-class" will automatically add "active" class for parent elements who are marked already with class "active" -->
         <li>
-					<a href="visitors.html">
-						<i class="entypo-users"></i>
-						<span class="title">Visitors</span>
-					</a>
-				</li>
-				<li>
-					<a href="#">
-						<i class="entypo-user"></i>
-						<span class="title">Employees</span>
-					</a>
-				</li>
-				<li>
-					<a href="appointments.html">
-						<i class="entypo-calendar"></i>
-						<span class="title">Appointments</span>
-					</a>
-				</li>
-				<li>
-					<a href="form-builder.html">
-						<i class="entypo-clipboard"></i>
-						<span class="title">Forms</span>
-					</a>
-				</li>
-				<li>
-					<a href="settings.html">
-						<i class="entypo-tools"></i>
-						<span class="title">Settings</span>
-					</a>
-				</li>
-			</ul>
+          <a href="visitors.html">
+            <i class="entypo-users"></i>
+            <span class="title">Visitors</span>
+          </a>
+        </li>
+        <li>
+          <a href="#">
+            <i class="entypo-user"></i>
+            <span class="title">Employees</span>
+          </a>
+        </li>
+        <li>
+          <a href="appointments.html">
+            <i class="entypo-calendar"></i>
+            <span class="title">Appointments</span>
+          </a>
+        </li>
+        <li>
+          <a href="form-builder.html">
+            <i class="entypo-clipboard"></i>
+            <span class="title">Forms</span>
+          </a>
+        </li>
+        <li>
+          <a href="settings.html">
+            <i class="entypo-tools"></i>
+            <span class="title">Settings</span>
+          </a>
+        </li>
+      </ul>
 
-		</div>
-	</div>
+    </div>
+  </div>
 
-	<div class="main-content">
-		<div class="row">
-			<!-- Profile Info and Notifications -->
-			<div class="col-md-6 col-sm-8 clearfix">
-				<ul class="user-info pull-left pull-none-xsm">
-					<!-- Profile Info -->
-					<li class="profile-info dropdown"><!-- add class "pull-right" if you want to place this from right -->
-						<div id="company-name">
-							<h1>Hello, <span id="user-name"> </span></h1>
-						</div>
-					</li>
-				</ul>
-			</div>
+  <div class="main-content">
+    <div class="row">
+      <!-- Profile Info and Notifications -->
+      <div class="col-md-6 col-sm-8 clearfix">
+        <ul class="user-info pull-left pull-none-xsm">
+          <!-- Profile Info -->
+          <li class="profile-info dropdown"><!-- add class "pull-right" if you want to place this from right -->
+            <div id="company-name">
+              <h1>Hello, <span id="user-name"> </span></h1>
+            </div>
+          </li>
+        </ul>
+      </div>
 
-			<!-- Raw Links -->
-			<div class="col-md-6 col-sm-4 clearfix hidden-xs">
-				<ul class="list-inline links-list pull-right">
-					<div class="dropdown">
+      <!-- Raw Links -->
+      <div class="col-md-6 col-sm-4 clearfix hidden-xs">
+        <ul class="list-inline links-list pull-right">
+          <div class="dropdown">
             <i class="fa fa-3x fa-cog dropdown-toggle" data-toggle="dropdown"></i>
             <ul class="dropdown-menu">
-                <li><a href="/checkin.html">Check-In</a></li>
-                <li><a id="logoutButton" href="/index.html">
+              <li><a href="/checkin.html">Check-In</a></li>
+              <li><a id="logoutButton" href="/index.html">
                   Log Out <i class="entypo-logout right"></i></a>
-                </li>
+              </li>
             </ul>
-      		</div>
-				</ul>
-			</div>
-		</div>
+          </div>
+        </ul>
+      </div>
+    </div>
 
-		<hr />
-		<div class="employee-container">
-			<div id="visitor-queue">
-	      <!-- <h3>Click on a visitor for check-out</h3>-->
-	      <!-- <input class="form-control" placeholder="Search ..." type="text"/>-->
-	      <h1 class="page-title">Employees</h1>
+    <hr />
+    <div class="employee-container">
+      <div id="visitor-queue">
+        <!-- <h3>Click on a visitor for check-out</h3>-->
+	    <!-- <input class="form-control" placeholder="Search ..." type="text"/>-->
+	    <h1 class="page-title">Employees</h1>
 
-				<table class="table">
-					<thead>
-						<tr>
-							<th>First</th>
-							<th>Last</th>
-							<th>Phone Number</th>
-							<th>Email</th>
-						</tr>
-					</thead>
+        <table class="table">
+          <thead>
+            <tr>
+              <th>First</th>
+              <th>Last</th>
+              <th>Phone Number</th>
+              <th>Email</th>
+            </tr>
+          </thead>
 
-					<tbody id= "employee-list">
-						<!-- HANDLE BAR TEMPLATES -->
-						<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-							<div class="modal-dialog">
-								<div class="modal-content">
-									<div class="modal-header">
-										<button type="button" class="close" data-dismiss="modal">
-											<span aria-hidden="true">&times;</span>
-											<span class="sr-only">Close</span>
-										</button>
-										<h4 class="modal-title" id="myModalLabel">
-											Add an Employee
-										</h4>
-									</div>
+          <tbody id= "employee-list">
+            <!-- HANDLE BAR TEMPLATES -->
+            <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">
+                      <span aria-hidden="true">&times;</span>
+                      <span class="sr-only">Close</span>
+                    </button>
+                        <h4 class="modal-title" id="myModalLabel">Add an Employee</h4>
+                  </div>
 
-									<div class="modal-body">
-										<form class="form-horizontal" role="form" id="employee-form">
-											<div class="form-group">
-												<label class="col-sm-2 control-label" for="first-name" >First Name</label>
-												<div class="col-sm-10">
-													<input type="text" class="form-control" id="employee-first" placeholder="First Name"/>
-												</div>
-											</div>
-											<div class="form-group">
-												<label class="col-sm-2 control-label" for="last-name" >Last Name</label>
-												<div class="col-sm-10">
-													<input type="text" class="form-control" id="employee-last" placeholder="Last Name"/>
-												</div>
-											</div>
-											<div class="form-group">
-												<label  class="col-sm-2 control-label" for="inputEmail3">Email</label>
-												<div class="col-sm-10">
-													<input type="email" class="form-control" id="employee-email" placeholder="Email"/>
-												</div>
-											</div>
-											<div class="form-group">
-												<label class="col-sm-2 control-label" for="phone-number" >Phone</label>
-												<div class="col-sm-10">
-													<input type="text" class="form-control" id="employee-number" placeholder="Phone Number"/>
-												</div>
-											</div>
-											<div class="form-group">
-												<label class="col-sm-2 control-label" for="inputPassword3" >Password</label>
-												<div class="col-sm-10">
-													<input type="password" class="form-control" id="employee-pw" placeholder="Password"/>
-												</div>
-											</div>
-											<div class="form-group">
-												<label class="col-sm-2 control-label" for="inputPassword3" >Confirm</label>
-												<div class="col-sm-10">
-													<input type="password" class="form-control" id="employee-confirm-pw" placeholder="Confirm Password"/>
-												</div>
-											</div>
-										</form>
-									</div>
+                  <div class="modal-body">
+                    <form class="form-horizontal" role="form" id="employee-form">
+                        <div class="form-group">
+                          <label class="col-sm-2 control-label" for="first-name" >First Name</label>
+                          <div class="col-sm-10">
+                            <input type="text" class="form-control" id="first-name" placeholder="First Name"/>
+                          </div>
+                        </div>
+                          
+                        <div class="form-group">
+                          <label class="col-sm-2 control-label" for="last-name" >Last Name</label>
+                          <div class="col-sm-10">
+                            <input type="text" class="form-control" id="last-name" placeholder="Last Name"/>
+                          </div>
+                        </div>
+                          
+                        <div class="form-group">
+                          <label  class="col-sm-2 control-label" for="email">Email</label>
+                          <div class="col-sm-10">
+                              <input type="email" class="form-control" id="email" placeholder="Email"/>
+                          </div>
+                        </div>
+                          
+                        <div class="form-group">
+                          <label class="col-sm-2 control-label" for="phone">Phone</label>
+                          <div class="col-sm-10">
+                            <input type="text" class="form-control" id="phone" placeholder="Phone Number"/>
+                          </div>
+                        </div>
+                          
+                        <div class="form-group">
+                          <label class="col-sm-2 control-label" for="inputPassword3" >Password</label>
+                          <div class="col-sm-10">
+                            <input type="password" class="form-control" id="employee-pw" placeholder="Password"/>
+                          </div>
+                        </div>
+                          
+                        <div class="form-group">
+                          <label class="col-sm-2 control-label" for="inputPassword3" >Confirm</label>
+                          <div class="col-sm-10">
+                            <input type="password" class="form-control" id="employee-confirm-pw" placeholder="Confirm Password"/>
+                          </div>
+                        </div>
+                          
+                        <div class="form-group">
+                          <label class="col-sm-2"></label>
+                          <div class="col-sm-10">
+                          <span class="checkbox">
+                          <label><input type="checkbox" id="get-sms">Receive SMS</label>
+                          </span>
 
-									<!-- Modal Footer -->
-									<div class="modal-footer">
-										<button type="button" class="btn btn-default" data-dismiss="modal">
-											Close
-										</button>
-										<button type="button" class="check-in-btn btn btn-default save-btn" data-dismiss="modal">Save</button>
-									</div>
-								</div>
-							</div>
-						</div>
-					</tbody>
-				</table>
-				<div class = "add-button" data-toggle="modal" data-target="#myModal">Add Employee</div>
-				</div>
-			</div>
-		</div>
+                          <span class="checkbox">
+                          <label><input type="checkbox" id="get-email">Receive E-mail</label>
+                          </span>
+                          </div>
+                        </div>
+                    </form>
+                  </div>
 
-		<script type = "text/x-handlebars-template" id = "employee-list-template">
-			{{#each []}}
-			<tr class="employee-row">
-				<td class="employee-data">{{this.first_name}}</td>
-				<td class="employee-data">{{this.last_name}}</td>
-				<td class="employee-data">{{this.phone_number}}</td>
-				<td class="employee-data">{{this.email}}</td>
-			</tr>
-			{{/each}}
-		</script>
-	</div>
+                  <!-- Modal Footer -->
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" class="check-in-btn btn btn-default save-btn" data-dismiss="modal">Save</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">
+                      <span aria-hidden="true">&times;</span>
+                      <span class="sr-only">Close</span>
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">
+                        Edit Employee's Info
+                    </h4>
+                  </div>
+
+                  <div class="modal-body">
+                    <form class="form-horizontal" role="form" id="employee-form">
+                      <div class="form-group">
+                        <label class="col-sm-2 control-label" for="first-name-edit" >First Name</label>
+                        <div class="col-sm-10">
+                          <input type="text" class="form-control" id="first-name-edit" value=""/>
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label class="col-sm-2 control-label" for="last-name-edit" >Last Name</label>
+                        <div class="col-sm-10">
+                          <input type="text" class="form-control" id="last-name-edit" value=""/>
+                        </div>
+                      </div>
+                        <div class="form-group">
+                          <label  class="col-sm-2 control-label" for="email-edit">Email</label>
+                          <div class="col-sm-10">
+                            <input type="email" class="form-control" id="email-edit" value="" />
+                          </div>
+                        </div>
+                        <div class="form-group">
+                          <label class="col-sm-2 control-label" for="phone-number-edit" >Phone</label>
+                          <div class="col-sm-10">
+                            <input type="text" class="form-control" id="phone-number-edit" value=""/>
+                          </div>
+                        </div>
+
+
+                        <div class="form-group">
+                            <label class="col-sm-2"></label>
+                            <div class="col-sm-10">
+                            <span class="checkbox">
+                            <label><input type="checkbox" id="get-sms-edit">Receive SMS</label>
+                            </span>
+
+                            <span class="checkbox">
+                            <label><input type="checkbox" id="get-email-edit">Receive E-mail</label>
+                            </span>
+                            </div>
+                        </div>
+
+                    </form>
+                  </div>
+
+                    <!-- Modal Footer -->
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">
+                            Close
+                        </button>
+                        <button type="button" class="check-in-btn btn btn-default save-changes-btn" data-dismiss="modal">Save Changes</button>
+                    </div>
+                </div>
+              </div>
+            </div>
+
+
+
+          </tbody>
+        </table>
+          
+        <div class="row">
+          <div class="col-md-5 col-xs-4"></div>
+          <div class="col-md-2 col-xs-4">
+            <div class = "add-button" data-toggle="modal" data-target="#myModal">Add Employee</div>    
+          </div>
+          <div class="col-md-5 col-xs-4"></div>
+        </div>
+                
+      </div>
+    </div>
+  </div>
+
+  <script type = "text/x-handlebars-template" id = "employee-list-template">
+    {{#each []}}
+      <tr class="employee-row" value="{{this._id}}">
+        <td class="employee-data">{{this.first_name}}</td>
+        <td class="employee-data">{{this.last_name}}</td>
+        <td class="employee-data">{{this.phone_number}}</td>
+        <td class="employee-data">{{this.email}}
+          <i class="fa fa-trash-o delete-employee"></i>
+          <i class="fa fa-pencil update-employee"  data-toggle="modal" data-target="#myModal2"></i>
+        </td>
+      </tr>
+    {{/each}}
+  </script>
+</div>
 
 <!-- Bottom scripts (common) -->
 <script src="/emissary/js/shared.js"></script>

@@ -16,7 +16,7 @@
 }
 
 .add-button {
-  float: left;
+  text-align: center;
   border-radius: 2px;
   padding: 7px;
   margin-top: 15px;
@@ -29,17 +29,36 @@
   cursor: pointer;
 }
 
-.update-button {
+.update-employee {
+  float: right;
+  text-align: center;
   border-radius: 2px;
-  padding: 7px;
-  margin-top: 15px;
-  float: left;
-  background-color: #19a6e0;
+  padding: 3px;
+  margin-top: 2px;
+  margin-left: 2px;
+  background-color: #01b2bd;
   color: white;
 }
 
-.update-button:hover {
-  background-color: #1695c9;
+.update-employee:hover {
+  background-color: #049099;
+  cursor: pointer;
+}
+
+
+.delete-employee {
+  float: right;
+  text-align: center;
+  border-radius: 2px;
+  padding: 3px;
+  margin-top: 2px;
+  margin-left: 2px;
+  background-color: #01b2bd;
+  color: white;
+}
+
+.delete-employee:hover {
+  background-color: #049099;
   cursor: pointer;
 }
 
@@ -105,4 +124,14 @@ hr {
 
 .control-label {
   margin-top: 8px !important;
+}
+
+.deletion-message{
+    float: left;
+    font-size: 17px;
+    
+}
+
+.radio label, .checkbox label {
+    margin-top: 7px;
 }

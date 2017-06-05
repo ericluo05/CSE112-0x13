@@ -28,6 +28,7 @@ $(document).ready(function() {
         }, 700);
         $(this).addClass('hide');
         $('#clock').addClass('hide');
+        $('#close').addClass('hide');
     }
 
     /**

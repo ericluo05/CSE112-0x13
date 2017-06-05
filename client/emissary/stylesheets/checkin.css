@@ -15,9 +15,7 @@ body#check-in-page {
 }
 
 #tap-to-check {
-  position: absolute;
-  left: 50%;
-  margin-left: -137.5px;
+  margin-left: -150.5px;
   background-color: #e6e8ec;
   width: 275px;
   height: 100px;
@@ -32,6 +30,7 @@ body#check-in-page {
 
 #tap-to-check p {
   font-family: "Helvetica Neue";
+  padding-top: 25px;
   text-align: center;
   color: #333;
   font-size: 32px;
@@ -91,3 +90,24 @@ body#check-in-page {
   display: none !important;
 }
 
+#close {
+  margin-left: -100.5px;
+  background-color: #e6e8ec;
+  width: 175px;
+  height: 50px;
+  bottom: 20%;
+  border-radius: 3px;
+  display: block;
+}
+
+#close:hover {
+  cursor: pointer;
+}
+
+#close p {
+  font-family: "Helvetica Neue";
+  padding-top: 10px;
+  text-align: center;
+  color: #333;
+  font-size: 22px;
+}
