@@ -106,7 +106,7 @@ exports.insert = function(req, res) {
  *   Resolve: { action 'create', body: employeeData }
  */
 function createEmployeePromise(employee) {
-    let promise = new Promise(function(resolve, reject)  {
+    let promise = new Promise(function(resolve, reject) {
         employee.save(function(err, e) {
             if (err) {
                 reject({statusCode: 400, body: {error: 'Can not create'}});
@@ -193,6 +193,33 @@ exports.update = function(req, res) {
  * @param {Object} res - response object
  */
 exports.delete = function(req, res) {
+    let deletePromise = new Promise(function(resolve, reject) {
+        Employee.findById(req.params.id, function(err, employee) {
+            if(err || !employee) {
+                reject({statusCode: 400, body: {error: 'Can not find'}});
+            } else{
+                employee.remove(function(err, e) {
+                    if (err) {
+                        reject({statusCode: 400, body: {error: 'Can not delete'}});
+                    } else {
+                        resolve({action: 'delete', body: e});
+                    }
+                });
+            }
+        });
+    });
+
+    deletePromise
+        .then(updateCompanyEmployeeCount)
+        .then(function(result) {
+            res.status(result.statusCode).json(result.body);
+        })
+        .catch(function(error) {
+            res.status(error.statusCode).json(error.body);
+        });
+
+
+    /*
     Employee.findById(req.params.id, function(err, employee) {
         return employee.remove(function(err) {
             if (err) {
@@ -203,5 +230,5 @@ exports.delete = function(req, res) {
                 return res.status(200).send(employeeJSON);
             }
         });
-    });
+    });*/
 };

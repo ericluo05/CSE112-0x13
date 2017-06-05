@@ -44,11 +44,11 @@ exports.getAll = function(req, res) {
             expiration_date: false,
         }
         , function(err, result) {
-        if(err) {
-            return res.status(400).json(err);
-        }
-        return res.status(200).json(result);
-    });
+            if(err) {
+                return res.status(400).json(err);
+            }
+            return res.status(200).json(result);
+        });
 };
 
 /**
@@ -59,7 +59,7 @@ exports.getAll = function(req, res) {
  */
 exports.get = function(req, res) {
     Company.findOne({_id: req.params.id}, function(err, company) {
-        if(err) {
+        if(err || !company) {
             return res.status(400).json({error: 'Could not find'});
         }
         return res.status(200).json(showCompanyPublicInfo(company));
@@ -212,9 +212,9 @@ function showCompanyPublicInfo(c) {
 exports.searchCompanies = function(req, res) {
     let regexToSearch = new RegExp('.*'+req.params.match.trim()+'.*');
     Company.find({name: regexToSearch}, function(error, result) {
-       if(error)
-           return res.status(400).json({error: 'Could Not Search '});
-       return res.json(result);
+        if(error)
+            return res.status(400).json({error: 'Could Not Search '});
+        return res.json(result);
     });
 };
 
