@@ -5,7 +5,7 @@
  */
 let Employee = require('../../models/Employee');
 let Company = require('../../models/Company');
-
+let Email = require('../../notification/email');
 /**
  * @typedef{Object} Employee
  * @property {string} first_name employees first name
@@ -217,18 +217,44 @@ exports.delete = function(req, res) {
         .catch(function(error) {
             res.status(error.statusCode).json(error.body);
         });
-
-
-    /*
-    Employee.findById(req.params.id, function(err, employee) {
-        return employee.remove(function(err) {
-            if (err) {
-                res.status(400).json({error: 'Can not Find'});
-            } else {
-                let employeeJSON = employee.toJSON();
-                delete employeeJSON.password;
-                return res.status(200).send(employeeJSON);
-            }
-        });
-    });*/
 };
+
+/**
+ * @function resetPassword
+ * @description  handler to reset password and sent new password to email
+ * @param {Object} req - request object
+ * @param {Object} res - response object
+ */
+exports.resetPassword = function(req, res) {
+    Employee.findOne({email: req.body.email}, function(err, employee) {
+        if (err || !employee) {
+            return res.status(400).send({error: 'Can not find'});
+        }
+        let newPassword = randomString(6);
+        employee.password = employee.generateHash(newPassword);
+        employee.save(function(err) {
+            if (err)
+                return res.status(400).json({error: 'Can not reset'});
+            let employeeJSON = employee.toJSON();
+            delete employeeJSON.password;
+            Email.sendNewPassword(employee.email, newPassword);
+            return res.status(200).send(employeeJSON);
+        });
+    });
+};
+
+/**
+ * @function randomString
+ * @description  generate random string using [A-Z][a-Z][0-9]
+ * @param {Object} len - length of generated string
+ * @return {String} generated random string
+ */
+function randomString(len) {
+    let charSet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    let randomString = '';
+    for (let i = 0; i < len; i++) {
+        let randomPoz = Math.floor(Math.random() * charSet.length);
+        randomString += charSet.substring(randomPoz, randomPoz+1);
+    }
+    return randomString;
+}

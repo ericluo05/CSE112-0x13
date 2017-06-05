@@ -126,24 +126,6 @@ router.put('/:id', controller.update);
  */
 router.delete('/:id', controller.delete);
 
-/**
- *
- * @api {put} /api/companies/setting/:user Reset Credentials
- * @apiDescription Change the credentials for a user in a company.
- * DON'T USE THIS, THIS IS BROKEN. STILL NEEDS TO BE FIX
- * @apiName CompanyResetCredentials
- * @apiGroup Company
- *
- * @apiParam {companyID} companyID the companiesID
- * @apiParam {string} email email of the person to reset
- * @apiParam {string} password new password
- *
- * @apiUse CompanyData
- *
- * @apiError (Error 400) CouldNotFind wrong company ID
- * @apiError (Error 400) CouldNotSave a connection problem
- */
-router.put('/setting/:user', controller.resetCredentials);
 
 /**
  *

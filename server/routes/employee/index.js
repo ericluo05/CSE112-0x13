@@ -127,7 +127,7 @@ router.delete('/:id', controller.delete);
 
 /**
  *
- * @api {post} /employees/login login
+ * @api {post} /employees/resetPassword login
  * @apiDescription This is for login it returns an employee JSON. Look at
  * employee.controller.js login for more info
  * @apiName EmployeeLogin
@@ -140,5 +140,19 @@ router.delete('/:id', controller.delete);
  * @apiError (Error 400) IncorrectCredentials password does not match
  */
 router.post('/login', controller.login);
+
+/**
+ *
+ * @api {post} /employees/resetPassword Reset Password
+ * @apiDescription send email to employee with new password in the email
+ * @apiName EmployeeResetPassword
+ * @apiGroup Employee
+ *
+ * @apiParam {string} email email address of account to rest password for
+ * @apiUse EmployeeData
+ * @apiError (Error 400) CanNotFind no employee has that email
+ * @apiError (Error 400) CanNotReset can't reset password
+ */
+router.post('/resetPassword', controller.resetPassword);
 
 module.exports = router;

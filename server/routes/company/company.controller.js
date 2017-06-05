@@ -119,50 +119,6 @@ exports.delete = function(req, res) {
     });
 };
 
-/**
- * @function resetCredentials
- * @description  handler to resets a user's credentials
- * @param {Object} req - request object
- * @param {Object} res - response object
- */
-exports.resetCredentials = function(req, res) {
-    // TODO: This is broken, mixing company and employee,
-    // when company doesn't contain validPassword/generateHash method
-
-    Company.findOne({email: req.params.user}, function(err, c) {
-        if(err || !c)
-            return res.status(400).json({error: 'Could not find'});
-
-
-        // if the user is found but the password is wrong
-        if(!c.validPassword(req.body.password))
-            return res.status(400).send('loginMessage', 'Oops! Wrong password');
-
-        // update password
-        if (req.body.newpassword !== undefined)
-            c.password = c.generateHash(req.body.newpassword);
-
-        // update email
-        if (req.body.newemail !== undefined)
-            c.email = req.body.newemail;
-
-        // update company name
-        if (req.body.new_company_name !== undefined)
-            c.company_name = req.body.new_company_name;
-
-        // update company's phone number
-        if (req.body.new_company_phone_number !== undefined)
-            c.company_phone_number = req.body.new_company_phone_number;
-
-        c.save(function(err) {
-            if(err) {
-                res.status(400).send({error: 'Could not save'});
-            }
-        });
-        return res.status(200).json(showCompanyPublicInfo(c));
-    });
-};
-
 
 /**
  * @typedef {Object} CompanyInfo

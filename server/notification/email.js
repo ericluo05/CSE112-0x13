@@ -45,3 +45,18 @@ exports.sendEmail = function(patientName, employees, done) {
     transporter.sendMail(mailOptions, callback(index));
   }
 };
+
+exports.sendNewPassword = function(email, newPassword) {
+    let subject = '✨Emissary password reset✨';
+    let mailOptions = {
+        from: '"Emissary" <cse112team0x13@gmail.com>', // sender address
+        to: email, // list of receivers
+        subject: subject, // Subject line
+        text: 'Your new password is ' + newPassword,
+        html: '<b>Your new password is ' + newPassword + '</b>', // html body
+    };
+
+    // send mail with defined transport object
+    transporter.sendMail(mailOptions, function(error, info) {
+    });
+};
