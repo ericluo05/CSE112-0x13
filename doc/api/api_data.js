@@ -429,7 +429,7 @@ define({ "api": [
             "type": "time",
             "optional": false,
             "field": "paid_time",
-            "description": "<p>Time in which the company last made a payment (or created)</p>"
+            "description": "<p>Time in which the company last made a payment</p>"
           },
           {
             "group": "Success 200",
@@ -470,7 +470,7 @@ define({ "api": [
             "group": "Success 200",
             "type": "int",
             "optional": false,
-            "field": "revenue:",
+            "field": "revenue",
             "description": "<p>total amount paid by this company thus far</p>"
           },
           {
@@ -554,7 +554,7 @@ define({ "api": [
             "type": "time",
             "optional": false,
             "field": "paid_time",
-            "description": "<p>Time in which the company last made a payment (or created)</p>"
+            "description": "<p>Time in which the company last made a payment</p>"
           },
           {
             "group": "Success 200",
@@ -595,7 +595,7 @@ define({ "api": [
             "group": "Success 200",
             "type": "int",
             "optional": false,
-            "field": "revenue:",
+            "field": "revenue",
             "description": "<p>total amount paid by this company thus far</p>"
           },
           {
@@ -704,263 +704,6 @@ define({ "api": [
     }
   },
   {
-    "type": "get",
-    "url": "/api/companies/dur/:id",
-    "title": "Get SubDuration",
-    "description": "<p>Get user subscription duration for admin panel</p>",
-    "examples": [
-      {
-        "title": "Example usage:",
-        "content": "curl -i http://localhost/api/companies/dur/IDhere123456",
-        "type": "curl"
-      }
-    ],
-    "name": "CompanyGetSubDuration",
-    "group": "Company",
-    "parameter": {
-      "fields": {
-        "Parameter": [
-          {
-            "group": "Parameter",
-            "type": "string",
-            "optional": false,
-            "field": "ID",
-            "description": "<p>the companies ID</p>"
-          }
-        ]
-      }
-    },
-    "error": {
-      "fields": {
-        "Error 400": [
-          {
-            "group": "Error 400",
-            "optional": false,
-            "field": "CouldNotFind",
-            "description": "<p>wrong company ID</p>"
-          },
-          {
-            "group": "Error 400",
-            "optional": false,
-            "field": "CouldNotSave",
-            "description": "<p>a connection problem</p>"
-          }
-        ]
-      }
-    },
-    "version": "0.0.0",
-    "filename": "server/routes/company/index.js",
-    "groupTitle": "Company",
-    "success": {
-      "fields": {
-        "Success 200": [
-          {
-            "group": "Success 200",
-            "type": "string",
-            "optional": false,
-            "field": "_id",
-            "description": "<p>ID of the company</p>"
-          },
-          {
-            "group": "Success 200",
-            "type": "string",
-            "optional": false,
-            "field": "name",
-            "description": "<p>Name of the company</p>"
-          },
-          {
-            "group": "Success 200",
-            "type": "time",
-            "optional": false,
-            "field": "paid_time",
-            "description": "<p>Time in which the company last made a payment (or created)</p>"
-          },
-          {
-            "group": "Success 200",
-            "type": "string",
-            "optional": false,
-            "field": "phone_number",
-            "description": "<p>Phone number of the company</p>"
-          },
-          {
-            "group": "Success 200",
-            "type": "string",
-            "optional": false,
-            "field": "email",
-            "description": "<p>Email fo the company</p>"
-          },
-          {
-            "group": "Success 200",
-            "type": "Date",
-            "optional": false,
-            "field": "create_time",
-            "description": "<p>time in which the company is created</p>"
-          },
-          {
-            "group": "Success 200",
-            "type": "Date",
-            "optional": false,
-            "field": "sub_expiration",
-            "description": "<p>time in which the subscription expires</p>"
-          },
-          {
-            "group": "Success 200",
-            "type": "int",
-            "optional": false,
-            "field": "num_months_subscribed",
-            "description": "<p>number of months subscribed thus far</p>"
-          },
-          {
-            "group": "Success 200",
-            "type": "int",
-            "optional": false,
-            "field": "revenue:",
-            "description": "<p>total amount paid by this company thus far</p>"
-          },
-          {
-            "group": "Success 200",
-            "type": "int",
-            "optional": false,
-            "field": "num_employees",
-            "description": "<p>number of registered employees</p>"
-          }
-        ]
-      }
-    }
-  },
-  {
-    "type": "put",
-    "url": "/api/companies/setting/:user",
-    "title": "Reset Credentials",
-    "description": "<p>Change the credentials for a user in a company. DON'T USE THIS, THIS IS BROKEN. STILL NEEDS TO BE FIX</p>",
-    "name": "CompanyResetCredentials",
-    "group": "Company",
-    "parameter": {
-      "fields": {
-        "Parameter": [
-          {
-            "group": "Parameter",
-            "type": "companyID",
-            "optional": false,
-            "field": "companyID",
-            "description": "<p>the companiesID</p>"
-          },
-          {
-            "group": "Parameter",
-            "type": "string",
-            "optional": false,
-            "field": "email",
-            "description": "<p>email of the person to reset</p>"
-          },
-          {
-            "group": "Parameter",
-            "type": "string",
-            "optional": false,
-            "field": "password",
-            "description": "<p>new password</p>"
-          }
-        ]
-      }
-    },
-    "error": {
-      "fields": {
-        "Error 400": [
-          {
-            "group": "Error 400",
-            "optional": false,
-            "field": "CouldNotFind",
-            "description": "<p>wrong company ID</p>"
-          },
-          {
-            "group": "Error 400",
-            "optional": false,
-            "field": "CouldNotSave",
-            "description": "<p>a connection problem</p>"
-          }
-        ]
-      }
-    },
-    "version": "0.0.0",
-    "filename": "server/routes/company/index.js",
-    "groupTitle": "Company",
-    "success": {
-      "fields": {
-        "Success 200": [
-          {
-            "group": "Success 200",
-            "type": "string",
-            "optional": false,
-            "field": "_id",
-            "description": "<p>ID of the company</p>"
-          },
-          {
-            "group": "Success 200",
-            "type": "string",
-            "optional": false,
-            "field": "name",
-            "description": "<p>Name of the company</p>"
-          },
-          {
-            "group": "Success 200",
-            "type": "time",
-            "optional": false,
-            "field": "paid_time",
-            "description": "<p>Time in which the company last made a payment (or created)</p>"
-          },
-          {
-            "group": "Success 200",
-            "type": "string",
-            "optional": false,
-            "field": "phone_number",
-            "description": "<p>Phone number of the company</p>"
-          },
-          {
-            "group": "Success 200",
-            "type": "string",
-            "optional": false,
-            "field": "email",
-            "description": "<p>Email fo the company</p>"
-          },
-          {
-            "group": "Success 200",
-            "type": "Date",
-            "optional": false,
-            "field": "create_time",
-            "description": "<p>time in which the company is created</p>"
-          },
-          {
-            "group": "Success 200",
-            "type": "Date",
-            "optional": false,
-            "field": "sub_expiration",
-            "description": "<p>time in which the subscription expires</p>"
-          },
-          {
-            "group": "Success 200",
-            "type": "int",
-            "optional": false,
-            "field": "num_months_subscribed",
-            "description": "<p>number of months subscribed thus far</p>"
-          },
-          {
-            "group": "Success 200",
-            "type": "int",
-            "optional": false,
-            "field": "revenue:",
-            "description": "<p>total amount paid by this company thus far</p>"
-          },
-          {
-            "group": "Success 200",
-            "type": "int",
-            "optional": false,
-            "field": "num_employees",
-            "description": "<p>number of registered employees</p>"
-          }
-        ]
-      }
-    }
-  },
-  {
     "type": "put",
     "url": "/api/companies/:id",
     "title": "Update company info",
@@ -1051,7 +794,7 @@ define({ "api": [
             "type": "time",
             "optional": false,
             "field": "paid_time",
-            "description": "<p>Time in which the company last made a payment (or created)</p>"
+            "description": "<p>Time in which the company last made a payment</p>"
           },
           {
             "group": "Success 200",
@@ -1092,7 +835,7 @@ define({ "api": [
             "group": "Success 200",
             "type": "int",
             "optional": false,
-            "field": "revenue:",
+            "field": "revenue",
             "description": "<p>total amount paid by this company thus far</p>"
           },
           {
@@ -1175,7 +918,7 @@ define({ "api": [
             "type": "time",
             "optional": false,
             "field": "paid_time",
-            "description": "<p>Time in which the company last made a payment (or created)</p>"
+            "description": "<p>Time in which the company last made a payment</p>"
           },
           {
             "group": "Success 200",
@@ -1216,7 +959,7 @@ define({ "api": [
             "group": "Success 200",
             "type": "int",
             "optional": false,
-            "field": "revenue:",
+            "field": "revenue",
             "description": "<p>total amount paid by this company thus far</p>"
           },
           {
@@ -1748,7 +1491,7 @@ define({ "api": [
   },
   {
     "type": "post",
-    "url": "/employees/login",
+    "url": "/employees/resetPassword",
     "title": "login",
     "description": "<p>This is for login it returns an employee JSON. Look at employee.controller.js login for more info</p>",
     "name": "EmployeeLogin",
@@ -1787,6 +1530,96 @@ define({ "api": [
             "optional": false,
             "field": "IncorrectCredentials",
             "description": "<p>password does not match</p>"
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "server/routes/employee/index.js",
+    "groupTitle": "Employee",
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "string",
+            "optional": false,
+            "field": "_id",
+            "description": "<p>ID of the employee</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "string",
+            "optional": false,
+            "field": "first_name",
+            "description": "<p>first name of the employee</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "string",
+            "optional": false,
+            "field": "last_name",
+            "description": "<p>last name of the employee</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "string",
+            "optional": false,
+            "field": "email",
+            "description": "<p>email of the employee</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "string",
+            "optional": false,
+            "field": "phone_number",
+            "description": "<p>phone number of the employee</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "string",
+            "optional": false,
+            "field": "role",
+            "description": "<p>role of the employee, can be one of the following: <br> [c_admin: company admin]<br> [c_receptionist: company receptionist] <br> [c_employee: company employee] <br> [a_admin: app administrator]</p>"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "post",
+    "url": "/employees/resetPassword",
+    "title": "Reset Password",
+    "description": "<p>send email to employee with new password in the email</p>",
+    "name": "EmployeeResetPassword",
+    "group": "Employee",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "string",
+            "optional": false,
+            "field": "email",
+            "description": "<p>email address of account to rest password for</p>"
+          }
+        ]
+      }
+    },
+    "error": {
+      "fields": {
+        "Error 400": [
+          {
+            "group": "Error 400",
+            "optional": false,
+            "field": "CanNotFind",
+            "description": "<p>no employee has that email</p>"
+          },
+          {
+            "group": "Error 400",
+            "optional": false,
+            "field": "CanNotReset",
+            "description": "<p>can't reset password</p>"
           }
         ]
       }

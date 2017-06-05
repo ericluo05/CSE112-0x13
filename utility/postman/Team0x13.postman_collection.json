@@ -53,7 +53,7 @@
 				{
 					"name": "Get Company by ID",
 					"request": {
-						"url": "localhost:3000/api/companies/592e71899ea9032c183a65a",
+						"url": "localhost:3000/api/companies/592fc3f3a641801cf072af31",
 						"method": "GET",
 						"header": [],
 						"body": {},
@@ -147,7 +147,7 @@
 				{
 					"name": "Get employees by company id",
 					"request": {
-						"url": "localhost:3000/api/employees/company/592e8f8312aafe2f6c251e9e",
+						"url": "localhost:3000/api/employees/company/592fc418a641801cf072af33",
 						"method": "GET",
 						"header": [],
 						"body": {},
@@ -195,7 +195,7 @@
 								},
 								{
 									"key": "email",
-									"value": "hardlife@gg.com",
+									"value": "hardlif2233e@gg.com",
 									"type": "text",
 									"description": ""
 								},
@@ -207,7 +207,7 @@
 								},
 								{
 									"key": "company_id",
-									"value": "592e8f8312aafe2f6c251e9e",
+									"value": "5935ccf5864baf4098f06e6a",
 									"type": "text",
 									"description": ""
 								},
@@ -291,6 +291,33 @@
 								{
 									"key": "password",
 									"value": "0000",
+									"description": "",
+									"type": "text"
+								}
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Reset/Forgot Password",
+					"request": {
+						"url": "localhost:3000/api/employees/resetPassword",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "email",
+									"value": "hardlif223e@gg.com",
 									"description": "",
 									"type": "text"
 								}
