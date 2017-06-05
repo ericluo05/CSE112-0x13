@@ -4,7 +4,6 @@
 
 .settings-container {
   max-width: 980px;
-
 }
 
 .field-color {
@@ -29,9 +28,8 @@ hr {
   border-top: 3px solid #01b2bd !important;
 }
 
-.stripe-button-el span{
-        background: #01b2bd !important;
-        width: 136px;
-        text-shadow: none !important;
+.stripe-button-el span {
+  background: #01b2bd !important;
+  width: 136px;
+  text-shadow: none !important;
 }
-

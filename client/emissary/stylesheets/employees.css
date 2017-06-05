@@ -45,7 +45,6 @@
   cursor: pointer;
 }
 
-
 .delete-employee {
   float: right;
   text-align: center;
@@ -126,12 +125,12 @@ hr {
   margin-top: 8px !important;
 }
 
-.deletion-message{
-    float: left;
-    font-size: 17px;
-    
+.deletion-message {
+  float: left;
+  font-size: 17px;
 }
 
-.radio label, .checkbox label {
-    margin-top: 7px;
+.radio label,
+.checkbox label {
+  margin-top: 7px;
 }
