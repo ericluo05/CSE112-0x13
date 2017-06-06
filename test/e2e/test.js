@@ -1,13 +1,13 @@
 /* jshint expr: true */
 let r = Math.floor(Math.random() * 1000000000);
-let companyName = "0x13_company_" + r;
-let companyEmail = "0x13_company_" + r + "@0x13.com";
+let companyName = '0x13_company_' + r;
+let companyEmail = '0x13_company_' + r + '@0x13.com';
 let companyPhone = r;
-let firstName = "0x13_account_first_name_" + r;
-let lastName = "0x13_account_last_name_" + r;
-let userEmail = "0x13_user_" + r + "@0x13.com";
+let firstName = '0x13_account_first_name_' + r;
+let lastName = '0x13_account_last_name_' + r;
+let userEmail = '0x13_user_' + r + '@0x13.com';
 let userPhone = 9 + r;
-let password = "0x13_password_" + r;
+let password = '0x13_password_' + r;
 
 console.log(companyName);
 console.log(companyEmail);
@@ -50,13 +50,13 @@ let test = {
     // client.click('.//button[@type="submit"]').pause(2000);
 
 
-    //client.click('//select[@id="cc2"]').pause(1000);
-    //client.setValue('//input[@id="telnum"]', '5622131234').pause(500);
-    //client.click('.//button[@id="formatsubmit"]').pause(2000);
+    // client.click('//select[@id="cc2"]').pause(1000);
+    // client.setValue('//input[@id="telnum"]', '5622131234').pause(500);
+    // client.click('.//button[@id="formatsubmit"]').pause(2000);
 
     client.end();
   },
-  'signup.html - Site Element Eistence and Signup Test' : function(client) {
+  'signup.html - Site Element Eistence and Signup Test': function(client) {
     client
       .url('http://localhost:3000/signup')
       .pause(1000);
@@ -65,9 +65,9 @@ let test = {
 
     client.verify.title('Login');
     client.expect.element('//img[@alt="logo"]').to.be.present;
-    client.assert.containsText('//div[@class="form-top"]/h1', "Step 1/2");
+    client.assert.containsText('//div[@class="form-top"]/h1', 'Step 1/2');
     client.assert.containsText('//div[@class="form-top"]/p',
-      "Create a company");
+      'Create a company');
 
     client.expect
       .element('//div[@class="form-group"]/input[@id="form-company-name"]')
@@ -95,9 +95,9 @@ let test = {
     client.click('//button[@id="submit-company-btn"]');
     client.pause(2000);
 
-    //client.assert.containsText('//fieldset[1]/div[@class="form-top"]/h1',
+    // client.assert.containsText('//fieldset[1]/div[@class="form-top"]/h1',
     //  "Step 2/2");
-    //client.assert.containsText('//div[@class="form-top"]/p',
+    // client.assert.containsText('//div[@class="form-top"]/p',
     //  "Create an user account");
 
     client
@@ -153,7 +153,7 @@ let test = {
 
     client.pause(5000);
     client.end();
-  }
+  },
 };
 
 module.exports = test;
