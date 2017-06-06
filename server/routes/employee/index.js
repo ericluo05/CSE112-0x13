@@ -40,7 +40,7 @@ let router = new express.Router();
 
 /**
  *
- * @api {get} api/employees/company/:id getAllEmployees
+ * @api {get} /api/employees/company/:id getAllEmployees
  * @apiDescription This is for getting all existent employees. Look at
  * employee.controller.js getAllEmployees for more info
  * @apiName EmployeeGetAll
@@ -54,7 +54,7 @@ router.get('/company/:id', controller.getAllEmployees);
 
 /**
  *
- * @api {get} /employees/:id getById
+ * @api {get} /api/employees/:id getById
  * @apiDescription This is for getting 1 existant employees using ID. Look at
  * employee.controller.js getById for more info.
  * @apiName EmployeeGetById
@@ -68,7 +68,7 @@ router.get('/:id', controller.getById);
 
 /**
  *
- * @api {post} api/employees/ insert
+ * @api {post} /api/employees/ insert
  * @apiDescription This is for creating an employee.
  *  Roles:
  *   c_admin: company admin
@@ -96,7 +96,7 @@ router.post('/', controller.insert);
 
 /**
  *
- * @api {put} api/employees/:id update
+ * @api {put} /api/employees/:id update
  * @apiDescription This is for modifying an employee. Do not send values if you
  * don't want them to be updated. Look at employee.controller  for more info
  * @apiName EmployeeUpdate
@@ -119,7 +119,7 @@ router.put('/:id', controller.update);
 
 /**
  *
- * @api {delete} api/employees/:id delete
+ * @api {delete} /api/employees/:id delete
  * @apiDescription This is for deleting an employee. Look at
  * employee.controller.js delete for more info
  * @apiName EmployeeDelete
@@ -133,7 +133,7 @@ router.delete('/:id', controller.delete);
 
 /**
  *
- * @api {post} /employees/resetPassword login
+ * @api {post} /api/employees/resetPassword login
  * @apiDescription This is for login it returns an employee JSON. Look at
  * employee.controller.js login for more info
  * @apiName EmployeeLogin
@@ -149,7 +149,7 @@ router.post('/login', controller.login);
 
 /**
  *
- * @api {post} /employees/resetPassword Reset Password
+ * @api {post} /api/employees/resetPassword Reset Password
  * @apiDescription send email to employee with new password in the email
  * @apiName EmployeeResetPassword
  * @apiGroup Employee
