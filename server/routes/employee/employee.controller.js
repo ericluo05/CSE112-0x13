@@ -91,7 +91,10 @@ exports.insert = function(req, res) {
     employee.company_id = req.body.company_id;
     employee.password = employee.generateHash(req.body.password);
     employee.role = req.body.role;
-
+    if(req.body.receive_sms)
+        employee.receive_sms = req.body.receive_sms;
+    if(req.body.receive_email)
+        employee.receive_email = req.body.receive_email;
     // chain the promises to create the employee and updating company employee count
     createEmployeePromise(employee)
         .then(updateCompanyEmployeeCount)

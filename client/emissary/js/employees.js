@@ -134,7 +134,7 @@ $(document).ready(function() {
   }
 
     /**
-      * Grabs elements from the check in and puts it into an object
+      * Grabs elements from the creating new employee form and puts it into an object
       * @return {Object} new employee object
       */
     function grabFormElements() {
@@ -147,6 +147,8 @@ $(document).ready(function() {
         newEmployee.email = $('#email').val();
         newEmployee.password = $('#employee-pw').val();
         newEmployee.confirm_password = $('#employee-confirm-pw').val();
+        newEmployee.receive_sms = $('#get-sms').is(':checked');
+        newEmployee.receive_email = $('#get-email').is(':checked');
         return newEmployee;
     }
 

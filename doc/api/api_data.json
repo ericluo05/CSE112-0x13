@@ -1421,6 +1421,20 @@
             "optional": false,
             "field": "role",
             "description": "<p>employees role in the company</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "boolean",
+            "optional": true,
+            "field": "receive_sms",
+            "description": "<p>receive email notification or not, default is false</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "boolean",
+            "optional": true,
+            "field": "receive_email",
+            "description": "<p>receive sms notification or not, default is false</p>"
           }
         ]
       }
@@ -1734,6 +1748,20 @@
             "optional": true,
             "field": "role",
             "description": "<p>employees role in the company</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "boolean",
+            "optional": true,
+            "field": "receive_email",
+            "description": "<p>receive email notification or not</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "boolean",
+            "optional": true,
+            "field": "receive_sms",
+            "description": "<p>receive sms notification or not</p>"
           }
         ]
       }
@@ -1744,14 +1772,14 @@
           {
             "group": "Error 400",
             "optional": false,
-            "field": "CanNotUpdate",
-            "description": "<p>caused by employee not existing I think</p>"
+            "field": "CanNotFind",
+            "description": "<p>error finding employee</p>"
           },
           {
             "group": "Error 400",
             "optional": false,
             "field": "CanNotSave",
-            "description": "<p>failed db connection</p>"
+            "description": "<p>can't save, check dup key</p>"
           }
         ]
       }

@@ -85,6 +85,10 @@ router.get('/:id', controller.getById);
  * @apiParam {int}  company_id company for employee to be associated to
  * @apiParam {string}  password employees password. This is hashed then removed
  * @apiParam {string}  role employees role in the company
+ * @apiParam {boolean} [receive_sms] receive email notification or not,
+ *                                    default is false
+ * @apiParam {boolean} [receive_email] receive sms notification or not,
+ *                                    default is false
  * @apiUse EmployeeData
  * @apiError (Error 400) CanNotSave failed to connect to db
  */
