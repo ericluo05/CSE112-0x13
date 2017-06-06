@@ -7,7 +7,7 @@ const BASIC_PLAN_ID = 'emissary_basic';
 let Company = require('../../models/Company');
 
 let stripe = require('stripe')(
-  'sk_test_dqzYJJ6xWGgg6U1hgQr3hNye'
+  'sk_test_9u87L1TWt5m42Y6qg744m53l'
 );
 
 /**
