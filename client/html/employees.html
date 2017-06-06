@@ -233,6 +233,7 @@
 
                   <div class="modal-body">
                     <form class="form-horizontal" role="form" id="employee-form-edit">
+                      <div id="edit-employee-id" value=""></div>
                       <div class="form-group">
                         <label class="col-sm-2 control-label" for="first-name-edit" >First Name</label>
                         <div class="col-sm-10">
@@ -306,10 +307,10 @@
   <script type = "text/x-handlebars-template" id = "employee-list-template">
     {{#each []}}
       <tr class="employee-row" value="{{this._id}}">
-        <td class="employee-data">{{this.first_name}}</td>
-        <td class="employee-data">{{this.last_name}}</td>
-        <td class="employee-data">{{this.phone_number}}</td>
-        <td class="employee-data">{{this.email}}
+        <td class="employee-data-first-name">{{this.first_name}}</td>
+        <td class="employee-data-last-name">{{this.last_name}}</td>
+        <td class="employee-data-phone-number">{{this.phone_number}}</td>
+        <td class="employee-data-email">{{this.email}}
           <i class="fa fa-trash-o delete-employee"></i>
           <i class="fa fa-pencil update-employee"  data-toggle="modal" data-target="#myModal2"></i>
         </td>
