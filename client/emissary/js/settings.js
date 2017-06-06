@@ -1,4 +1,4 @@
-//window.onload = function() {
+// window.onload = function() {
 //  /**
 //    * Grab user data from form
 //    * @param {Object} sParam
@@ -13,11 +13,11 @@
 //            return decodeURIComponent(sParameterName[1]);
 //        }
 //    }
-//}
-//let id = getURLParameter('code');
-//// let name= getURLParameter('status');
+// }
+// let id = getURLParameter('code');
+// // let name= getURLParameter('status');
 //
-//if(id) {
+// if(id) {
 //	let clientSecret = 'a56caa836b9f386c400a69cda6f5c0b4';
 //	let clientID = '11293703667.22923580850';
 //	// let something = {};
@@ -37,8 +37,8 @@
 //        localStorage.setItem('slackToken', data['access_token']);
 //        localStorage.setItem('slackChannel', channel);
 //    });
-//}    
-//};
+// }
+// };
 
 $(document).ready(function() {
   let curUser = JSON.parse(localStorage.getItem('currentUser'));

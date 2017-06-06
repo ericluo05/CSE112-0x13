@@ -17,7 +17,7 @@ $(document).ready(function() {
   /**
      * Makes a get request for list of all companies that match the
      * search input
-     * 
+     *
      * @param {String} input
      * @return {Object} list of companies that match input string
      */
@@ -31,7 +31,7 @@ $(document).ready(function() {
       dataType: 'json',
       success: function(response) {
         for(let i = 0; i < response.length; i++) {
-          if(response[i].name != "Emissary") {
+          if(response[i].name != 'Emissary') {
             let searchComp = {};
             searchComp.compId = response[i]._id;
             searchComp.name= response[i].name;
@@ -40,13 +40,13 @@ $(document).ready(function() {
             searchCompanies.push(searchComp);
           }
         }
-      }
+      },
     });
     return searchCompanies;
   }
 
   /**
-     * Updates the Handlebars template to display the newest 
+     * Updates the Handlebars template to display the newest
      * company list
      *
      * @param {Object} data
@@ -61,8 +61,8 @@ $(document).ready(function() {
   /**
      * Makes a get request for list of all companies then uses data
      * to get number of employees and subscription length
-     * 
-     * @return {Object} list of companies w/ id, name, employee number, 
+     *
+     * @return {Object} list of companies w/ id, name, employee number,
      * subscription length
      */
   function getAllComps() {
@@ -75,7 +75,7 @@ $(document).ready(function() {
       dataType: 'json',
       success: function(response) {
         for(let i = 0; i < response.length; i++) {
-          if(response[i].name != "Emissary") {
+          if(response[i].name != 'Emissary') {
             let comp = {};
             comp.compId = response[i]._id;
             comp.name= response[i].name;
@@ -84,7 +84,7 @@ $(document).ready(function() {
             companies.push(comp);
           }
         }
-      }
+      },
     });
     return companies;
   }
@@ -92,7 +92,7 @@ $(document).ready(function() {
   /**
      * Makes a get request for list of all employees then uses data
      * to count total number of employees
-     * 
+     *
      * @param {String} companyID
      * @return {Number} total number of employees
      */
@@ -106,22 +106,22 @@ $(document).ready(function() {
       dataType: 'json',
       success: function(response) {
         num = response.length;
-      }
+      },
     });
     return num;
   }
 
   /**
      * Uses current date and paid_time date to determine number of years
-     * and days subscribed 
-     * 
+     * and days subscribed
+     *
      * @param {Date} subDate
      * @return {String} formatted string of years/days subscribed
      */
   function getLength(subDate) {
     let today = new Date();
     let orig = new Date(Date.parse(subDate));
-    let oneDay = 24*60*60*1000; 
+    let oneDay = 24*60*60*1000;
     let totalLen;
 
     let diffDays = Math.round(Math.abs((today.getTime() - orig.getTime())/(oneDay)));
@@ -139,7 +139,7 @@ $(document).ready(function() {
     }
     return totalLen;
   }
-  
+
   $('body').on('click', '.company-row', function() {
     console.log($(this).attr('value'));
     $.ajax({
@@ -152,7 +152,7 @@ $(document).ready(function() {
            localStorage.setItem('currentCompany', JSON.stringify(response));
        },
     });
-    window.location = "company-dashboard.html";
+    window.location = 'company-dashboard.html';
   });
 
   $('#logoutButton').on('click', function() {

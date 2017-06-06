@@ -1,17 +1,14 @@
-/**
- * Created by DanielKong on 3/8/16.
- */
 $(document).ready(function() {
     let companyId;
 
     $('.registration-form fieldset:first-child').fadeIn('slow');
 
-    jQuery(function($){
-       $("#form-phone").mask("(999) 999-9999");
+    jQuery(function($) {
+       $('#form-phone').mask('(999) 999-9999');
     });
 
-    jQuery(function($){
-       $("#form-employee-phone").mask("(999) 999-9999");
+    jQuery(function($) {
+       $('#form-employee-phone').mask('(999) 999-9999');
     });
 
     // Listener for Initial Sign up of an Employee
@@ -20,29 +17,29 @@ $(document).ready(function() {
         console.log(employeeData);
 
         let next = true;
-        if(employeeData.first_name == "") {
+        if(employeeData.first_name == '') {
           $('#per-first-name').addClass('has-error');
           $('#per-first-msg').removeClass('hidden');
           next = false;
         }
-        if(employeeData.email == "") {
+        if(employeeData.email == '') {
           $('#per-email').addClass('has-error');
           $('#per-email-msg').removeClass('hidden');
           next = false;
         }
-        if(employeeData.phone_number == "") {
+        if(employeeData.phone_number == '') {
           $('#per-phone').addClass('has-error');
           $('#per-phone-msg').removeClass('hidden');
           next = false;
         }
-        if(employeeData.password == "") {
+        if(employeeData.password == '') {
           $('#per-password').addClass('has-error');
           $('#per-pw-msg').removeClass('hidden');
           $('#per-password-repeat').addClass('has-error');
           $('#per-pw-repeat-msg').removeClass('hidden');
           next = false;
         }
-        if(employeeData.last_name == "") {
+        if(employeeData.last_name == '') {
           $('#per-last-name').addClass('has-error');
           $('#per-last-msg').removeClass('hidden');
           next = false;
@@ -55,19 +52,19 @@ $(document).ready(function() {
     $('#submit-company-btn').on('click', function() {
         let companyData = grabCompanyData();
         console.log(companyData);
-        
+
         let next = true;
-        if(companyData.name == "") {
+        if(companyData.name == '') {
           $('#comp-name').addClass('has-error');
           $('#comp-name-msg').removeClass('hidden');
           next = false;
         }
-        if(companyData.email == "") {
+        if(companyData.email == '') {
           $('#comp-email').addClass('has-error');
           $('#comp-email-msg').removeClass('hidden');
           next = false;
         }
-        if(companyData.phone_number == "") {
+        if(companyData.phone_number == '') {
           $('#comp-phone').addClass('has-error');
           $('#comp-phone-msg').removeClass('hidden');
           next = false;
@@ -109,7 +106,7 @@ $(document).ready(function() {
     /** Ajax function to create a POST request to server
      * @param {obj} url
      * @param {obj} data
-     **/    
+     **/
     function ajaxPost(url, data) {
         $.ajax({
             type: 'POST',
@@ -140,26 +137,26 @@ $(document).ready(function() {
                 $('#comp-phone').removeClass('has-error');
                 $('#comp-phone-msg').addClass('hidden');
 
-                if(message == "{\"eror\":\"Unique Email Needed\"}") {
+                if(message == '{"eror":"Unique Email Needed"}') {
                   $('#comp-email').addClass('has-error');
                   $('#comp-unique-email-msg').removeClass('hidden');
                 }
             },
         });
     }
-   
+
     // submit
     $('.registration-form').on('submit', function(e) {
       $(this).find('input[type="text"], input[type="password"], ' +
         ' textarea').each(function() {
         if( $(this).val() == '' ) {
           e.preventDefault();
-        } 
+        }
       });
     });
 
     /**  Validating the company
-     **/ 
+     **/
     function validateCompany() {
         let companyName = $('#form-company-name').val();
         let companyEmail = $('#form-email').val();
@@ -179,7 +176,7 @@ $(document).ready(function() {
     @return {boolean}
      **/
     function validateEmail(email) {
-        let re = new RegExp (
+        let re = new RegExp(
             ['/^(([^<>()\[\]\\.,;:\s@"]',
             '+(\.[^<>()\[\]\\.,;:\s@"]+)*)',
             '|(".+"))@((\[[0-9]{1,3}\.[0-9]',
@@ -187,10 +184,10 @@ $(document).ready(function() {
             '])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]',
             '{2,}))$/'].join('')
         );
-        
+
         return re.test(email);
     }
-    
+
     /**  Validating the password
     * @param {object} form
     * @return {boolean}
@@ -250,5 +247,4 @@ $(document).ready(function() {
         console.log('You entered a valid password: ' + password.value);
         return true;
     }
-    
 });
