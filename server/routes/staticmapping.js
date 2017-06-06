@@ -82,9 +82,4 @@ router.get('/admin-monitoring', function(req, res) {
   res.sendFile(path.join(htmlPath, 'admin-monitoring.html'));
 });
 
-// For Google Analytics testing page only
-router.get('/google-analytics', function(req, res) {
-    res.sendFile(path.join(htmlPath, 'google-analytics.html'));
-});
-
 module.exports = router;
