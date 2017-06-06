@@ -26,7 +26,7 @@ $(document).ready(function() {
       url: 'api/employees/' + curUser._id,
       success: function(response) {
         console.log(response);
-        localStorage.setItem("currentUser", JSON.stringify(response));
+        localStorage.setItem('currentUser', JSON.stringify(response));
         curUser = JSON.parse(localStorage.getItem('currentUser'));
         showInfo();
       },
