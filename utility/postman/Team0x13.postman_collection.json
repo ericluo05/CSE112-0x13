@@ -8,6 +8,135 @@
 	},
 	"item": [
 		{
+			"name": "Appointment",
+			"description": "",
+			"item": [
+				{
+					"name": "Get all appts by company id",
+					"request": {
+						"url": "localhost:3000/api/appointments/company/59360fa36495845460b378a1",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Get appt by id",
+					"request": {
+						"url": "localhost:3000/api/appointments/593668cd66eafe5de0a46c5a",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Update appt by id",
+					"request": {
+						"url": "localhost:3000/api/appointments/593668cd66eafe5de0a46c5a",
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "first_name",
+									"value": "Hi",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "last_name",
+									"value": "Bye",
+									"description": "",
+									"type": "text"
+								}
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Create appt",
+					"request": {
+						"url": "localhost:3000/api/appointments/",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "first_name",
+									"value": "Hi",
+									"type": "text",
+									"description": ""
+								},
+								{
+									"key": "last_name",
+									"value": "Bye",
+									"type": "text",
+									"description": ""
+								},
+								{
+									"key": "phone_number",
+									"value": "234",
+									"type": "text",
+									"description": ""
+								},
+								{
+									"key": "date",
+									"value": "2018-03-20T12:20:00.000Z",
+									"type": "text",
+									"description": ""
+								},
+								{
+									"key": "company_id",
+									"value": "59360fa36495845460b378a1",
+									"type": "text",
+									"description": ""
+								},
+								{
+									"key": "provider_name",
+									"value": "provider",
+									"type": "text",
+									"description": ""
+								}
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Delete appt by id",
+					"request": {
+						"url": "localhost:3000/api/appointments/59367fda12ef1d24b4492348",
+						"method": "DELETE",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
 			"name": "Company",
 			"description": "",
 			"item": [
@@ -51,9 +180,9 @@
 					"response": []
 				},
 				{
-					"name": "Get Company by ID",
+					"name": "Get Company by id",
 					"request": {
-						"url": "localhost:3000/api/companies/592fc3f3a641801cf072af31",
+						"url": "localhost:3000/api/companies/59360fa36495845460b378a1",
 						"method": "GET",
 						"header": [],
 						"body": {},
@@ -90,7 +219,7 @@
 					"response": []
 				},
 				{
-					"name": "Update Companies  by ID",
+					"name": "Update Companies  by id",
 					"request": {
 						"url": "localhost:3000/api/companies/592e8131bec62933942f4e75",
 						"method": "PUT",
@@ -117,7 +246,7 @@
 					"response": []
 				},
 				{
-					"name": "Delete Companies by ID",
+					"name": "Delete Companies by id",
 					"request": {
 						"url": "localhost:3000/api/companies/592e8131bec62933942f4e75",
 						"method": "DELETE",
@@ -136,7 +265,7 @@
 				{
 					"name": "Get employees by company id",
 					"request": {
-						"url": "localhost:3000/api/employees/company/592fc418a641801cf072af33",
+						"url": "localhost:3000/api/employees/company/59360fa36495845460b378a1",
 						"method": "GET",
 						"header": [],
 						"body": {},

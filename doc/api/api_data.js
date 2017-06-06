@@ -1,8 +1,8 @@
 define({ "api": [
   {
     "type": "post",
-    "url": "api/appointment/",
-    "title": "create",
+    "url": "api/appointments/",
+    "title": "Create appt",
     "description": "<p>This is used for Creating an appointment. Look at appointment.controller.js create for more info</p>",
     "name": "AppointmentCreate",
     "group": "Appointment",
@@ -49,20 +49,7 @@ define({ "api": [
             "type": "String",
             "optional": false,
             "field": "provider_name",
-            "description": "<p>Don't know</p>"
-          }
-        ]
-      }
-    },
-    "success": {
-      "fields": {
-        "Success 200": [
-          {
-            "group": "Success 200",
-            "type": "JSON",
-            "optional": false,
-            "field": "appointment",
-            "description": "<p>the newly created appointment</p>"
+            "description": "<p>name of provider</p>"
           }
         ]
       }
@@ -75,15 +62,17 @@ define({ "api": [
             "optional": false,
             "field": "CouldNotFind",
             "description": "<p>no company exists with that company ID</p>"
-          },
+          }
+        ],
+        "Error 400": [
           {
-            "group": "Error 4xx",
+            "group": "Error 400",
             "optional": false,
             "field": "CouldNotSave",
             "description": "<p>failed connection</p>"
           },
           {
-            "group": "Error 4xx",
+            "group": "Error 400",
             "optional": false,
             "field": "AlreadyCreated",
             "description": "<p>an appointment already exists at that time</p>"
@@ -93,61 +82,67 @@ define({ "api": [
     },
     "version": "0.0.0",
     "filename": "server/routes/appointment/index.js",
-    "groupTitle": "Appointment"
-  },
-  {
-    "type": "get",
-    "url": "/appointment/company/:id",
-    "title": "getAll",
-    "description": "<p>This is for getting all existant appointments for a specific company. Look at appointment.controller.js getAll for more info</p>",
-    "name": "AppointmentCreate",
-    "group": "Appointment",
-    "parameter": {
-      "fields": {
-        "Parameter": [
-          {
-            "group": "Parameter",
-            "type": "int",
-            "optional": false,
-            "field": "id",
-            "description": "<p>the ID for a company</p>"
-          }
-        ]
-      }
-    },
+    "groupTitle": "Appointment",
     "success": {
       "fields": {
         "Success 200": [
           {
             "group": "Success 200",
-            "type": "JSON",
+            "type": "String",
             "optional": false,
-            "field": "allAppointments",
-            "description": "<p>The set of all appointments for a company</p>"
-          }
-        ]
-      }
-    },
-    "error": {
-      "fields": {
-        "Error 4xx": [
+            "field": "_id",
+            "description": "<p>ID of the the appointment</p>"
+          },
           {
-            "group": "Error 4xx",
+            "group": "Success 200",
+            "type": "String",
             "optional": false,
-            "field": "CouldNotFind",
-            "description": "<p>company doesn't exist</p>"
+            "field": "first_name",
+            "description": "<p>first name of person</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "last_name",
+            "description": "<p>last name of person</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "phone_number",
+            "description": "<p>phone number of person</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Date",
+            "optional": false,
+            "field": "date",
+            "description": "<p>date of appointment</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "int",
+            "optional": false,
+            "field": "company_id",
+            "description": "<p>id of the company that this appointment belongs to</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "provider_name",
+            "description": "<p>name of provider</p>"
           }
         ]
       }
-    },
-    "version": "0.0.0",
-    "filename": "server/routes/appointment/index.js",
-    "groupTitle": "Appointment"
+    }
   },
   {
     "type": "delete",
-    "url": "api/appointment/:id",
-    "title": "delete",
+    "url": "api/appointments/:id",
+    "title": "Delete appt",
     "description": "<p>This is used for deleting an appointment. Look at appointment.controller.js delete for more info</p>",
     "name": "AppointmentDelete",
     "group": "Appointment",
@@ -164,30 +159,17 @@ define({ "api": [
         ]
       }
     },
-    "success": {
-      "fields": {
-        "Success 200": [
-          {
-            "group": "Success 200",
-            "type": "JSON",
-            "optional": false,
-            "field": "appointment",
-            "description": "<p>JSON for the appointment you just deleted</p>"
-          }
-        ]
-      }
-    },
     "error": {
       "fields": {
-        "Error 4xx": [
+        "Error 400": [
           {
-            "group": "Error 4xx",
+            "group": "Error 400",
             "optional": false,
             "field": "CouldNotSave",
             "description": "<p>connection Error</p>"
           },
           {
-            "group": "Error 4xx",
+            "group": "Error 400",
             "optional": false,
             "field": "CouldNotFind",
             "description": "<p>no such id</p>"
@@ -197,12 +179,67 @@ define({ "api": [
     },
     "version": "0.0.0",
     "filename": "server/routes/appointment/index.js",
-    "groupTitle": "Appointment"
+    "groupTitle": "Appointment",
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "_id",
+            "description": "<p>ID of the the appointment</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "first_name",
+            "description": "<p>first name of person</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "last_name",
+            "description": "<p>last name of person</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "phone_number",
+            "description": "<p>phone number of person</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Date",
+            "optional": false,
+            "field": "date",
+            "description": "<p>date of appointment</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "int",
+            "optional": false,
+            "field": "company_id",
+            "description": "<p>id of the company that this appointment belongs to</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "provider_name",
+            "description": "<p>name of provider</p>"
+          }
+        ]
+      }
+    }
   },
   {
     "type": "get",
-    "url": "api/appointment/:id",
-    "title": "get",
+    "url": "api/appointments/:id",
+    "title": "Get appt by id",
     "description": "<p>This is used for looking up existant appointments. Look at appointment.controller.js get for more info</p>",
     "name": "AppointmentGet",
     "group": "Appointment",
@@ -219,24 +256,11 @@ define({ "api": [
         ]
       }
     },
-    "success": {
-      "fields": {
-        "Success 200": [
-          {
-            "group": "Success 200",
-            "type": "JSON",
-            "optional": false,
-            "field": "appointment",
-            "description": "<p>the appointment with that id</p>"
-          }
-        ]
-      }
-    },
     "error": {
       "fields": {
-        "Error 4xx": [
+        "Error 400": [
           {
-            "group": "Error 4xx",
+            "group": "Error 400",
             "optional": false,
             "field": "CouldNotFind",
             "description": "<p>appointment does not exist</p>"
@@ -246,12 +270,151 @@ define({ "api": [
     },
     "version": "0.0.0",
     "filename": "server/routes/appointment/index.js",
-    "groupTitle": "Appointment"
+    "groupTitle": "Appointment",
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "_id",
+            "description": "<p>ID of the the appointment</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "first_name",
+            "description": "<p>first name of person</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "last_name",
+            "description": "<p>last name of person</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "phone_number",
+            "description": "<p>phone number of person</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Date",
+            "optional": false,
+            "field": "date",
+            "description": "<p>date of appointment</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "int",
+            "optional": false,
+            "field": "company_id",
+            "description": "<p>id of the company that this appointment belongs to</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "provider_name",
+            "description": "<p>name of provider</p>"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "get",
+    "url": "/appointments/company/:id",
+    "title": "Get all",
+    "description": "<p>This is for getting all existant appointments for a specific company. Look at appointment.controller.js getAll for more info</p>",
+    "name": "AppointmentGetAll",
+    "group": "Appointment",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "int",
+            "optional": false,
+            "field": "id",
+            "description": "<p>the ID for a company</p>"
+          }
+        ]
+      }
+    },
+    "error": {
+      "fields": {
+        "Error 400": [
+          {
+            "group": "Error 400",
+            "optional": false,
+            "field": "CouldNotFind",
+            "description": "<p>company doesn't exist</p>"
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "server/routes/appointment/index.js",
+    "groupTitle": "Appointment",
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "Appointment[]",
+            "optional": false,
+            "field": "Appointments",
+            "description": "<p>Info of all appointments belonging to a particular company in <code>JSON</code> format</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "Appointments._id",
+            "description": "<p>ID of the the appointment</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "Appointments.phone_number",
+            "description": "<p>phone number of person</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Date",
+            "optional": false,
+            "field": "Appointments.date",
+            "description": "<p>date of appointment</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "int",
+            "optional": false,
+            "field": "Appointments.company_id",
+            "description": "<p>id of the company that this appointment belongs to</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "Appointments.provider_name",
+            "description": "<p>name of provider</p>"
+          }
+        ]
+      }
+    }
   },
   {
     "type": "put",
-    "url": "api/appointment/:id",
-    "title": "update",
+    "url": "api/appointments/:id",
+    "title": "Update appt",
     "description": "<p>This is used for updating an appointment. Look at appointment.controller.js update for more info</p>",
     "name": "AppointmentUpdate",
     "group": "Appointment",
@@ -268,72 +431,52 @@ define({ "api": [
           {
             "group": "Parameter",
             "type": "String",
-            "optional": false,
+            "optional": true,
             "field": "first_name",
             "description": "<p>first name of person</p>"
           },
           {
             "group": "Parameter",
             "type": "String",
-            "optional": false,
+            "optional": true,
             "field": "last_name",
             "description": "<p>last name of person</p>"
           },
           {
             "group": "Parameter",
             "type": "String",
-            "optional": false,
+            "optional": true,
             "field": "phone_number",
             "description": "<p>phone number of person</p>"
           },
           {
             "group": "Parameter",
             "type": "Date",
-            "optional": false,
+            "optional": true,
             "field": "date",
             "description": "<p>date of appointment</p>"
-          },
-          {
-            "group": "Parameter",
-            "type": "int",
-            "optional": false,
-            "field": "company_id",
-            "description": "<p>id of the company that this appointment belongs to</p>"
           },
           {
             "group": "Parameter",
             "type": "String",
             "optional": false,
             "field": "provider_name",
-            "description": "<p>Don't know</p>"
-          }
-        ]
-      }
-    },
-    "success": {
-      "fields": {
-        "Success 200": [
-          {
-            "group": "Success 200",
-            "type": "JSON",
-            "optional": false,
-            "field": "appointment",
-            "description": "<p>the new updated appointment</p>"
+            "description": "<p>name of provider</p>"
           }
         ]
       }
     },
     "error": {
       "fields": {
-        "Error 4xx": [
+        "Error 400": [
           {
-            "group": "Error 4xx",
+            "group": "Error 400",
             "optional": false,
             "field": "CouldNotFind",
             "description": "<p>could not find appointment with that ID</p>"
           },
           {
-            "group": "Error 4xx",
+            "group": "Error 400",
             "optional": false,
             "field": "CouldNotSave",
             "description": "<p>connection error</p>"
@@ -343,7 +486,62 @@ define({ "api": [
     },
     "version": "0.0.0",
     "filename": "server/routes/appointment/index.js",
-    "groupTitle": "Appointment"
+    "groupTitle": "Appointment",
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "_id",
+            "description": "<p>ID of the the appointment</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "first_name",
+            "description": "<p>first name of person</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "last_name",
+            "description": "<p>last name of person</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "phone_number",
+            "description": "<p>phone number of person</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Date",
+            "optional": false,
+            "field": "date",
+            "description": "<p>date of appointment</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "int",
+            "optional": false,
+            "field": "company_id",
+            "description": "<p>id of the company that this appointment belongs to</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "provider_name",
+            "description": "<p>name of provider</p>"
+          }
+        ]
+      }
+    }
   },
   {
     "type": "post",
