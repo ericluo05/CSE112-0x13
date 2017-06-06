@@ -141,9 +141,25 @@ $(document).ready(function() {
           $('#employee-list').html(template(updateEmployees));
         },
       });
-    });  
-    
-    
+    });
+
+    $(document).on('click', '.update-employee', function() {
+        let employeeId = $(this).closest('.employee-row').attr('value');
+        console.log('clicked update-employee button');
+        $.ajax({
+            dataType: 'json',
+            type: 'GET',
+            url: '/api/employees/' + employeeId,
+            success: function(response) {
+                console.log(response.body);
+            //    let updateEmployees = getEmployees();
+                // et removeAppt = initializeAppts(updateAppts);
+             //   $('#employee-list').html(template(updateEmployees));
+            },
+        });
+    });
+
+
     // /**
     //   * Find Specific Employee Given Employee ID within the Employee Array
     //   * @param {Oject} id
