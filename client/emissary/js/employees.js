@@ -4,7 +4,7 @@ $(document).ready(function() {
     let curUser = JSON.parse(localStorage.getItem('currentUser'));
 
     console.log(myCompanyId);
-    
+
     $('#user-name').text(curUser.first_name + ' ' + curUser.last_name);
 
     let employees = getEmployees();
@@ -14,7 +14,7 @@ $(document).ready(function() {
 
     $('#employee-list').html(compiledHtml);
     $('.save-btn').click(submitForm);
-    
+
    /**
      * Makes a get request to display list of employees
      * @return {Object} displays the employee list
@@ -49,7 +49,7 @@ $(document).ready(function() {
            url: '/api/employees',
            success: function(response) {
                employees.push(response);
-               console.log(response); //*********
+               console.log(response); //* ********
            },
       });
     }
@@ -65,7 +65,7 @@ $(document).ready(function() {
         $('#employee-list').html(template(employees));
         document.getElementById('employee-form').reset();
     }
-    
+
     function updateInfo() {
     let newVals = grabFormValues();
     $.ajax({
@@ -82,7 +82,7 @@ $(document).ready(function() {
       },
     });
   }
-    
+
       /**
     * Use current user saved in local storage to show user information
     **/
@@ -103,9 +103,21 @@ $(document).ready(function() {
     newInfo.first_name= $('#first-name-edit').val();
     newInfo.last_name = $('#last-name-edit').val();
     newInfo.email = $('#email-edit').val();
-    newInfo.phone_number = $('#phone-edit').val();
-
+    newInfo.phone_number = $('#phone-number-edit').val();
     return newInfo;
+  }
+    /**
+     * populate edit employee form values
+     * @param {String} firstName - value to populate
+     * @param {String} lastName - value to populate
+     * @param {String} email - value to populate
+     * @param {String} phone - value to populate
+     **/
+  function setFormValues(firstName, lastName, email, phone) {
+      $('#first-name-edit').val(firstName);
+      $('#last-name-edit').val(lastName);
+      $('#email-edit').val(email);
+      $('#phone-number-edit').val(phone);
   }
 
     /**
@@ -137,26 +149,27 @@ $(document).ready(function() {
         url: '/api/employees/' + employeeId,
         success: function(response) {
           let updateEmployees = getEmployees();
-          //let removeAppt = initializeAppts(updateAppts);
+          // let removeAppt = initializeAppts(updateAppts);
           $('#employee-list').html(template(updateEmployees));
         },
       });
     });
 
+// populate popup fields when clicking update button
     $(document).on('click', '.update-employee', function() {
         let employeeId = $(this).closest('.employee-row').attr('value');
-        console.log('clicked update-employee button');
-        $.ajax({
-            dataType: 'json',
-            type: 'GET',
-            url: '/api/employees/' + employeeId,
-            success: function(response) {
-                console.log(response.body);
-            //    let updateEmployees = getEmployees();
-                // et removeAppt = initializeAppts(updateAppts);
-             //   $('#employee-list').html(template(updateEmployees));
-            },
-        });
+        setFormValues('First', 'Last', 'email', '000');
+        let test 
+        // $('#first-name-edit')
+        /* $.ajax({
+         dataType: 'json',
+         type: 'GET',
+         url: '/api/employees/' + employeeId,
+         success: function(response) {
+         console.log(response);
+
+         },
+         });*/
     });
 
 
@@ -179,6 +192,5 @@ $(document).ready(function() {
     $('#logoutButton').on('click', function() {
       localStorage.setItem('userState', 0);
     });
-    
 });
 
