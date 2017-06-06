@@ -30,10 +30,9 @@ $(document).ready(function() {
     $('.save-btn').click(submitForm);
 
 
-    /**
-    * Makes a get request to display list of appts
-    * @return {json}
-    **/
+    /** get all the appts
+     * @return {appts}
+     **/
     function getAppts() {
        let json;
        $.ajax({
@@ -44,7 +43,6 @@ $(document).ready(function() {
            url: '/api/appointments/company/' + myCompanyId,
            success: function(response) {
                json = response;
-               console.log(response);
            },
        });
        return json;
@@ -76,7 +74,6 @@ $(document).ready(function() {
            url: '/api/appointments/',
            success: function(response) {
                 appts.push(response);
-                console.log(response);
            },
       });
     }
@@ -102,6 +99,36 @@ $(document).ready(function() {
       return newAppt;
     }
 
+    /**
+     * grab updated data from edit appointment form and put it into an object
+     */
+    function grabEditFormValues() {
+        let updatedInfo ={};
+        let updatedDate = $('#appt-date-edit').val();
+        let updatedTime = $('#appt-time-edit').val();
+        updatedInfo.company_id = myCompanyId;
+        updatedInfo.first_name= $('#appt-first-edit').val();
+        updatedInfo.last_name = $('#appt-last-edit').val();
+        updatedInfo.phone_number = $('#appt-number-edit').val();
+        updatedInfo.provider_name = $('#appt-provider-edit').val();
+        updatedInfo.date = jsDate(updatedDate, updatedTime);
+        return updatedInfo;
+    }
+
+    /**
+     *  populate edit form with given appt
+     * @param appt
+     */
+    function setEditFormValues(appt) {
+        $('#appt-id-edit').val(appt._id);
+        $('#appt-first-edit').val(appt.first_name);
+        $('#appt-last-edit').val(appt.last_name);
+        $('#appt-number-edit').val(appt.phone_number);
+        $('#appt-provider-edit').val(appt.provider_name);
+        $('#appt-date-edit').val(formatDate(appt.date.toString()));
+        $('#appt-time-edit').val(formatTime(appt.date.toString()));
+    }
+
     $(document).on('click', '.delete-appt', function() {
       let apptId = $(this).closest('.appt-row').attr('value');
       console.log('delete');
@@ -117,6 +144,42 @@ $(document).ready(function() {
       });
     });
 
+    $(document).on('click', '.update-appt', function() {
+        let apptId = $(this).closest('.appt-row').attr('value');
+        $.ajax({
+            dataType: 'json',
+            type: 'GET',
+            url: '/api/appointments/' + apptId,
+            success: function(response) {
+                setEditFormValues(response);
+            },
+            failure: function(response) {
+                // TODO display error message to prevent silent errors
+                console.log('Failed to obtain employee info from server,' +
+                    ' might be deleted already');
+            },
+        });
+    });
+
+    $(document).on('click', '.save-change-btn', function() {
+        let apptId = $('#appt-id-edit').val();
+        let newInfo = grabEditFormValues();
+        $.ajax({
+            dataType: 'json',
+            type: 'PUT',
+            url: '/api/appointments/' + apptId,
+            data: newInfo,
+            success: function(response) {
+                appts = getAppts();
+                appts = initializeAppts(appts);
+                $('#appt-list').html(template(appts));
+            },
+            failure: function(response) {
+                // TODO fix silence error
+                console.log('Failed to update employee');
+            },
+        });
+    });
 
     /** ********* FUNCTIONS TO FORMAT JAVASCRIPT DATES *************/
     /**

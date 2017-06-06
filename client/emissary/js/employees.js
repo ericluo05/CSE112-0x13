@@ -29,7 +29,6 @@ $(document).ready(function() {
            url: '/api/employees/company/' + myCompanyId,
            success: function(response) {
                json = response;
-               console.log(response);
            },
        });
        return json;
@@ -97,7 +96,7 @@ $(document).ready(function() {
   }
 
   /**
-    * Grabs elements from the form and puts it into an object
+    * Grabs elements from the edit form and puts it into an object
     * @return {object}
     **/
   function grabFormValues() {
@@ -114,23 +113,16 @@ $(document).ready(function() {
 
     /**
      * populate edit employee form values
-     * @param {String} id - id of employee
-     * @param {String} firstName - value to populate
-     * @param {String} lastName - value to populate
-     * @param {String} email - value to populate
-     * @param {String} phone - value to populate
-     * @param {boolean} receiveEmail - receive email or not
-     * @param {boolean} receiveSms - receive sms or not
+     * @param {Object} employee - employee data
      **/
-  function setFormValues(id, firstName, lastName, email, phone,
-                         receiveEmail, receiveSms) {
-      $('#edit-employee-id').val(id);
-      $('#first-name-edit').val(firstName);
-      $('#last-name-edit').val(lastName);
-      $('#email-edit').val(email);
-      $('#phone-number-edit').val(phone);
-      $('#get-email-edit').prop('checked', receiveEmail);
-      $('#get-sms-edit').prop('checked', receiveSms);
+  function setEditFormValues(employee) {
+      $('#employee-id-edit').val(employee._id);
+      $('#first-name-edit').val(employee.first_name);
+      $('#last-name-edit').val(employee.last_name);
+      $('#email-edit').val(employee.email);
+      $('#phone-number-edit').val(employee.phone_number);
+      $('#get-email-edit').prop('checked', employee.receive_email);
+      $('#get-sms-edit').prop('checked', employee.receive_sms);
   }
 
     /**
@@ -178,23 +170,19 @@ $(document).ready(function() {
          type: 'GET',
          url: '/api/employees/' + employeeId,
          success: function(response) {
-             console.log(response);
-                setFormValues(response._id, response.first_name, response.last_name,
-                 response.email, response.phone_number, response.receive_email,
-                response.receive_sms);
-             },
+             setEditFormValues(response);
+         },
          failure: function(response) {
              // TODO display error message to prevent silent errors
-                console.log('Failed to obtain employee info from server');
+                console.log('Failed to obtain employee info from server,' +
+                    'might be deleted already');
             },
          });
     });
 
     $(document).on('click', '.save-changes-btn', function() {
-        console.log($('get-email-edit').attr('checked'));
-        let employeeId = $('#edit-employee-id').val();
+        let employeeId = $('#employee-id-edit').val();
         let newInfo = grabFormValues();
-        console.log(newInfo);
         $.ajax({
             dataType: 'json',
             type: 'PUT',
