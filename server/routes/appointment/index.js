@@ -30,7 +30,7 @@ let router = new express.Router();
 
 /**
  *
- * @api {post} api/appointments/ Create appt
+ * @api {post} /api/appointments/ Create appt
  * @apiDescription This is used for Creating an appointment. Look at
  * appointment.controller.js create for more info
  * @apiName AppointmentCreate
@@ -52,7 +52,7 @@ router.post('/', controller.create);
 
 /**
  *
- * @api {get} api/appointments/:id Get appt by id
+ * @api {get} /api/appointments/:id Get appt by id
  * @apiDescription This is used for looking up existant appointments. Look at
  * appointment.controller.js get for more info
  * @apiName AppointmentGet
@@ -66,7 +66,7 @@ router.get('/:id', controller.get);
 
 /**
  *
- * @api {get} /appointments/company/:id Get all
+ * @api {get} /api/appointments/company/:id Get all
  * @apiDescription This is for getting all existant appointments for a specific company.
  * Look at appointment.controller.js getAll for more info
  * @apiName AppointmentGetAll
@@ -80,7 +80,7 @@ router.get('/company/:id', controller.getAll);
 
 /**
  *
- * @api {put} api/appointments/:id Update appt
+ * @api {put} /api/appointments/:id Update appt
  * @apiDescription This is used for updating an appointment. Look at
  * appointment.controller.js update for more info
  * @apiName AppointmentUpdate
@@ -100,7 +100,7 @@ router.put('/:id', controller.update);
 
 /**
  *
- * @api {delete} api/appointments/:id Delete appt
+ * @api {delete} /api/appointments/:id Delete appt
  * @apiDescription This is used for deleting an appointment. Look at
  * appointment.controller.js delete for more info
  * @apiName AppointmentDelete
