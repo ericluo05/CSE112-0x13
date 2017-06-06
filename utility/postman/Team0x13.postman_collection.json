@@ -126,17 +126,6 @@
 						"description": ""
 					},
 					"response": []
-				},
-				{
-					"name": "ResetCredential - Broken",
-					"request": {
-						"url": "localhost:3000/api/companies/settings/useridhere",
-						"method": "GET",
-						"header": [],
-						"body": {},
-						"description": ""
-					},
-					"response": []
 				}
 			]
 		},
@@ -207,7 +196,7 @@
 								},
 								{
 									"key": "company_id",
-									"value": "5935ccf5864baf4098f06e6a",
+									"value": "593623bbe36bed1e5c2bef99",
 									"type": "text",
 									"description": ""
 								},
@@ -222,6 +211,18 @@
 									"value": "c_employee",
 									"type": "text",
 									"description": ""
+								},
+								{
+									"key": "receive_email",
+									"value": "true",
+									"description": "optional",
+									"type": "text"
+								},
+								{
+									"key": "receive_sms",
+									"value": "false",
+									"description": "optional",
+									"type": "text"
 								}
 							]
 						},
@@ -232,7 +233,7 @@
 				{
 					"name": "Update employee info by id",
 					"request": {
-						"url": "localhost:3000/api/employees/592e9412a8210d1d90a99431",
+						"url": "localhost:3000/api/employees/593623c6e36bed1e5c2bef9a",
 						"method": "PUT",
 						"header": [
 							{
@@ -245,9 +246,21 @@
 							"mode": "urlencoded",
 							"urlencoded": [
 								{
-									"key": "first_name",
-									"value": "New_first_name",
-									"description": "",
+									"key": "receive_email",
+									"value": "false",
+									"description": "optional",
+									"type": "text"
+								},
+								{
+									"key": "receive_sms",
+									"value": "true",
+									"description": "optional",
+									"type": "text"
+								},
+								{
+									"key": "phone_number",
+									"value": "5621234567",
+									"description": "optional",
 									"type": "text"
 								}
 							]
@@ -284,7 +297,7 @@
 							"urlencoded": [
 								{
 									"key": "email",
-									"value": "hardlife@gg.com",
+									"value": "bye@gg.com",
 									"description": "",
 									"type": "text"
 								},
@@ -317,7 +330,7 @@
 							"urlencoded": [
 								{
 									"key": "email",
-									"value": "hardlif223e@gg.com",
+									"value": "hi@gg.com",
 									"description": "",
 									"type": "text"
 								}
