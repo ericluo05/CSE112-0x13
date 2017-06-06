@@ -14,7 +14,15 @@ let Email = require('../../notification/email');
  * @property {string}  phone_number employees phone number
  * @property {int}  company_id company for employee to be associated to
  * @property {string}  password employees password. This is hashed then removed
- * @property {string}  role employees role in the company
+ * @property {string}  role employees role in the company, can be of
+ *       [c_admin - company admin]
+ *       [c_receptionist: compay receptionist]
+ *       [c_employee: company employee]
+ *       [a_admin: app administrator]
+ * @property {boolean} receive_sms opt-out option to receive sms when visitor checks in
+ * @property {boolean} receive_email opt-out option to receive email
+ *                            when visitor checks in
+ * @property {boolean} receive_email
  */
 
 
@@ -63,7 +71,6 @@ exports.getById = function(req, res) {
         if (err) {
             return res.status(400).json({error: 'Can not Find'});
         } else {
-            console.log(employee);
             return res.status(200).json(employee);
         }
     });
@@ -165,7 +172,7 @@ function updateCompanyEmployeeCount(actionAndEmployeeData) {
 exports.update = function(req, res) {
     Employee.findById(req.params.id, function(err, employee) {
         if (err)
-            return res.status(400).json({error: 'Can not Update'});
+            return res.status(400).json({error: 'Can not find'});
 
         employee.first_name = req.body.first_name || employee.first_name;
         employee.last_name = req.body.last_name || employee.last_name;
@@ -174,11 +181,13 @@ exports.update = function(req, res) {
         employee.password = employee.generateHash(req.body.password)
             || employee.password;
         employee.role = req.body.role || employee.role;
-
+        if(req.body.receive_sms)
+              employee.receive_sms = req.body.receive_sms;
+        if(req.body.receive_email)
+              employee.receive_email = req.body.receive_email;
         employee.save(function(err) {
-            console.log(err);
             if (err)
-                return res.status(400).json({error: 'Can not Save'});
+                return res.status(400).json({error: 'Can not save'});
             let employeeJSON = employee.toJSON();
             delete employeeJSON.password;
             return res.status(200).send(employeeJSON);

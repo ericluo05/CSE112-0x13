@@ -17,6 +17,7 @@ exports.sendText = function(patientName, employees, done) {
   };
   // it appears that twilio can validate the phone number for us, hooray
   for (let index = 0; index < employees.length; index++) {
+      if(!employees[index].receive_sms) continue;
     client.messages.create({
       to: employees[index].phone_number,
       from: '+15623035425',

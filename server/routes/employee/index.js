@@ -105,9 +105,11 @@ router.post('/', controller.insert);
  * @apiParam {string} [phone_number] employees phone number
  * @apiParam {string} [password] employees password. This is hashed then removed
  * @apiParam {string} [role] employees role in the company
+ * @apiParam {boolean} [receive_email] receive email notification or not
+ * @apiParam {boolean} [receive_sms] receive sms notification or not
  * @apiUse EmployeeData
- * @apiError (Error 400) CanNotUpdate caused by employee not existing I think
- * @apiError (Error 400) CanNotSave failed db connection
+ * @apiError (Error 400) CanNotFind error finding employee
+ * @apiError (Error 400) CanNotSave can't save, check dup key
  */
 router.put('/:id', controller.update);
 

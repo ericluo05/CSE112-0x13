@@ -31,6 +31,7 @@ exports.sendEmail = function(patientName, employees, done) {
   if(employees === null || (employees.length <= 0))
     if(done) return done();
   for (let index = 0; index < employees.length; index++) {
+    if(!employees[index].receive_email) continue;
     // create the email object that will be sent
     let subject = '✨'+patientName + '✨ Just Checked In';
     let mailOptions = {

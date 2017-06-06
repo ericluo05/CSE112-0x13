@@ -106,8 +106,12 @@ $(document).ready(function() {
     newInfo.last_name = $('#last-name-edit').val();
     newInfo.email = $('#email-edit').val();
     newInfo.phone_number = $('#phone-number-edit').val();
+    newInfo.receive_sms = $('#get-sms-edit').is(':checked');
+    newInfo.receive_email = $('#get-email-edit').is(':checked');
     return newInfo;
   }
+
+
     /**
      * populate edit employee form values
      * @param {String} id - id of employee
@@ -115,13 +119,18 @@ $(document).ready(function() {
      * @param {String} lastName - value to populate
      * @param {String} email - value to populate
      * @param {String} phone - value to populate
+     * @param {boolean} receiveEmail - receive email or not
+     * @param {boolean} receiveSms - receive sms or not
      **/
-  function setFormValues(id, firstName, lastName, email, phone) {
+  function setFormValues(id, firstName, lastName, email, phone,
+                         receiveEmail, receiveSms) {
       $('#edit-employee-id').val(id);
       $('#first-name-edit').val(firstName);
       $('#last-name-edit').val(lastName);
       $('#email-edit').val(email);
       $('#phone-number-edit').val(phone);
+      $('#get-email-edit').prop('checked', receiveEmail);
+      $('#get-sms-edit').prop('checked', receiveSms);
   }
 
     /**
@@ -167,8 +176,10 @@ $(document).ready(function() {
          type: 'GET',
          url: '/api/employees/' + employeeId,
          success: function(response) {
+             console.log(response);
                 setFormValues(response._id, response.first_name, response.last_name,
-                 response.email, response.phone_number);
+                 response.email, response.phone_number, response.receive_email,
+                response.receive_sms);
              },
          failure: function(response) {
              // TODO display error message to prevent silent errors
@@ -178,10 +189,9 @@ $(document).ready(function() {
     });
 
     $(document).on('click', '.save-changes-btn', function() {
+        console.log($('get-email-edit').attr('checked'));
         let employeeId = $('#edit-employee-id').val();
         let newInfo = grabFormValues();
-        console.log('save change button clicked');
-        console.log(employeeId);
         console.log(newInfo);
         $.ajax({
             dataType: 'json',
