@@ -176,27 +176,28 @@ $(document).ready(function() {
             },
          });
     });
-/*
+
     $(document).on('click', '.save-changes-btn', function() {
         let employeeId = $('#edit-employee-id').val();
+        let newInfo = grabFormValues();
+        console.log('save change button clicked');
+        console.log(employeeId);
+        console.log(newInfo);
         $.ajax({
             dataType: 'json',
-            type: 'DELETE',
+            type: 'PUT',
             url: '/api/employees/' + employeeId,
+            data: newInfo,
             success: function(response) {
                 let updateEmployees = getEmployees();
-                // let removeAppt = initializeAppts(updateAppts);
                 $('#employee-list').html(template(updateEmployees));
             },
             failure: function(response) {
-                //TODO fix silence error
+                // TODO fix silence error
                 console.log('Failed to update employee');
             },
         });
-        });
-
     });
-*/
 
 
     // /**
