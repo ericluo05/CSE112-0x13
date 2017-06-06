@@ -39,8 +39,7 @@ gulp.task('lint:js:frontend', () => {
 
 gulp.task('lint:js:test', () => {
     // lint backend and testing js files
-    return gulp.src(['test/api/**/*.js', 'test/e2e/**/*.js', 'test/route/**/*.js',
-                'test/unit/**/*.js'])
+    return gulp.src(['test/**/*.js'])
         .pipe(eslint({
             fix: true,
         }))
