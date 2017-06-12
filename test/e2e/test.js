@@ -167,7 +167,8 @@ let test = {
     client.useXpath();
 
     client.verify.title('Emissary | Login');
-    client.expect.element('//div[@class="login-content"]/a[@class="logo"]').to.be.present;
+    client.expect.element('//div[@class="login-content"]/a[@class="logo"]')
+      .to.be.present;
     // client.assert.containsText('//div[@class="form-top"]/h1', 'Step 1/2');
     // client.assert.containsText('//div[@class="form-top"]/p',
     //   'Create a company');
@@ -209,11 +210,13 @@ let test = {
       .to.be.present;
     // client
     //   .assert
-    //   .containsText('//div[@class="dropdown"]/ul[@class="dropdown-menu"]/li[1]/a',
+    //   .containsText('//div[@class="dropdown"]/ul[@class="dropdown-menu"]
+    //  /li[1]/a',
     //   'Check-In');
     // client
     //   .assert
-    //   .containsText('//div[@class="dropdown"]/ul[@class="dropdown-menu"]/li[2]/a',
+    //   .containsText('//div[@class="dropdown"]/ul[@class="dropdown-menu"]
+    //  /li[2]/a',
     //   '                  Log Out ');
     client.end();
   },
@@ -221,7 +224,8 @@ let test = {
     client.url(testServer + '/login').pause(newPageWaitTime);
     client.useXpath();
     client.verify.title('Emissary | Login');
-    client.expect.element('//div[@class="login-content"]/a[@class="logo"]').to.be.present;
+    client.expect.element('//div[@class="login-content"]/a[@class="logo"]')
+      .to.be.present;
 
     client
       .setValue('//div[@class="input-group focused"]/input[@id="username"]',
@@ -254,25 +258,29 @@ let test = {
     client
       .assert
       .containsText(
-      '//div[@class="visitor-container"]/div[@id="visitor-queue"]/table//tr/th[1]',
+      '//div[@class="visitor-container"]/div[@id="visitor-queue"]'
+        + '/table//tr/th[1]',
       'First');
 
     client
       .assert
       .containsText(
-      '//div[@class="visitor-container"]/div[@id="visitor-queue"]/table//tr/th[2]',
+      '//div[@class="visitor-container"]/div[@id="visitor-queue"]'
+        + '/table//tr/th[2]',
       'Last');
 
     client
       .assert
       .containsText(
-      '//div[@class="visitor-container"]/div[@id="visitor-queue"]/table//tr/th[3]',
+      '//div[@class="visitor-container"]/div[@id="visitor-queue"]'
+        + '/table//tr/th[3]',
       'Appointment Time');
 
     client
       .assert
       .containsText(
-      '//div[@class="visitor-container"]/div[@id="visitor-queue"]/table//tr/th[4]',
+      '//div[@class="visitor-container"]/div[@id="visitor-queue"]'
+        + '/table//tr/th[4]',
       'Check-in Time');
 
     //client.pause(2000);
@@ -312,25 +320,29 @@ let test = {
     client
       .assert
       .containsText(
-      '//div[@class="employee-container"]/div[@id="visitor-queue"]/table//tr/th[1]',
+      '//div[@class="employee-container"]/div[@id="visitor-queue"]'
+        + '/table//tr/th[1]',
       'First');
 
     client
       .assert
       .containsText(
-      '//div[@class="employee-container"]/div[@id="visitor-queue"]/table//tr/th[2]',
+      '//div[@class="employee-container"]/div[@id="visitor-queue"]'
+        + '/table//tr/th[2]',
       'Last');
 
     client
       .assert
       .containsText(
-      '//div[@class="employee-container"]/div[@id="visitor-queue"]/table//tr/th[3]',
+      '//div[@class="employee-container"]/div[@id="visitor-queue"]'
+        + '/table//tr/th[3]',
       'Phone Number');
 
     client
       .assert
       .containsText(
-      '//div[@class="employee-container"]/div[@id="visitor-queue"]/table//tr/th[4]',
+      '//div[@class="employee-container"]/div[@id="visitor-queue"]'
+        + '/table//tr/th[4]',
       'Email');
 
     //client.pause(2000);
@@ -406,7 +418,8 @@ let test = {
     client
       .expect
       .element(
-      '//div[@class="appt-container"]/div[@class="row"]//div[@class="add-button"]')
+      '//div[@class="appt-container"]/div[@class="row"]'
+        + '//div[@class="add-button"]')
       .to.be.present;
 
     //client.pause(2000);
@@ -464,49 +477,57 @@ let test = {
     client
       .assert
       .containsText(
-      '//div[@class="main-content"]/form[@class="form-builder"]/div[1]/label[@for="f_name"]',
+      '//div[@class="main-content"]/form[@class="form-builder"]'
+        + '/div[1]/label[@for="f_name"]',
       'First Name');
     client
       .expect
       .element(
-      '//div[@class="main-content"]/form[@class="form-builder"]/div[1]/input[@id="f_name"]')
+      '//div[@class="main-content"]/form[@class="form-builder"]'
+        + '/div[1]/input[@id="f_name"]')
       .to.be.present;
     // enter field
 
     client
       .assert
       .containsText(
-      '//div[@class="main-content"]/form[@class="form-builder"]/div[2]/label[@for="l_name"]',
+      '//div[@class="main-content"]/form[@class="form-builder"]'
+        + '/div[2]/label[@for="l_name"]',
       'Last Name');
     client
       .expect
       .element(
-      '//div[@class="main-content"]/form[@class="form-builder"]/div[2]/input[@id="l_name"]')
+      '//div[@class="main-content"]/form[@class="form-builder"]'
+        + '/div[2]/input[@id="l_name"]')
       .to.be.present;
     // enter field
 
     client
       .assert
       .containsText(
-      '//div[@class="main-content"]/form[@class="form-builder"]/div[3]/label[@for="phone"]',
+      '//div[@class="main-content"]/form[@class="form-builder"]'
+        + '/div[3]/label[@for="phone"]',
       'Phone Number');
     client
       .expect
       .element(
-      '//div[@class="main-content"]/form[@class="form-builder"]/div[3]/input[@id="phone"]')
+      '//div[@class="main-content"]/form[@class="form-builder"]'
+        + '/div[3]/input[@id="phone"]')
       .to.be.present;
     // enter field
 
     client
       .assert
       .containsText(
-      '//div[@class="main-content"]/form[@class="form-builder"]/div[last()]/button[@type="button"]',
+      '//div[@class="main-content"]/form[@class="form-builder"]'
+        + '/div[last()]/button[@type="button"]',
       'Add');
 
     client
       .assert
       .containsText(
-      '//div[@class="main-content"]/form[@class="form-builder"]/div[last()]/button[@type="submit"]',
+      '//div[@class="main-content"]/form[@class="form-builder"]'
+        + '/div[last()]/button[@type="submit"]',
       'Submit');
 
     // // // table content
@@ -549,7 +570,8 @@ let test = {
     // client
     //   .expect
     //   .element(
-    //   '//div[@class="appt-container"]/div[@class="row"]//div[@class="add-button"]')
+    //   '//div[@class="appt-container"]/div[@class="row"]
+    //    //div[@class="add-button"]')
     //   .to.be.present;
 
     //client.pause(2000);
