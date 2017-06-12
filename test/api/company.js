@@ -92,6 +92,29 @@ describe('Company Test', function() {
             });
     });
 
+
+    it('search company', function(done) {
+      request(url)
+        .get('/api/companies/search/'+'test')
+        .expect(200)
+        .end(function(err, res) {
+          var ja = res.body;
+          for (var i = 0; i < ja.length; ++i) {
+            ja[i].hasOwnProperty('_id').should.be.true;
+            ja[i].hasOwnProperty('paid_time').should.be.true;
+            ja[i].hasOwnProperty('phone_number').should.be.true;
+            ja[i].hasOwnProperty('name').should.be.true;
+            ja[i].hasOwnProperty('email').should.be.true;
+            ja[i].hasOwnProperty('num_employees').should.be.true;
+            ja[i].hasOwnProperty('revenue').should.be.true;
+            ja[i].hasOwnProperty('num_months_subscribed').should.be.true;
+            ja[i].hasOwnProperty('sub_expiration').should.be.true;
+            ja[i].hasOwnProperty('create_time').should.be.true;
+          }
+          done();
+        });
+    });
+
     it('should update company', function(done) {
         request(url)
             .put('/api/companies/'+currCompany._id)
@@ -129,27 +152,6 @@ describe('Company Test', function() {
             });
     });
 
-    it('search company', function(done) {
-      request(url)
-        .get('/api/companies/search/'+'c')
-        .expect(200)
-        .end(function(err, res) {
-          var ja = res.body;
-          for (var i = 0; i < ja.length; ++i) {
-            ja[i].hasOwnProperty('_id').should.be.true;
-            ja[i].hasOwnProperty('paid_time').should.be.true;
-            ja[i].hasOwnProperty('phone_number').should.be.true;
-            ja[i].hasOwnProperty('name').should.be.true;
-            ja[i].hasOwnProperty('email').should.be.true;
-            ja[i].hasOwnProperty('num_employees').should.be.true;
-            ja[i].hasOwnProperty('revenue').should.be.true;
-            ja[i].hasOwnProperty('num_months_subscribed').should.be.true;
-            ja[i].hasOwnProperty('sub_expiration').should.be.true;
-            ja[i].hasOwnProperty('create_time').should.be.true;
-          }
-          done();
-        });
-    });
 
     after(function(done) {
         done();
