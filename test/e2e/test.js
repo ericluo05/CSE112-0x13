@@ -2,12 +2,15 @@
 let r = Math.floor(Math.random() * 1000000000);
 let companyName = '0x13_company_' + r;
 let companyEmail = '0x13_company_' + r + '@0x13.com';
-let companyPhone = r;
+let companyPhone = r%1000000000 + 1000000000;
 let firstName = '0x13_account_first_name_' + r;
 let lastName = '0x13_account_last_name_' + r;
 let userEmail = '0x13_user_' + r + '@0x13.com';
-let userPhone = 9 + r;
+let userPhone = companyPhone+9;
 let password = '0x13_password_' + r;
+
+let newPageWaitTime = 1000;
+let enterValueWaitTime = 100;
 
 console.log(companyName);
 console.log(companyEmail);
@@ -18,12 +21,14 @@ console.log(userEmail);
 console.log(userPhone);
 console.log(password);
 
+let testServer = 'http://localhost:3000'
+
 let test = {
   'tags': ['emmissary test'],
   'index.html - Site Element Existence': function(client) {
     client
-      .url('http://localhost:3000')
-      .pause(1000);
+      .url(testServer)
+      .pause(newPageWaitTime);
 
     client.useXpath();
 
@@ -58,8 +63,8 @@ let test = {
   },
   'signup.html - Site Element Eistence and Signup Test': function(client) {
     client
-      .url('http://localhost:3000/signup')
-      .pause(1000);
+      .url(testServer + '/signup')
+      .pause(newPageWaitTime);
 
     client.useXpath();
 
@@ -75,7 +80,7 @@ let test = {
     client
       .setValue('//div[@class="form-group"]/input[@id="form-company-name"]',
       companyName)
-      .pause(50);
+      .pause(enterValueWaitTime);
 
     client
       .expect.element('//div[@class="form-group"]/input[@id="form-email"]')
@@ -83,17 +88,17 @@ let test = {
     client
       .setValue('//div[@class="form-group"]/input[@id="form-email"]',
       companyEmail)
-      .pause(50);
+      .pause(enterValueWaitTime);
 
     client
       .expect.element('//div[@class="form-group"]/input[@id="form-phone"]')
       .to.be.present;
     client
       .setValue('//div[@class="form-group"]/input[@id="form-phone"]',
-      companyPhone).pause(50);
+      companyPhone).pause(enterValueWaitTime);
 
     client.click('//button[@id="submit-company-btn"]');
-    client.pause(2000);
+    client.pause(newPageWaitTime);
 
     // client.assert.containsText('//fieldset[1]/div[@class="form-top"]/h1',
     //  "Step 2/2");
@@ -148,12 +153,408 @@ let test = {
       .setValue('//div[@class="form-group"]/input[@id="form-repeat-password"]',
       password);
 
-    client.pause(1000);
+    client.pause(enterValueWaitTime);
     client.click('//button[@id="submit-btn"]');
 
-    client.pause(5000);
+    client.pause(newPageWaitTime);
     client.end();
   },
+  'signin.html - Site Element Eistence and signin Test': function(client) {
+    client
+      .url(testServer + '/login')
+      .pause(newPageWaitTime);
+
+    client.useXpath();
+
+    client.verify.title('Emissary | Login');
+    client.expect.element('//div[@class="login-content"]/a[@class="logo"]').to.be.present;
+    // client.assert.containsText('//div[@class="form-top"]/h1', 'Step 1/2');
+    // client.assert.containsText('//div[@class="form-top"]/p',
+    //   'Create a company');
+    //
+    client.expect
+      .element('//div[@class="input-group focused"]/input[@id="username"]')
+      .to.be.present;
+    client
+      .setValue('//div[@class="input-group focused"]/input[@id="username"]',
+      userEmail)
+      .pause(enterValueWaitTime);
+
+    client
+      .expect.element('//div[@class="input-group"]/input[@id="password"]')
+      .to.be.present;
+    client
+      .setValue('//div[@class="input-group"]/input[@id="password"]',
+      password)
+      .pause(enterValueWaitTime);
+
+    client
+      .expect.element('//div[@class="form-group"]/button[@id="loginButton"]')
+      .to.be.present;
+    client.click('//div[@class="form-group"]/button[@id="loginButton"]');
+    client.pause(newPageWaitTime);
+
+    // AFTER LOGIN
+
+
+    client.assert.containsText('//div[@id="company-name"]/h1/span',
+      firstName + ' ' + lastName);
+    //client.pause(2000);
+
+    client
+      .expect.element('//div[@class="dropdown"]')
+      .to.be.present;
+    client
+      .expect.element('//div[@class="dropdown"]/ul[@class="dropdown-menu"]')
+      .to.be.present;
+    // client
+    //   .assert
+    //   .containsText('//div[@class="dropdown"]/ul[@class="dropdown-menu"]/li[1]/a',
+    //   'Check-In');
+    // client
+    //   .assert
+    //   .containsText('//div[@class="dropdown"]/ul[@class="dropdown-menu"]/li[2]/a',
+    //   '                  Log Out ');
+    client.end();
+  },
+  'visitors - Site Element Existence Test': function(client) {
+    client.url(testServer + '/login').pause(newPageWaitTime);
+    client.useXpath();
+    client.verify.title('Emissary | Login');
+    client.expect.element('//div[@class="login-content"]/a[@class="logo"]').to.be.present;
+
+    client
+      .setValue('//div[@class="input-group focused"]/input[@id="username"]',
+      userEmail)
+      .pause(enterValueWaitTime);
+    client
+      .setValue('//div[@class="input-group"]/input[@id="password"]',
+      password)
+      .pause(enterValueWaitTime);
+    client.click('//div[@class="form-group"]/button[@id="loginButton"]');
+    client.pause(newPageWaitTime);
+
+    // AFTER LOGIN
+
+    client.verify.title('Emissary | Visitors');
+
+    // visitor page content
+    client
+      .expect
+      .element('//div[@class="visitor-container"]/div[@id="visitor-queue"]')
+      .to.be.present;
+
+    client
+      .assert
+      .containsText(
+      '//div[@class="visitor-container"]/div[@id="visitor-queue"]/h1',
+      'Visitors');
+
+    // table content
+    client
+      .assert
+      .containsText(
+      '//div[@class="visitor-container"]/div[@id="visitor-queue"]/table//tr/th[1]',
+      'First');
+
+    client
+      .assert
+      .containsText(
+      '//div[@class="visitor-container"]/div[@id="visitor-queue"]/table//tr/th[2]',
+      'Last');
+
+    client
+      .assert
+      .containsText(
+      '//div[@class="visitor-container"]/div[@id="visitor-queue"]/table//tr/th[3]',
+      'Appointment Time');
+
+    client
+      .assert
+      .containsText(
+      '//div[@class="visitor-container"]/div[@id="visitor-queue"]/table//tr/th[4]',
+      'Check-in Time');
+
+    //client.pause(2000);
+    client.end();
+  },
+  'employees - Site Element Existence Test': function(client) {
+    client.url(testServer + '/login').pause(newPageWaitTime);
+    client.useXpath();
+    client
+      .setValue('//div[@class="input-group focused"]/input[@id="username"]',
+      userEmail)
+      .pause(enterValueWaitTime);
+    client
+      .setValue('//div[@class="input-group"]/input[@id="password"]',
+      password)
+      .pause(enterValueWaitTime);
+    client.click('//div[@class="form-group"]/button[@id="loginButton"]');
+    client.pause(newPageWaitTime);
+
+    // AFTER LOGIN
+    client.url(testServer + '/employees').pause(newPageWaitTime);
+    client.verify.title('Emissary | Employees');
+
+    // employees page content
+    client
+      .expect
+      .element('//div[@class="employee-container"]/div[@id="visitor-queue"]')
+      .to.be.present;
+
+    client
+      .assert
+      .containsText(
+      '//div[@class="employee-container"]/div[@id="visitor-queue"]/h1',
+      'Employees');
+
+    // // table content
+    client
+      .assert
+      .containsText(
+      '//div[@class="employee-container"]/div[@id="visitor-queue"]/table//tr/th[1]',
+      'First');
+
+    client
+      .assert
+      .containsText(
+      '//div[@class="employee-container"]/div[@id="visitor-queue"]/table//tr/th[2]',
+      'Last');
+
+    client
+      .assert
+      .containsText(
+      '//div[@class="employee-container"]/div[@id="visitor-queue"]/table//tr/th[3]',
+      'Phone Number');
+
+    client
+      .assert
+      .containsText(
+      '//div[@class="employee-container"]/div[@id="visitor-queue"]/table//tr/th[4]',
+      'Email');
+
+    //client.pause(2000);
+    client.end();
+  },
+  'appointment - Site Element Existence Test': function(client) {
+    client.url(testServer + '/login').pause(newPageWaitTime);
+    client.useXpath();
+    client
+      .setValue('//div[@class="input-group focused"]/input[@id="username"]',
+      userEmail)
+      .pause(enterValueWaitTime);
+    client
+      .setValue('//div[@class="input-group"]/input[@id="password"]',
+      password)
+      .pause(enterValueWaitTime);
+    client.click('//div[@class="form-group"]/button[@id="loginButton"]');
+    client.pause(newPageWaitTime);
+
+    // AFTER LOGIN
+    client.url(testServer + '/appointments').pause(newPageWaitTime);
+    client.verify.title('Emissary | Appointments');
+
+    // employees page content
+    client
+      .expect
+      .element('//div[@class="appt-container"]')
+      .to.be.present;
+
+    client
+      .assert
+      .containsText(
+      '//div[@class="appt-container"]/div/h1',
+      'Appointments');
+
+    // // table content
+    client
+      .assert
+      .containsText(
+      '//div[@class="appt-container"]/div/table//tr/th[1]',
+      'First Name');
+
+    client
+      .assert
+      .containsText(
+      '//div[@class="appt-container"]/div/table//tr/th[2]',
+      'Last Name');
+
+    client
+      .assert
+      .containsText(
+      '//div[@class="appt-container"]/div/table//tr/th[3]',
+      'Provider Name');
+
+    client
+      .assert
+      .containsText(
+      '//div[@class="appt-container"]/div/table//tr/th[4]',
+      'Phone Number');
+
+    client
+      .assert
+      .containsText(
+      '//div[@class="appt-container"]/div/table//tr/th[5]',
+      'Date');
+
+    client
+      .assert
+      .containsText(
+      '//div[@class="appt-container"]/div/table//tr/th[6]',
+      'Time');
+
+    client
+      .expect
+      .element(
+      '//div[@class="appt-container"]/div[@class="row"]//div[@class="add-button"]')
+      .to.be.present;
+
+    //client.pause(2000);
+    client.end();
+  },
+  'form-builder - Site Element Existence Test': function(client) {
+    client.url(testServer + '/login').pause(newPageWaitTime);
+    client.useXpath();
+    client
+      .setValue('//div[@class="input-group focused"]/input[@id="username"]',
+      userEmail)
+      .pause(enterValueWaitTime);
+    client
+      .setValue('//div[@class="input-group"]/input[@id="password"]',
+      password)
+      .pause(enterValueWaitTime);
+    client.click('//div[@class="form-group"]/button[@id="loginButton"]');
+    client.pause(newPageWaitTime);
+
+    // AFTER LOGIN
+    client.url(testServer + '/form-builder').pause(newPageWaitTime);
+    client.verify.title('Emissary | Forms');
+
+    // employees page content
+    client
+      .expect
+      .element('//div[@class="main-content"]')
+      .to.be.present;
+
+    client
+      .assert
+      .containsText(
+      '//div[@class="main-content"]/center/h1',
+      'Build your form');
+
+    client
+      .assert
+      .containsText(
+      '//div[@class="main-content"]/center/h2',
+      'Color picker:');
+
+    client
+      .expect
+      .element(
+      '//div[@class="main-content"]/center/div/input[@class="jscolor"]')
+      .to.be.present;
+
+    // check form
+    client
+      .expect
+      .element(
+      '//div[@class="main-content"]/form[@class="form-builder"]')
+      .to.be.present;
+
+    client
+      .assert
+      .containsText(
+      '//div[@class="main-content"]/form[@class="form-builder"]/div[1]/label[@for="f_name"]',
+      'First Name');
+    client
+      .expect
+      .element(
+      '//div[@class="main-content"]/form[@class="form-builder"]/div[1]/input[@id="f_name"]')
+      .to.be.present;
+    // enter field
+
+    client
+      .assert
+      .containsText(
+      '//div[@class="main-content"]/form[@class="form-builder"]/div[2]/label[@for="l_name"]',
+      'Last Name');
+    client
+      .expect
+      .element(
+      '//div[@class="main-content"]/form[@class="form-builder"]/div[2]/input[@id="l_name"]')
+      .to.be.present;
+    // enter field
+
+    client
+      .assert
+      .containsText(
+      '//div[@class="main-content"]/form[@class="form-builder"]/div[3]/label[@for="phone"]',
+      'Phone Number');
+    client
+      .expect
+      .element(
+      '//div[@class="main-content"]/form[@class="form-builder"]/div[3]/input[@id="phone"]')
+      .to.be.present;
+    // enter field
+
+    client
+      .assert
+      .containsText(
+      '//div[@class="main-content"]/form[@class="form-builder"]/div[last()]/button[@type="button"]',
+      'Add');
+
+    client
+      .assert
+      .containsText(
+      '//div[@class="main-content"]/form[@class="form-builder"]/div[last()]/button[@type="submit"]',
+      'Submit');
+
+    // // // table content
+    // client
+    //   .assert
+    //   .containsText(
+    //   '//div[@class="appt-container"]/div/table//tr/th[1]',
+    //   'First Name');
+    //
+    // client
+    //   .assert
+    //   .containsText(
+    //   '//div[@class="appt-container"]/div/table//tr/th[2]',
+    //   'Last Name');
+    //
+    // client
+    //   .assert
+    //   .containsText(
+    //   '//div[@class="appt-container"]/div/table//tr/th[3]',
+    //   'Provider Name');
+    //
+    // client
+    //   .assert
+    //   .containsText(
+    //   '//div[@class="appt-container"]/div/table//tr/th[4]',
+    //   'Phone Number');
+    //
+    // client
+    //   .assert
+    //   .containsText(
+    //   '//div[@class="appt-container"]/div/table//tr/th[5]',
+    //   'Date');
+    //
+    // client
+    //   .assert
+    //   .containsText(
+    //   '//div[@class="appt-container"]/div/table//tr/th[6]',
+    //   'Time');
+    //
+    // client
+    //   .expect
+    //   .element(
+    //   '//div[@class="appt-container"]/div[@class="row"]//div[@class="add-button"]')
+    //   .to.be.present;
+
+    //client.pause(2000);
+    client.end();
+  }
 };
 
 module.exports = test;
