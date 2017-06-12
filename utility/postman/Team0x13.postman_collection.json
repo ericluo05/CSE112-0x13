@@ -182,7 +182,7 @@
 				{
 					"name": "Get Company by id",
 					"request": {
-						"url": "localhost:3000/api/companies/59360fa36495845460b378a1",
+						"url": "localhost:3000/api/companies/5935cc2217515c3c9c7a7937",
 						"method": "GET",
 						"header": [],
 						"body": {},
@@ -362,7 +362,7 @@
 				{
 					"name": "Update employee info by id",
 					"request": {
-						"url": "localhost:3000/api/employees/593623c6e36bed1e5c2bef9a",
+						"url": "localhost:3000/api/employees/593edcdbb04a6b301ceac82d",
 						"method": "PUT",
 						"header": [
 							{
@@ -390,6 +390,12 @@
 									"key": "phone_number",
 									"value": "5621234567",
 									"description": "optional",
+									"type": "text"
+								},
+								{
+									"key": "email",
+									"value": "gg@gg.com",
+									"description": "",
 									"type": "text"
 								}
 							]
@@ -465,6 +471,17 @@
 								}
 							]
 						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Change password by id",
+					"request": {
+						"url": "localhost:3000/api/employees/pwdchange/",
+						"method": "POST",
+						"header": [],
+						"body": {},
 						"description": ""
 					},
 					"response": []

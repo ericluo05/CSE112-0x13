@@ -108,6 +108,7 @@ describe('Employee', function() {
           done();
         });
       });
+      /* For security purpose
       it('Should login with new password', function(done) {
         request(url)
         .post('/api/employees/login')
@@ -124,7 +125,7 @@ describe('Employee', function() {
           res.body.should.not.have.property('password');
           done();
         });
-      });
+      });*/
     });
 
     // TEST PUT
