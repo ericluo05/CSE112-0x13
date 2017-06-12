@@ -3,7 +3,7 @@ let express = require('express');
 let router = new express.Router();
 let path = require('path');
 
-let htmlPath = path.join(__dirname, '../../build/html/');
+let htmlPath = path.join(__dirname, '../../dist/html/');
 
 router.get('/', function(req, res, next) {
    res.sendFile(path.join(htmlPath, 'index.html'));

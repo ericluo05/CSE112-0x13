@@ -21,7 +21,7 @@ let app = express();
 
 
 // view engine setup
-app.set('views', path.join(__dirname + '/../build/views'));
+app.set('views', path.join(__dirname + '/../dist/views'));
 app.set('view engine', 'ejs');
 
 
@@ -32,11 +32,11 @@ if(process.env.NODE_ENV !== 'production') {
 
 
 // uncomment after placing your favicon in /public
-app.use(favicon(__dirname + './../build/images/favicon.ico'));
+app.use(favicon(__dirname + './../dist/images/favicon.ico'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, '/../build')));
+app.use(express.static(path.join(__dirname, '/../dist')));
 
 app.use('/phone', require('./routes/phone'));
 

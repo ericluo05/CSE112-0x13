@@ -263,8 +263,12 @@ form .form-bottom button.btn {
   min-width: 105px;
 }
 
-form .form-bottom .input-error {
-  border-color: #19b9e7;
+.hidden {
+  display: none;
+}
+
+.help-block {
+  font-size: 13px;
 }
 
 form.registration-form fieldset {

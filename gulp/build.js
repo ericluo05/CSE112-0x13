@@ -8,24 +8,30 @@ let cleanCSS = require('gulp-clean-css');
 let htmlmin = require('gulp-htmlmin');
 let newer = require('gulp-newer');
 let util = require('gulp-util');
+
+// library files are copied and pasted directly to dist folder (primary js and css libs)
 let paths = {
-    js_src: 'client/js/**/*.js',
-    js_dest: 'build/js',
+    js_src: 'client/js/*.js',
+    js_dest: 'dist/js',
     html_src: 'client/html/**/*.html',
-    html_dest: 'build/html',
-    css_src: 'client/stylesheets/**/*.css',
-    css_dest: 'build/stylesheets',
+    html_dest: 'dist/html',
+    css_src: 'client/stylesheets/*.css',
+    css_dest: 'dist/stylesheets',
     image_src: 'client/images/**',
-    image_dest: 'build/images',
-    emissary_src: 'client/emissary/**/*.*',
-    emissary_dest: 'build/emissary/',
+    image_dest: 'dist/images',
+    views_src: 'client/views/**/*.ejs',
+    views_dest: 'dist/views',
+    js_lib_src: 'client/js/js_libs/**/*.*',
+    js_lib_dest: 'dist/js/js_libs/',
+    css_lib_src: 'client/stylesheets/libs/**/*.*',
+    css_lib_dest: 'dist/stylesheets/libs/',
 };
 
-/**
- * clean public/js folder
+/*
+ * Delete dist folder in root
  */
 gulp.task('build:clean', () => {
-    return del('build');
+    return del('dist');
 });
 
 /*
@@ -75,20 +81,29 @@ gulp.task('copy:image', () =>
 
  */
 gulp.task('copy:views', function() {
-    return gulp.src('client/views/**/*.ejs')
-        .pipe(gulp.dest('build/views'));
+    return gulp.src(paths.views_src)
+        .pipe(gulp.dest(paths.views_dest));
 });
 
 /*
- *  Copy Emissary folder, no compression done
+ *  Copy js and css libraries to dist folder
  */
-gulp.task('copy:emissary', function() {
-    return gulp.src(paths.emissary_src)
-        .pipe(gulp.dest(paths.emissary_dest));
+gulp.task('copy:js:lib', function() {
+    gulp.src(paths.js_lib_src)
+        .pipe(newer(paths.js_lib_dest))
+        .pipe(gulp.dest(paths.js_lib_dest));
 });
 
+/*
+ *  Copy css libraries to dist folder
+ */
+gulp.task('copy:css:lib', function() {
+    gulp.src(paths.css_lib_src)
+        .pipe(newer(paths.css_lib_dest))
+        .pipe(gulp.dest(paths.css_lib_dest));
+});
 
 gulp.task('build', ['copy:html', 'copy:css', 'copy:image',
-    'copy:js', 'copy:views', 'copy:emissary']);
+    'copy:js', 'copy:views', 'copy:js:lib', 'copy:css:lib']);
 
 
