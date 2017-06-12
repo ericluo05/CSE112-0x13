@@ -6,7 +6,7 @@ let phoneGeneral = require('../lib/phone_general');
 
 
 router.get('/', function(req, res, next) {
-    res.sendFile(path.join(__dirname+ './../../build/html/phone.html'));
+    res.sendFile(path.join(__dirname+ './../../dist/html/phone.html'));
 });
 
 

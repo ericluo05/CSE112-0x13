@@ -15,7 +15,7 @@ let router = new express.Router();
  * @apiParam {int} stripeToken dunno
  * @apiError CouldNotCreate failed to create because of any reason
  */
-router.post('/payment/subscription', controller.createSubscription);
+router.post('/subscription', controller.createSubscription);
 
 /**
  * @api {get} /payment/subscription/:id getSubscription
@@ -29,6 +29,6 @@ router.post('/payment/subscription', controller.createSubscription);
  * @apiError CouldNotFind does not have a sub or company does not exist
  */
 
-router.get('/payment/subscription/:id', controller.getSubscription);
+router.get('/subscription/:id', controller.getSubscription);
 
 module.exports = router;
