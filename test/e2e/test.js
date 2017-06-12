@@ -174,10 +174,12 @@ let test = {
     //   'Create a company');
     //
     client.expect
-      .element('//div[@class="input-group focused"]/input[@id="username"]')
+      //.element('//div[@class="input-group focused"]/input[@id="username"]')
+      .element('//input[@id="username"]')
       .to.be.present;
     client
-      .setValue('//div[@class="input-group focused"]/input[@id="username"]',
+      //.setValue('//div[@class="input-group focused"]/input[@id="username"]',
+      .setValue('//input[@id="username"]',
       userEmail)
       .pause(enterValueWaitTime);
 
@@ -228,11 +230,11 @@ let test = {
       .to.be.present;
 
     client
-      .setValue('//div[@class="input-group focused"]/input[@id="username"]',
+      .setValue('//input[@id="username"]',
       userEmail)
       .pause(enterValueWaitTime);
     client
-      .setValue('//div[@class="input-group"]/input[@id="password"]',
+      .setValue('//input[@id="password"]',
       password)
       .pause(enterValueWaitTime);
     client.click('//div[@class="form-group"]/button[@id="loginButton"]');
@@ -290,11 +292,11 @@ let test = {
     client.url(testServer + '/login').pause(newPageWaitTime);
     client.useXpath();
     client
-      .setValue('//div[@class="input-group focused"]/input[@id="username"]',
+      .setValue('//input[@id="username"]',
       userEmail)
       .pause(enterValueWaitTime);
     client
-      .setValue('//div[@class="input-group"]/input[@id="password"]',
+      .setValue('//input[@id="password"]',
       password)
       .pause(enterValueWaitTime);
     client.click('//div[@class="form-group"]/button[@id="loginButton"]');
@@ -352,11 +354,11 @@ let test = {
     client.url(testServer + '/login').pause(newPageWaitTime);
     client.useXpath();
     client
-      .setValue('//div[@class="input-group focused"]/input[@id="username"]',
+      .setValue('//input[@id="username"]',
       userEmail)
       .pause(enterValueWaitTime);
     client
-      .setValue('//div[@class="input-group"]/input[@id="password"]',
+      .setValue('//input[@id="password"]',
       password)
       .pause(enterValueWaitTime);
     client.click('//div[@class="form-group"]/button[@id="loginButton"]');
@@ -429,11 +431,11 @@ let test = {
     client.url(testServer + '/login').pause(newPageWaitTime);
     client.useXpath();
     client
-      .setValue('//div[@class="input-group focused"]/input[@id="username"]',
+      .setValue('//input[@id="username"]',
       userEmail)
       .pause(enterValueWaitTime);
     client
-      .setValue('//div[@class="input-group"]/input[@id="password"]',
+      .setValue('//input[@id="password"]',
       password)
       .pause(enterValueWaitTime);
     client.click('//div[@class="form-group"]/button[@id="loginButton"]');
