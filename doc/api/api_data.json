@@ -1303,9 +1303,125 @@
     }
   },
   {
+    "type": "post",
+    "url": "/api/employees/pwdchange/:id",
+    "title": "Change Password",
+    "description": "<p>Change password of an account</p>",
+    "name": "EmployeeChangePassword",
+    "group": "Employee",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "string",
+            "optional": false,
+            "field": "id",
+            "description": "<p>Id of the employee</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "string",
+            "optional": false,
+            "field": "currentpwd",
+            "description": "<p>current password</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "strint",
+            "optional": false,
+            "field": "newpwd",
+            "description": "<p>new password</p>"
+          }
+        ]
+      }
+    },
+    "error": {
+      "fields": {
+        "Error 400": [
+          {
+            "group": "Error 400",
+            "optional": false,
+            "field": "CanNotFind",
+            "description": "<p>no employee of the same id can be found</p>"
+          },
+          {
+            "group": "Error 400",
+            "optional": false,
+            "field": "MissingField",
+            "description": "<p>missing param</p>"
+          },
+          {
+            "group": "Error 400",
+            "optional": false,
+            "field": "IncorrectPassword",
+            "description": "<p>invalid current password</p>"
+          },
+          {
+            "group": "Error 400",
+            "optional": false,
+            "field": "CanNotChange",
+            "description": "<p>can't change password</p>"
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "server/routes/employee/index.js",
+    "groupTitle": "Employee",
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "string",
+            "optional": false,
+            "field": "_id",
+            "description": "<p>ID of the employee</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "string",
+            "optional": false,
+            "field": "first_name",
+            "description": "<p>first name of the employee</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "string",
+            "optional": false,
+            "field": "last_name",
+            "description": "<p>last name of the employee</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "string",
+            "optional": false,
+            "field": "email",
+            "description": "<p>email of the employee</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "string",
+            "optional": false,
+            "field": "phone_number",
+            "description": "<p>phone number of the employee</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "string",
+            "optional": false,
+            "field": "role",
+            "description": "<p>role of the employee, can be one of the following: <br> [c_admin: company admin]<br> [c_receptionist: company receptionist] <br> [c_employee: company employee] <br> [a_admin: app administrator]</p>"
+          }
+        ]
+      }
+    }
+  },
+  {
     "type": "delete",
     "url": "/api/employees/:id",
-    "title": "delete",
+    "title": "Delete Employee",
     "description": "<p>This is for deleting an employee. Look at employee.controller.js delete for more info</p>",
     "name": "EmployeeDelete",
     "group": "Employee",
@@ -1389,7 +1505,7 @@
   {
     "type": "get",
     "url": "/api/employees/company/:id",
-    "title": "getAllEmployees",
+    "title": "Get All Employees",
     "description": "<p>This is for getting all existent employees. Look at employee.controller.js getAllEmployees for more info</p>",
     "name": "EmployeeGetAll",
     "group": "Employee",
@@ -1480,7 +1596,7 @@
   {
     "type": "get",
     "url": "/api/employees/:id",
-    "title": "getById",
+    "title": "Get Employee by id",
     "description": "<p>This is for getting 1 existant employees using ID. Look at employee.controller.js getById for more info.</p>",
     "name": "EmployeeGetById",
     "group": "Employee",
@@ -1564,7 +1680,7 @@
   {
     "type": "post",
     "url": "/api/employees/",
-    "title": "insert",
+    "title": "Insert Employee",
     "description": "<p>This is for creating an employee. Roles: c_admin: company admin c_receptionist: company receptionist c_employee: company employee a_admin: app administrator</p>",
     "name": "EmployeeInsert",
     "group": "Employee",
@@ -1703,9 +1819,9 @@
   },
   {
     "type": "post",
-    "url": "/api/employees/resetPassword",
-    "title": "login",
-    "description": "<p>This is for login it returns an employee JSON. Look at employee.controller.js login for more info</p>",
+    "url": "/api/employees/login",
+    "title": "Login",
+    "description": "<p>used to login employee</p>",
     "name": "EmployeeLogin",
     "group": "Employee",
     "parameter": {
@@ -1891,8 +2007,8 @@
   {
     "type": "put",
     "url": "/api/employees/:id",
-    "title": "update",
-    "description": "<p>This is for modifying an employee. Do not send values if you don't want them to be updated. Look at employee.controller  for more info</p>",
+    "title": "Update Employee info",
+    "description": "<p>This is for modifying an employee. Do not send values if you don't want them to be updated, password change is done through a separate api call, refer to @ChangePassword</p>",
     "name": "EmployeeUpdate",
     "group": "Employee",
     "parameter": {
@@ -1932,13 +2048,6 @@
             "optional": true,
             "field": "phone_number",
             "description": "<p>employees phone number</p>"
-          },
-          {
-            "group": "Parameter",
-            "type": "string",
-            "optional": true,
-            "field": "password",
-            "description": "<p>employees password. This is hashed then removed</p>"
           },
           {
             "group": "Parameter",
@@ -2346,16 +2455,6 @@
     "version": "0.0.0",
     "filename": "server/routes/form/index.js",
     "groupTitle": "Form"
-  },
-  {
-    "type": "post",
-    "url": "/messages",
-    "title": "Messenger integration",
-    "name": "send_greeting",
-    "group": "Omni_channel",
-    "version": "0.0.0",
-    "filename": "server/routes/messagesMapping.js",
-    "groupTitle": "Omni_channel"
   },
   {
     "type": "post",
