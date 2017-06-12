@@ -128,6 +128,60 @@ describe('Employee', function() {
       });*/
     });
 
+
+    // Test employee password change
+    describe('POST /api/employees/pwdchange/:id', function() {
+      it('Should update employee password', function(done) {
+        request(url)
+        .post('/api/employees/pwdchange/' + returnedId)
+        .send({
+          id: returnedId,
+          currentpwd: 'test',
+          newpwd: 'badpwd'
+        })
+        .expect(200)
+        .end(function(err, res) {
+          if (err)
+            throw (err);
+          res.body.should.have.property('_id').and.be.equal(returnedId);
+          res.body.should.have.property('role').and.be.equal('c_admin');
+          res.body.should.have.property('company_id');
+          res.body.should.have.property('phone_number').and.be.equal('123456789');
+          res.body.should.have.property('email').and.be.equal('jt@tomcruise.com');
+          res.body.should.have.property('last_name').and.be.equal('Smith');
+          res.body.should.have.property('first_name').and.be.equal('John');
+          res.body.should.have.property('receive_email');
+          res.body.should.have.property('receive_sms');
+          done();
+        })
+      });
+
+      it('Should revert update to employee password', function(done) {
+        request(url)
+        .post('/api/employees/pwdchange/' + returnedId)
+        .send({
+          id: returnedId,
+          currentpwd: 'badpwd',
+          newpwd: 'test'
+        })
+        .expect(200)
+        .end(function(err, res) {
+          if (err)
+            throw (err);
+          res.body.should.have.property('_id').and.be.equal(returnedId);
+          res.body.should.have.property('role').and.be.equal('c_admin');
+          res.body.should.have.property('company_id');
+          res.body.should.have.property('phone_number').and.be.equal('123456789');
+          res.body.should.have.property('email').and.be.equal('jt@tomcruise.com');
+          res.body.should.have.property('last_name').and.be.equal('Smith');
+          res.body.should.have.property('first_name').and.be.equal('John');
+          res.body.should.have.property('receive_email');
+          res.body.should.have.property('receive_sms');
+          done();
+        })
+      });
+    });
+
     // TEST PUT
     describe('PUT /api/employee/:id', function() {
       it('Should update the employee data', function(done) {
