@@ -1,5 +1,5 @@
 /* eslint-disable camelcase */
-let neonForgotPassword = neonForgotPassword || {};
+let neonForgotPassword =  {};
 
 ;(function($, window, undefined) {
   'use strict';
