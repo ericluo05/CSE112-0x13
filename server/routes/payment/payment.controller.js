@@ -3,10 +3,23 @@
  *  Module that house all the API routes that pertains to payment
  * @module routes/payment
  */
-const BASIC_PLAN_ID = 'emissary_basic';
+const BASIC_PLAN_ID = 'basic-monthly';
 let Company = require('../../models/Company');
-
 let stripe = require('stripe')('sk_test_9u87L1TWt5m42Y6qg744m53l');
+
+
+// This only needs to be ran once
+/*
+let plan = stripe.plans.create({
+    name: 'Basic Plan',
+    id: BASIC_PLAN_ID,
+    interval: 'month',
+    currency: 'usd',
+    amount: 2000,
+}, function(err, plan) {
+});
+*/
+
 
 /**
  * @function createSubscription
@@ -15,19 +28,48 @@ let stripe = require('stripe')('sk_test_9u87L1TWt5m42Y6qg744m53l');
  * @param {Object} res - response object
  */
 exports.createSubscription = function(req, res) {
-	// create customer, TODO: could there be an existing stripe customer ID?
+//
+//     stripe.customers.create({
+//         email: req.body.stripeEmail,
+//         source: req.body.stripeToken,
+//     }).then(function(customer) {
+//         // YOUR CODE: Save the customer ID and other info in a database for later.
+//         return stripe.charges.create({
+//             amount: 1000,
+//             currency: "usd",
+//             customer: customer.id,
+//         });
+//     }).then(function(charge) {
+//         // Use and save the charge info.
+//     });
+//
+// // YOUR CODE (LATER):
+// // When it's time to charge the customer again, retrieve the customer ID.
+//     stripe.charges.create({
+//         amount: 1500, // $15.00 this time
+//         currency: "usd",
+//         customer: customerId,
+//     });
+    console.log(req.params.id);
+    console.log(req.body);
+    res.status(204);
+    /*
+    // menu from checkout.stripe.com
 	stripe.customers.create({ // calls stripe customer create
-		description: 'Customer for '+req.body.stripeEmail,
-		plan: BASIC_PLAN_ID,
+        email: req.body.stripeEmail,
+		description: 'Customer for ???',
 		source: req.body.stripeToken,
+        plan: BASIC_PLAN_ID,
 	}, function(err, customer) { // passes err and customer to  cb for handling
 		if (err) {
 			return res.status(400).send({error: 'Could not create customer'});
 		}
+		console.log(customer);
+        res.status(200).send('Payment Successful"');
 		// TODO: set company's subscribed to true and
 		// save customerID to account with a call to api/companies/update?
 		// use localstorage to retrieve id of which company to update?
-	});
+	});*/
 };
 
 /**

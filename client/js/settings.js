@@ -44,10 +44,9 @@ $(document).ready(function() {
   let curUser = JSON.parse(localStorage.getItem('currentUser'));
   let companyData = JSON.parse(localStorage.getItem('currentCompany'));
   let myCompanyId = companyData._id;
-
+  $('#payment-form').attr('action', '/payment/subscription/'+myCompanyId);
   $('#user-name').text(curUser.first_name);
   showInfo();
-
   $('#modal-first').val(curUser.first_name);
   $('#modal-last').val(curUser.last_name);
   $('#modal-email').val(curUser.email);
