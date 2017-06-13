@@ -2,9 +2,6 @@ $(document).ready(function() {
     let companyData = JSON.parse(localStorage.getItem('currentCompany'));
     let myCompanyId = companyData._id;
     let curUser = JSON.parse(localStorage.getItem('currentUser'));
-
-    console.log(myCompanyId);
-
     $('#user-name').text(curUser.first_name + ' ' + curUser.last_name);
 
     let employees = getEmployees();
@@ -48,7 +45,6 @@ $(document).ready(function() {
            url: '/api/employees',
            success: function(response) {
                employees.push(response);
-               console.log(response); //* ********
            },
       });
     }
@@ -58,7 +54,6 @@ $(document).ready(function() {
       */
     function submitForm() {
         let d = grabFormElements();
-        console.log(d);
         updateEmployeeList(d);
         employees = getEmployees();
         $('#employee-list').html(template(employees));
@@ -76,7 +71,6 @@ $(document).ready(function() {
       async: false,
       url: 'api/employees/' + curUser._id,
       success: function(response) {
-        console.log(response);
         localStorage.setItem('currentUser', JSON.stringify(response));
         curUser = JSON.parse(localStorage.getItem('currentUser'));
         showInfo();
@@ -149,7 +143,6 @@ $(document).ready(function() {
       */
     $(document).on('click', '.delete-employee', function() {
       let employeeId = $(this).closest('.employee-row').attr('value');
-      console.log('delete');
       $.ajax({
         dataType: 'json',
         type: 'DELETE',
