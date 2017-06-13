@@ -5,16 +5,16 @@ let router = new express.Router();
 
 /**
  * @apiDefine CompanyData
- * @apiSuccess {string} _id ID of the company
- * @apiSuccess {string} name Name of the company
- * @apiSuccess {time} paid_time Time in which the company last made a payment
- * @apiSuccess {string} phone_number Phone number of the company
- * @apiSuccess {string} email Email fo the company
- * @apiSuccess {Date} create_time  time in which the company is created
- * @apiSuccess {Date} sub_expiration  time in which the subscription expires
- * @apiSuccess {int} num_months_subscribed  number of months subscribed thus far
- * @apiSuccess {int} revenue total amount paid by this company thus far
- * @apiSuccess {int} num_employees number of registered employees
+ * @apiSuccess (Success 200) {string} _id ID of the company
+ * @apiSuccess (Success 200) {string} name Name of the company
+ * @apiSuccess (Success 200) {time} paid_time Time in which the company last made a payment
+ * @apiSuccess (Success 200) {string} phone_number Phone number of the company
+ * @apiSuccess (Success 200) {string} email Email fo the company
+ * @apiSuccess (Success 200) {Date} create_time  time in which the company is created
+ * @apiSuccess (Success 200) {Date} sub_expiration  time in which the subscription expires
+ * @apiSuccess (Success 200) {int} num_months_subscribed  number of months subscribed thus far
+ * @apiSuccess (Success 200) {int} revenue total amount paid by this company thus far
+ * @apiSuccess (Success 200) {int} num_employees number of registered employees
  */
 
 /**

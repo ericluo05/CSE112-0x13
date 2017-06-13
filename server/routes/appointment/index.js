@@ -35,7 +35,6 @@ let router = new express.Router();
  * appointment.controller.js create for more info
  * @apiName AppointmentCreate
  * @apiGroup Appointment
- *
  * @apiParam {String} first_name first name of person
  * @apiParam {String} last_name last name of person
  * @apiParam {String} phone_number phone number of person
@@ -66,7 +65,7 @@ router.get('/:id', controller.get);
 
 /**
  *
- * @api {get} /api/appointments/company/:id Get all
+ * @api {get} /api/appointments/company/:id Get all appt of a company
  * @apiDescription This is for getting all existant appointments for a specific company.
  * Look at appointment.controller.js getAll for more info
  * @apiName AppointmentGetAll

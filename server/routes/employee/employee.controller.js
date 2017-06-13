@@ -33,15 +33,13 @@ let Email = require('../../notification/email');
  * @param {Object} res - response object
  */
 exports.login = function(req, res) {
-    Employee.findOne({email: req.body.email}, function(err, e) {
-        if (err || !e) {
+    Employee.findOne({email: req.body.email}, function(err, employee) {
+        if (err || !employee) {
             return res.status(400).send({error: 'Can not Find'});
         }
-        if (!e.validPassword(req.body.password))
+        if (!employee.validPassword(req.body.password))
             return res.status(400).send({error: 'Incorrect Credentials'});
-        let employeeJSON = e.toJSON();
-        delete employeeJSON.password;
-        return res.status(200).json(employeeJSON);
+        res.status(200).send(showEmployeePublicInfo(employee));
     });
 };
 
@@ -53,10 +51,10 @@ exports.login = function(req, res) {
  */
 exports.getAllEmployees = function(req, res) {
     Employee.find({company_id: req.params.id}, {password: 0}, function(err, result) {
-        if (err) {
-            return res.status(400).send({error: 'Can not Find'});
-        }
-        return res.status(200).json(result);
+        if (err)
+            res.status(400).send({error: 'Can not Find'});
+        else
+            res.status(200).send(result);
     });
 };
 
@@ -69,9 +67,9 @@ exports.getAllEmployees = function(req, res) {
 exports.getById = function(req, res) {
     Employee.findById(req.params.id, {password: 0}, function(err, employee) {
         if (err) {
-            return res.status(400).json({error: 'Can not Find'});
+             res.status(400).send({error: 'Can not Find'});
         } else {
-            return res.status(200).json(employee);
+             res.status(200).send(showEmployeePublicInfo(employee));
         }
     });
 };
@@ -99,10 +97,10 @@ exports.insert = function(req, res) {
     createEmployeePromise(employee)
         .then(updateCompanyEmployeeCount)
         .then(function(result) {
-            res.status(result.statusCode).json(result.body);
+            res.status(result.statusCode).send(result.body);
         })
         .catch(function(error) {
-            res.status(error.statusCode).json(error.body);
+            res.status(error.statusCode).send(error.body);
         });
 };
 /**
@@ -157,9 +155,7 @@ function updateCompanyEmployeeCount(actionAndEmployeeData) {
                 if (err) {
                     reject({statusCode: 400, body: {error: 'Could not increment Count'}});
                 }
-                let employeeJSON = employee.toJSON();
-                delete employeeJSON.password;
-                resolve({statusCode: 200, body: employeeJSON});
+                resolve({statusCode: 200, body: showEmployeePublicInfo(employee)});
             });
         });
     });
@@ -181,8 +177,6 @@ exports.update = function(req, res) {
         employee.last_name = req.body.last_name || employee.last_name;
         employee.email = req.body.email || employee.email;
         employee.phone_number = req.body.phone_number || employee.phone_number;
-        employee.password = employee.generateHash(req.body.password)
-            || employee.password;
         employee.role = req.body.role || employee.role;
         if(req.body.receive_sms)
               employee.receive_sms = req.body.receive_sms;
@@ -191,9 +185,7 @@ exports.update = function(req, res) {
         employee.save(function(err) {
             if (err)
                 return res.status(400).json({error: 'Can not save'});
-            let employeeJSON = employee.toJSON();
-            delete employeeJSON.password;
-            return res.status(200).send(employeeJSON);
+            res.status(200).send(showEmployeePublicInfo(employee));
         });
     });
 };
@@ -224,10 +216,10 @@ exports.delete = function(req, res) {
     deletePromise
         .then(updateCompanyEmployeeCount)
         .then(function(result) {
-            res.status(result.statusCode).json(result.body);
+            res.status(result.statusCode).send(result.body);
         })
         .catch(function(error) {
-            res.status(error.statusCode).json(error.body);
+            res.status(error.statusCode).send(error.body);
         });
 };
 
@@ -247,10 +239,8 @@ exports.resetPassword = function(req, res) {
         employee.save(function(err) {
             if (err)
                 return res.status(400).json({error: 'Can not reset'});
-            let employeeJSON = employee.toJSON();
-            delete employeeJSON.password;
             Email.sendNewPassword(employee.email, newPassword);
-            return res.status(200).send(employeeJSON);
+            res.status(200).send(showEmployeePublicInfo(employee));
         });
     });
 };
@@ -258,7 +248,7 @@ exports.resetPassword = function(req, res) {
 /**
  * @function randomString
  * @description  generate random string using [A-Z][a-Z][0-9]
- * @param {Object} len - length of generated string
+ * @param {int} len - length of generated string
  * @return {String} generated random string
  */
 function randomString(len) {
@@ -270,3 +260,47 @@ function randomString(len) {
     }
     return randomString;
 }
+
+/**
+ * @function changePassword
+ * @description  handler to reset password and sent new password to email
+ * @param {Object} req - request object
+ * @param {Object} res - response object
+ * @return {Object} res - error response
+ */
+exports.changePassword = function(req, res) {
+    let currentPassword = req.body.currentpwd;
+    let newPassword = req.body.newpwd;
+    if(!currentPassword || !newPassword)
+        return res.status(400).json({error: 'Missing field(s)'});
+
+    Employee.findById(req.params.id, function(err, employee) {
+        if (err || !employee)
+            return res.status(400).send({error: 'Can not find'});
+
+        if(!employee.validPassword(currentPassword))
+            return res.status(400).send({error: 'Incorrect password'});
+
+        employee.password = employee.generateHash(newPassword);
+        employee.save(function(err) {
+            if (err)
+                return res.status(400).send({error: 'Can not change'});
+            res.status(200).send(showEmployeePublicInfo(employee));
+        });
+    });
+};
+
+/**
+ * @private
+ * @function showEmployeePublicInfo
+ * @description remove password field before sending out the json
+ * @param {Object} employee - employee object
+ * @return {EmployeeInfo} Employee info object
+ */
+function showEmployeePublicInfo(employee) {
+    let employeeJSON = employee.toJSON();
+    delete employeeJSON.password;
+    return employeeJSON;
+}
+
+

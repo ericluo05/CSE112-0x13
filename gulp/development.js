@@ -1,5 +1,6 @@
 let gulp = require('gulp');
 let browserSync = require('browser-sync');
+let babel = require('gulp-babel');
 let nodemon = require('gulp-nodemon');
 let newer = require('gulp-newer');
 let paths = {

@@ -32,7 +32,8 @@
       "node_modules",
       "bin",
       "coverage",
-      "server/routes/*/*.controller.js"
+      "server/routes/*/*.controller.js",
+      "server/lib/phone_general.js"
     ]
   },
   "dependencies": {

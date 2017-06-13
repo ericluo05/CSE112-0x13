@@ -40,7 +40,7 @@ let router = new express.Router();
 
 /**
  *
- * @api {get} /api/employees/company/:id getAllEmployees
+ * @api {get} /api/employees/company/:id Get All Employees
  * @apiDescription This is for getting all existent employees. Look at
  * employee.controller.js getAllEmployees for more info
  * @apiName EmployeeGetAll
@@ -54,7 +54,7 @@ router.get('/company/:id', controller.getAllEmployees);
 
 /**
  *
- * @api {get} /api/employees/:id getById
+ * @api {get} /api/employees/:id Get Employee by id
  * @apiDescription This is for getting 1 existant employees using ID. Look at
  * employee.controller.js getById for more info.
  * @apiName EmployeeGetById
@@ -68,7 +68,7 @@ router.get('/:id', controller.getById);
 
 /**
  *
- * @api {post} /api/employees/ insert
+ * @api {post} /api/employees/ Insert Employee
  * @apiDescription This is for creating an employee.
  *  Roles:
  *   c_admin: company admin
@@ -96,9 +96,10 @@ router.post('/', controller.insert);
 
 /**
  *
- * @api {put} /api/employees/:id update
+ * @api {put} /api/employees/:id Update Employee info
  * @apiDescription This is for modifying an employee. Do not send values if you
- * don't want them to be updated. Look at employee.controller  for more info
+ * don't want them to be updated,
+ * password change is done through a separate api call, refer to @ChangePassword
  * @apiName EmployeeUpdate
  * @apiGroup Employee
  *
@@ -107,7 +108,6 @@ router.post('/', controller.insert);
  * @apiParam {string} [last_name] employees last name
  * @apiParam {string} [email] email tied to users account
  * @apiParam {string} [phone_number] employees phone number
- * @apiParam {string} [password] employees password. This is hashed then removed
  * @apiParam {string} [role] employees role in the company
  * @apiParam {boolean} [receive_email] receive email notification or not
  * @apiParam {boolean} [receive_sms] receive sms notification or not
@@ -119,7 +119,7 @@ router.put('/:id', controller.update);
 
 /**
  *
- * @api {delete} /api/employees/:id delete
+ * @api {delete} /api/employees/:id Delete Employee
  * @apiDescription This is for deleting an employee. Look at
  * employee.controller.js delete for more info
  * @apiName EmployeeDelete
@@ -133,9 +133,8 @@ router.delete('/:id', controller.delete);
 
 /**
  *
- * @api {post} /api/employees/resetPassword login
- * @apiDescription This is for login it returns an employee JSON. Look at
- * employee.controller.js login for more info
+ * @api {post} /api/employees/login Login
+ * @apiDescription used to login employee
  * @apiName EmployeeLogin
  * @apiGroup Employee
  *
@@ -160,5 +159,24 @@ router.post('/login', controller.login);
  * @apiError (Error 400) CanNotReset can't reset password
  */
 router.post('/resetPassword', controller.resetPassword);
+
+/**
+ *
+ * @api {post} /api/employees/pwdchange/:id Change Password
+ * @apiDescription Change password of an account
+ * @apiName EmployeeChangePassword
+ * @apiGroup Employee
+ *
+ * @apiParam {string} id Id of the employee
+ * @apiParam {string} currentpwd current password
+ * @apiParam {strint} newpwd  new password
+ * @apiUse EmployeeData
+ * @apiError (Error 400) CanNotFind no employee of the same id can be found
+ * @apiError (Error 400) MissingField missing param
+ * @apiError (Error 400) IncorrectPassword invalid current password
+ * @apiError (Error 400) CanNotChange can't change password
+ */
+router.post('/pwdchange/:id', controller.changePassword);
+
 
 module.exports = router;

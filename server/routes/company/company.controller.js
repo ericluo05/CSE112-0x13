@@ -140,7 +140,7 @@ exports.delete = function(req, res) {
 /**
  * @private
  * @function showCompanyPublicInfo
- * @description convert company info into array
+ * @description put company info into an object
  * @param {Object} c - company object
  * @return {CompanyInfo} company info object
  */
