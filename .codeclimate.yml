@@ -24,5 +24,4 @@ exclude_paths:
 - doc/
 - drivers/
 - server/data/
-
-
+- server/lib/phone_general.js

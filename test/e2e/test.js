@@ -9,8 +9,8 @@ let userEmail = '0x13_user_' + r + '@0x13.com';
 let userPhone = companyPhone+9;
 let password = '0x13_password_' + r;
 
-let newPageWaitTime = 5000;
-let enterValueWaitTime = 1000;
+let newPageWaitTime = 1000;
+let enterValueWaitTime = 500;
 
 console.log(companyName);
 console.log(companyEmail);
