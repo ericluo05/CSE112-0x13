@@ -252,6 +252,45 @@ describe('Employee', function() {
       });
     });
 
+    // TEST RESET PASSWORD
+    describe('POST /api/employees/resetPassword', function() {
+      it('should return 400 error', function(done) {
+        request(url)
+        .post('/api/employees/resetPassword')
+        .send({
+          email: 'invalidemail'
+        })
+        .expect(400)
+        .end(function(err, res) {
+          res.body.should.have.property('error').and.be.equal('Can not find');
+          done();
+        })
+      });
+
+      it('should reset password', function(done) {
+        request(url)
+        .post('/api/employees/resetPassword')
+        .send({
+          email: 'updated_email@tomcruise.com'
+        })
+        .expect(200)
+        .end(function(err, res) {
+          res.body.should.have.property('_id').and.be.equal(returnedId);
+          res.body.should.have.property('role').and.be.equal('c_admin');
+          res.body.should.have.property('company_id');
+          res.body.should.have.property('phone_number').and.be
+            .equal('987654321');
+          res.body.should.have.property('email').and.be
+            .equal('updated_email@tomcruise.com');
+          res.body.should.have.property('last_name').and.be.equal('Smith');
+          res.body.should.have.property('first_name').and.be.equal('John');
+          res.body.should.have.property('receive_email');
+          res.body.should.have.property('receive_sms');
+          done();
+        })
+      });
+    });
+
     // TEST DELETE
     describe('DELETE /api/employees/:id', function() {
       it('Should delete the employee data', function(done) {
