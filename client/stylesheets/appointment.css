@@ -87,3 +87,7 @@ tr:nth-last-child(1) {
 .message-api a:hover {
   color: #5b677b !important;
 }
+
+.hidden {
+  display: none;
+}

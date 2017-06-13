@@ -15,11 +15,14 @@
   <link rel="stylesheet" href="stylesheets/shared-dashboard.css">
   <link rel="stylesheet" href="stylesheets/appointment.css">
   <link rel="stylesheet" href="stylesheets/libs/bootstrap.css">
+  <link rel="stylesheet" href="stylesheets/libs/bootstrap-datetimepicker.css">
   <link rel="stylesheet" href="stylesheets/libs/neon/neon-core.css">
   <link rel="stylesheet" href="stylesheets/libs/neon/neon-theme.css">
   <link rel="stylesheet" href="stylesheets/libs/neon/neon-forms.css">
   <link rel="stylesheet" href="stylesheets/libs/font-icons/font-awesome/css/font-awesome.css">
   <link rel="stylesheet" href="stylesheets/libs/font-icons/entypo/css/entypo.css">
+
+  <script src="js/js_libs/jquery/jquery-1.11.3.min.js"></script>
 
 </head>
 <body class="page-body gray" data-url="http://neon.dev">
@@ -149,7 +152,7 @@
 								<span class="sr-only">Close</span>
 							</button>
 							<h4 class="modal-title" id="myModalLabel">
-								Add an Appointment
+								Add Appointment
 							</h4>
 						</div>
 
@@ -186,12 +189,28 @@
 										<input type="text" class="form-control" id="appt-date" placeholder="Appointment Date"/>
 									</div>
 								</div>
-								<div class="form-group">
+								<div id="time-input" class="form-group">
 									<label class="col-sm-2 control-label">Time</label>
 									<div class="col-sm-10">
 										<input type="text" class="form-control" id="appt-time" placeholder="Appointment Time"/>
+                    <span id="time-msg" class="help-block hidden">An appointment already exists at this time</span>
 									</div>
 								</div>
+
+
+                <div class="form-group">
+                  <label class="col-sm-2 control-label">Date &amp; Time</label>
+                  <div class="col-sm-10">
+                    <input type="text" class="form-control" id="datetimepicker" placeholder="Appointment Date & Time"/>
+                  </div>
+                  <script type="text/javascript">
+                    $(function () {
+                      $('#datetimepicker').datetimepicker();
+                    });
+                  </script>
+                </div>
+
+
 							</form>
 
 							<p class="message-api"> To connect your appointment information to our system, please refer to our appointments api, <a href= "/images/appointments.pdf" target= "_blank"> here</a></p>
@@ -203,15 +222,14 @@
 							<button type="button" class="btn btn-default" data-dismiss="modal">
 								Close
 							</button>
-							<button type="button" class="check-in-btn btn btn-default save-btn" data-dismiss="modal">Save</button>
+							<button type="button" class="check-in-btn btn btn-default save-btn">Save</button>
 						</div>
 					</div>
 				</div>
 			</div>
 
-            
-            
-            <div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+         
+      <div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 				<div class="modal-dialog">
 					<div class="modal-content">
 						<!-- Modal Header -->
@@ -221,7 +239,7 @@
 								<span class="sr-only">Close</span>
 							</button>
 							<h4 class="modal-title" id="myModalLabel-edit">
-								Edit the Appointment
+								Edit Appointment
 							</h4>
 						</div>
 
@@ -279,14 +297,13 @@
 				</div>
 			</div>
             
-            
-            <div class="row">
-                <div class="col-md-5 col-xs-4"></div>
-                <div class="col-md-2 col-xs-4">
-                <div class = "add-button" data-toggle="modal" data-target="#myModal">Add Appointment</div>   
-                </div>
-                <div class="col-md-5 col-xs-4"></div>
-            </div>
+      <div class="row">
+          <div class="col-md-5 col-xs-4"></div>
+          <div class="col-md-2 col-xs-4">
+            <div class="add-button" data-toggle="modal" data-target="#myModal">Add Appointment</div>   
+          </div>
+          <div class="col-md-5 col-xs-4"></div>
+      </div>
             
 		</div>
 
@@ -310,18 +327,20 @@
 
 	<!-- Bottom scripts (common) -->
 	<script src="js/js_libs/js.cookie.js"></script>
-  <script src="js/js_libs/jquery/jquery-1.11.3.min.js"></script>
   <script src="js/js_libs/TweenMax.min.js"></script>
   <script src="js/js_libs/jquery/jquery-ui-1.10.3.minimal.min.js"></script>
+  <script src="js/js_libs/jquery/jquery.maskedinput.js"></script>
   <script src="js/js_libs/bootstrap.js"></script>
+  <script src="js/js_libs/moment.min.js"></script>
+    <script src="js/js_libs/bootstrap-datetimepicker.js"></script>
+
   <script src="js/js_libs/joinable.js"></script>
   <script src="js/js_libs/resizeable.js"></script>
   <script src="js/js_libs/neon/neon-api.js"></script>
   <script src="js/appointments.js"> </script>
-
-<script src="js/js_libs/neon/neon-custom.js"></script>
-<script src="js/js_libs/handlebars-v4.0.5.js"></script>
-<script src="js/js_libs/socket.io.js"></script>
-<script src="js/google-analytic.js"></script>
+  <script src="js/js_libs/neon/neon-custom.js"></script>
+  <script src="js/js_libs/handlebars-v4.0.5.js"></script>
+  <script src="js/js_libs/socket.io.js"></script>
+  <script src="js/google-analytic.js"></script>
 </body>
 </html>

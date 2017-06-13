@@ -5,6 +5,10 @@ $(document).ready(function() {
 
     $('#user-name').text(curUser.first_name + ' ' + curUser.last_name);
 
+    jQuery(function($) {
+      $('#appt-number').mask('(999) 999-9999');
+    });
+
     let appts = getAppts();
     /** initializing the appts
      * @param {json} appts
@@ -58,7 +62,6 @@ $(document).ready(function() {
         appts = getAppts();
         appts = initializeAppts(appts);
         $('#appt-list').html(template(appts));
-        document.getElementById('appt-form').reset();
     }
 
    /**
@@ -68,13 +71,26 @@ $(document).ready(function() {
    function updateApptList(obj) {
       $.ajax({
         dataType: 'json',
-           type: 'POST',
-           data: obj,
-           async: false,
-           url: '/api/appointments/',
-           success: function(response) {
-                appts.push(response);
-           },
+        type: 'POST',
+        data: obj,
+        async: false,
+        url: '/api/appointments/',
+        success: function(response) {
+          appts.push(response);
+          $('#myModal').modal('hide');
+          document.getElementById('appt-form').reset();
+        },
+        error: function(response) {
+          let resJSON = JSON.stringify(response);
+          let message = response.responseText;
+          $('#time-input').removeClass('has-error');
+          $('#time-msg').addClass('hidden');
+          
+          if(message == '{"error":"Already Created"}') {
+            $('#time-input').addClass('has-error');
+            $('#time-msg').removeClass('hidden');
+          }
+        }
       });
     }
 
@@ -219,7 +235,7 @@ $(document).ready(function() {
     function jsDate(date, time) {
       let jsDate = reFormatDate(date);
       let jsTime = reFormatTime(time);
-      jsDateObj = jsDate + ' ' + jsTime;
+      let jsDateObj = jsDate + ' ' + jsTime;
       return jsDateObj;
     }
 
