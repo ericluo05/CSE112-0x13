@@ -39,43 +39,11 @@
 //    });
 // }
 // };
-let myCompanyId = '';
-let stripeToken = '';
-let handler = StripeCheckout.configure({
-    key: 'pk_test_b6iDPAQ2gLMWOr6zCHKtwXEq',
-    image: '/images/logo-emissary.png',
-    locale: 'auto',
-    token: function(token) {
-        let queryInfo = {
-            stripeToken: token.id,
-            email: token.email,
-        };
-        makePayment(queryInfo);
-    },
-});
-document.getElementById('customButton').addEventListener('click', function(e) {
-    // Open Checkout with further options:
-    handler.open({
-        name: 'Appt-o-Matic',
-        description: 'Subscription for 1 month of service',
-        amount: 2000,
-        zipCode: false,
-        billingAddress: false,
-    });
-    e.preventDefault();
-});
-
-// Close Checkout on page navigation:
-window.addEventListener('popstate', function() {
-    handler.close();
-});
-
-function makePayment(info) {
-
-}
 
 
 $(document).ready(function() {
+  let myCompanyId = '';
+  let stripeToken = '';
   let curUser = JSON.parse(localStorage.getItem('currentUser'));
   let companyData = JSON.parse(localStorage.getItem('currentCompany'));
   myCompanyId = companyData._id;
@@ -136,5 +104,53 @@ $(document).ready(function() {
   $('#logoutButton').on('click', function() {
     localStorage.setItem('userState', 0);
   });
-});
 
+    let handler = StripeCheckout.configure({
+        key: 'pk_test_b6iDPAQ2gLMWOr6zCHKtwXEq',
+        image: '/images/appt-o-matic.png',
+        locale: 'auto',
+        token: function(token) {
+            makePayment(token);
+        },
+    });
+    document.getElementById('subscribe-btn').addEventListener('click', function(e) {
+        // Open Checkout with further options:
+        handler.open({
+            name: 'Appt-o-Matic',
+            description: 'Subscription for 1 month of service',
+            amount: 2000,
+            zipCode: false,
+            billingAddress: false,
+        });
+        e.preventDefault();
+    });
+
+// Close Checkout on page navigation:
+    window.addEventListener('popstate', function() {
+        handler.close();
+    });
+
+    /**
+     *  AJAX request to make payment
+     * @param info  query into to pass to request
+     */
+    function makePayment(token) {
+        let queryInfo = {
+            stripeToken: token.id,
+            stripeEmail: token.email,
+        };
+        $.ajax({
+            dataType: 'json',
+            type: 'POST',
+            async: false,
+            url: '/payment/subscription/' + myCompanyId,
+            data: queryInfo,
+            success: function(response) {
+                $('#result-msg').html(response.message);
+            },
+            error: function(response) {
+                $('#result-msg').html(JSON.parse(response.responseText).error);
+            },
+        });
+    }
+});

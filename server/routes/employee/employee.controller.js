@@ -272,7 +272,7 @@ exports.changePassword = function(req, res) {
     let currentPassword = req.body.currentpwd;
     let newPassword = req.body.newpwd;
     if(!currentPassword || !newPassword)
-        return res.status(400).json({error: 'Missing field'});
+        return res.status(400).json({error: 'Missing field(s)'});
 
     Employee.findById(req.params.id, function(err, employee) {
         if (err || !employee)
