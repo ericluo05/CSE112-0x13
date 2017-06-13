@@ -35,7 +35,7 @@ exports.sendEmail = function(patientName, employees, done) {
     // create the email object that will be sent
     let subject = '✨'+patientName + '✨ Just Checked In';
     let mailOptions = {
-      from: '"Emissary" <cse112team0x13@gmail.com>', // sender address
+      from: '"Appt-o-matic" <cse112team0x13@gmail.com>', // sender address
       to: employees[index].email, // list of receivers
       subject: subject, // Subject line
       text: patientName + ' is here.', // plaintext body
@@ -48,9 +48,9 @@ exports.sendEmail = function(patientName, employees, done) {
 };
 
 exports.sendNewPassword = function(email, newPassword) {
-    let subject = '✨Emissary password reset✨';
+    let subject = '✨Appt-o-matic password reset✨';
     let mailOptions = {
-        from: '"Emissary" <cse112team0x13@gmail.com>', // sender address
+        from: '"Appt-o-matic" <cse112team0x13@gmail.com>', // sender address
         to: email, // list of receivers
         subject: subject, // Subject line
         text: 'Your new password is ' + newPassword,

@@ -116,7 +116,7 @@ $(document).ready(function() {
     document.getElementById('subscribe-btn').addEventListener('click', function(e) {
         // Open Checkout with further options:
         handler.open({
-            name: 'Appt-o-Matic',
+            name: 'Appt-o-matic',
             description: 'Subscription for 1 month of service',
             amount: 2000,
             zipCode: false,
