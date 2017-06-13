@@ -133,6 +133,7 @@
 							<th>Phone Number</th>
 							<th>Date</th>
 							<th>Time</th>
+              <th></th>
 						</tr>
 						</thead>
 
@@ -310,15 +311,16 @@
 		<script type = "text/x-handlebars-template" id = "appt-list-template">
 			{{#each []}}
 			<tr class="appt-row" value="{{this._id}}">
-				<td class="appt-data">{{this.first_name}}</td>
-				<td class="appt-data">{{this.last_name}}</td>
-				<td class="appt-data">{{this.provider_name}}</td>
-				<td class="appt-data">{{this.phone_number}}</td>
-				<td class="appt-data">{{this.fullDate}}</td>
-				<td class="appt-data">{{this.appointmentTime}}
-					<i class="fa fa-trash-o delete-appt"></i>
-                    <i class="fa fa-pencil update-appt"  data-toggle="modal" data-target="#myModal2"></i>
-				</td>
+				<td style="vertical-align:middle" class="appt-data">{{this.first_name}}</td>
+				<td style="vertical-align:middle" class="appt-data">{{this.last_name}}</td>
+				<td style="vertical-align:middle" class="appt-data">{{this.provider_name}}</td>
+				<td style="vertical-align:middle" class="appt-data">{{this.phone_number}}</td>
+				<td style="vertical-align:middle" class="appt-data">{{this.fullDate}}</td>
+				<td style="vertical-align:middle" class="appt-data">{{this.appointmentTime}}</td>
+        <td>
+          <i class="fa fa-trash-o delete-appt" style="font-size:20px;"></i>
+          <i class="fa fa-pencil update-appt" style="font-size:20px;" data-toggle="modal" data-target="#myModal2"></i>
+        </td>
 			</tr>
 			{{/each}}
 		</script>
@@ -332,8 +334,7 @@
   <script src="js/js_libs/jquery/jquery.maskedinput.js"></script>
   <script src="js/js_libs/bootstrap.js"></script>
   <script src="js/js_libs/moment.min.js"></script>
-    <script src="js/js_libs/bootstrap-datetimepicker.js"></script>
-
+  <script src="js/js_libs/bootstrap-datetimepicker.js"></script>
   <script src="js/js_libs/joinable.js"></script>
   <script src="js/js_libs/resizeable.js"></script>
   <script src="js/js_libs/neon/neon-api.js"></script>
