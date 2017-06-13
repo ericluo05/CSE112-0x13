@@ -9,8 +9,9 @@ ratings:
   paths:
   - client/js/*.js
   - client/stylesheets/*.css
-  - server/lib/
-  - server/routes/
+  - server/**/*.js
+  - test/**/*.js
+  
 exclude_paths:
 - config/
 - client/js/js_libs
@@ -18,7 +19,6 @@ exclude_paths:
 - dist/
 - doc/
 - drivers/
-- js/js_libs/
 - server/data/
 
 
