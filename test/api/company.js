@@ -98,8 +98,8 @@ describe('Company Test', function() {
         .get('/api/companies/search/'+'test')
         .expect(200)
         .end(function(err, res) {
-          var ja = res.body;
-          for (var i = 0; i < ja.length; ++i) {
+          let ja = res.body;
+          for (let i = 0; i < ja.length; ++i) {
             ja[i].hasOwnProperty('_id').should.be.true;
             ja[i].hasOwnProperty('paid_time').should.be.true;
             ja[i].hasOwnProperty('phone_number').should.be.true;

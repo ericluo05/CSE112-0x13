@@ -34,7 +34,6 @@ script:
 - npm test
 - npm run coverage
 - npm run e2e_chrome
-- npm run e2e_ff
 after_script:
 - npm install -g codeclimate-test-reporter
 - codeclimate-test-reporter < coverage/lcov.info

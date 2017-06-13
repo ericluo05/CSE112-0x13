@@ -14,10 +14,6 @@ router.get('/settings', function(req, res) {
   res.sendFile(path.join(htmlPath, 'settings.html'));
 });
 
-router.get('/admin-companies', function(req, res) {
-  res.sendFile(path.join(htmlPath, 'admin-companies.html'));
-});
-
 router.get('/admin-dashboard', function(req, res) {
   res.sendFile(path.join(htmlPath, 'admin-dashboard.html'));
 });

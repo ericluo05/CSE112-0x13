@@ -5,19 +5,24 @@ engines:
     enabled: true
   fixme:
     enabled: true
+    config:
+      strings:
+      - FIXME
+      - BUG
+      - TODO
 ratings:
   paths:
   - client/js/*.js
   - client/stylesheets/*.css
-  - server/lib/
-  - server/routes/
+  - server/**/*.js
+  - test/**/*.js
 exclude_paths:
-- client/stylesheets/libs
 - config/
+- client/js/js_libs
+- client/stylesheets/libs
 - dist/
 - doc/
 - drivers/
-- js/js_libs/
 - server/data/
 
 

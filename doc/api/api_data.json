@@ -2458,14 +2458,21 @@
   },
   {
     "type": "post",
-    "url": "/payment/subscription",
-    "title": "CreateSubscription",
-    "description": "<p>This is used to create a new Service Subscription.</p>",
-    "name": "PaymentcreateSubscription",
+    "url": "/payment/subscription/:id",
+    "title": "Make payment",
+    "description": "<p>User will be charged for fee of 1 month and subscription length will be extended by 1 month as well</p>",
+    "name": "CreateSubscription",
     "group": "Payment",
     "parameter": {
       "fields": {
         "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "string",
+            "optional": false,
+            "field": "id",
+            "description": "<p>Id of the company</p>"
+          },
           {
             "group": "Parameter",
             "type": "string",
@@ -2478,16 +2485,28 @@
             "type": "int",
             "optional": false,
             "field": "stripeToken",
-            "description": "<p>dunno</p>"
+            "description": "<p>stripeToken associated with customer</p>"
+          }
+        ]
+      }
+    },
+    "success": {
+      "fields": {
+        "Success 204": [
+          {
+            "group": "Success 204",
+            "optional": false,
+            "field": "NoContent",
+            "description": "<p>no content will be sent</p>"
           }
         ]
       }
     },
     "error": {
       "fields": {
-        "Error 4xx": [
+        "Error 400": [
           {
-            "group": "Error 4xx",
+            "group": "Error 400",
             "optional": false,
             "field": "CouldNotCreate",
             "description": "<p>failed to create because of any reason</p>"
