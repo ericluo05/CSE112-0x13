@@ -32,13 +32,13 @@ let test = {
 
     client.useXpath();
 
-    client.verify.title('Emissary');
+    client.verify.title('Appt-o-matic');
     client.expect.element('//i[@class="entypo-left-open-mini"]')
       .to.be.present.before(500);
     client.expect.element('//i[@class="entypo-right-open-mini"]')
       .to.be.present.before(500);
-    client.expect.element('//a[@class="btn btn-secondary"]')
-      .to.be.present.before(500);
+    //client.expect.element('//a[@class="btn btn-secondary"]')
+    //  .to.be.present.before(500);
 
     // client.expect.element('//section[@class="site-logo"]')
     //   .to.be.present.before(500);
@@ -168,7 +168,7 @@ let test = {
 
     client.useXpath();
 
-    client.verify.title('Emissary | Login');
+    client.verify.title('Appt-o-matic | Login');
     client.expect.element('//div[@class="login-content"]/a[@class="logo"]')
       .to.be.present;
     // client.assert.containsText('//div[@class="form-top"]/h1', 'Step 1/2');
@@ -228,7 +228,7 @@ let test = {
   'visitors - Site Element Existence Test': function(client) {
     client.url(testServer + '/login').pause(newPageWaitTime);
     client.useXpath();
-    client.verify.title('Emissary | Login');
+    client.verify.title('Appt-o-matic | Login');
     client.expect.element('//div[@class="login-content"]/a[@class="logo"]')
       .to.be.present;
 
