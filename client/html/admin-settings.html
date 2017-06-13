@@ -195,22 +195,25 @@
                     </div>
                   </div>
                   <div role="tabpanel" class="tab-pane" id="edit-pw">
-                    <div class="form-group">
+                    <div class="form-group" id="curr-pw">
                       <label class="col-sm-2 control-label" for="modal-curr-pw" >Current Password</label>
                       <div class="col-sm-10">
                         <input type="text" class="form-control" id="modal-curr-pw" value=""/>
+                        <span id="curr-pw-msg" class="help-block hidden">Incorrect password</span>
                       </div>
                     </div>
-                    <div class="form-group">
+                    <div class="form-group" id="new-pw">
                       <label class="col-sm-2 control-label" for="modal-new-pw" >New Password</label>
                       <div class="col-sm-10">
                         <input type="text" class="form-control" id="modal-new-pw" value=""/>
+                        <span id="new-pw-msg" class="help-block hidden">Cannot change</span>
                       </div>
                     </div>
-                    <div class="form-group">
+                    <div class="form-group" id="repeat-pw">
                       <label class="col-sm-2 control-label" for="modal-repeat-new-pw" >Confirm New Password</label>
                       <div class="col-sm-10">
                         <input type="text" class="form-control" id="modal-repeat-new-pw" value=""/>
+                        <span id="repeat-pw-msg" class="help-block hidden">Passwords do not match</span>
                       </div>
                     </div>
                   </div>
@@ -223,7 +226,7 @@
               <button type="button" class="btn btn-default" data-dismiss="modal">
                 Cancel
               </button>
-              <button type="button" class="btn btn-info save-btn" data-dismiss="modal">Save</button>
+              <button type="button" class="btn btn-info save-btn">Save</button>
             </div>
           </div>
         </div>
