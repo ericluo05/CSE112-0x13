@@ -97,7 +97,8 @@ let test = {
       .setValue('//div[@class="form-group"]/input[@id="form-phone"]',
       companyPhone).pause(enterValueWaitTime);
 
-    client.click('//button[@id="submit-company-btn"]');
+    client.click('//button[@id="submit-company-btn"]')
+      .pause(1000);
     client.pause(newPageWaitTime);
 
     // client.assert.containsText('//fieldset[1]/div[@class="form-top"]/h1',
@@ -154,7 +155,8 @@ let test = {
       password);
 
     client.pause(enterValueWaitTime);
-    client.click('//button[@id="submit-btn"]');
+    client.click('//button[@id="submit-btn"]')
+      .pause(1000);
 
     client.pause(newPageWaitTime);
     client.end();
@@ -194,7 +196,8 @@ let test = {
     client
       .expect.element('//div[@class="form-group"]/button[@id="loginButton"]')
       .to.be.present;
-    client.click('//div[@class="form-group"]/button[@id="loginButton"]');
+    client.click('//div[@class="form-group"]/button[@id="loginButton"]')
+      .pause(1000);
     client.pause(newPageWaitTime);
 
     // AFTER LOGIN
@@ -237,7 +240,8 @@ let test = {
       .setValue('//input[@id="password"]',
       password)
       .pause(enterValueWaitTime);
-    client.click('//div[@class="form-group"]/button[@id="loginButton"]');
+    client.click('//div[@class="form-group"]/button[@id="loginButton"]')
+      .pause(1000);
     client.pause(newPageWaitTime);
 
     // AFTER LOGIN
@@ -299,7 +303,8 @@ let test = {
       .setValue('//input[@id="password"]',
       password)
       .pause(enterValueWaitTime);
-    client.click('//div[@class="form-group"]/button[@id="loginButton"]');
+    client.click('//div[@class="form-group"]/button[@id="loginButton"]')
+      .pause(1000);
     client.pause(newPageWaitTime);
 
     // AFTER LOGIN
@@ -361,7 +366,8 @@ let test = {
       .setValue('//input[@id="password"]',
       password)
       .pause(enterValueWaitTime);
-    client.click('//div[@class="form-group"]/button[@id="loginButton"]');
+    client.click('//div[@class="form-group"]/button[@id="loginButton"]')
+      .pause(1000);
     client.pause(newPageWaitTime);
 
     // AFTER LOGIN
@@ -438,7 +444,8 @@ let test = {
       .setValue('//input[@id="password"]',
       password)
       .pause(enterValueWaitTime);
-    client.click('//div[@class="form-group"]/button[@id="loginButton"]');
+    client.click('//div[@class="form-group"]/button[@id="loginButton"]')
+      .pause(1000);
     client.pause(newPageWaitTime);
 
     // AFTER LOGIN
