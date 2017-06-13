@@ -194,9 +194,9 @@ let test = {
       .pause(enterValueWaitTime);
 
     client
-      .expect.element('//div[@class="form-group"]/button[@id="loginButton"]')
+      .expect.element('//button[@id="loginButton"]')
       .to.be.present;
-    client.click('//div[@class="form-group"]/button[@id="loginButton"]')
+    client.click('//button[@id="loginButton"]')
       .pause(1000);
     client.pause(newPageWaitTime);
 
@@ -240,7 +240,7 @@ let test = {
       .setValue('//input[@id="password"]',
       password)
       .pause(enterValueWaitTime);
-    client.click('//div[@class="form-group"]/button[@id="loginButton"]')
+    client.click('//button[@id="loginButton"]')
       .pause(1000);
     client.pause(newPageWaitTime);
 
@@ -303,7 +303,7 @@ let test = {
       .setValue('//input[@id="password"]',
       password)
       .pause(enterValueWaitTime);
-    client.click('//div[@class="form-group"]/button[@id="loginButton"]')
+    client.click('//button[@id="loginButton"]')
       .pause(1000);
     client.pause(newPageWaitTime);
 
@@ -366,7 +366,7 @@ let test = {
       .setValue('//input[@id="password"]',
       password)
       .pause(enterValueWaitTime);
-    client.click('//div[@class="form-group"]/button[@id="loginButton"]')
+    client.click('//button[@id="loginButton"]')
       .pause(1000);
     client.pause(newPageWaitTime);
 
@@ -444,7 +444,7 @@ let test = {
       .setValue('//input[@id="password"]',
       password)
       .pause(enterValueWaitTime);
-    client.click('//div[@class="form-group"]/button[@id="loginButton"]')
+    client.click('//button[@id="loginButton"]')
       .pause(1000);
     client.pause(newPageWaitTime);
 
