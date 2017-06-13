@@ -128,6 +128,25 @@ describe('Employee', function() {
       });*/
     });
 
+    // Test update employee data not able to update password
+    describe('', function() {
+      it('Should not update employee password through update api', function(done) {
+        request(url)
+        .put('/api/employees/' + returnedId)
+        //.query({email: credentials.email, token: credentials.token})
+        .send({
+          id: returnedId,
+          currentpwd: 'test',
+          newpwd: 'notreachable'
+        })
+        .expect(200)
+        .end(function(err, res) {
+          //console.log(res.body);
+          done();
+        });
+      });
+    });
+
 
     // Test employee password change
     describe('POST /api/employees/pwdchange/:id', function() {
