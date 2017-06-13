@@ -12,8 +12,9 @@ ratings:
   - server/lib/
   - server/routes/
 exclude_paths:
-- client/stylesheets/libs
 - config/
+- client/js/js_libs
+- client/stylesheets/libs
 - dist/
 - doc/
 - drivers/
