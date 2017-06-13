@@ -33,3 +33,17 @@ hr {
   width: 136px;
   text-shadow: none !important;
 }
+
+.subs-btn {
+  text-align: center;
+  border-radius: 2px;
+  padding: 5px;
+  margin-top: 15px;
+  background-color: #01b2bd;
+  color: white;
+}
+
+.subs-btn:hover {
+  background-color: #049099;
+  cursor: pointer;
+}
