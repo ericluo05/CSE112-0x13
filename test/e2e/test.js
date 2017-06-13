@@ -246,7 +246,7 @@ let test = {
 
     // AFTER LOGIN
 
-    client.verify.title('Emissary | Visitors');
+    client.verify.title('Appt-o-matic | Visitors');
 
     // visitor page content
     client
@@ -309,7 +309,7 @@ let test = {
 
     // AFTER LOGIN
     client.url(testServer + '/employees').pause(newPageWaitTime);
-    client.verify.title('Emissary | Employees');
+    client.verify.title('Appt-o-matic | Employees');
 
     // employees page content
     client
@@ -372,7 +372,7 @@ let test = {
 
     // AFTER LOGIN
     client.url(testServer + '/appointments').pause(newPageWaitTime);
-    client.verify.title('Emissary | Appointments');
+    client.verify.title('Appt-o-matic | Appointments');
 
     // employees page content
     client
@@ -450,7 +450,7 @@ let test = {
 
     // AFTER LOGIN
     client.url(testServer + '/form-builder').pause(newPageWaitTime);
-    client.verify.title('Emissary | Forms');
+    client.verify.title('Appt-o-matic | Forms');
 
     // employees page content
     client
