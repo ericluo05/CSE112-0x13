@@ -26,6 +26,7 @@ let conversationSchema = new Schema({
     first_name: {type: String, required: false},
     last_name: {type: String, required: false},
     phone_number: {type: String, required: false},
+    email: {type: String, required: false},
     date: {type: Date, required: false},
     time: {type: String, required: false},
     provider_name: {type: String, required: false},
