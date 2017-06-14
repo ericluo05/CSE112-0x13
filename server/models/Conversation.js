@@ -23,6 +23,7 @@ let Schema = mongoose.Schema;
  */
 let conversationSchema = new Schema({
     conversation_id: {type: String, required: true},
+    company_id: {type: Schema.Types.ObjectId, ref: 'Company', required: true},
     first_name: {type: String, required: false},
     last_name: {type: String, required: false},
     phone_number: {type: String, required: false},
