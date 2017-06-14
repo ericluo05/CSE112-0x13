@@ -2,6 +2,7 @@
 let api = require('../routes/theme');
 let appointmentAPI = require('../routes/appointment');
 let companiesAPI = require('../routes/company');
+let converationAPI = require('../routes/conversation');
 let employeeAPI = require('../routes/employee');
 let formAPI = require('../routes/form');
 let payment = require('../routes/payment');
@@ -11,6 +12,7 @@ module.exports = function(app) {
     app.use('/api', api);
     app.use('/api/appointments', appointmentAPI);
     app.use('/api/companies', companiesAPI);
+    app.use('/api/conversation', converationAPI);
     app.use('/api/employees', employeeAPI);
     app.use('/api/form', formAPI);
     app.use('/api/visitorLists', visitorListsAPI);
