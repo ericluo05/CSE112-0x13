@@ -47,7 +47,12 @@ $(document).ready(function() {
   let curUser = JSON.parse(localStorage.getItem('currentUser'));
   let companyData = JSON.parse(localStorage.getItem('currentCompany'));
   myCompanyId = companyData._id;
-  $('#user-name').text(curUser.first_name);
+  $('#user-name').text(curUser.first_name + ' ' + curUser.last_name);
+  
+  jQuery(function($) {
+    $('#modal-phone').mask('(999) 999-9999');
+  });
+
   showInfo();
   $('#modal-first').val(curUser.first_name);
   $('#modal-last').val(curUser.last_name);
@@ -80,7 +85,7 @@ $(document).ready(function() {
     * Use current user saved in local storage to show user information
     **/
   function showInfo() {
-    $('#user-name').text(curUser.first_name);
+    $('#user-name').text(curUser.first_name + ' ' + curUser.last_name);
     $('#first-name').text(curUser.first_name);
     $('#last-name').text(curUser.last_name);
     $('#email').text(curUser.email);

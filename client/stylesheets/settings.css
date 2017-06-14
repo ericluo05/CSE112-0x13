@@ -36,11 +36,12 @@ hr {
 
 .subs-btn {
   text-align: center;
-  border-radius: 2px;
+  border-radius: 5px;
+  height: 39px;
   padding: 5px;
-  margin-top: 15px;
   background-color: #01b2bd;
   color: white;
+  font-size: 18px;
 }
 
 .subs-btn:hover {

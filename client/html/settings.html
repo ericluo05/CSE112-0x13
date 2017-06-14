@@ -123,45 +123,37 @@
         </div>
 
     <hr />
-
         
     <div class="settings-container">
       <div>
-        <h1 class="page-title">Settings</h1>
+        <h1 class="page-title">Account Information</h1>
           <div class="row">
-            <div class="col-md-3"></div>
-                <div class="col-md-6">
-                <div class="account-info">
-                  <div class="row">
-                    <div class="col-sm-1"></div>
-                    <p class="col-sm-5 col-sm-offset-1 lead field-color">First Name</p>
-                    <div class="col-sm-5">
-                      <p class="lead"><span id="first-name"> </span></p>
-                    </div>
-                  </div>
-                  <div class="row">
-                    <div class="col-sm-1"></div>  
-                    <p class="col-sm-5 col-sm-offset-1 lead field-color">Last Name</p>
-                    <div class="col-sm-5">
-                      <p class="lead"><span id="last-name"> </span></p>
-                    </div>
-                  </div>
-                  <div class="row">
-                    <div class="col-sm-1"></div>  
-                    <p class="col-sm-5 col-sm-offset-1 lead field-color">Email Address</p>
-                    <div class="col-sm-5">
-                      <p class="lead"><span id="email"> </span></p>
-                    </div>
-                  </div>
-                  <div class="row">
-                    <div class="col-sm-1"></div>  
-                    <p class="col-sm-5 col-sm-offset-1 lead field-color">Phone Number</p>
-                    <div class="col-sm-5">
-                      <p class="lead"><span id="phone"> </span></p>
-                    </div>
-                  </div>
+            <div class="account-info">
+              <div class="row">
+                <p class="col-sm-3 col-sm-offset-1 col-xs-offset-1 lead field-color">First Name</p>
+                <div class="col-sm-5 col-xs-offset-1">
+                  <p class="lead"><span id="first-name"> </span></p>
                 </div>
               </div>
+              <div class="row">
+                <p class="col-sm-3 col-sm-offset-1 col-xs-offset-1 lead field-color">Last Name</p>
+                <div class="col-sm-5 col-xs-offset-1">
+                  <p class="lead"><span id="last-name"> </span></p>
+                </div>
+              </div>
+              <div class="row">
+                <p class="col-sm-3 col-sm-offset-1 col-xs-offset-1 lead field-color">Email Address</p>
+                <div class="col-sm-5 col-xs-offset-1">
+                  <p class="lead"><span id="email"> </span></p>
+                </div>
+              </div>
+              <div class="row">
+                <p class="col-sm-3 col-sm-offset-1 col-xs-offset-1 lead field-color">Phone Number</p>
+                <div class="col-sm-5 col-xs-offset-1">
+                  <p class="lead"><span id="phone"> </span></p>
+                </div>
+              </div>
+            </div>
 
       <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-dialog">
@@ -220,38 +212,21 @@
       </div>
       
       <div class="row">
-      <div class="col-md-5 col-xs-5"></div>
-      <div class="col-md-2 col-xs-2">       
-        <div class="edit-button" data-toggle="modal" data-target="#myModal">Edit</div>
-
-      </div>
-      <div class="col-md-5 col-xs-5"></div>      
+        <div class="col-sm-1 col-xs-2 col-xs-offset-1 col-sm-offset-3 edit-button" data-toggle="modal" data-target="#myModal">Edit</div>
       </div>
     </div>
-        
-    </div>
-    <div class="col-md-3 col-xs-4"></div>
-    </div>
-        <br><br>
-        <br><br>
-        <br><br>
-        <div class="row">
-            <div class="col-xs-5"></div>
-            <div class="col-xs-2">
-                <p id="result-msg"></p>
-                <script src="https://checkout.stripe.com/checkout.js"></script>
-                <div class="subs-btn" id="subscribe-btn">Subscribe</div>
-            </div>
-            <div class="col-xs-5"></div>
+    <br>
+    <h1 class="page-title">Options</h1>
+    <div class="row">
+        <div class="col-md-2 col-sm-3 col-xs-4 col-sm-offset-1">
+            <p id="result-msg"></p>
+            <script src="https://checkout.stripe.com/checkout.js"></script>
+            <div class="subs-btn" id="subscribe-btn">Subscribe</div>
         </div>
-        <br>
-        <div class="row">
-            <div class="col-xs-5"></div>
-            <div class="col-xs-2">
-                <a href="https://slack.com/oauth/authorize?&client_id=168056792887.183416696148&scope=incoming-webhook,bot,chat:write:bot"><img alt="Add to Slack" height="40" width="139" src="https://platform.slack-edge.com/img/add_to_slack.png" srcset="https://platform.slack-edge.com/img/add_to_slack.png 1x, https://platform.slack-edge.com/img/add_to_slack@2x.png 2x" /></a>
-            </div>    
-            <div class="col-xs-4"></div>
-        </div>
+        <div class="col-xs-2">
+          <p></p>
+            <a href="https://slack.com/oauth/authorize?&client_id=168056792887.183416696148&scope=incoming-webhook,bot,chat:write:bot"><img alt="Add to Slack" height="40" width="139" src="https://platform.slack-edge.com/img/add_to_slack.png" srcset="https://platform.slack-edge.com/img/add_to_slack.png 1x, https://platform.slack-edge.com/img/add_to_slack@2x.png 2x" /></a>
+        </div>    
     </div>
 </div>
 
@@ -260,6 +235,7 @@
 <script src="js/js_libs/jquery/jquery-jvectormap-1.2.2.min.js"></script>
 <script src="js/js_libs/TweenMax.min.js"></script>
 <script src="js/js_libs/jquery/jquery-ui-1.10.3.minimal.min.js"></script>
+<script src="js/js_libs/jquery/jquery.maskedinput.js"></script>
 <script src="js/js_libs/bootstrap.js"></script>
 <script src="js/js_libs/joinable.js"></script>
 <script src="js/js_libs/resizeable.js"></script>

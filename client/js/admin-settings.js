@@ -58,6 +58,12 @@ $(document).ready(function() {
           url: 'api/employees/pwdchange/' + curUser._id,
           success: function(response) {
             console.log(response);
+            $('#curr-pw').removeClass('has-error');
+            $('#curr-pw-msg').addClass('hidden');
+            $('#new-pw').removeClass('has-error');
+            $('#new-pw-msg').addClass('hidden');
+            $('#repeat-pw').removeClass('has-error');
+            $('#repeat-pw-msg').addClass('hidden');
             $('#myModal').modal('hide');
             localStorage.setItem('currentUser', JSON.stringify(response));
             curUser = JSON.parse(localStorage.getItem('currentUser'));
