@@ -9,6 +9,10 @@ $(document).ready(function() {
       $('#appt-number').mask('(999) 999-9999');
     });
 
+    jQuery(function($) {
+      $('#appt-number-edit').mask('(999) 999-9999');
+    });
+
     let appts = getAppts();
     /** initializing the appts
      * @param {json} appts
@@ -79,16 +83,22 @@ $(document).ready(function() {
           appts.push(response);
           $('#myModal').modal('hide');
           document.getElementById('appt-form').reset();
+          $('#time-input').removeClass('has-error');
+          $('#time-msg').addClass('hidden');
+          $('#other-msg').addClass('hidden');
         },
         error: function(response) {
           let resJSON = JSON.stringify(response);
           let message = response.responseText;
           $('#time-input').removeClass('has-error');
           $('#time-msg').addClass('hidden');
+          $('#other-msg').addClass('hidden');
           
           if(message == '{"error":"Already Created"}') {
             $('#time-input').addClass('has-error');
             $('#time-msg').removeClass('hidden');
+          } else {
+            $('#other-msg').removeClass('hidden');
           }
         }
       });
@@ -115,14 +125,13 @@ $(document).ready(function() {
      */
     function grabEditFormValues() {
         let updatedInfo ={};
-        let updatedDate = $('#appt-date-edit').val();
-        let updatedTime = $('#appt-time-edit').val();
+        let datetime_edit = $('#appt-datetimepicker-edit').datetimepicker()['0'].value;
         updatedInfo.company_id = myCompanyId;
         updatedInfo.first_name= $('#appt-first-edit').val();
         updatedInfo.last_name = $('#appt-last-edit').val();
         updatedInfo.phone_number = $('#appt-number-edit').val();
         updatedInfo.provider_name = $('#appt-provider-edit').val();
-        updatedInfo.date = jsDate(updatedDate, updatedTime);
+        updatedInfo.date = Date.parse(datetime_edit);
         return updatedInfo;
     }
 
@@ -138,6 +147,10 @@ $(document).ready(function() {
         $('#appt-provider-edit').val(appt.provider_name);
         $('#appt-date-edit').val(formatDate(appt.date.toString()));
         $('#appt-time-edit').val(formatTime(appt.date.toString()));
+        $('#appt-datetimepicker-edit').datetimepicker({
+          sideBySide: false,
+          defaultDate: appt.date
+        });
     }
 
     $(document).on('click', '.delete-appt', function() {
@@ -163,11 +176,10 @@ $(document).ready(function() {
             url: '/api/appointments/' + apptId,
             success: function(response) {
                 setEditFormValues(response);
+                $('#other-msg-edit').addClass('hidden');
             },
-            failure: function(response) {
-                // TODO display error message to prevent silent errors
-                console.log('Failed to obtain employee info from server,' +
-                    ' might be deleted already');
+            error: function(response) {
+              $('#other-msg-edit').removeClass('hidden');
             },
         });
     });
@@ -184,10 +196,10 @@ $(document).ready(function() {
                 appts = getAppts();
                 appts = initializeAppts(appts);
                 $('#appt-list').html(template(appts));
+                $('#other-msg-edit').addClass('hidden');
             },
-            failure: function(response) {
-                // TODO fix silence error
-                console.log('Failed to update employee');
+            error: function(response) {
+              $('#other-msg-edit').removeClass('hidden');
             },
         });
     });
