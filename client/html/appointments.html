@@ -7,9 +7,9 @@
   <meta name="description" content="Neon Admin Panel" />
   <meta name="author" content="" />
 
-  <link rel="icon" href="/images/logo-emissary.png">
+  <link rel="icon" href="/images/appt-o-matic.png">
 
-  <title>Emissary | Appointments</title>
+  <title>Appt-o-matic | Appointments</title>
 
   <link rel="stylesheet" href="stylesheets/libs/jquery/jquery-ui-1.10.3.custom.min.css">
   <link rel="stylesheet" href="stylesheets/shared-dashboard.css">
@@ -35,7 +35,7 @@
 				<!-- logo -->
 				<div class="logo">
 					<a href="visitors.html">
-						<img src="/images/emissary.png" width="150" alt="logo" />
+						<img src="/images/appt-o-matic-logo.png" width="150" alt="logo" />
 					</a>
 				</div>
 				<!-- logo collapse icon -->
@@ -184,38 +184,23 @@
 										<input type="text" class="form-control" id="appt-provider" placeholder="Provider Name"/>
 									</div>
 								</div>
-								<div class="form-group">
-									<label class="col-sm-2 control-label" >Date</label>
-									<div class="col-sm-10">
-										<input type="text" class="form-control" id="appt-date" placeholder="Appointment Date"/>
-									</div>
-								</div>
-								<div id="time-input" class="form-group">
-									<label class="col-sm-2 control-label">Time</label>
-									<div class="col-sm-10">
-										<input type="text" class="form-control" id="appt-time" placeholder="Appointment Time"/>
-                    <span id="time-msg" class="help-block hidden">An appointment already exists at this time</span>
-									</div>
-								</div>
-
-
-                <div class="form-group">
-                  <label class="col-sm-2 control-label">Date &amp; Time</label>
-                  <div class="col-sm-10">
-                    <input type="text" class="form-control" id="datetimepicker" placeholder="Appointment Date & Time"/>
-                  </div>
-                  <script type="text/javascript">
-                    $(function () {
-                      $('#datetimepicker').datetimepicker();
-                    });
-                  </script>
-                </div>
-
-
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">Date &amp; Time</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" id="appt-datetimepicker" placeholder="Appointment Date & Time"/>
+                                    </div>
+                                    <script type="text/javascript">
+                                        $(function () {
+                                            $('#appt-datetimepicker').datetimepicker({
+                                                useCurrent: true,
+                                                sideBySide: false,
+                                                minDate: Date.now(),
+                                                defaultDate: Date.now(),
+                                            });
+                                        });
+                                    </script>
+                                </div>
 							</form>
-
-							<p class="message-api"> To connect your appointment information to our system, please refer to our appointments api, <a href= "/images/appointments.pdf" target= "_blank"> here</a></p>
-
 						</div>
 
 						<!-- Modal Footer -->

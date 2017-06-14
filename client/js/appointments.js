@@ -100,18 +100,13 @@ $(document).ready(function() {
      **/
     function grabFormElements() {
       let newAppt = {};
-      let userTime;
-      let userDate;
+      let datetime = $('#appt-datetimepicker').datetimepicker()['0'].value;
       newAppt.company_id = myCompanyId;
       newAppt.first_name= $('#appt-first').val();
       newAppt.last_name = $('#appt-last').val();
       newAppt.phone_number = $('#appt-number').val();
       newAppt.provider_name = $('#appt-provider').val();
-
-      userDate = $('#appt-date').val();
-      userTime = $('#appt-time').val();
-
-      newAppt.date = jsDate(userDate, userTime);
+      newAppt.date = Date.parse(datetime);
       return newAppt;
     }
 

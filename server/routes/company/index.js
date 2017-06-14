@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 'use strict';
 let express = require('express');
 let controller = require('./company.controller');
