@@ -151,68 +151,63 @@
                   </div>
 
                   <div class="modal-body">
+                    <div class="alert alert-danger hidden" id="other-msg" role="alert">An error has occured, please refresh.</div>
                     <form class="form-horizontal" role="form" id="employee-form">
-                        <div class="form-group">
-                          <label class="col-sm-2 control-label" for="first-name" >First Name</label>
-                          <div class="col-sm-10">
-                            <input type="text" class="form-control" id="first-name" placeholder="First Name"/>
-                          </div>
+                      <div class="form-group">
+                        <label class="col-sm-2 control-label" for="first-name" >First Name</label>
+                        <div class="col-sm-10">
+                          <input type="text" class="form-control" id="first-name" placeholder="First Name"/>
                         </div>
-                          
-                        <div class="form-group">
-                          <label class="col-sm-2 control-label" for="last-name" >Last Name</label>
-                          <div class="col-sm-10">
-                            <input type="text" class="form-control" id="last-name" placeholder="Last Name"/>
-                          </div>
+                      </div>
+                      <div class="form-group">
+                        <label class="col-sm-2 control-label" for="last-name" >Last Name</label>
+                        <div class="col-sm-10">
+                          <input type="text" class="form-control" id="last-name" placeholder="Last Name"/>
                         </div>
-                          
-                        <div class="form-group">
-                          <label  class="col-sm-2 control-label" for="email">Email</label>
-                          <div class="col-sm-10">
-                              <input type="email" class="form-control" id="email" placeholder="Email"/>
-                          </div>
+                      </div>
+                      <div class="form-group">
+                        <label  class="col-sm-2 control-label" for="email">Email</label>
+                        <div class="col-sm-10">
+                            <input type="email" class="form-control" id="email" placeholder="Email"/>
                         </div>
-                          
-                        <div class="form-group">
-                          <label class="col-sm-2 control-label" for="phone">Phone</label>
-                          <div class="col-sm-10">
-                            <input type="text" class="form-control" id="phone" placeholder="Phone Number"/>
-                          </div>
+                      </div>
+                      <div class="form-group">
+                        <label class="col-sm-2 control-label" for="phone">Phone</label>
+                        <div class="col-sm-10">
+                          <input type="text" class="form-control" id="phone" placeholder="Phone Number"/>
                         </div>
-                          
-                        <div class="form-group">
-                          <label class="col-sm-2 control-label" >Password</label>
-                          <div class="col-sm-10">
-                            <input type="password" class="form-control" id="employee-pw" placeholder="Password"/>
-                          </div>
+                      </div>
+                      <div class="form-group">
+                        <label class="col-sm-2 control-label" >Password</label>
+                        <div class="col-sm-10">
+                          <input type="password" class="form-control" id="employee-pw" placeholder="Password"/>
                         </div>
-                          
-                        <div class="form-group">
-                          <label class="col-sm-2 control-label" >Confirm</label>
-                          <div class="col-sm-10">
-                            <input type="password" class="form-control" id="employee-confirm-pw" placeholder="Confirm Password"/>
-                          </div>
+                      </div>
+                      <div id="repeat-pw" class="form-group">
+                        <label class="col-sm-2 control-label" >Confirm</label>
+                        <div class="col-sm-10">
+                          <input type="password" class="form-control" id="employee-confirm-pw" placeholder="Confirm Password"/>
+                          <span id="repeat-pw-msg" class="help-block hidden">Passwords do not match</span>
                         </div>
-                          
-                        <div class="form-group">
-                          <label class="col-sm-2"></label>
-                          <div class="col-sm-10">
-                          <span class="checkbox">
-                          <label><input type="checkbox" id="get-sms">Receive SMS</label>
-                          </span>
-
-                          <span class="checkbox">
-                          <label><input type="checkbox" id="get-email">Receive E-mail</label>
-                          </span>
-                          </div>
+                      </div>
+                      <div class="form-group">
+                        <label class="col-sm-2"></label>
+                        <div class="col-sm-10">
+                        <span class="checkbox">
+                        <label><input type="checkbox" id="get-sms">Receive SMS</label>
+                        </span>
+                        <span class="checkbox">
+                        <label><input type="checkbox" id="get-email">Receive E-mail</label>
+                        </span>
                         </div>
+                      </div>
                     </form>
                   </div>
 
                   <!-- Modal Footer -->
                   <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    <button type="button" class="check-in-btn btn btn-default save-btn" data-dismiss="modal">Save</button>
+                    <button type="button" class="check-in-btn btn btn-default save-btn">Save</button>
                   </div>
                 </div>
               </div>
@@ -232,6 +227,7 @@
                   </div>
 
                   <div class="modal-body">
+                    <div class="alert alert-danger hidden" id="other-msg-edit" role="alert">An error has occured, please refresh.</div>
                     <form class="form-horizontal" role="form" id="employee-form-edit">
                       <div id="employee-id-edit" value="" hidden></div>
                       <div class="form-group">
@@ -258,8 +254,6 @@
                             <input type="text" class="form-control" id="phone-number-edit" value=""/>
                           </div>
                         </div>
-
-
                         <div class="form-group">
                             <label class="col-sm-2"></label>
                             <div class="col-sm-10">
@@ -276,18 +270,16 @@
                     </form>
                   </div>
 
-                    <!-- Modal Footer -->
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">
-                            Close
-                        </button>
-                        <button type="button" class="check-in-btn btn btn-default save-changes-btn" data-dismiss="modal">Save Changes</button>
-                    </div>
+                  <!-- Modal Footer -->
+                  <div class="modal-footer">
+                      <button type="button" class="btn btn-default" data-dismiss="modal">
+                          Close
+                      </button>
+                      <button type="button" class="check-in-btn btn btn-default save-changes-btn">Save Changes</button>
+                  </div>
                 </div>
               </div>
             </div>
-
-
 
           </tbody>
         </table>
@@ -307,12 +299,13 @@
   <script type = "text/x-handlebars-template" id = "employee-list-template">
     {{#each []}}
       <tr class="employee-row" value="{{this._id}}">
-        <td class="employee-data-first-name">{{this.first_name}}</td>
-        <td class="employee-data-last-name">{{this.last_name}}</td>
-        <td class="employee-data-phone-number">{{this.phone_number}}</td>
-        <td class="employee-data-email">{{this.email}}
-          <i class="fa fa-trash-o delete-employee"></i>
-          <i class="fa fa-pencil update-employee"  data-toggle="modal" data-target="#myModal2"></i>
+        <td style="vertical-align:middle" class="employee-data-first-name">{{this.first_name}}</td>
+        <td style="vertical-align:middle" class="employee-data-last-name">{{this.last_name}}</td>
+        <td style="vertical-align:middle" class="employee-data-phone-number">{{this.phone_number}}</td>
+        <td style="vertical-align:middle" class="employee-data-email">{{this.email}}</td>
+        <td>
+          <i class="fa fa-trash-o delete-employee" style="font-size:20px;"></i>
+          <i class="fa fa-pencil update-employee" style="font-size:20px;" data-toggle="modal" data-target="#myModal2"></i>
         </td>
       </tr>
     {{/each}}
@@ -329,6 +322,7 @@
 <script src="js/js_libs/resizeable.js"></script>
 <script src="js/js_libs/neon/neon-api.js"></script>
 <script src="js/employees.js"> </script>
+<script src="js/js_libs/jquery/jquery.maskedinput.js"></script>
 
 <!-- JavaScripts initializations and stuff -->
 <script src="js/js_libs/neon/neon-custom.js"></script>

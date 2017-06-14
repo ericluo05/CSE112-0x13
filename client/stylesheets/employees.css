@@ -95,6 +95,14 @@ tr:nth-last-child(1) {
   border-bottom: 1px solid rgb(215, 215, 215) !important;
 }
 
+.employee-row > td {
+  font-size: 1.2em;
+}
+
+.table th {
+  font-size: 1.2em;
+}
+
 hr {
   border-top: 3px solid #01b2bd !important;
 }
@@ -133,4 +141,8 @@ hr {
 .radio label,
 .checkbox label {
   margin-top: 7px;
+}
+
+.hidden {
+  display: none;
 }

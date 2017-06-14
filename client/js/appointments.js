@@ -192,6 +192,7 @@ $(document).ready(function() {
           url: '/api/appointments/' + apptId,
           data: newInfo,
           success: function(response) {
+              $('#myModal2').modal('hide');
               appts = getAppts();
               appts = initializeAppts(appts);
               $('#appt-list').html(template(appts));

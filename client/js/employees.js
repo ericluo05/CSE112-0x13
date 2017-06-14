@@ -4,6 +4,14 @@ $(document).ready(function() {
     let curUser = JSON.parse(localStorage.getItem('currentUser'));
     $('#user-name').text(curUser.first_name + ' ' + curUser.last_name);
 
+    jQuery(function($) {
+      $('#phone').mask('(999) 999-9999');
+    });
+
+    jQuery(function($) {
+      $('#phone-number-edit').mask('(999) 999-9999');
+    });
+
     let employees = getEmployees();
     let source = $('#employee-list-template').html();
     let template = Handlebars.compile(source);
@@ -39,13 +47,18 @@ $(document).ready(function() {
    function updateEmployeeList(obj) {
       $.ajax({
         dataType: 'json',
-           type: 'POST',
-           data: obj,
-           async: false,
-           url: '/api/employees',
-           success: function(response) {
-               employees.push(response);
-           },
+        type: 'POST',
+        data: obj,
+        async: false,
+        url: '/api/employees',
+        success: function(response) {
+          employees.push(response);
+          $('#other-msg').addClass('hidden');
+          $('#myModal').modal('hide');
+        },
+        error: function(response) {
+          $('#other-msg').removeClass('hidden');
+        }
       });
     }
 
@@ -53,11 +66,18 @@ $(document).ready(function() {
       * When a patient submits their form
       */
     function submitForm() {
-        let d = grabFormElements();
+      let d = grabFormElements();
+      if(d.password == d.confirm_password) {
+        $('#repeat-pw').removeClass('has-error');
+        $('#repeat-pw-msg').addClass('hidden');
         updateEmployeeList(d);
         employees = getEmployees();
         $('#employee-list').html(template(employees));
         document.getElementById('employee-form').reset();
+      } else {
+        $('#repeat-pw').addClass('has-error');
+        $('#repeat-pw-msg').removeClass('hidden');
+      }
     }
     /**
      * ???
@@ -163,12 +183,11 @@ $(document).ready(function() {
          type: 'GET',
          url: '/api/employees/' + employeeId,
          success: function(response) {
-             setEditFormValues(response);
-         },
-         failure: function(response) {
-             // TODO display error message to prevent silent errors
-                console.log('Failed to obtain employee info from server,' +
-                    'might be deleted already');
+            setEditFormValues(response);
+            $('#other-msg-edit').addClass('hidden');
+          },
+          error: function(response) {
+            $('#other-msg-edit').removeClass('hidden');
             },
          });
     });
@@ -182,13 +201,14 @@ $(document).ready(function() {
             url: '/api/employees/' + employeeId,
             data: newInfo,
             success: function(response) {
-                let updateEmployees = getEmployees();
-                $('#employee-list').html(template(updateEmployees));
+              $('#myModal2').modal('hide');
+              let updateEmployees = getEmployees();
+              $('#employee-list').html(template(updateEmployees));
+              $('#other-msg-edit').addClass('hidden');
             },
-            failure: function(response) {
-                // TODO fix silence error
-                console.log('Failed to update employee');
-            },
+            error: function(response) {
+              $('#other-msg-edit').removeClass('hidden');
+            }
         });
     });
 
