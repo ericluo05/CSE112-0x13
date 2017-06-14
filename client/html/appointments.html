@@ -1,25 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1" />
-	<meta name="description" content="Neon Admin Panel" />
-	<meta name="author" content="" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Neon Admin Panel" />
+  <meta name="author" content="" />
 
-	<link rel="icon" href="/images/logo-emissary.png">
+  <link rel="icon" href="/images/appt-o-matic.png">
 
-	<title>Emissary | Appointments</title>
-	
-	<link rel="stylesheet" href="/emissary/stylesheets/jquery/jquery-ui-1.10.3.custom.min.css">
-	<link rel="stylesheet" href="/emissary/stylesheets/shared-dashboard.css">
-  <link rel="stylesheet" href="/emissary/stylesheets/appointment.css">
-  <link rel="stylesheet" href="/emissary/stylesheets/libs/bootstrap.css">
-	<link rel="stylesheet" href="/emissary/stylesheets/neon/neon-core.css">
-	<link rel="stylesheet" href="/emissary/stylesheets/neon/neon-theme.css">
-	<link rel="stylesheet" href="/emissary/stylesheets/neon/neon-forms.css">
-  <link rel="stylesheet" href="/emissary/stylesheets/font-icons/font-awesome/css/font-awesome.css">
-  <link rel="stylesheet" href="/emissary/stylesheets/font-icons/entypo/css/entypo.css">
+  <title>Appt-o-matic | Appointments</title>
+
+  <link rel="stylesheet" href="stylesheets/libs/jquery/jquery-ui-1.10.3.custom.min.css">
+  <link rel="stylesheet" href="stylesheets/shared-dashboard.css">
+  <link rel="stylesheet" href="stylesheets/appointment.css">
+  <link rel="stylesheet" href="stylesheets/libs/bootstrap.css">
+  <link rel="stylesheet" href="stylesheets/libs/bootstrap-datetimepicker.css">
+  <link rel="stylesheet" href="stylesheets/libs/neon/neon-core.css">
+  <link rel="stylesheet" href="stylesheets/libs/neon/neon-theme.css">
+  <link rel="stylesheet" href="stylesheets/libs/neon/neon-forms.css">
+  <link rel="stylesheet" href="stylesheets/libs/font-icons/font-awesome/css/font-awesome.css">
+  <link rel="stylesheet" href="stylesheets/libs/font-icons/entypo/css/entypo.css">
+
+  <script src="js/js_libs/jquery/jquery-1.11.3.min.js"></script>
 
 </head>
 <body class="page-body gray" data-url="http://neon.dev">
@@ -32,7 +35,7 @@
 				<!-- logo -->
 				<div class="logo">
 					<a href="visitors.html">
-						<img src="/images/emissary.png" width="150" alt="logo" />
+						<img src="/images/appt-o-matic-logo.png" width="150" alt="logo" />
 					</a>
 				</div>
 				<!-- logo collapse icon -->
@@ -52,7 +55,7 @@
 			<ul id="main-menu" class="main-menu">
 				<!-- add class "multiple-expanded" to allow multiple submenus to open -->
 				<!-- class "auto-inherit-active-class" will automatically add "active" class for parent elements who are marked already with class "active" -->
-				<li>
+        <li>
 					<a href="visitors.html">
 						<i class="entypo-users"></i>
 						<span class="title">Visitors</span>
@@ -130,6 +133,7 @@
 							<th>Phone Number</th>
 							<th>Date</th>
 							<th>Time</th>
+              <th></th>
 						</tr>
 						</thead>
 
@@ -149,53 +153,56 @@
 								<span class="sr-only">Close</span>
 							</button>
 							<h4 class="modal-title" id="myModalLabel">
-								Add an Appointment
+								Add Appointment
 							</h4>
 						</div>
 
 						<!-- Modal Body -->
 						<div class="modal-body">
+              <div class="alert alert-danger hidden" id="other-msg" role="alert">An error has occured, please refresh.</div>
 							<form class="form-horizontal" role="form" id="appt-form">
 								<div class="form-group">
-									<label class="col-sm-2 control-label" for="first-name" >First Name</label>
+									<label class="col-sm-2 control-label" >First Name</label>
 									<div class="col-sm-10">
 										<input type="text" class="form-control" id="appt-first" placeholder="First Name"/>
 									</div>
 								</div>
 								<div class="form-group">
-									<label class="col-sm-2 control-label" for="last-name" >Last Name</label>
+									<label class="col-sm-2 control-label" >Last Name</label>
 									<div class="col-sm-10">
 										<input type="text" class="form-control" id="appt-last" placeholder="Last Name"/>
 									</div>
 								</div>
 								<div class="form-group">
-									<label class="col-sm-2 control-label" for="phone-number" >Phone</label>
+									<label class="col-sm-2 control-label" >Phone</label>
 									<div class="col-sm-10">
 										<input type="text" class="form-control" id="appt-number" placeholder="Phone Number"/>
 									</div>
 								</div>
 								<div class="form-group">
-									<label class="col-sm-2 control-label" for="inputPassword3" >Provider Name</label>
+									<label class="col-sm-2 control-label" >Provider Name</label>
 									<div class="col-sm-10">
 										<input type="text" class="form-control" id="appt-provider" placeholder="Provider Name"/>
 									</div>
 								</div>
-								<div class="form-group">
-									<label class="col-sm-2 control-label" for="inputPassword3" >Date</label>
-									<div class="col-sm-10">
-										<input type="text" class="form-control" id="appt-date" placeholder="Appointment Date"/>
-									</div>
-								</div>
-								<div class="form-group">
-									<label class="col-sm-2 control-label" for="inputPassword3" >Time</label>
-									<div class="col-sm-10">
-										<input type="text" class="form-control" id="appt-time" placeholder="Appointment Time"/>
-									</div>
-								</div>
+                <div id="time-input" class="form-group">
+                  <label class="col-sm-2 control-label">Date &amp; Time</label>
+                  <div class="col-sm-10">
+                    <input type="text" class="form-control" id="appt-datetimepicker" placeholder="Appointment Date & Time"/>
+                    <span id="time-msg" class="help-block hidden">An appointment already exists at this time</span>
+                  </div>
+                  <script type="text/javascript">
+                    $(function () {
+                      $('#appt-datetimepicker').datetimepicker({
+                        useCurrent: true,
+                        sideBySide: false,
+                        minDate: Date.now(),
+                        defaultDate: Date.now(),
+                      });
+                    });
+                  </script>
+                </div>
 							</form>
-
-							<p class="message-api"> To connect your appointment information to our system, please refer to our appointments api, <a href= "/images/appointments.pdf" target= "_blank"> here</a></p>
-
 						</div>
 
 						<!-- Modal Footer -->
@@ -203,26 +210,99 @@
 							<button type="button" class="btn btn-default" data-dismiss="modal">
 								Close
 							</button>
-							<button type="button" class="check-in-btn btn btn-default save-btn" data-dismiss="modal">Save</button>
+							<button type="button" class="check-in-btn btn btn-default save-btn">Save</button>
 						</div>
 					</div>
 				</div>
 			</div>
 
-			<div class = "add-button" data-toggle="modal" data-target="#myModal">Add Appointment</div>
+         
+      <div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<!-- Modal Header -->
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal">
+								<span aria-hidden="true">&times;</span>
+								<span class="sr-only">Close</span>
+							</button>
+							<h4 class="modal-title" id="myModalLabel-edit">
+								Edit Appointment
+							</h4>
+						</div>
+
+						<!-- Modal Body -->
+						<div class="modal-body">
+              <div class="alert alert-danger hidden" id="other-msg-edit" role="alert">An error has occured, please refresh.</div>
+							<form class="form-horizontal" role="form" id="appt-form-edit">
+								<div id="appt-id-edit" value="" hidden></div>
+								<div class="form-group">
+									<label class="col-sm-2 control-label" >First Name</label>
+									<div class="col-sm-10">
+										<input type="text" class="form-control" id="appt-first-edit" value="" />
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-sm-2 control-label" >Last Name</label>
+									<div class="col-sm-10">
+										<input type="text" class="form-control" id="appt-last-edit" value="" />
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-sm-2 control-label">Phone</label>
+									<div class="col-sm-10">
+										<input type="text" class="form-control" id="appt-number-edit" value="" />
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-sm-2 control-label" >Provider Name</label>
+									<div class="col-sm-10">
+										<input type="text" class="form-control" id="appt-provider-edit" value="" />
+									</div>
+								</div>
+                <div class="form-group">
+                  <label class="col-sm-2 control-label">Date &amp; Time</label>
+                  <div class="col-sm-10">
+                    <input type="text" class="form-control" id="appt-datetimepicker-edit" value="" />
+                  </div>
+                </div>
+							</form>
+						</div>
+
+						<!-- Modal Footer -->
+						<div class="modal-footer">
+							<button type="button" class="btn btn-default" data-dismiss="modal">
+								Cancel
+							</button>
+							<button type="button" class="check-in-btn btn btn-default save-change-btn">Save Changes</button>
+						</div>
+					</div>
+				</div>
+			</div>
+            
+      <div class="row">
+          <div class="col-md-5 col-xs-4"></div>
+          <div class="col-md-2 col-xs-4">
+            <div class="add-button" data-toggle="modal" data-target="#myModal">Add Appointment</div>   
+          </div>
+          <div class="col-md-5 col-xs-4"></div>
+      </div>
+            
 		</div>
 
 		<script type = "text/x-handlebars-template" id = "appt-list-template">
 			{{#each []}}
 			<tr class="appt-row" value="{{this._id}}">
-				<td class="appt-data">{{this.first_name}}</td>
-				<td class="appt-data">{{this.last_name}}</td>
-				<td class="appt-data">{{this.provider_name}}</td>
-				<td class="appt-data">{{this.phone_number}}</td>
-				<td class="appt-data">{{this.fullDate}}</td>
-				<td class="appt-data">{{this.appointmentTime}}
-					<i class="fa fa-trash-o delete-appt"></i>
-				</td>
+				<td style="vertical-align:middle" class="appt-data">{{this.first_name}}</td>
+				<td style="vertical-align:middle" class="appt-data">{{this.last_name}}</td>
+				<td style="vertical-align:middle" class="appt-data">{{this.provider_name}}</td>
+				<td style="vertical-align:middle" class="appt-data">{{this.phone_number}}</td>
+				<td style="vertical-align:middle" class="appt-data">{{this.fullDate}}</td>
+				<td style="vertical-align:middle" class="appt-data">{{this.appointmentTime}}</td>
+        <td>
+          <i class="fa fa-trash-o delete-appt" style="font-size:20px;"></i>
+          <i class="fa fa-pencil update-appt" style="font-size:20px;" data-toggle="modal" data-target="#myModal2"></i>
+        </td>
 			</tr>
 			{{/each}}
 		</script>
@@ -230,23 +310,20 @@
 </div>
 
 	<!-- Bottom scripts (common) -->
-	<script src="/emissary/js/js_libs/js.cookie.js"></script>
-  <script src="/emissary/js/js_libs/jquery/jquery-1.11.3.min.js"></script>
-  <script src="/emissary/js/js_libs/TweenMax.min.js"></script>
-  <script src="/emissary/js/js_libs/jquery/jquery-ui-1.10.3.minimal.min.js"></script>
-  <script src="/emissary/js/js_libs/bootstrap.js"></script>
-  <script src="/emissary/js/js_libs/joinable.js"></script>
-  <script src="/emissary/js/js_libs/resizeable.js"></script>
-  <script src="/emissary/js/js_libs/neon/neon-api.js"></script>
-  <script src="/emissary/js/appointments.js"> </script>
-
-	<!-- JavaScripts initializations and stuff -->
-  <script src="/emissary/js/js_libs/neon/neon-custom.js"></script>
-
-	<!-- Demo Settings -->
-	<script src="/emissary/js/js_libs/handlebars-v4.0.5.js"></script>
-  <script src="/emissary/js/js_libs/neon/neon-demo.js"></script>
-  <script src="/emissary/js/js_libs/socket.io.js"></script>
-
+	<script src="js/js_libs/js.cookie.js"></script>
+  <script src="js/js_libs/TweenMax.min.js"></script>
+  <script src="js/js_libs/jquery/jquery-ui-1.10.3.minimal.min.js"></script>
+  <script src="js/js_libs/jquery/jquery.maskedinput.js"></script>
+  <script src="js/js_libs/bootstrap.js"></script>
+  <script src="js/js_libs/moment.min.js"></script>
+  <script src="js/js_libs/bootstrap-datetimepicker.js"></script>
+  <script src="js/js_libs/joinable.js"></script>
+  <script src="js/js_libs/resizeable.js"></script>
+  <script src="js/js_libs/neon/neon-api.js"></script>
+  <script src="js/appointments.js"> </script>
+  <script src="js/js_libs/neon/neon-custom.js"></script>
+  <script src="js/js_libs/handlebars-v4.0.5.js"></script>
+  <script src="js/js_libs/socket.io.js"></script>
+  <script src="js/google-analytic.js"></script>
 </body>
 </html>

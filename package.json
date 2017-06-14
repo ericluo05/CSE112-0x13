@@ -32,7 +32,8 @@
       "node_modules",
       "bin",
       "coverage",
-      "server/routes/*/*.controller.js"
+      "server/routes/*/*.controller.js",
+      "server/lib/phone_general.js"
     ]
   },
   "dependencies": {
@@ -73,6 +74,7 @@
     "require-dir": "^0.3.1",
     "serve-favicon": "~2.4.2",
     "slack-notify": "^0.1.6",
+    "smooch-core": "^4.1.0",
     "socket.io": "^2.0.1",
     "stripe": "^4.19.0",
     "twilio": "^3.0.0"

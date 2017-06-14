@@ -1,193 +1,180 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<script src = "/emissary/js/shared.js"></script>
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <script src="js/shared.js"></script>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1" />
-	<meta name="description" content="Neon Admin Panel" />
-	<meta name="author" content="" />
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <meta name="description" content="Neon Admin Panel"/>
+    <meta name="author" content=""/>
 
-	<link rel="icon" href="/images/logo-emissary.png">
+    <link rel="icon" href="/images/appt-o-matic.png">
 
-	<title>Emissary | Forms</title>
-	<link rel="stylesheet" href="/emissary/stylesheets/font-icons/font-awesome/css/font-awesome.css">
-	<link rel="stylesheet" href="/emissary/stylesheets/shared-dashboard.css">
-	<link rel="stylesheet" href="/emissary/stylesheets/jquery/jquery-ui-1.10.3.custom.min.css">
-	<link rel="stylesheet" href="/emissary/stylesheets/font-icons/entypo/css/entypo.css">
-	<link rel="stylesheet" href="/emissary/stylesheets/libs/bootstrap.css">
-	<link rel="stylesheet" href="/emissary/stylesheets/neon/neon-core.css">
-	<link rel="stylesheet" href="/emissary/stylesheets/neon/neon-theme.css">
-	<link rel="stylesheet" href="/emissary/stylesheets/neon/neon-forms.css">
-	<link rel="stylesheet" href="/emissary/stylesheets/form-builder.css">
-	<link rel="stylesheet" href="/emissary/stylesheets/appointment.css">
-	<link rel="stylesheet" href="/emissary/stylesheets/jquery/jquery-jvectormap-1.2.2.css">
-	<link rel="stylesheet" href="/emissary/stylesheets/libs/rickshaw.min.css">
+    <title>Appt-o-matic | Forms</title>
+    <link rel="stylesheet" href="stylesheets/libs/font-icons/font-awesome/css/font-awesome.css">
+    <link rel="stylesheet" href="stylesheets/shared-dashboard.css">
+    <link rel="stylesheet" href="stylesheets/libs/jquery/jquery-ui-1.10.3.custom.min.css">
+    <link rel="stylesheet" href="stylesheets/libs/font-icons/entypo/css/entypo.css">
+    <link rel="stylesheet" href="stylesheets/libs/bootstrap.css">
+    <link rel="stylesheet" href="stylesheets/libs/neon/neon-core.css">
+    <link rel="stylesheet" href="stylesheets/form-builder.css">
+    <!--<link rel="stylesheet" href="stylesheets/libs/neon/neon-theme.css">-->
+    <!--<link rel="stylesheet" href="stylesheets/libs/neon/neon-forms.css">-->
+    <!--<link rel="stylesheet" href="stylesheets/appointment.css">-->
+    <!--<link rel="stylesheet" href="stylesheets/libs/jquery/jquery-jvectormap-1.2.2.css">-->
+    <!--<link rel="stylesheet" href="stylesheets/libs/rickshaw.min.css">-->
 
 </head>
 <body class="page-body gray" data-url="http://neon.dev">
 
-<div class="page-container"><!-- add class "sidebar-collapsed" to close sidebar by default, "chat-visible" to make chat appear always -->
-	<div class="sidebar-menu">
-		<div class="sidebar-menu-inner">
+<div class="page-container">
+    <!-- add class "sidebar-collapsed" to close sidebar by default, "chat-visible" to make chat appear always -->
+    <div class="sidebar-menu">
+        <div class="sidebar-menu-inner">
 
-			<header class="logo-env">
-				<!-- logo -->
-				<div class="logo">
-					<a href="visitors.html">
-						<img src="/images/emissary.png" width="150" alt="logo" />
-					</a>
-				</div>
-				<!-- logo collapse icon -->
-				<div class="sidebar-collapse">
-					<a href="#" class="sidebar-collapse-icon"><!-- add class "with-animation" if you want sidebar to have animation during expanding/collapsing transition -->
-						<i class="entypo-menu"></i>
-					</a>
-				</div>
-				<!-- open/close menu icon (do not remove if you want to enable menu on mobile devices) -->
-				<div class="sidebar-mobile-menu visible-xs">
-					<a href="#" class="with-animation"><!-- add class "with-animation" to support animation -->
-						<i class="entypo-menu"></i>
-					</a>
-				</div>
-			</header>
+            <header class="logo-env">
+                <!-- logo -->
+                <div class="logo">
+                    <a href="visitors.html">
+                        <img src="/images/appt-o-matic-logo.png" width="150" alt="logo"/>
+                    </a>
+                </div>
+                <!-- logo collapse icon -->
+                <div class="sidebar-collapse">
+                    <a href="#" class="sidebar-collapse-icon">
+                        <!-- add class "with-animation" if you want sidebar to have animation during expanding/collapsing transition -->
+                        <i class="entypo-menu"></i>
+                    </a>
+                </div>
+                <!-- open/close menu icon (do not remove if you want to enable menu on mobile devices) -->
+                <div class="sidebar-mobile-menu visible-xs">
+                    <a href="#" class="with-animation"><!-- add class "with-animation" to support animation -->
+                        <i class="entypo-menu"></i>
+                    </a>
+                </div>
+            </header>
 
-			<ul id="main-menu" class="main-menu">
-				<!-- add class "multiple-expanded" to allow multiple submenus to open -->
-				<!-- class "auto-inherit-active-class" will automatically add "active" class for parent elements who are marked already with class "active" -->
-				<li>
-					<a href="/visitors.html">
-						<i class="entypo-users"></i>
-						<span class="title">Visitors</span>
-					</a>
-				</li>
-				<li>
-					<a href="/employees.html">
-						<i class="entypo-user"></i>
-						<span class="title">Employees</span>
-					</a>
-				</li>
-				<li>
-					<a href="/appointments.html">
-						<i class="entypo-calendar"></i>
-						<span class="title">Appointments</span>
-					</a>
-				</li>
-				<li>
-					<a href="#">
-						<i class="entypo-clipboard"></i>
-						<span class="title">Forms</span>
-					</a>
-				</li>
-				<li>
-					<a href="/settings.html">
-						<i class="entypo-tools"></i>
-						<span class="title">Settings</span>
-					</a>
-				</li>
-			</ul>
-
-		</div>
-	</div>
-
-	<div class="main-content">
-		<div class="row">
-			<!-- Profile Info and Notifications -->
-			<div class="col-md-6 col-sm-8 clearfix">
-				<ul class="user-info pull-left pull-none-xsm">
-					<!-- Profile Info -->
-					<li class="profile-info dropdown"><!-- add class "pull-right" if you want to place this from right -->
-						<div id="company-name">
-							<h1>Hello, <span id="user-name"> </span></h1>
-						</div>
-					</li>
-				</ul>
-			</div>
-
-			<!-- Raw Links -->
-			<div class="col-md-6 col-sm-4 clearfix hidden-xs">
-				<ul class="list-inline links-list pull-right">
-					<div class="dropdown">
-            <i class="fa fa-3x fa-cog dropdown-toggle" data-toggle="dropdown"></i>
-            <ul class="dropdown-menu">
-              <li><a href="/checkin.html">Check-In</a></li>
-              <li><a id="logoutButton" href="/index.html">
-                  Log Out <i class="entypo-logout right"></i></a>
-              </li>
+            <ul id="main-menu" class="main-menu">
+                <!-- add class "multiple-expanded" to allow multiple submenus to open -->
+                <!-- class "auto-inherit-active-class" will automatically add "active" class for parent elements who are marked already with class "active" -->
+                <li>
+                    <a href="/visitors.html">
+                        <i class="entypo-users"></i>
+                        <span class="title">Visitors</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/employees.html">
+                        <i class="entypo-user"></i>
+                        <span class="title">Employees</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/appointments.html">
+                        <i class="entypo-calendar"></i>
+                        <span class="title">Appointments</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="entypo-clipboard"></i>
+                        <span class="title">Forms</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/settings.html">
+                        <i class="entypo-tools"></i>
+                        <span class="title">Settings</span>
+                    </a>
+                </li>
             </ul>
-      		</div>
-				</ul>
-			</div>
-		</div>
 
-		<hr />
-		<center>
-		  <h1>Build your form</h1>
-      <h2>Color picker:</h2> 
-      <div>Color: <input class="jscolor" value="1C7F79"> </div>
-    </center>
-		<form class = "form-builder" role = "form">
-	   	<div class = "form-group">
-	      <label for = "f_name">First Name</label>
-	      <input type = "text" class = "form-control" id = "f_name" placeholder = "Enter your First Name" required>
-	   	</div>
-	   	<div class = "form-group">
-	      <label for = "l_name">Last Name</label>
-	      <input type = "text" class = "form-control" id = "l_name" placeholder = "Enter your Last Name" required>
-	   	</div>
-	   	<div class = "form-group">
-	      <label for = "phone">Phone Number</label>
-	      <input type = "tel" class = "form-control" pattern="[\(]\d{3}[\)]\d{3}[\-]\d{4}" id = "phone" placeholder = "Enter your Phone Number" required>
-	   	</div>
-	    <div class = "form-group">
-				<div class="my-form">
-	   			<div class="addField"></div>
-	   		</div>
-	   	</div>
-	   	<h3 class = "add-form-text">Add up to two fields</h3>
-	   		<input type = "text" class = "form-control" id = "optional_label" placeholder = "Enter label for field" maxlength="30">
-	  	<div class="add-fields my-form">
-	      <button type="button" class="btn btn-success add-box">Add</button>         
-				<button type = "submit" class = "save-form btn btn-primary">Submit</button>
-			</div>
-		</form>
+        </div>
+    </div>
 
-  </div>
+    <div class="main-content">
+        <div class="row">
+            <!-- Profile Info and Notifications -->
+            <div class="col-md-6 col-sm-8 clearfix">
+                <ul class="user-info pull-left pull-none-xsm">
+                    <!-- Profile Info -->
+                    <li class="profile-info dropdown">
+                        <!-- add class "pull-right" if you want to place this from right -->
+                        <div id="company-name">
+                            <h1>Hello, <span id="user-name"> </span></h1>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Raw Links -->
+            <div class="col-md-6 col-sm-4 clearfix hidden-xs">
+                <ul class="list-inline links-list pull-right">
+                    <div class="dropdown">
+                        <i class="fa fa-3x fa-cog dropdown-toggle" data-toggle="dropdown"></i>
+                        <ul class="dropdown-menu">
+                            <li><a href="/checkin.html">Check-In</a></li>
+                            <li><a id="logoutButton" href="/index.html">
+                                Log Out <i class="entypo-logout right"></i></a>
+                            </li>
+                        </ul>
+                    </div>
+                </ul>
+            </div>
+        </div>
+
+        <hr/>
+        <center>
+            <h1>Build your form</h1>
+            <h2>Color picker:</h2>
+            <div>Color: <input class="jscolor" value="1C7F79"></div>
+        </center>
+        <form class="form-builder" role="form">
+            <div class="form-group">
+                <label for="f_name">First Name</label>
+                <input type="text" class="form-control" id="f_name" placeholder="Enter your First Name" required>
+            </div>
+            <div class="form-group">
+                <label for="l_name">Last Name</label>
+                <input type="text" class="form-control" id="l_name" placeholder="Enter your Last Name" required>
+            </div>
+            <div class="form-group">
+                <label for="phone">Phone Number</label>
+                <input type="tel" class="form-control" pattern="[\(]\d{3}[\)]\d{3}[\-]\d{4}" id="phone"
+                       placeholder="Enter your Phone Number" required>
+            </div>
+            <div class="form-group">
+                <div class="my-form">
+                    <div class="addField"></div>
+                </div>
+            </div>
+            <h3 class="add-form-text">Add up to two fields</h3>
+            <input type="text" class="form-control" id="optional_label" placeholder="Enter label for field"
+                   maxlength="30">
+            <div class="add-fields my-form">
+                <button type="button" class="btn btn-success add-box">Add</button>
+                <button type="submit" class="save-form btn btn-primary">Submit</button>
+            </div>
+        </form>
+
+    </div>
 </div>
 
-		<!-- Bottom scripts (common) -->
-		<script src="/emissary/js/js_libs/jquery/jquery-1.11.3.min.js"></script>
-		<script src="/emissary/js/js_libs/TweenMax.min.js"></script>
-		<script src="/emissary/js/js_libs/jquery/jquery-ui-1.10.3.minimal.min.js"></script>
-		<script src="/emissary/js/js_libs/bootstrap.js"></script>
-		<script src="/emissary/js/js_libs/joinable.js"></script>
-		<script src="/emissary/js/js_libs/resizeable.js"></script>
-		<script src="/emissary/js/js_libs/neon/neon-api.js"></script>
-		<script src="/emissary/js/js_libs/jquery/jquery-jvectormap-1.2.2.min.js"></script>
-		
-		<!-- Imported scripts on this page -->
-		<script src="/emissary/js/js_libs/jquery/jquery-jvectormap-europe-merc-en.js"></script>
-		<script src="/emissary/js/js_libs/jquery/jquery.sparkline.min.js"></script>
-		<script src="/emissary/js/js_libs/rickshaw/d3.v3.js"></script>
-		<script src="/emissary/js/js_libs/rickshaw/rickshaw.min.js"></script>
-		<script src="/emissary/js/js_libs/raphael-min.js"></script>
-		<script src="/emissary/js/js_libs/morris.min.js"></script>
-		<script src="/emissary/js/js_libs/toastr.js"></script>
-		<script src="/emissary/js/js_libs/fullcalendar.min.js"></script>
-		<script src="/emissary/js/js_libs/neon/neon-chat.js"></script>
-		<script src="/emissary/js/form-builder.js"></script>
-
-		<!-- JavaScripts initializations and stuff -->
-		<script src="/emissary/js/js_libs/neon/neon-custom.js"></script>
-		<script src="/emissary/js/js_libs/jscolor.js"></script>
-
-		<!-- Demo Settings -->
-		<script src="/emissary/js/js_libs/neon/neon-demo.js"></script>
-		<script src="/emissary/js/js_libs/socket.io.js"></script>
-		<script src="/emissary/js/js_libs/handlebars-v4.0.5.js"></script>
-		<script src="/emissary/js/login.js"></script>
-		<script src="/emissary/js/appointments.js"> </script>
+<script src="js/js_libs/jquery/jquery-1.11.3.min.js"></script>
+<script src="js/js_libs/TweenMax.min.js"></script>
+<script src="js/js_libs/jquery/jquery-ui-1.10.3.minimal.min.js"></script>
+<script src="js/js_libs/bootstrap.js"></script>
+<script src="js/js_libs/joinable.js"></script>
+<script src="js/js_libs/resizeable.js"></script>
+<script src="js/js_libs/neon/neon-api.js"></script>
+<script src="js/js_libs/jquery/jquery-jvectormap-1.2.2.min.js"></script>
+<script src="js/form-builder.js"></script>
+<script src="js/js_libs/neon/neon-custom.js"></script>
+<script src="js/js_libs/jscolor.js"></script>
+<script src="js/js_libs/socket.io.js"></script>
+<script src="js/login.js"></script>
+<script src="js/google-analytic.js"></script>
 
 </body>
 </html>

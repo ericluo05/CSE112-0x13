@@ -1,5 +1,6 @@
 /* jshint expr: true */
 module.exports = {
+	/*
   'tags': ['Phone Validation'],
   'Site Element Existence': function(client) {
     client
@@ -25,4 +26,5 @@ module.exports = {
 
     client.end();
   },
+  */
 };

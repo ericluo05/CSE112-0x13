@@ -5,24 +5,23 @@ engines:
     enabled: true
   fixme:
     enabled: true
+    config:
+      strings:
+      - FIXME
+      - BUG
+      - TODO
 ratings:
   paths:
-  - client/emissary/js/*.js
-  - client/emissary/stylesheets/*.css
-  - client/js_es6
-  - client/stylesheets
-  - server/lib/
-  - server/routes/
+  - client/js/*.js
+  - client/stylesheets/*.css
+  - server/**/*.js
+  - test/**/*.js
 exclude_paths:
-- build/
-- client/emissary/stylesheets/font-icons/
-- client/emissary/stylesheets/jquery/
-- client/emissary/stylesheets/libs/
-- client/emissary/stylesheets/neon/
-- client/emissary/js/js_libs/
 - config/
+- client/js/js_libs
+- client/stylesheets/libs
+- dist/
 - doc/
 - drivers/
 - server/data/
-
-
+- server/lib/phone_general.js

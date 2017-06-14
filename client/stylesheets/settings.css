@@ -1,0 +1,50 @@
+.page-title {
+  margin: 30px auto;
+}
+
+.settings-container {
+  max-width: 980px;
+}
+
+.field-color {
+  color: black;
+}
+
+.edit-button {
+  text-align: center;
+  border-radius: 2px;
+  padding: 5px;
+  margin-top: 15px;
+  background-color: #01b2bd;
+  color: white;
+}
+
+.edit-button:hover {
+  background-color: #049099;
+  cursor: pointer;
+}
+
+hr {
+  border-top: 3px solid #01b2bd !important;
+}
+
+.stripe-button-el span {
+  background: #01b2bd !important;
+  width: 136px;
+  text-shadow: none !important;
+}
+
+.subs-btn {
+  text-align: center;
+  border-radius: 5px;
+  height: 39px;
+  padding: 5px;
+  background-color: #01b2bd;
+  color: white;
+  font-size: 18px;
+}
+
+.subs-btn:hover {
+  background-color: #049099;
+  cursor: pointer;
+}

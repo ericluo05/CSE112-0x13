@@ -13,7 +13,7 @@ let appointmentSchema = new Schema({
     date: {type: Date, required: true},
     provider_name: {type: String, required: true},
     company_id: {type: Schema.Types.ObjectId, ref: 'Company', required: true},
-});
+}, {versionKey: false});
 
 /**
  * MongoDB Schema for Visitor
@@ -35,7 +35,7 @@ let visitorSchema = new Schema({
     checkin_time: {type: Date, default: Date.now, required: true},
     appointments: {type: [appointmentSchema]},
     additional_info: {},
-});
+}, {versionKey: false});
 
 /**
  * MongoDB Schema for VisitorList

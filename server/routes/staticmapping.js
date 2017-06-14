@@ -3,7 +3,7 @@ let express = require('express');
 let router = new express.Router();
 let path = require('path');
 
-let htmlPath = path.join(__dirname, '../../build/html/');
+let htmlPath = path.join(__dirname, '../../dist/html/');
 
 router.get('/', function(req, res, next) {
    res.sendFile(path.join(htmlPath, 'index.html'));
@@ -12,10 +12,6 @@ router.get('/', function(req, res, next) {
 
 router.get('/settings', function(req, res) {
   res.sendFile(path.join(htmlPath, 'settings.html'));
-});
-
-router.get('/admin-companies', function(req, res) {
-  res.sendFile(path.join(htmlPath, 'admin-companies.html'));
 });
 
 router.get('/admin-dashboard', function(req, res) {
@@ -68,6 +64,18 @@ router.get('/admin-settings', function(req, res) {
 
 router.get('/index', function(req, res) {
     res.sendFile(path.join(htmlPath, 'index.html'));
+});
+
+router.get('/admin-panel', function(req, res) {
+  res.sendFile(path.join(htmlPath, 'admin-panel.html'));
+});
+
+router.get('/company-dashboard', function(req, res) {
+  res.sendFile(path.join(htmlPath, 'company-dashboard.html'));
+});
+
+router.get('/admin-monitoring', function(req, res) {
+  res.sendFile(path.join(htmlPath, 'admin-monitoring.html'));
 });
 
 module.exports = router;

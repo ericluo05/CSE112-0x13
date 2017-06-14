@@ -1,4 +1,4 @@
-# CSE112-0x13
+# CSE112- Team 0x13
 
 Deployed Site:  [Click me](https://team0x13.herokuapp.com/)
 
@@ -10,3 +10,15 @@ Deployed Site:  [Click me](https://team0x13.herokuapp.com/)
 
 Team Email: cse112team0x13@gmail.com
 password: team0x13
+
+### Quick Start Guide:
+1. Run "npm install" to install all dependencies.
+2. Install [MongoDB](https://www.mongodb.com/download-center).
+3. Install gulp globally by running "npm install gulp -g"
+4. Run "gulp build" to build the distribution folder, then run"npm start" to start the server.
+
+### Quick Tips:
+
+Run "gulp dev" for development, which will make/update the build, start the server,  auto-restart the server on modification to scripts (using nodemon), rebuild changed files and refresh active pages on any modification made to client folder (using browser-sync).
+
+Install [MongoDB Compass](https://www.mongodb.com/products/compass) to visually view data stored in MongoDB.

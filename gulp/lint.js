@@ -39,8 +39,7 @@ gulp.task('lint:js:frontend', () => {
 
 gulp.task('lint:js:test', () => {
     // lint backend and testing js files
-    return gulp.src(['test/api/**/*.js', 'test/e2e/**/*.js', 'test/route/**/*.js',
-                'test/unit/**/*.js'])
+    return gulp.src(['test/**/*.js'])
         .pipe(eslint({
             fix: true,
         }))
@@ -58,8 +57,8 @@ gulp.task('lint:js', ['lint:js:backend', 'lint:js:frontend', 'lint:js:test']);
 gulp.task('lint:html', () => {
     gulp.src('./client/html/**/*.html')
         .pipe(htmlhint())
-        .pipe(htmlhint.reporter());
-        // .pipe(htmlhint.failReporter());
+        .pipe(htmlhint.reporter())
+        .pipe(htmlhint.failReporter());
 });
 
 /**

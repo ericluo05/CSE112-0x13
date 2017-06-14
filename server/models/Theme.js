@@ -22,7 +22,7 @@ let ThemeSchema = new Schema({
     displayClock: Boolean,
     displaySignature: Boolean,
     additionalComments: Boolean,
-});
+}, {versionKey: false});
 
 // Export schema
 module.exports = mongoose.model('Theme', ThemeSchema);

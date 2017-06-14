@@ -6,7 +6,7 @@ let phoneGeneral = require('../lib/phone_general');
 
 
 router.get('/', function(req, res, next) {
-    res.sendFile(path.join(__dirname+ './../../build/html/phone.html'));
+    res.sendFile(path.join(__dirname+ './../../dist/html/phone.html'));
 });
 
 
@@ -27,10 +27,10 @@ router.get('/', function(req, res, next) {
  */
 router.post('/isValidPhone', function(req, res) {
     if (req.query.cc && req.query.number) {
-         res.json(phoneGeneral.isValidPhone(req.query.cc, req.query.number));
-     } else {
-         res.json({'isPhoneValid': false, 'E.164 Format': 'NA'});
-     }
+        res.json(phoneGeneral.isValidPhone(req.query.cc, req.query.number));
+    } else {
+        res.json({'isPhoneValid': false, 'E.164 Format': 'NA'});
+    }
 });
 
 
@@ -55,7 +55,7 @@ router.post('/format', function(req, res) {
         res.json(phoneGeneral.formatPhoneNumber(req.query.cc,
             req.query.number));
     else
-      res.json({'isValid': false, 'Error': 'cc or number missing'});
+        res.json({'isValid': false, 'Error': 'cc or number missing'});
 });
 
 module.exports = router;

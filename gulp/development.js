@@ -1,18 +1,23 @@
 let gulp = require('gulp');
 let browserSync = require('browser-sync');
+let babel = require('gulp-babel');
 let nodemon = require('gulp-nodemon');
 let newer = require('gulp-newer');
 let paths = {
-    js_src: 'client/js_es6/**/*.js',
-    js_dest: 'build/js',
-    html_src: 'client/html/**/*.html',
-    html_dest: 'build/html',
-    css_src: 'client/stylesheets/**/*.css',
-    css_dest: 'build/stylesheets',
+    js_src: 'client/js/*.js',
+    js_dest: 'dist/js',
+    html_src: 'client/html/**/*.*',
+    html_dest: 'dist/html',
+    css_src: 'client/stylesheets/**/*.*',
+    css_dest: 'dist/stylesheets',
     image_src: 'client/images/**',
-    image_dest: 'build/images',
-    emissary_src: 'client/emissary/**/*.*',
-    emissary_dest: 'build/emissary/',
+    image_dest: 'dist/images',
+    views_src: 'client/views/**/*.*',
+    views_dest: 'dist/views',
+    js_lib_src: 'client/js/js_libs/**/*.*',
+    js_lib_dest: 'dist/js/js_libs/',
+    css_lib_src: 'client/stylesheets/libs/**/*.*',
+    css_lib_dest: 'dist/stylesheets/libs/',
 };
 
 /*
@@ -22,16 +27,16 @@ let paths = {
 gulp.task('development', ['dev:frontend'], function() {
 });
 
-
 gulp.task('dev', ['dev:backend'], function() {
     gulp.watch(paths.js_src, ['watch:js']);
     gulp.watch(paths.html_src, ['watch:html']);
     gulp.watch(paths.css_src, ['watch:css']);
     gulp.watch(paths.image_src, ['watch:image']);
-    gulp.watch(paths.emissary_src, ['watch:emissary']);
+    gulp.watch(paths.js_lib_src, ['watch:js_lib']);
+    gulp.watch(paths.css_lib_src, ['watch:css_lib']);
     browserSync.init(null, {
         proxy: 'http://localhost:3000',
-        files: ['build/**/*.*'],
+        files: ['dist/**/*.*'],
         port: 7000,
     });
 });
@@ -48,10 +53,11 @@ gulp.task('dev:frontend', ['dev:backend'], function() {
     gulp.watch(paths.html_src, ['watch:html']);
     gulp.watch(paths.css_src, ['watch:css']);
     gulp.watch(paths.image_src, ['watch:image']);
-    gulp.watch(paths.emissary_src, ['watch:emissary']);
+    gulp.watch(paths.js_lib_src, ['watch:js_lib']);
+    gulp.watch(paths.css_lib_src, ['watch:css_lib']);
     browserSync.init(null, {
         proxy: 'http://localhost:3000',
-        files: ['build/**/*.*'],
+        files: ['dist/**/*.*'],
         port: 7000,
     });
 });
@@ -64,7 +70,7 @@ gulp.task('dev:backend', ['build'], function(cb) {
     let started = false;
     return nodemon({
         script: './server/bin/www',
-        ignore: ['config/', 'build', 'coverage/', 'drivers/', 'node_modules/',
+        ignore: ['config/', 'dist/', 'coverage/', 'doc/', 'drivers/', 'node_modules/',
             'reports/', 'test/'],
         env: {'NODE_ENV': 'development'},
     }).on('start', function() {
@@ -84,6 +90,26 @@ gulp.task('watch:js', function() {
         .pipe(newer(paths.js_dest))
         .pipe(babel({presets: ['es2015']}))
         .pipe(gulp.dest(paths.js_dest));
+});
+
+/*
+ * Helper for dev:frontend, on js lib file changes, the file will be directly copied and
+  * pasted into the destination folder, no trans-compiling is done
+ */
+gulp.task('watch:js_lib', function() {
+    gulp.src(paths.js_lib_src)
+        .pipe(newer(paths.js_lib_dest))
+        .pipe(gulp.dest(paths.js_lib_dest));
+});
+
+/*
+ * Helper for dev:frontend, on js lib file changes, the file will be directly copied and
+ * pasted into the destination folder, no trans-compiling is done
+ */
+gulp.task('watch:css_lib', function() {
+    gulp.src(paths.css_lib_src)
+        .pipe(newer(paths.css_lib_dest))
+        .pipe(gulp.dest(paths.css_lib_dest));
 });
 
 /*
@@ -116,12 +142,3 @@ gulp.task('watch:image', function() {
         .pipe(gulp.dest(paths.image_dest));
 });
 
-
-/*
- * Helper for dev:frontend, watch for changes in emissary folder
- */
-gulp.task('watch:emissary', function() {
-    gulp.src(paths.emissary_src)
-        .pipe(newer(paths.emissary_dest))
-        .pipe(gulp.dest(paths.emissary_dest));
-});

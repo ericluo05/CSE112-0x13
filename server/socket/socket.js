@@ -70,7 +70,7 @@ exports.createServer = function(io_in) {
         });
 
 // requires the company_id to be sent
-        socket.on(VISITOR_LIST_UPDATE,  function(data) {
+        socket.on(VISITOR_LIST_UPDATE, function(data) {
             let company_id = data.company_id;
            // console.log('Visitor List Update' + data);
             VisitorListCtr.getCompanyVisitorList(company_id,

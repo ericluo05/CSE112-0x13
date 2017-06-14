@@ -44,6 +44,13 @@
 				</ul>
 			</li>
 			
+			<li class="dropdown">
+				<a href="global.html" class="dropdown-toggle" data-toggle="dropdown">Global<b class="caret"></b></a>
+				<ul class="dropdown-menu ">
+					<li><a href="global.html#createEmissaryCompany">createEmissaryCompany</a></li><li><a href="global.html#createSuperAdminAcc">createSuperAdminAcc</a></li><li><a href="global.html#sendGreeting">sendGreeting</a></li>
+				</ul>
+			</li>
+			
 		</ul>
         
             <div class="col-sm-3 col-md-3">
@@ -462,7 +469,7 @@
 
     
     <div class="description">
-        handler to log in a user
+        handler to find a company
     </div>
     
 
@@ -614,7 +621,7 @@
 
     
     <div class="description">
-        handler to  ???
+        handler to get all companies
     </div>
     
 
@@ -902,6 +909,310 @@
     
 
     
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id="~searchCompanies"><span class="type-signature">&lt;inner> </span>searchCompanies(req, res)</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        search company given string to match
+    </div>
+    
+
+    
+
+    
+
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>req</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">request object</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>res</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">response object</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id="~showCompanyPrivateInfo"><span class="type-signature">&lt;private, inner> </span>showCompanyPrivateInfo(c)</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        convert company info into array
+    </div>
+    
+
+    
+
+    
+
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>c</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">company object</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    company info object
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">CompanyInfoAdmin</span>
+
+
+
+    </dd>
+</dl>
+
+
+        
 
     
 </dd>
@@ -1387,6 +1698,129 @@
         </tr>
 
     
+
+        <tr>
+            
+                <td class="name"><code>create_time</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Date</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">time in which the company is created</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>sub_expiration</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Date</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">time in which the subscription expires</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>num_months_subscribed</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Number</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">number of months the company is subscribed</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>revenue:</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Number</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">total amount paid by this company thus far, include
+            payments for subscriptions for future months, it is probably better
+            to not allow advanced payment as it can lead to "bogus" sale/data
+            in case of cancellation</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>num_employees</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Number</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">number of registered employees</td>
+        </tr>
+
+    
     </tbody>
 </table>
 </dl>
@@ -1480,7 +1914,7 @@
 <span class="jsdoc-message">
 	Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.3</a>
 	
-		on 2017-05-25T02:05:21-07:00
+		on 2017-06-03T21:04:19-07:00
 	
 	using the <a href="https://github.com/docstrap/docstrap">DocStrap template</a>.
 </span>

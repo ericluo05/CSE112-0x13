@@ -9,18 +9,18 @@
     <title>Login</title>
 
     <!-- CSS -->
-    <link rel="stylesheet" href="/emissary/stylesheets/signup.css">
+    <link rel="stylesheet" href="stylesheets/signup.css">
     <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:400,100,300,500">
-    <link rel="stylesheet" href="/emissary/stylesheets/libs/bootstrap.css">
-    <link rel="stylesheet" href="/emissary/stylesheets/font-icons/font-awesome/css/font-awesome.css">
-    <link rel="stylesheet" href="/emissary/stylesheets/style.css">
+    <link rel="stylesheet" href="stylesheets/libs/bootstrap.css">
+    <link rel="stylesheet" href="stylesheets/libs/font-icons/font-awesome/css/font-awesome.css">
+    <link rel="stylesheet" href="stylesheets/style.css">
 
     <!-- Favicon and touch icons -->
-    <link rel="icon" href="/images/logo-emissary.png">
-   <!--  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/emissary/ico/apple-touch-icon-144-precomposed.png">
-    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/emissary/ico/apple-touch-icon-114-precomposed.png">
-    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="/emissary/ico/apple-touch-icon-72-precomposed.png">
-    <link rel="apple-touch-icon-precomposed" href="/emissary/ico/apple-touch-icon-57-precomposed.png"> -->
+    <link rel="icon" href="/images/appt-o-matic.png">
+   <!--  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="ico/apple-touch-icon-144-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="ico/apple-touch-icon-114-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="ico/apple-touch-icon-72-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" href="ico/apple-touch-icon-57-precomposed.png"> -->
 
 </head>
 
@@ -31,7 +31,7 @@
     <div class="container">
         <div class="navbar-header">
           <a href="index.html">
-              <img src="/images/emissary.png" width="150" alt="logo" />
+              <img src="/images/appt-o-matic-logo2.png" width="150" alt="logo" />
           </a>
         </div>
 
@@ -51,60 +51,70 @@
             <div class="row">
                 <div class="form-box col-xs-10 col-centered">
                     <form role="form" class="registration-form">
-                        <fieldset>
+                        <fieldset id="first-fs">
                             <div class="form-top">
                                 <h1>Step 1/2:</h1>
                                 <p>Create a company</p>
                             </div>
                             <div class="form-bottom">
-                                <div class="form-group">
+                                <div id="comp-name" class="form-group">
                                     <label class="sr-only" for="form-company-name">Company Name</label>
                                     <input type="text" name="name" placeholder="Company Name" class="form-company-name form-control" id="form-company-name">
+                                    <span id="comp-name-msg" class="help-block hidden">Please enter a company name</span>
                                 </div>
-                                <div class="form-group">
+                                <div id="comp-email" class="form-group">
                                     <label class="sr-only" for="form-email">Email</label>
                                     <input type="text" name="email" placeholder="Company Email" class="form-email form-control" id="form-email">
+                                    <span id="comp-email-msg" class="help-block hidden">Please enter a company email</span>   
+                                    <span id="comp-unique-email-msg" class="help-block hidden">Email address is already used by a different company</span>
                                 </div>
-                                <div class="form-group">
+                                <div id="comp-phone" class="form-group">
                                     <label class="sr-only" for="form-phone">Phone Number</label>
                                     <input type="text" name="phone_number" placeholder="Company Phone Number" class="form-phone form-control" id="form-phone">
+                                    <span id="comp-phone-msg" class="help-block hidden">Please enter a company phone number</span>
                                 </div>
                                 <button id="submit-company-btn" type="button" class="btn btn-next">Next</button>
                             </div>
                         </fieldset>
 
-                        <fieldset>
+                        <fieldset id="second-fs">
                             <div class="form-top">
                                 <h1>Step 2/2:</h1>
                                 <p>Create your personal user account</p>
                             </div>
                             <div class="form-bottom">
-                                <div class="form-group">
+                                <div id="per-first-name" class="form-group">
                                     <label class="sr-only" for="form-employee-first">First Name</label>
                                     <input type="text" name="first" placeholder="First Name" class="first form-control" id="form-employee-first">
+                                    <span id="per-first-msg" class="help-block hidden">Please enter your first name</span>
                                 </div>
-                                <div class="form-group">
+                                <div id="per-last-name" class="form-group">
                                     <label class="sr-only" for="form-employee-last">Last Name</label>
                                     <input type="text" name="last" placeholder="Last Name" class="form-control" id="form-employee-last">
+                                    <span id="per-last-msg" class="help-block hidden">Please enter your last name</span>
                                 </div>
-                                <div class="form-group">
+                                <div id="per-email" class="form-group">
                                     <label class="sr-only" for="form-employee-email">Email</label>
                                     <input type="text" name="email" placeholder="Personal Email" class="form-email form-control" id="form-employee-email">
+                                    <span id="per-email-msg" class="help-block hidden">Please enter your email</span>
                                 </div>
-                                <div class="form-group">
+                                <div id="per-phone" class="form-group">
                                     <label class="sr-only" for="form-employee-phone">Phone Number</label>
                                     <input type="text" name="phone_number" placeholder="Personal Phone Number" class="form-phone form-control" id="form-employee-phone">
+                                    <span id="per-phone-msg" class="help-block hidden">Please enter your phone number</span>
                                 </div>
-                                <div class="form-group">
+                                <div id="per-password" class="form-group">
                                     <label class="sr-only" for="form-password">Password</label>
                                     <input type="password" name="form-password" placeholder="Password" class="form-password form-control" id="form-password">
+                                    <span id="per-pw-msg" class="help-block hidden">Please enter your password</span>
                                 </div>
-                                <div class="form-group">
+                                <div id="per-password-repeat" class="form-group">
                                     <label class="sr-only" for="form-repeat-password">Repeat password</label>
                                     <input type="password" name="form-repeat-password" placeholder="Confirm Password"
                                            class="form-repeat-password form-control" id="form-repeat-password">
+                                    <span id="per-pw-repeat-msg" class="help-block hidden">Please enter your password</span>
                                 </div>
-                                <button id="submit-btn" type="button" class="btn btn-next">Next</button>
+                                <button id="submit-btn" type="button" class="btn btn-next">Submit</button>
                             </div>
                         </fieldset>
                     </form>
@@ -115,21 +125,14 @@
 </div>
 
 <!-- Javascript -->
-<script src="/emissary/js/js_libs/jquery/jquery-1.11.3.min.js"></script>
-<script src="/emissary/js/signup.js"></script>
-<script src="/emissary/js/js_libs/bootstrap.js"></script>
-<script src="/emissary/js/js_libs/jquery/jquery.backstretch.min.js"></script>
-<script src="/emissary/js/js_libs/retina-1.1.0.min.js"></script>
-<!-- google analytics -->
-    <script>
-        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-                    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-                m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-        ga('create', 'UA-74424228-1', {'cookieDomain': 'none'});
-        ga('send', 'pageview');
-    </script>
-<script src="/emissary/js/scripts.js"></script>
+<script src="js/js_libs/jquery/jquery-1.11.3.min.js"></script>
+<script src="js/js_libs/jquery/jquery.maskedinput.js"></script>
+<script src="js/signup.js"></script>
+<script src="js/js_libs/bootstrap.js"></script>
+<script src="js/js_libs/jquery/jquery.backstretch.min.js"></script>
+<script src="js/js_libs/retina-1.1.0.min.js"></script>
+<script src="js/scripts.js"></script>
+<script src="js/google-analytic.js"></script>
 </body>
 
 </html>

@@ -1,21 +1,15 @@
 'use strict';
 
 require('express');
-// let router = express.Router();
-// let bodyparser = require('body-parser');
+
 let nodemailer = require('nodemailer');
-
-exports.template = {};
-
-// create reusable transporter object from company email
 let transporter = nodemailer.createTransport({
-    service: 'Gmail',
+    service: 'gmail',
     auth: {
-        user: 'testcse112@gmail.com',
-        pass: 'robo_betty',
+        user: 'cse112team0x13@gmail.com',
+        pass: 'team0x13',
     },
 });
-
 
 // sendEmail: Send email to employees when visitorList is checked in.
 exports.sendEmail = function(patientName, employees, done) {
@@ -28,10 +22,7 @@ exports.sendEmail = function(patientName, employees, done) {
       if(error) {
         console.log(error);
         console.log('Error occurred sending email');
-        // res.json({message: "Error occurred sending email"});
       }else{
-        console.log('Email was sent.');
-        // res.json({message : "Email was sent." });
       }
       if(done && len-1 === i) return done();
     };
@@ -40,16 +31,33 @@ exports.sendEmail = function(patientName, employees, done) {
   if(employees === null || (employees.length <= 0))
     if(done) return done();
   for (let index = 0; index < employees.length; index++) {
+    if(!employees[index].receive_email) continue;
     // create the email object that will be sent
+    let subject = '✨'+patientName + '✨ Just Checked In';
     let mailOptions = {
-      from: 'Robo Betty <testcse112@gmail.com>', // sender address
+      from: '"Appt-o-matic" <cse112team0x13@gmail.com>', // sender address
       to: employees[index].email, // list of receivers
-      subject: 'Patient ' + patientName + ' is ready', // Subject line
-      text: 'Your visitorList ' + patientName + ' is here.', // plaintext body
-      html: '<b>Your visitorList ' + patientName + ' is here.</b>', // html body
+      subject: subject, // Subject line
+      text: patientName + ' is here.', // plaintext body
+      html: '<b>' + patientName + ' is here.</b>', // html body
     };
 
     // send mail with defined transport object
     transporter.sendMail(mailOptions, callback(index));
   }
+};
+
+exports.sendNewPassword = function(email, newPassword) {
+    let subject = '✨Appt-o-matic password reset✨';
+    let mailOptions = {
+        from: '"Appt-o-matic" <cse112team0x13@gmail.com>', // sender address
+        to: email, // list of receivers
+        subject: subject, // Subject line
+        text: 'Your new password is ' + newPassword,
+        html: '<b>Your new password is ' + newPassword + '</b>', // html body
+    };
+
+    // send mail with defined transport object
+    transporter.sendMail(mailOptions, function(error, info) {
+    });
 };

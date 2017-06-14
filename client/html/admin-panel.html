@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <meta name="description" content="Neon Admin Panel"/>
+    <meta name="author" content=""/>
+
+    <link rel="icon" href="/images/appt-o-matic.png">
+
+    <title>Appt-o-matic | Admin Panel</title>
+
+    <link rel="stylesheet" href="stylesheets/libs/font-icons/font-awesome/css/font-awesome.css">
+    <link rel="stylesheet" href="stylesheets/libs/jquery/jquery-ui-1.10.3.custom.min.css">
+    <link rel="stylesheet" href="stylesheets/libs/font-icons/entypo/css/entypo.css">
+    <link rel="stylesheet" href="stylesheets/shared-dashboard.css">
+    <link rel="stylesheet" href="stylesheets/libs/bootstrap.css">
+    <link rel="stylesheet" href="stylesheets/libs/neon/neon-core.css">
+    <link rel="stylesheet" href="stylesheets/libs/neon/neon-theme.css">
+    <link rel="stylesheet" href="stylesheets/libs/neon/neon-forms.css">
+    <link rel="stylesheet" href="stylesheets/admin-panel.css">
+
+</head>
+<body class="page-body gray" data-url="http://neon.dev">
+
+<div class="page-container">
+    <!-- add class "sidebar-collapsed" to close sidebar by default, "chat-visible" to make chat appear always -->
+    <div class="sidebar-menu">
+        <div class="sidebar-menu-inner">
+
+            <header class="logo-env">
+                <!-- logo -->
+                <div class="logo">
+                    <a href="#">
+                        <img src="/images/appt-o-matic-logo.png" width="150" alt="logo"/>
+                    </a>
+                </div>
+                <!-- logo collapse icon -->
+                <div class="sidebar-collapse">
+                    <a href="#" class="sidebar-collapse-icon">
+                        <!-- add class "with-animation" if you want sidebar to have animation during expanding/collapsing transition -->
+                        <i class="entypo-menu"></i>
+                    </a>
+                </div>
+                <!-- open/close menu icon (do not remove if you want to enable menu on mobile devices) -->
+                <div class="sidebar-mobile-menu visible-xs">
+                    <a href="#" class="with-animation"><!-- add class "with-animation" to support animation -->
+                        <i class="entypo-menu"></i>
+                    </a>
+                </div>
+            </header>
+
+            <ul id="main-menu" class="main-menu">
+                <!-- add class "multiple-expanded" to allow multiple submenus to open -->
+                <!-- class "auto-inherit-active-class" will automatically add "active" class for parent elements who are marked already with class "active" -->
+                <li>
+                  <a href="#">
+                      <i class="entypo-clipboard"></i>
+                      <span class="title">Admin Panel</span>
+                  </a>
+                </li>
+                <li>
+                  <a href="admin-monitoring.html">
+                      <i class="entypo-clock"></i>
+                      <span class="title">Monitoring</span>
+                  </a>
+                </li>
+                <li>
+                  <a href="admin-settings.html">
+                    <i class="entypo-tools"></i>
+                    <span class="title">Settings</span>
+                  </a>
+                </li>
+            </ul>
+
+        </div>
+    </div>
+
+    <div class="main-content">
+        <div class="row">
+            <!-- Profile Info and Notifications -->
+            <div class=" col-md-6 col-sm-8 clearfix">
+                <ul class="user-info pull-left pull-none-xsm">
+                    <!-- Profile Info -->
+                    <li class="profile-info dropdown">
+                        <!-- add class "pull-right" if you want to place this from right -->
+                        <div id="company-name">
+                            <h1>Hi, <span id="user-name"> </span></h1>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Raw Links -->
+            <div class="col-md-6 col-sm-4 clearfix hidden-xs">
+                <ul class="list-inline links-list pull-right">
+                    <div class="dropdown">
+                        <i class="fa fa-3x fa-cog dropdown-toggle" data-toggle="dropdown"></i>
+                        <ul class="dropdown-menu">
+                            <li><a id="logoutButton" href="index.html">
+                                Log Out <i class="entypo-logout right"></i></a>
+                            </li>
+                        </ul>
+                    </div>
+                </ul>
+            </div>
+        </div>
+
+        <hr/>
+        <div class="admin-panel-container">
+            <div id="admin-panel-queue">
+              <div class="row">
+                <div class="col-md-9 col-sm-8 col-xs-12">
+                  <h1 class="page-title">Admin Panel</h1>
+                </div>
+                <div id="search-div" class="col-md-3 col-sm-4 col-xs-6">
+                  <form>
+                    <input type="search" id="search-input" class="form-control" placeholder="Search for a company">              
+                  </form>
+                </div>
+              </div>
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th>Company</th>
+                        <th>Duration of Subscription</th>
+                        <th>Number of Employees</th>
+                    </tr>
+                    </thead>
+                    <tbody id="company-list">
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- HANDLE BAR TEMPLATE -->
+        <script type="text/x-handlebars-template" id="company-list-template">
+            {{#each []}}
+            <tr class="company-row" value="{{this.compId}}">
+                <td class="company-data">{{this.name}}</td>
+                <td class="company-data">{{this.subLength}}</td>
+                <td class="company-data">{{this.employeeNum}}</td>
+            </tr>
+            {{/each}}
+        </script>
+
+    </div>
+</div>
+
+<!-- Bottom scripts (common) -->
+<script src="js/admin-login.js"></script>
+<script src="js/js_libs/jquery/jquery-1.11.3.min.js"></script>
+<script src="js/js_libs/TweenMax.min.js"></script>
+<script src="js/js_libs/jquery/jquery-ui-1.10.3.minimal.min.js"></script>
+<script src="js/js_libs/bootstrap.js"></script>
+<script src="js/js_libs/joinable.js"></script>
+<script src="js/js_libs/resizeable.js"></script>
+<script src="js/js_libs/neon/neon-api.js"></script>
+<script src="js/admin-panel.js"></script>
+
+<!-- JavaScripts initializations and stuff -->
+<script src="js/js_libs/neon/neon-custom.js"></script>
+<script src="js/js_libs/handlebars-v4.0.5.js"></script>
+<script src="js/login.js"></script>
+<script src="js/google-analytic.js"></script>
+</body>
+</html>

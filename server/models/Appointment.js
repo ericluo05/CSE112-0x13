@@ -25,6 +25,6 @@ let appointmentSchema = new Schema({
     date: {type: Date, required: true},
     provider_name: {type: String, required: true},
     company_id: {type: Schema.Types.ObjectId, ref: 'Company', required: true},
-});
+}, {versionKey: false});
 
 module.exports = mongoose.model('appointment', appointmentSchema);
