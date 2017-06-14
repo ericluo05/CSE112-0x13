@@ -12,6 +12,10 @@ $(document).ready(function() {
     document.ontouchmove = function(e) {
         e.preventDefault();
     };
+    
+    jQuery(function($) {
+      $('#visitor-number').mask('(999) 999-9999');
+    });
 
     // Bind Listeners
     $('#tap-to-check').on('click', startCheckIn);

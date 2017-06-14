@@ -84,6 +84,7 @@ body#check-in-page {
   display: block;
   border: none;
   font-size: 28px;
+  color: #333;
 }
 
 .hide {

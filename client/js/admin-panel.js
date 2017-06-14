@@ -10,7 +10,10 @@ $(document).ready(function() {
 
   $('#search-input').keyup(function() {
     console.log($('#search-input').val());
-    companyInfo = updateCompanies($('#search-input').val());
+    if($('#search-input').val() != "")
+      companyInfo = updateCompanies($('#search-input').val());
+    else
+      companyInfo = getAllComps();
     updateTable(companyInfo);
   });
 
