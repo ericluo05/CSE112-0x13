@@ -90,7 +90,7 @@ exports.handleAll = function(req, res) {
 
         // update the database
         Conversation.findOneAndUpdate(conversationQuery, update,
-            function (err, foundConv) {
+            function(err, foundConv) {
                 if (err) console.log(err);
 
                 // TODO: if no more update, update Appointment
