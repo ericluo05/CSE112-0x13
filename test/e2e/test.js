@@ -28,19 +28,19 @@ let height = 800;
 
 let browserInit = function(client_) {
   client_.resizeWindow(width, height);
-}
+};
 
 let userInfo = {
   email: userEmail,
   password: password,
-  fullName: firstName + ' ' + lastName
-}
+  fullName: firstName + ' ' + lastName,
+};
 
 let adminInfo = {
   email: 'peter@apptomatic.com',
   password: 'admin',
-  fullName: 'Peter'
-}
+  fullName: 'Peter',
+};
 
 let login = function(client_, user) {
   client_.url(testServer + '/login').pause(newPageWaitTime);
@@ -56,12 +56,12 @@ let login = function(client_, user) {
   client_.click('//button[@id="loginButton"]')
     .pause(1000);
   client_.pause(newPageWaitTime);
-}
+};
 
 let verifyCompanyName = function(client_, info) {
   client_.assert.containsText('//div[@id="company-name"]/h1/span',
     info.fullName);
-}
+};
 
 let verifyMenu = function(client_) {
   client_
@@ -116,7 +116,7 @@ let verifyMenu = function(client_) {
           'Settings');
     }
   });
-}
+};
 
 let verifyDropdown = function(client_, info) {
   client_
@@ -132,8 +132,7 @@ let verifyDropdown = function(client_, info) {
   client_
     .expect.element('//div[@class="dropdown"]//li[last()]/a[@id="logoutButton"]')
     .to.be.present;
-
-}
+};
 
 let verifyLogout = function(client_, info) {
   client_
@@ -151,15 +150,13 @@ let verifyLogout = function(client_, info) {
       .url(testServer + '/visitors.html');
   } else {
     client_
-      .url(testServer + '/admin-panel.html')
+      .url(testServer + '/admin-panel.html');
   }
   client_.pause(newPageWaitTime);
   client_
     .assert
     .urlEquals(testServer + '/login');
-
-
-}
+};
 
 
 let test = {
@@ -346,7 +343,7 @@ let test = {
     verifyCompanyName(client, userInfo);
     verifyMenu(client);
     verifyDropdown(client, userInfo);
-    //client.assert.containsText('//div[@id="company-name"]/h1/span',
+    // client.assert.containsText('//div[@id="company-name"]/h1/span',
     //  userInfo.fullName);
     // client.pause(2000);
 
@@ -547,8 +544,8 @@ let test = {
       .to.be.present;
 
     // client.pause(2000);
-    //#TODO
-    //verifyLogout(client, userInfo);
+    // #TODO
+    // verifyLogout(client, userInfo);
     client.end();
   },
   'form-builder - Site Element Existence Test': function(client) {
@@ -653,7 +650,6 @@ let test = {
     client.end();
   },
   'settings - Site Element Existence Test': function(client) {
-
     // Login
     browserInit(client);
     login(client, userInfo);
@@ -714,7 +710,7 @@ let test = {
     // logout
     verifyLogout(client, adminInfo);
     client.end();
-  }
+  },
 };
 
 module.exports = test;
