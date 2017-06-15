@@ -19,8 +19,6 @@ exports.create = function(req, res) {
     company.email = req.body.email;
     company.name = req.body.name;
     company.phone_number = req.body.phone_number;
-    company.paid_time=new Date();
-
     company.save(function(err, c) {
         if(err) {
             if(err.code == 11000)

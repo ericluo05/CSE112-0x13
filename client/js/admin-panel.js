@@ -25,13 +25,21 @@ $(document).ready(function() {
       async: false,
       dataType: 'json',
       success: function(response) {
+        let now = new Date(Date.now());
         for(let i = 0; i < response.length; i++) {
-          if(response[i].email != 'support@apptomatic.com') {
+          if(response[i].email !== 'support@apptomatic.com') {
             let searchComp = {};
             searchComp.compId = response[i]._id;
             searchComp.name= response[i].name;
-            searchComp.employeeNum = getEmployeeNum(response[i]._id);
-            searchComp.subLength = getLength(response[i].paid_time.toString());
+            let sub_exp_date = new Date(response[i].sub_expiration);
+            let embedHtml ='';
+            if(sub_exp_date < now)
+              embedHtml = '<img class="svg-img" src="/images/icons/cross.svg">';
+            else
+              embedHtml = '<img class="svg-img" src="/images/icons/check.svg">';
+            searchComp.subscribed = embedHtml;
+            searchComp.revenue = '$'+response[i].revenue;
+            searchComp.total_num_subs = response[i].num_months_subscribed;
             searchCompanies.push(searchComp);
           }
         }
@@ -49,6 +57,7 @@ $(document).ready(function() {
 
   function getAllComps() {
     let companies = [];
+    let now = new Date(Date.now());
     $.ajax({
       type: 'GET',
       url: '/api/companies/',
@@ -61,8 +70,15 @@ $(document).ready(function() {
             let comp = {};
             comp.compId = response[i]._id;
             comp.name= response[i].name;
-            comp.employeeNum = getEmployeeNum(response[i]._id);
-            comp.subLength = getLength(response[i].paid_time.toString());
+            let sub_exp_date = new Date(response[i].sub_expiration);
+            let embedHtml ='';
+            if(sub_exp_date < now)
+              embedHtml = '<img class="svg-img" src="/images/icons/cross.svg">';
+            else
+              embedHtml = '<img class="svg-img" src="/images/icons/check.svg">';
+            comp.subscribed = embedHtml;
+            comp.revenue = '$'+response[i].revenue;
+            comp.total_num_subs = response[i].num_months_subscribed;
             companies.push(comp);
           }
         }
