@@ -669,10 +669,44 @@ let test = {
 
     verifyLogout(client, userInfo);
     client.end();
+  }, 'Admin - Login, Site Element Existence AND Logout Test': function(client) {
+    browserInit(client);
+    login(client, adminInfo);
+    verifyCompanyName(client, adminInfo);
+    verifyMenu(client);
+    verifyDropdown(client, adminInfo);
+
+    // logout
+    verifyLogout(client, adminInfo);
+    client.end();
   }, 'Admin - admin-panel - Site Element Existence AND Logout Test': function(client) {
     browserInit(client);
     login(client, adminInfo);
     client.verify.title('Appt-o-matic | Admin Panel');
+    verifyCompanyName(client, adminInfo);
+    verifyMenu(client);
+    verifyDropdown(client, adminInfo);
+
+    // logout
+    verifyLogout(client, adminInfo);
+    client.end();
+  }, 'Admin - Monitoring - Site Element Existence AND Logout Test': function(client) {
+    browserInit(client);
+    login(client, adminInfo);
+    client.url(testServer + '/admin-monitoring.html').pause(newPageWaitTime);
+    client.verify.title('Appt-o-matic | Monitoring');
+    verifyCompanyName(client, adminInfo);
+    verifyMenu(client);
+    verifyDropdown(client, adminInfo);
+
+    // logout
+    verifyLogout(client, adminInfo);
+    client.end();
+  }, 'Admin - Settings - Site Element Existence AND Logout Test': function(client) {
+    browserInit(client);
+    login(client, adminInfo);
+    client.url(testServer + '/admin-settings.html').pause(newPageWaitTime);
+    client.verify.title('Appt-o-matic | Settings');
     verifyCompanyName(client, adminInfo);
     verifyMenu(client);
     verifyDropdown(client, adminInfo);
