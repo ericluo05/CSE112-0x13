@@ -142,9 +142,12 @@ $(document).ready(function() {
        dataType: 'json',
        success: function(response) {
            localStorage.setItem('currentCompany', JSON.stringify(response));
+           window.location = 'company-dashboard.html';
+       },
+       error: function(response) {
+           alert('an error occurred, please try refreshing the page');
        },
     });
-    window.location = 'company-dashboard.html';
   });
 
   $('#logoutButton').on('click', function() {
