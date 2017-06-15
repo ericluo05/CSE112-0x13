@@ -16,13 +16,6 @@ $(document).ready(function() {
     updateTable(companyInfo);
   });
 
-  /**
-     * Makes a get request for list of all companies that match the
-     * search input
-     *
-     * @param {String} input
-     * @return {Object} list of companies that match input string
-     */
   function updateCompanies(input) {
     let searchCompanies = [];
     $.ajax({
@@ -47,12 +40,6 @@ $(document).ready(function() {
     return searchCompanies;
   }
 
-  /**
-     * Updates the Handlebars template to display the newest
-     * company list
-     *
-     * @param {Object} data
-     */
   function updateTable(data) {
     let source = $('#company-list-template').html();
     let template = Handlebars.compile(source);
@@ -60,13 +47,6 @@ $(document).ready(function() {
     $('#company-list').html(compiledHtml);
   }
 
-  /**
-     * Makes a get request for list of all companies then uses data
-     * to get number of employees and subscription length
-     *
-     * @return {Object} list of companies w/ id, name, employee number,
-     * subscription length
-     */
   function getAllComps() {
     let companies = [];
     $.ajax({
@@ -91,13 +71,6 @@ $(document).ready(function() {
     return companies;
   }
 
-  /**
-     * Makes a get request for list of all employees then uses data
-     * to count total number of employees
-     *
-     * @param {String} companyID
-     * @return {Number} total number of employees
-     */
   function getEmployeeNum(companyID) {
     let num;
     $.ajax({

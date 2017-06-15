@@ -1,6 +1,6 @@
-/**
- * Google Analytics API function
- */
+$(document).ready(function() {
+    $('#user-name').text(JSON.parse(localStorage.getItem('currentUser')).first_name);
+});
 (function(w, d, s, g, js, fjs) {
     g = w.gapi || (w.gapi = {});
     g.analytics = {
