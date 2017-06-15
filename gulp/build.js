@@ -52,7 +52,7 @@ gulp.task('copy:html', function() {
     return gulp.src(paths.html_src)
         .pipe(newer(paths.html_dest))
         .pipe((process.env.NODE_ENV === 'production')?
-            htmlmin({collapseWhitespace: true}):util.noop())
+            htmlmin({collapseWhitespace: false}):util.noop())
         .pipe(gulp.dest(paths.html_dest));
 });
 
