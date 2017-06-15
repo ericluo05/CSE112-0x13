@@ -14,8 +14,6 @@ let Company = require('../../models/Company');
  */
 exports.create = function(req, res) {
     let company = new Company();
-
-    // require provided info
     company.email = req.body.email;
     company.name = req.body.name;
     company.phone_number = req.body.phone_number;
@@ -159,12 +157,12 @@ function showCompanyPublicInfo(c) {
 
 /**
  * @function searchCompanies
- * @description search company given string to match
+ * @description search company given string to match, case insensitive
  * @param {Object} req - request object
  * @param {Object} res - response object
  */
 exports.searchCompanies = function(req, res) {
-    let regexToSearch = new RegExp('.*'+req.params.match.trim()+'.*');
+    let regexToSearch = new RegExp('.*'+req.params.match.trim()+'.*', 'i');
     Company.find({name: regexToSearch}, function(error, result) {
         if(error)
             return res.status(400).json({error: 'Could Not Search '});

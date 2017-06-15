@@ -9,18 +9,20 @@ $(document).ready(function() {
   updateTable(companyInfo);
 
   $('#search-input').keyup(function() {
-    if($('#search-input').val() != '')
-      companyInfo = updateCompanies($('#search-input').val());
-    else
-      companyInfo = getAllComps();
-    updateTable(companyInfo);
+    if($('#search-input').val().trim() != '') {
+        companyInfo = updateCompanies($('#search-input').val());
+        updateTable(companyInfo);
+    };
   });
 
   function updateCompanies(input) {
+    let trimmedInput = input.trim();
+    if(trimmedInput.length === 0)
+        return;
     let searchCompanies = [];
     $.ajax({
       type: 'GET',
-      url: '/api/companies/search/'+ input,
+      url: '/api/companies/search/'+ trimmedInput,
       data: $('#response').serialize(),
       async: false,
       dataType: 'json',
