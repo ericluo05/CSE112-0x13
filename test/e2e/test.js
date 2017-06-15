@@ -52,9 +52,12 @@ let verifyCompanyName = function(client_) {
 }
 
 let verifyMenu = function(client_) {
-  client_
-    .expect.element('//div[@class="page-container"]')
-    .to.be.present;
+  client_.source(function(res) {
+    console.log(res);
+  })
+  //client_
+  //  .expect.element('//div[@class="page-container"]')
+  //  .to.be.present;
   client_
     .click('//div[@class="sidebar-collapse"]')
     .pause(enterValueWaitTime);
