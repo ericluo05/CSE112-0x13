@@ -44,6 +44,13 @@ hr {
   border-top: 3px solid #01b2bd !important;
 }
 
+.graph {
+  padding: 200px;
+  border: solid 3px;
+  border-color: #01b2bd;
+  margin: 15px;
+}
+
 .svg-img {
   font-style: normal;
   font-weight: normal;
