@@ -19,8 +19,8 @@ window.onload = function() {
 // let name= getURLParameter('status');
 
     if (id) {
-        let clientSecret = '9849d0f5a2a2a107664bf0f83ec63bad';
-        let clientID = '168056792887.192343525634';
+        let clientSecret = '85458d433ddea48d80bf8353166448c3';
+        let clientID = '168056792887.183416696148';
         // let something = {};
         $.post('https://slack.com/api/oauth.access',
             {
