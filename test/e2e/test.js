@@ -28,19 +28,19 @@ let height = 800;
 
 let browserInit = function(client_) {
   client_.resizeWindow(width, height);
-}
+};
 
 let userInfo = {
   email: userEmail,
   password: password,
-  fullName: firstName + ' ' + lastName
-}
+  fullName: firstName + ' ' + lastName,
+};
 
 let adminInfo = {
   email: 'peter@apptomatic.com',
   password: 'admin',
-  fullName: 'Peter'
-}
+  fullName: 'Peter',
+};
 
 let login = function(client_, user) {
   client_.url(testServer + '/login').pause(newPageWaitTime);
@@ -56,12 +56,12 @@ let login = function(client_, user) {
   client_.click('//button[@id="loginButton"]')
     .pause(1000);
   client_.pause(newPageWaitTime);
-}
+};
 
 let verifyCompanyName = function(client_, info) {
   client_.assert.containsText('//div[@id="company-name"]/h1/span',
     info.fullName);
-}
+};
 
 let verifyMenu = function(client_) {
   client_
@@ -116,7 +116,7 @@ let verifyMenu = function(client_) {
           'Settings');
     }
   });
-}
+};
 
 let verifyDropdown = function(client_, info) {
   client_
@@ -133,7 +133,7 @@ let verifyDropdown = function(client_, info) {
     .expect.element('//div[@class="dropdown"]//li[last()]/a[@id="logoutButton"]')
     .to.be.present;
 
-}
+};
 
 let verifyLogout = function(client_, info) {
   client_
@@ -159,7 +159,7 @@ let verifyLogout = function(client_, info) {
     .urlEquals(testServer + '/login');
 
 
-}
+};
 
 
 let test = {
@@ -346,7 +346,7 @@ let test = {
     verifyCompanyName(client, userInfo);
     verifyMenu(client);
     verifyDropdown(client, userInfo);
-    //client.assert.containsText('//div[@id="company-name"]/h1/span',
+    // client.assert.containsText('//div[@id="company-name"]/h1/span',
     //  userInfo.fullName);
     // client.pause(2000);
 
@@ -547,8 +547,8 @@ let test = {
       .to.be.present;
 
     // client.pause(2000);
-    //#TODO
-    //verifyLogout(client, userInfo);
+    // #TODO
+    // verifyLogout(client, userInfo);
     client.end();
   },
   'form-builder - Site Element Existence Test': function(client) {
@@ -653,7 +653,6 @@ let test = {
     client.end();
   },
   'settings - Site Element Existence Test': function(client) {
-
     // Login
     browserInit(client);
     login(client, userInfo);
@@ -669,7 +668,7 @@ let test = {
 
     verifyLogout(client, userInfo);
     client.end();
-  }, 'Admin - Login, Site Element Existence AND Logout Test': function(client) {
+  }, 'Admin - Login and Logout Test': function(client) {
     browserInit(client);
     login(client, adminInfo);
     verifyCompanyName(client, adminInfo);
@@ -686,6 +685,50 @@ let test = {
     verifyCompanyName(client, adminInfo);
     verifyMenu(client);
     verifyDropdown(client, adminInfo);
+
+    client
+      .assert
+      .containsText(
+        '//h1[@class="page-title"]',
+        'Admin Panel');
+
+    // search box
+    client
+      .expect.element('//div[@id="search-div"]')
+      .to.be.present;
+    client
+      .expect.element('//input[@id="search-input"]')
+      .to.be.present;
+
+    // result container
+    client
+      .expect.element('//div[@class="admin-panel-container"]')
+      .to.be.present;
+    // table
+    client
+      .expect.element('//table[@class="table"]')
+      .to.be.present;
+    client
+      .assert.containsText(
+        '//table//tr/th[1]',
+        'Company'
+      );
+    client
+      .assert.containsText(
+        '//table//tr/th[2]',
+        'Subscribed'
+      );
+    client
+      .assert.containsText(
+        '//table//tr/th[3]',
+        'Revenue'
+      );
+    client
+      .assert.containsText(
+        '//table//tr/th[4]',
+        '# of Months Subscribed'
+      );
+
 
     // logout
     verifyLogout(client, adminInfo);
@@ -714,7 +757,7 @@ let test = {
     // logout
     verifyLogout(client, adminInfo);
     client.end();
-  }
+  },
 };
 
 module.exports = test;
