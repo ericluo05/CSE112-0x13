@@ -49,7 +49,15 @@ let neonForgotPassword = {};
                 email: $('input#email').val(),
               },
               error: function() {
-                alert('An error occoured!');
+                  neonForgotPassword.setPercentage(100);
+                  setTimeout(function() {
+                      $('.login-page .login-header .description').slideUp();
+                      neonForgotPassword.$steps.slideUp('normal', function() {
+                          $('.login-page').removeClass('logging-in');
+                          // Now we show the success message
+                          $('.form-forgotpassword-success').slideDown('normal');
+                      });
+                  }, 1000);
               },
               success: function(response) {
                 // Form is fully completed, we update the percentage
