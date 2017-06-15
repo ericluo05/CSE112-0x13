@@ -1,4 +1,5 @@
 $(document).ready(function($) {
+  $('#user-name').text(JSON.parse(localStorage.getItem('currentUser')).first_name);
   $('.my-form:last .add-box').click(function() {
     let label;
     label = $('#optional_label').val();
