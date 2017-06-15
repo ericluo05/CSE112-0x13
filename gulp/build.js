@@ -46,14 +46,20 @@ gulp.task('copy:js', () => {
         .pipe(gulp.dest(paths.js_dest));
 });
 /*
- *  Minify Html (minified only in production)
+ *  Minify Html (minified only in production), currently disabled due to
+ *  server not linking to find font-icons correctly
  */
 gulp.task('copy:html', function() {
-    return gulp.src(paths.html_src)
+ /*   return gulp.src(paths.html_src)
         .pipe(newer(paths.html_dest))
         .pipe((process.env.NODE_ENV === 'production')?
             htmlmin({collapseWhitespace: true}):util.noop())
-        .pipe(gulp.dest(paths.html_dest));
+        .pipe(gulp.dest(paths.html_dest)); */
+    return gulp.src(paths.html_src)
+    .pipe(newer(paths.html_dest))
+    .pipe((process.env.NODE_ENV === 'production')?
+        util.noop() :util.noop())
+    .pipe(gulp.dest(paths.html_dest));
 });
 
 /*

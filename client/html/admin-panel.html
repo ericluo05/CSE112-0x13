@@ -124,8 +124,9 @@
                     <thead>
                     <tr>
                         <th>Company</th>
-                        <th>Duration of Subscription</th>
-                        <th>Number of Employees</th>
+                        <th>Subscribed</th>
+                        <th>Revenue</th>
+                        <th># of Months Subscribed</th>
                     </tr>
                     </thead>
                     <tbody id="company-list">
@@ -139,8 +140,9 @@
             {{#each []}}
             <tr class="company-row" value="{{this.compId}}">
                 <td class="company-data">{{this.name}}</td>
-                <td class="company-data">{{this.subLength}}</td>
-                <td class="company-data">{{this.employeeNum}}</td>
+                <td class="company-data">{{{this.subscribed}}}</td>
+                <td class="company-data">{{this.revenue}}</td>
+                <td class="company-data">{{this.total_num_subs}}</td>
             </tr>
             {{/each}}
         </script>

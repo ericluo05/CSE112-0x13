@@ -1,18 +1,20 @@
 language: node_js
 node_js:
 - '7'
-cache: 
+cache:
  directories:
     - node_modules
 sudo: required
 os: linux
 dist: trusty
+env:
+- NODE_ENV=test
 services:
   - mongodb
 addons:
     code_climate:
         repo_token: 4d53c65fda9dd3b1fbdfc7eb366d294fb37e5b457a4770eacbb41bc8fa74f370
-    firefox: "49.0"
+    firefox: "54.0"
 before_install:
 - if [ "$TRAVIS_OS_NAME" == "linux" ]; then export CHROME_BIN=/usr/bin/google-chrome; fi
 - if [ "$TRAVIS_OS_NAME" == "linux" ]; then export DISPLAY=:99.0; fi

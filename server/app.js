@@ -16,9 +16,7 @@ let staticSiteMapping = require('./routes/staticmapping');
 let apiMapping = require('./routes/apimapping');
 let messagesMapping = require('./routes/messagesMapping');
 let app = express();
-// slack notification is done on client side currently.. not safe
-// let slack = require('slack-notify')('https://hooks.slack.com/services/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');
-
+// let slack = require('slack-notify')('channel url here');
 
 // view engine setup
 app.set('views', path.join(__dirname + '/../dist/views'));
@@ -26,7 +24,7 @@ app.set('view engine', 'ejs');
 
 
 // these are not used in production environment
-if(process.env.NODE_ENV !== 'production') {
+if(process.env.NODE_ENV !== 'production' && (process.env.NODE_ENV !== 'test')) {
     app.use(logger('dev'));
 };
 

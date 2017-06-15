@@ -131,7 +131,8 @@ router.delete('/:id', controller.delete);
 /**
  *
  * @api {get} /api/companies/search/:match Search Companies
- * @apiDescription Search for companies that contains user-inputted string
+ * @apiDescription Search for companies that contains user-inputted string,
+ *  search is case insensitive
  * @apiExample {HTTP} HTTP usage:
  *       GET /api/companies/search/match HTTP/1.1
  *       Host: localhost
