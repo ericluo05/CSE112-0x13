@@ -23,6 +23,13 @@ console.log(password);
 
 let testServer = 'http://localhost:3000';
 
+let width = 1280;
+let height = 800;
+
+let browserInit = function(client_) {
+  client_.resizeWindow(width, height);
+}
+
 let login = function(client_) {
   client_.url(testServer + '/login').pause(newPageWaitTime);
   client_.useXpath();
@@ -84,6 +91,7 @@ let verifyMenu = function(client_) {
 let test = {
   'tags': ['emmissary test'],
   'index.html - Site Element Existence': function(client) {
+    browserInit(client);
     client
       .url(testServer)
       .pause(newPageWaitTime);
@@ -120,6 +128,7 @@ let test = {
     client.end();
   },
   'signup.html - Site Element Existence and Signup Test': function(client) {
+    browserInit(client);
     client
       .url(testServer + '/signup')
       .pause(newPageWaitTime);
@@ -220,6 +229,7 @@ let test = {
     client.end();
   },
   'signin.html - Site Element Existence and signin Test': function(client) {
+    browserInit(client);
     client
       .url(testServer + '/login')
       .pause(newPageWaitTime);
@@ -286,6 +296,7 @@ let test = {
     client.end();
   },
   'visitors - Site Element Existence Test': function(client) {
+    browserInit(client);
     login(client);
 
     // AFTER LOGIN
@@ -337,6 +348,7 @@ let test = {
     client.end();
   },
   'employees - Site Element Existence Test': function(client) {
+    browserInit(client);
     login(client);
 
     // AFTER LOGIN
@@ -390,6 +402,7 @@ let test = {
     client.end();
   },
   'appointment - Site Element Existence Test': function(client) {
+    browserInit(client);
     login(client);
 
     // AFTER LOGIN
@@ -458,6 +471,7 @@ let test = {
     client.end();
   },
   'form-builder - Site Element Existence Test': function(client) {
+    browserInit(client);
     login(client);
 
     // AFTER LOGIN
@@ -557,6 +571,7 @@ let test = {
   'settings - Site Element Existence Test': function(client) {
 
     // Login
+    browserInit(client);
     login(client);
 
     // Go to settings page
