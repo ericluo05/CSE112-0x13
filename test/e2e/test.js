@@ -67,10 +67,6 @@ let verifyMenu = function(client_) {
     .click('//div[@class="sidebar-collapse"]')
     .pause(enterValueWaitTime);
 
-  client_.source(function(res) {
-    console.log(res);
-  });
-
   client_
     .assert.containsText(
       '//ul[@id="main-menu"]/li[1]//span',
