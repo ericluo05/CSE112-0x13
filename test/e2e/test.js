@@ -52,18 +52,17 @@ let verifyCompanyName = function(client_) {
 }
 
 let verifyMenu = function(client_) {
-  client_.source(function(res) {
-    console.log(res);
-  })
-  //client_
-  //  .expect.element('//div[@class="page-container"]')
-  //  .to.be.present;
+  client_
+    .expect.element('//div[@class="page-container"'
+      + ' or @class="page-container sidebar-collapsed"]')
+    .to.be.present;
   client_
     .click('//div[@class="sidebar-collapse"]')
     .pause(enterValueWaitTime);
-  client_
-    .expect.element('//div[@class="page-container sidebar-collapsed"]')
-    .to.be.present;
+    client_
+      .expect.element('//div[@class="page-container"'
+        + ' or @class="page-container sidebar-collapsed"]')
+      .to.be.present;
   client_
     .click('//div[@class="sidebar-collapse"]')
     .pause(enterValueWaitTime);
