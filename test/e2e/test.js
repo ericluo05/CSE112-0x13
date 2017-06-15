@@ -132,7 +132,6 @@ let verifyDropdown = function(client_, info) {
   client_
     .expect.element('//div[@class="dropdown"]//li[last()]/a[@id="logoutButton"]')
     .to.be.present;
-
 };
 
 let verifyLogout = function(client_, info) {
@@ -151,14 +150,12 @@ let verifyLogout = function(client_, info) {
       .url(testServer + '/visitors.html');
   } else {
     client_
-      .url(testServer + '/admin-panel.html')
+      .url(testServer + '/admin-panel.html');
   }
   client_.pause(newPageWaitTime);
   client_
     .assert
     .urlEquals(testServer + '/login');
-
-
 };
 
 
