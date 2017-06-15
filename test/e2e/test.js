@@ -21,7 +21,7 @@ console.log(userEmail);
 console.log(userPhone);
 console.log(password);
 
-let testServer = 'http://localhost:3000'
+let testServer = 'http://localhost:3000';
 
 let test = {
   'tags': ['emmissary test'],
@@ -37,7 +37,7 @@ let test = {
       .to.be.present.before(500);
     client.expect.element('//i[@class="entypo-right-open-mini"]')
       .to.be.present.before(500);
-    //client.expect.element('//a[@class="btn btn-secondary"]')
+    // client.expect.element('//a[@class="btn btn-secondary"]')
     //  .to.be.present.before(500);
 
     // client.expect.element('//section[@class="site-logo"]')
@@ -176,11 +176,11 @@ let test = {
     //   'Create a company');
     //
     client.expect
-      //.element('//div[@class="input-group focused"]/input[@id="username"]')
+      // .element('//div[@class="input-group focused"]/input[@id="username"]')
       .element('//input[@id="username"]')
       .to.be.present;
     client
-      //.setValue('//div[@class="input-group focused"]/input[@id="username"]',
+      // .setValue('//div[@class="input-group focused"]/input[@id="username"]',
       .setValue('//input[@id="username"]',
       userEmail)
       .pause(enterValueWaitTime);
@@ -205,7 +205,7 @@ let test = {
 
     client.assert.containsText('//div[@id="company-name"]/h1/span',
       firstName + ' ' + lastName);
-    //client.pause(2000);
+    // client.pause(2000);
 
     client
       .expect.element('//div[@class="dropdown"]')
@@ -289,7 +289,7 @@ let test = {
         + '/table//tr/th[4]',
       'Check-in Time');
 
-    //client.pause(2000);
+    // client.pause(2000);
     client.end();
   },
   'employees - Site Element Existence Test': function(client) {
@@ -352,7 +352,7 @@ let test = {
         + '/table//tr/th[4]',
       'Email');
 
-    //client.pause(2000);
+    // client.pause(2000);
     client.end();
   },
   'appointment - Site Element Existence Test': function(client) {
@@ -430,7 +430,7 @@ let test = {
         + '//div[@class="add-button"]')
       .to.be.present;
 
-    //client.pause(2000);
+    // client.pause(2000);
     client.end();
   },
   'form-builder - Site Element Existence Test': function(client) {
@@ -583,9 +583,9 @@ let test = {
     //    //div[@class="add-button"]')
     //   .to.be.present;
 
-    //client.pause(2000);
+    // client.pause(2000);
     client.end();
-  }
+  },
 };
 
 module.exports = test;

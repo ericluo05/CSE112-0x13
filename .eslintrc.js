@@ -171,7 +171,7 @@ module.exports = {
         'array-bracket-spacing': [2, 'never'],
         // 'block-spacing': 0,
         'brace-style': 2,
-        'camelcase': [2, {properties: 'never'}],
+        'camelcase': [0, {properties: 'never'}],
         'comma-dangle': [2, 'always-multiline'],
         'comma-spacing': 2,
         'comma-style': 2,

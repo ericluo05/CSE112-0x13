@@ -122,6 +122,7 @@ $(document).ready(function() {
 
   /**
    * grab updated data from edit appointment form and put it into an object
+   * @return updatedInfo
    */
   function grabEditFormValues() {
     let updatedInfo ={};
@@ -136,9 +137,7 @@ $(document).ready(function() {
   }
 
   /**
-   *  populate edit form with given appt
-   * @param appt
-   */
+   *  populate edit form with given appt */
   function setEditFormValues(appt) {
       $('#appt-id-edit').val(appt._id);
       $('#appt-first-edit').val(appt.first_name);
@@ -204,12 +203,6 @@ $(document).ready(function() {
       });
   });
 
-  /** ********* FUNCTIONS TO FORMAT JAVASCRIPT DATES *************/
-  /**
-  * function to format the date
-  * @param {Date} date
-  * @return {string}
-  **/
   function formatDate(date) {
     let d = new Date(Date.parse(date));
     let mm = d.getMonth() + 1;

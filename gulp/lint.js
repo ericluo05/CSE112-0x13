@@ -29,7 +29,7 @@ gulp.task('lint:js:backend', () => {
 
 gulp.task('lint:js:frontend', () => {
     // lint frontend js files
-    return gulp.src(['client/js_es6/**/*.js', 'client/emissary/js/*.js'])
+    return gulp.src(['client/js/*.js'])
         .pipe(eslint({
             fix: true,
         }))
@@ -67,7 +67,7 @@ gulp.task('lint:html', () => {
 gulp.task('lint:css', function lintCssTask() {
     const gulpStylelint = require('gulp-stylelint');
     return gulp
-    .src('./client/emissary/stylesheets/*.css')
+    .src('./client/stylesheets/*.css')
     .pipe(gulpStylelint({
         reporters: [
         {formatter: 'string', console: true},
