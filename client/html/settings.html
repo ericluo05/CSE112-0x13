@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <script src = "js/shared.js"></script>
+    <script src="js/shared.js"></script>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="description" content="Neon Admin Panel" />
-    <meta name="author" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <meta name="description" content="Neon Admin Panel"/>
+    <meta name="author" content=""/>
 
     <link rel="icon" href="/images/appt-o-matic.png">
 
@@ -19,16 +19,14 @@
     <link rel="stylesheet" href="stylesheets/libs/bootstrap.css">
     <link rel="stylesheet" href="stylesheets/libs/neon/neon-core.css">
     <link rel="stylesheet" href="stylesheets/libs/neon/neon-theme.css">
-    <!--<link rel="stylesheet" href="stylesheets/libs/neon/neon-forms.css">-->
-    <!--<link rel="stylesheet" href="stylesheets/patient-queue.css">-->
     <link rel="stylesheet" href="stylesheets/settings.css">
-<!--     <link rel="stylesheet" href="stylesheets/appointment.css">-->    
     <link rel="stylesheet" href="stylesheets/libs/jquery/jquery-jvectormap-1.2.2.css">
     <link rel="stylesheet" href="stylesheets/libs/rickshaw.min.css">
 </head>
 <body class="page-body gray" data-url="http://neon.dev">
 
-<div class="page-container"><!-- add class "sidebar-collapsed" to close sidebar by default, "chat-visible" to make chat appear always -->
+<div class="page-container">
+    <!-- add class "sidebar-collapsed" to close sidebar by default, "chat-visible" to make chat appear always -->
 
     <div class="sidebar-menu">
         <div class="sidebar-menu-inner">
@@ -36,12 +34,13 @@
                 <!-- logo -->
                 <div class="logo">
                     <a href="visitors.html">
-                        <img src="/images/appt-o-matic-logo.png" width="150" alt="" />
+                        <img src="/images/appt-o-matic-logo.png" width="150" alt=""/>
                     </a>
                 </div>
                 <!-- logo collapse icon -->
                 <div class="sidebar-collapse">
-                    <a href="#" class="sidebar-collapse-icon"><!-- add class "with-animation" if you want sidebar to have animation during expanding/collapsing transition -->
+                    <a href="#" class="sidebar-collapse-icon">
+                        <!-- add class "with-animation" if you want sidebar to have animation during expanding/collapsing transition -->
                         <i class="entypo-menu"></i>
                     </a>
                 </div>
@@ -93,141 +92,162 @@
     </div>
 
     <div class="main-content">
-      <div class="row">
-          <!-- Profile Info and Notifications -->
-          <div class="col-md-6 col-sm-8 clearfix">
-              <ul class="user-info pull-left pull-none-xsm">
-                  <!-- Profile Info -->
-                  <li class="profile-info dropdown"><!-- add class "pull-right" if you want to place this from right -->
-                      <div id="company-name">
-                          <h1>Hello, <span id="user-name"> </span></h1>
-                      </div>
-                  </li>
-              </ul>
-          </div>
-
-          <!-- Raw Links -->
-          <div class="col-md-6 col-sm-4 clearfix hidden-xs">
-              <ul class="list-inline links-list pull-right">
-                  <div class="dropdown">
-                      <i class="fa fa-3x fa-cog dropdown-toggle" data-toggle="dropdown"></i>
-                      <ul class="dropdown-menu">
-                          <li><a href="/checkin.html">Check-In</a></li>
-                          <li><a id="logoutButton" href="/index.html">
-                              Log Out <i class="entypo-logout right"></i></a>
-                          </li>
-                      </ul>
-                </div>
-              </ul>
-          </div>
-      </div>
-
-      <hr />
-        
-      <div class="settings-container">
-        <div>
-          <h1 class="page-title">Account Information</h1>
-          <div class="account-info">
-            <div class="row">
-              <p class="col-sm-3 col-sm-offset-1 col-xs-offset-1 lead field-color">First Name</p>
-              <div class="col-sm-5 col-xs-offset-1">
-                <p class="lead"><span id="first-name"> </span></p>
-              </div>
-            </div>
-            <div class="row">
-              <p class="col-sm-3 col-sm-offset-1 col-xs-offset-1 lead field-color">Last Name</p>
-              <div class="col-sm-5 col-xs-offset-1">
-                <p class="lead"><span id="last-name"> </span></p>
-              </div>
-            </div>
-            <div class="row">
-              <p class="col-sm-3 col-sm-offset-1 col-xs-offset-1 lead field-color">Email Address</p>
-              <div class="col-sm-5 col-xs-offset-1">
-                <p class="lead"><span id="email"> </span></p>
-              </div>
-            </div>
-            <div class="row">
-              <p class="col-sm-3 col-sm-offset-1 col-xs-offset-1 lead field-color">Phone Number</p>
-              <div class="col-sm-5 col-xs-offset-1">
-                <p class="lead"><span id="phone"> </span></p>
-              </div>
-            </div>
-          </div>
-
-          <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-              <div class="modal-content">
-                <!-- Modal Header -->
-                <div class="modal-header">
-                  <button type="button" class="close" data-dismiss="modal">
-                    <span aria-hidden="true">&times;</span>
-                    <span class="sr-only">Close</span>
-                  </button>
-                  <h4 class="modal-title" id="myModalLabel">
-                    Edit Account Information
-                  </h4>
-                </div>
-
-                <!-- Modal Body -->
-                <div class="modal-body">
-                  <form class="form-horizontal" role="form" id="account-form">
-                    <div class="form-group">
-                      <label class="col-sm-2 control-label" for="modal-first">First Name</label>
-                      <div class="col-sm-10">
-                        <input type="text" class="form-control" id="modal-first" value=""/>
-                      </div>
-                    </div>
-                    <div class="form-group">
-                      <label class="col-sm-2 control-label" for="modal-last" >Last Name</label>
-                      <div class="col-sm-10">
-                        <input type="text" class="form-control" id="modal-last" value=""/>
-                      </div>
-                    </div>
-                    <div class="form-group">
-                      <label class="col-sm-2 control-label" for="modal-email" >Email Address</label>
-                      <div class="col-sm-10">
-                        <input type="text" class="form-control" id="modal-email" value=""/>
-                      </div>
-                    </div>
-                    <div class="form-group">
-                      <label class="col-sm-2 control-label" for="modal-phone" >Phone Number</label>
-                      <div class="col-sm-10">
-                        <input type="text" class="form-control" id="modal-phone" value=""/>
-                      </div>
-                    </div>
-                  </form>
-
-                </div>
-
-                <!-- Modal Footer -->
-                <div class="modal-footer">
-                  <button type="button" class="btn btn-default" data-dismiss="modal">
-                    Cancel
-                  </button>
-                  <button type="button" class="btn btn-info save-btn" data-dismiss="modal">Save</button>
-                </div>
-              </div>
-            </div>
-          </div>
-        
-          <div class="row">
-            <div class="col-sm-1 col-xs-2 col-xs-offset-1 col-sm-offset-3 edit-button" data-toggle="modal" data-target="#myModal">Edit</div>
-          </div>
-        </div>
-        <br>
-        <h1 class="page-title">Options</h1>
         <div class="row">
-          <div class="col-md-2 col-sm-3 col-xs-4 col-sm-offset-1">
-            <p id="result-msg"></p>
-            <script src="https://checkout.stripe.com/checkout.js"></script>
-            <div class="subs-btn" id="subscribe-btn">Subscribe</div>
-          </div>
-          <div class="col-xs-2">
-            <p></p>
-            <a href="https://slack.com/oauth/authorize?&client_id=168056792887.183416696148&scope=incoming-webhook,bot,chat:write:bot"><img alt="Add to Slack" height="40" width="139" src="https://platform.slack-edge.com/img/add_to_slack.png" srcset="https://platform.slack-edge.com/img/add_to_slack.png 1x, https://platform.slack-edge.com/img/add_to_slack@2x.png 2x" /></a>
-          </div>    
+            <!-- Profile Info and Notifications -->
+            <div class="col-md-6 col-sm-8 clearfix">
+                <ul class="user-info pull-left pull-none-xsm">
+                    <!-- Profile Info -->
+                    <li class="profile-info dropdown">
+                        <!-- add class "pull-right" if you want to place this from right -->
+                        <div id="company-name">
+                            <h1>Hello, <span id="user-name"> </span></h1>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Raw Links -->
+            <div class="col-md-6 col-sm-4 clearfix hidden-xs">
+                <ul class="list-inline links-list pull-right">
+                    <div class="dropdown">
+                        <i class="fa fa-3x fa-cog dropdown-toggle" data-toggle="dropdown"></i>
+                        <ul class="dropdown-menu">
+                            <li><a href="/checkin.html">Check-In</a></li>
+                            <li><a id="logoutButton" href="/index.html">
+                                Log Out <i class="entypo-logout right"></i></a>
+                            </li>
+                        </ul>
+                    </div>
+                </ul>
+            </div>
         </div>
-      </div>
+
+        <hr/>
+
+        <div class="settings-container">
+            <div>
+                <h1 class="page-title">Account Information</h1>
+                <div class="account-info">
+                    <div class="row">
+                        <p class="col-sm-3 col-sm-offset-1 col-xs-offset-1 lead field-color">First Name</p>
+                        <div class="col-sm-5 col-xs-offset-1">
+                            <p class="lead"><span id="first-name"> </span></p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <p class="col-sm-3 col-sm-offset-1 col-xs-offset-1 lead field-color">Last Name</p>
+                        <div class="col-sm-5 col-xs-offset-1">
+                            <p class="lead"><span id="last-name"> </span></p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <p class="col-sm-3 col-sm-offset-1 col-xs-offset-1 lead field-color">Email Address</p>
+                        <div class="col-sm-5 col-xs-offset-1">
+                            <p class="lead"><span id="email"> </span></p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <p class="col-sm-3 col-sm-offset-1 col-xs-offset-1 lead field-color">Phone Number</p>
+                        <div class="col-sm-5 col-xs-offset-1">
+                            <p class="lead"><span id="phone"> </span></p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+                     aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <!-- Modal Header -->
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal">
+                                    <span aria-hidden="true">&times;</span>
+                                    <span class="sr-only">Close</span>
+                                </button>
+                                <h4 class="modal-title" id="myModalLabel">
+                                    Edit Account Information
+                                </h4>
+                            </div>
+
+                            <!-- Modal Body -->
+                            <div class="modal-body">
+                                <form class="form-horizontal" role="form" id="account-form">
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label" for="modal-first">First Name</label>
+                                        <div class="col-sm-10">
+                                            <input type="text" class="form-control" id="modal-first" value=""/>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label" for="modal-last">Last Name</label>
+                                        <div class="col-sm-10">
+                                            <input type="text" class="form-control" id="modal-last" value=""/>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label" for="modal-email">Email Address</label>
+                                        <div class="col-sm-10">
+                                            <input type="text" class="form-control" id="modal-email" value=""/>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label" for="modal-phone">Phone Number</label>
+                                        <div class="col-sm-10">
+                                            <input type="text" class="form-control" id="modal-phone" value=""/>
+                                        </div>
+                                    </div>
+                                </form>
+
+                            </div>
+
+                            <!-- Modal Footer -->
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">
+                                    Cancel
+                                </button>
+                                <button type="button" class="btn btn-info save-btn" data-dismiss="modal">Save</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-1 col-xs-2 col-xs-offset-1 col-sm-offset-3 edit-button" data-toggle="modal"
+                         data-target="#myModal">Edit
+                    </div>
+                </div>
+            </div>
+            <br>
+            <h1 class="page-title">Subscription Status</h1>
+            <div id="expir_date_row" class="row">
+                <p class="col-sm-3 col-sm-offset-1 col-xs-offset-1 lead field-color">Expiration Date:</p>
+                <div class="col-sm-5 col-xs-offset-1">
+                    <p class="lead"><span id="val_sub_exp_date"></span></p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-7 col-xs-offset-1">
+                    <p class="lead  field-color"><span id="additional_message"></span></p>
+                </div>
+            </div>
+
+
+            <h1 class="page-title">Options</h1>
+            <div class="row">
+                <div class="col-md-2 col-sm-3 col-xs-4 col-sm-offset-1">
+                    <p id="result-msg"></p>
+                    <script src="https://checkout.stripe.com/checkout.js"></script>
+                    <div class="subs-btn" id="subscribe-btn">Subscribe</div>
+                </div>
+                <div class="col-xs-2">
+                    <p></p>
+                    <a href="https://slack.com/oauth/authorize?&client_id=168056792887.183416696148&scope=incoming-webhook,bot,chat:write:bot"><img
+                            alt="Add to Slack" height="40" width="139"
+                            src="https://platform.slack-edge.com/img/add_to_slack.png"
+                            srcset="https://platform.slack-edge.com/img/add_to_slack.png 1x, https://platform.slack-edge.com/img/add_to_slack@2x.png 2x"/></a>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 
@@ -243,7 +263,7 @@
 <script src="js/js_libs/neon/neon-api.js"></script>
 
 <script src="js/js_libs/neon/neon-custom.js"></script>
-<script src="js/settings.js"> </script>
+<script src="js/settings.js"></script>
 <script src="js/login.js"></script>
 <script src="js/google-analytic.js"></script>
 </body>

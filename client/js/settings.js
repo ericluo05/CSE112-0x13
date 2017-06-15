@@ -39,83 +39,82 @@
 //    });
 // }
 // };
-
-
 $(document).ready(function() {
-  let myCompanyId = '';
-  let stripeToken = '';
-  let curUser = JSON.parse(localStorage.getItem('currentUser'));
-  let companyData = JSON.parse(localStorage.getItem('currentCompany'));
-  myCompanyId = companyData._id;
-  $('#user-name').text(curUser.first_name + ' ' + curUser.last_name);
-
-  jQuery(function($) {
-    $('#modal-phone').mask('(999) 999-9999');
-  });
-
-  showInfo();
-  $('#modal-first').val(curUser.first_name);
-  $('#modal-last').val(curUser.last_name);
-  $('#modal-email').val(curUser.email);
-  $('#modal-phone').val(curUser.phone_number);
-
-  $('.save-btn').click(updateInfo);
-
-  /**
-    * Uses POST request to update user account information
-    **/
-  function updateInfo() {
-    let newVals = grabFormValues();
-    $.ajax({
-      dataType: 'json',
-      type: 'PUT',
-      data: newVals,
-      async: false,
-      url: 'api/employees/' + curUser._id,
-      success: function(response) {
-        console.log(response);
-        localStorage.setItem('currentUser', JSON.stringify(response));
-        curUser = JSON.parse(localStorage.getItem('currentUser'));
-        showInfo();
-      },
-    });
-  }
-
-  /**
-    * Use current user saved in local storage to show user information
-    **/
-  function showInfo() {
+    let myCompanyId = '';
+    let stripeToken = '';
+    let curUser = JSON.parse(localStorage.getItem('currentUser'));
+    let companyData = JSON.parse(localStorage.getItem('currentCompany'));
+    myCompanyId = companyData._id;
     $('#user-name').text(curUser.first_name + ' ' + curUser.last_name);
-    $('#first-name').text(curUser.first_name);
-    $('#last-name').text(curUser.last_name);
-    $('#email').text(curUser.email);
-    $('#phone').text(curUser.phone_number);
-  }
 
-  /**
-    * Grabs elements from the form and puts it into an object
-    * @return {object}
-    **/
-  function grabFormValues() {
-    let newInfo = {};
-    newInfo.first_name= $('#modal-first').val();
-    newInfo.last_name = $('#modal-last').val();
-    newInfo.email = $('#modal-email').val();
-    newInfo.phone_number = $('#modal-phone').val();
+    jQuery(function($) {
+        $('#modal-phone').mask('(999) 999-9999');
+    });
 
-    return newInfo;
-  }
+    showInfo();
+    updateSubNotification();
+    $('#modal-first').val(curUser.first_name);
+    $('#modal-last').val(curUser.last_name);
+    $('#modal-email').val(curUser.email);
+    $('#modal-phone').val(curUser.phone_number);
 
-  $('#logoutButton').on('click', function() {
-    localStorage.setItem('userState', 0);
-  });
+    $('.save-btn').click(updateInfo);
+
+    /**
+     * Uses POST request to update user account information
+     **/
+    function updateInfo() {
+        let newVals = grabFormValues();
+        $.ajax({
+            dataType: 'json',
+            type: 'PUT',
+            data: newVals,
+            async: false,
+            url: 'api/employees/' + curUser._id,
+            success: function(response) {
+                console.log(response);
+                localStorage.setItem('currentUser', JSON.stringify(response));
+                curUser = JSON.parse(localStorage.getItem('currentUser'));
+                showInfo();
+            },
+        });
+    }
+
+    /**
+     * Use current user saved in local storage to show user information
+     **/
+    function showInfo() {
+        $('#user-name').text(curUser.first_name + ' ' + curUser.last_name);
+        $('#first-name').text(curUser.first_name);
+        $('#last-name').text(curUser.last_name);
+        $('#email').text(curUser.email);
+        $('#phone').text(curUser.phone_number);
+    }
+
+    /**
+     * Grabs elements from the form and puts it into an object
+     * @return {object}
+     **/
+    function grabFormValues() {
+        let newInfo = {};
+        newInfo.first_name = $('#modal-first').val();
+        newInfo.last_name = $('#modal-last').val();
+        newInfo.email = $('#modal-email').val();
+        newInfo.phone_number = $('#modal-phone').val();
+
+        return newInfo;
+    }
+
+    $('#logoutButton').on('click', function() {
+        localStorage.setItem('userState', 0);
+    });
 
     let handler = StripeCheckout.configure({
         key: 'pk_test_b6iDPAQ2gLMWOr6zCHKtwXEq',
         image: '/images/appt-o-matic.png',
         locale: 'auto',
         token: function(token) {
-            makePayment(token);
+            makePaymentAJAX(token);
         },
     });
     document.getElementById('subscribe-btn').addEventListener('click', function(e) {
@@ -135,11 +134,8 @@ $(document).ready(function() {
         handler.close();
     });
 
-    /**
-     *  AJAX request to make payment
-     * @param info  query into to pass to request
-     */
-    function makePayment(token) {
+
+    function makePaymentAJAX(token) {
         let queryInfo = {
             stripeToken: token.id,
             stripeEmail: token.email,
@@ -152,10 +148,40 @@ $(document).ready(function() {
             data: queryInfo,
             success: function(response) {
                 $('#result-msg').html(response.message);
+                localStorage.setItem('currentCompany', JSON.stringify(response));
+                updateSubNotification();
+                $('#additional_message').text('You have successfully extended the ' +
+                    'service by one month');
             },
             error: function(response) {
                 $('#result-msg').html(JSON.parse(response.responseText).error);
             },
         });
+    }
+
+    function updateSubNotification() {
+        let companyData = JSON.parse(localStorage.getItem('currentCompany'));
+        let now = new Date(Date.now());
+        let sub_exp_date = new Date(companyData.sub_expiration);
+        if (sub_exp_date < now) {
+            $('#expir_date_row').prop('hidden', true);
+            $('#additional_message').addClass('warn');
+            $('#additional_message').text('You subscription has expired, press ' +
+                'subscribe to make a payment in order to continue the service.');
+        } else {
+            let oneDay = 24*3600*1000;
+            let daysLeftTillExp = (sub_exp_date - now)/oneDay;
+            if(daysLeftTillExp <= 7) {
+                $('#additional_message').addClass('warn');
+                $('#additional_message').text('You subscription is going to expire soon. '
+                    + 'Press subscribe to make a payment in order to extend the ' +
+                    'service.');
+            }else{
+                $('#additional_message').removeClass('warn');
+                $('#additional_message').text('');
+            }
+            $('#val_sub_exp_date').text(sub_exp_date.toLocaleDateString());
+            $('#expir_date_row').prop('hidden', false);
+        }
     }
 });

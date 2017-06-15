@@ -2,8 +2,8 @@ $(document).ready(function() {
   let curUser = JSON.parse(localStorage.getItem('currentUser'));
   let companyData = JSON.parse(localStorage.getItem('currentCompany'));
   let myCompanyId = companyData._id;
-    $('#val_email').text(companyData.email);
-    $('#val_phone_number').text(companyData.phone_number);
+  $('#val_email').text(companyData.email);
+  $('#val_phone_number').text(companyData.phone_number);
   let now = new Date(Date.now());
   let sub_exp_date = new Date(companyData.sub_expiration);
   if(sub_exp_date < now)

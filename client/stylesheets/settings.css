@@ -48,3 +48,7 @@ hr {
   background-color: #049099;
   cursor: pointer;
 }
+
+.warn {
+  color: red;
+}
