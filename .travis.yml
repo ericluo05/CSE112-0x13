@@ -7,6 +7,8 @@ cache:
 sudo: required
 os: linux
 dist: trusty
+env:
+- NODE_ENV=test
 services:
   - mongodb
 addons:
