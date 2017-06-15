@@ -83,7 +83,7 @@ exports.createServer = function(io_in) {
         });
 
         socket.on(DISCONNECT, function(data) {
-             console.log('user disconnected from ' + data.company_id);
+           //  console.log('user disconnected from ' + data.company_id);
         });
 
         // requires the company_id and visitor_id to be sent

@@ -26,7 +26,7 @@ $(document).ready(function() {
       dataType: 'json',
       success: function(response) {
         for(let i = 0; i < response.length; i++) {
-          if(response[i].name != 'Emissary') {
+          if(response[i].email != 'support@apptomatic.com') {
             let searchComp = {};
             searchComp.compId = response[i]._id;
             searchComp.name= response[i].name;
@@ -57,7 +57,7 @@ $(document).ready(function() {
       dataType: 'json',
       success: function(response) {
         for(let i = 0; i < response.length; i++) {
-          if(response[i].name != 'Emissary') {
+          if(response[i].email != 'support@apptomatic.com') {
             let comp = {};
             comp.compId = response[i]._id;
             comp.name= response[i].name;
