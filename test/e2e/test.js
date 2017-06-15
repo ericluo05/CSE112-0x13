@@ -42,6 +42,12 @@ let adminInfo = {
   fullName: 'Peter',
 };
 
+let formInfo = {
+  first: 'form_firstname',
+  last: 'form_lastname',
+  number: '1234567890',
+};
+
 let login = function(client_, user) {
   client_.url(testServer + '/login').pause(newPageWaitTime);
   client_.useXpath();
@@ -664,6 +670,82 @@ let test = {
     verifyDropdown(client, userInfo);
 
     verifyLogout(client, userInfo);
+    client.end();
+  }, 'form - reservation test': function(client) {
+    browserInit(client);
+    login(client, userInfo);
+
+    client.url(testServer + '/checkin.html').pause(newPageWaitTime);
+
+    // clock
+    client
+      .expect.element('//h1[@id="clock"]')
+      .to.be.present;
+    client
+      .expect.element('//form[@class="check-in"]')
+      .to.be.present;
+    client
+      .expect.element('//div[@id="tap-to-check"]')
+      .to.be.present;
+
+    // click check in
+    client.click('//div[@id="tap-to-check"]').pause(newPageWaitTime);
+
+    // form appears
+    client
+      .expect.element('//div[@id="tap-to-check" and @class="hide"]')
+      .to.be.present;
+    client
+      .expect.element('//h1[@id="clock" and @class="hide"]')
+      .to.be.present;
+    client
+      .expect.element('//form[@class="check-in show"]')
+      .to.be.present;
+
+    // form has correct element
+    client
+      .expect.element('//input[@id="visitor-first" and @placeholder="First"]')
+      .to.be.present;
+    client
+      .expect.element('//input[@id="visitor-last" and @placeholder="Last"]')
+      .to.be.present;
+    client
+      .expect.element('//input[@id="visitor-number" and @placeholder="Phone Number"]')
+      .to.be.present;
+
+    // fill in form
+    client
+      .setValue(
+        '//input[@id="visitor-first" and @placeholder="First"]',
+        formInfo.first).pause(enterValueWaitTime);
+    client
+      .setValue(
+        '//input[@id="visitor-last" and @placeholder="Last"]',
+        formInfo.last).pause(enterValueWaitTime);
+    client
+      .setValue(
+        '//input[@id="visitor-number" and @placeholder="Phone Number"]',
+        formInfo.number).pause(enterValueWaitTime);
+
+    // submit form
+    client
+      .expect.element('//input[@type="submit"]')
+      .to.be.present;
+    client
+      .click('//input[@type="submit"]').pause(enterValueWaitTime);
+
+    // check form submitted
+    client
+      .url(testServer + '/visitors').pause(newPageWaitTime);
+    client
+      .assert.containsText(
+        '//tr[@class="patient-check-out"]/td[1]',
+        formInfo.first);
+    client
+      .assert.containsText(
+        '//tr[@class="patient-check-out"]/td[2]',
+        formInfo.last);
+
     client.end();
   }, 'Admin - Login and Logout Test': function(client) {
     browserInit(client);
