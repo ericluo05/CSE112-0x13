@@ -132,7 +132,6 @@ let verifyDropdown = function(client_, info) {
   client_
     .expect.element('//div[@class="dropdown"]//li[last()]/a[@id="logoutButton"]')
     .to.be.present;
-
 };
 
 let verifyLogout = function(client_, info) {
@@ -151,14 +150,12 @@ let verifyLogout = function(client_, info) {
       .url(testServer + '/visitors.html');
   } else {
     client_
-      .url(testServer + '/admin-panel.html')
+      .url(testServer + '/admin-panel.html');
   }
   client_.pause(newPageWaitTime);
   client_
     .assert
     .urlEquals(testServer + '/login');
-
-
 };
 
 
@@ -668,7 +665,7 @@ let test = {
 
     verifyLogout(client, userInfo);
     client.end();
-  }, 'Admin - Login and Logout Test': function(client) {
+  }, 'Admin - Login, Site Element Existence AND Logout Test': function(client) {
     browserInit(client);
     login(client, adminInfo);
     verifyCompanyName(client, adminInfo);
@@ -685,50 +682,6 @@ let test = {
     verifyCompanyName(client, adminInfo);
     verifyMenu(client);
     verifyDropdown(client, adminInfo);
-
-    client
-      .assert
-      .containsText(
-        '//h1[@class="page-title"]',
-        'Admin Panel');
-
-    // search box
-    client
-      .expect.element('//div[@id="search-div"]')
-      .to.be.present;
-    client
-      .expect.element('//input[@id="search-input"]')
-      .to.be.present;
-
-    // result container
-    client
-      .expect.element('//div[@class="admin-panel-container"]')
-      .to.be.present;
-    // table
-    client
-      .expect.element('//table[@class="table"]')
-      .to.be.present;
-    client
-      .assert.containsText(
-        '//table//tr/th[1]',
-        'Company'
-      );
-    client
-      .assert.containsText(
-        '//table//tr/th[2]',
-        'Subscribed'
-      );
-    client
-      .assert.containsText(
-        '//table//tr/th[3]',
-        'Revenue'
-      );
-    client
-      .assert.containsText(
-        '//table//tr/th[4]',
-        '# of Months Subscribed'
-      );
-
 
     // logout
     verifyLogout(client, adminInfo);

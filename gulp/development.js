@@ -107,7 +107,6 @@ gulp.task('watch:js_lib', function() {
  * pasted into the destination folder, no trans-compiling is done
  */
 gulp.task('watch:css_lib', function() {
-
     gulp.src(paths.css_lib_src)
         .pipe(newer(paths.css_lib_dest))
         .pipe(gulp.dest(paths.css_lib_dest));

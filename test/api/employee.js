@@ -133,15 +133,15 @@ describe('Employee', function() {
       it('Should not update employee password through update api', function(done) {
         request(url)
         .put('/api/employees/' + returnedId)
-        //.query({email: credentials.email, token: credentials.token})
+        // .query({email: credentials.email, token: credentials.token})
         .send({
           id: returnedId,
           currentpwd: 'test',
-          newpwd: 'notreachable'
+          newpwd: 'notreachable',
         })
         .expect(200)
         .end(function(err, res) {
-          //console.log(res.body);
+          // console.log(res.body);
           done();
         });
       });
@@ -156,7 +156,7 @@ describe('Employee', function() {
         .send({
           id: returnedId,
           currentpwd: 'test',
-          newpwd: 'badpwd'
+          newpwd: 'badpwd',
         })
         .expect(200)
         .end(function(err, res) {
@@ -172,7 +172,7 @@ describe('Employee', function() {
           res.body.should.have.property('receive_email');
           res.body.should.have.property('receive_sms');
           done();
-        })
+        });
       });
 
       it('Should revert update to employee password', function(done) {
@@ -181,7 +181,7 @@ describe('Employee', function() {
         .send({
           id: returnedId,
           currentpwd: 'badpwd',
-          newpwd: 'test'
+          newpwd: 'test',
         })
         .expect(200)
         .end(function(err, res) {
@@ -197,7 +197,7 @@ describe('Employee', function() {
           res.body.should.have.property('receive_email');
           res.body.should.have.property('receive_sms');
           done();
-        })
+        });
       });
     });
 
@@ -277,20 +277,20 @@ describe('Employee', function() {
         request(url)
         .post('/api/employees/resetPassword')
         .send({
-          email: 'invalidemail'
+          email: 'invalidemail',
         })
         .expect(400)
         .end(function(err, res) {
           res.body.should.have.property('error').and.be.equal('Can not find');
           done();
-        })
+        });
       });
 
       it('should reset password', function(done) {
         request(url)
         .post('/api/employees/resetPassword')
         .send({
-          email: 'updated_email@tomcruise.com'
+          email: 'updated_email@tomcruise.com',
         })
         .expect(200)
         .end(function(err, res) {
@@ -306,7 +306,7 @@ describe('Employee', function() {
           res.body.should.have.property('receive_email');
           res.body.should.have.property('receive_sms');
           done();
-        })
+        });
       });
     });
 
