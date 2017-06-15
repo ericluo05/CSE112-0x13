@@ -9,8 +9,7 @@ $(document).ready(function() {
   updateTable(companyInfo);
 
   $('#search-input').keyup(function() {
-    console.log($('#search-input').val());
-    if($('#search-input').val() != "")
+    if($('#search-input').val() != '')
       companyInfo = updateCompanies($('#search-input').val());
     else
       companyInfo = getAllComps();
@@ -144,7 +143,6 @@ $(document).ready(function() {
   }
 
   $('body').on('click', '.company-row', function() {
-    console.log($(this).attr('value'));
     $.ajax({
        type: 'GET',
        url: 'api/companies/' + $(this).attr('value'),
