@@ -550,8 +550,7 @@ let test = {
       .to.be.present;
 
     // client.pause(2000);
-    // #TODO
-    // verifyLogout(client, userInfo);
+    verifyLogout(client, userInfo);
     client.end();
   },
   'form-builder - Site Element Existence Test': function(client) {
