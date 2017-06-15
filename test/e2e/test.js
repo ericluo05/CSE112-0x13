@@ -135,6 +135,32 @@ let verifyDropdown = function(client_, info) {
 
 }
 
+let verifyLogout = function(client_, info) {
+  client_
+    .click('//div[@class="dropdown"]')
+    .pause(newPageWaitTime);
+  client_
+    .click('//a[@id="logoutButton"]')
+    .pause(newPageWaitTime);
+  client_
+    .assert
+    .urlEquals(testServer + '/index');
+
+  if (info.fullName != 'Peter') {
+    client_
+      .url(testServer + '/visitors.html');
+  } else {
+    client_
+      .url(testServer + '/admin-panel.html')
+  }
+  client_.pause(newPageWaitTime);
+  client_
+    .assert
+    .urlEquals(testServer + '/login');
+
+
+}
+
 
 let test = {
   'tags': ['emmissary test'],
@@ -270,10 +296,8 @@ let test = {
       password);
 
     client.pause(enterValueWaitTime);
-    client.click('//button[@id="submit-btn"]')
-      .pause(1000);
+    client.click('//button[@id="submit-btn"]').pause(newPageWaitTime);
 
-    client.pause(newPageWaitTime);
     client.end();
   },
   'signin.html - Site Element Existence and signin Test': function(client) {
@@ -326,12 +350,12 @@ let test = {
     //  userInfo.fullName);
     // client.pause(2000);
 
-    client
-      .expect.element('//div[@class="dropdown"]')
-      .to.be.present;
-    client
-      .expect.element('//div[@class="dropdown"]/ul[@class="dropdown-menu"]')
-      .to.be.present;
+    // client
+    //   .expect.element('//div[@class="dropdown"]')
+    //   .to.be.present;
+    // client
+    //   .expect.element('//div[@class="dropdown"]/ul[@class="dropdown-menu"]')
+    //   .to.be.present;
     // client
     //   .assert
     //   .containsText('//div[@class="dropdown"]/ul[@class="dropdown-menu"]
@@ -342,6 +366,7 @@ let test = {
     //   .containsText('//div[@class="dropdown"]/ul[@class="dropdown-menu"]
     //  /li[2]/a',
     //   '                  Log Out ');
+    verifyLogout(client, userInfo);
     client.end();
   },
   'visitors - Site Element Existence Test': function(client) {
@@ -395,6 +420,7 @@ let test = {
       'Check-in Time');
 
     // client.pause(2000);
+    verifyLogout(client, userInfo);
     client.end();
   },
   'employees - Site Element Existence Test': function(client) {
@@ -450,6 +476,7 @@ let test = {
       'Email');
 
     // client.pause(2000);
+    verifyLogout(client, userInfo);
     client.end();
   },
   'appointment - Site Element Existence Test': function(client) {
@@ -520,6 +547,8 @@ let test = {
       .to.be.present;
 
     // client.pause(2000);
+    //#TODO
+    //verifyLogout(client, userInfo);
     client.end();
   },
   'form-builder - Site Element Existence Test': function(client) {
@@ -619,6 +648,8 @@ let test = {
       '//div[@class="main-content"]/form[@class="form-builder"]'
         + '/div[last()]/button[@type="submit"]',
       'Submit');
+
+    verifyLogout(client, userInfo);
     client.end();
   },
   'settings - Site Element Existence Test': function(client) {
@@ -636,6 +667,7 @@ let test = {
     verifyMenu(client);
     verifyDropdown(client, userInfo);
 
+    verifyLogout(client, userInfo);
     client.end();
   }, 'Admin - admin-panel - Site Element Existence AND Logout Test': function(client) {
     browserInit(client);
@@ -646,7 +678,8 @@ let test = {
     verifyDropdown(client, adminInfo);
 
     // logout
-
+    verifyLogout(client, adminInfo);
+    client.end();
   }
 };
 
