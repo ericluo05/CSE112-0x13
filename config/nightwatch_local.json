@@ -5,7 +5,7 @@
   "custom_assertions_path" : "",
   "page_objects_path" : "",
   "globals_path" : "",
-  
+
   "selenium" : {
     "start_process" : true,
     "server_path" : "drivers/selenium/selenium-server-standalone-3.4.0.jar",
@@ -32,36 +32,41 @@
       },
       "Comment" : "do NOT change browserName to anything else other than firefox, otherwise you'll have a hard time getting firefox to work. And yes, I have to put comment like this",
       "desiredCapabilities": {
-        "browserName": "firefox", 
+        "browserName": "firefox",
         "marionette": true
       }
     },
 
     "chrome" : {
       "desiredCapabilities": {
-        "browserName": "chrome"
+        "browserName": "chrome",
+        "chromeOptions": {
+          "args": [
+             "window-size=1280,800"
+          ]
+        }
       }
     },
-    
+
     "firefox" : {
       "desiredCapabilities": {
         "browserName":"Firefox"
       }
     },
-    
+
     "safari" : {
       "desiredCapabilities": {
         "browserName":"Safari"
       }
     },
-    
+
     "MicrosoftEdge" : {
       "desiredCapabilities": {
         "browserName":"MicrosoftEdge",
 		"javascriptEnabled": true
       }
     },
-    
+
     "ie" : {
       "desiredCapabilities": {
         "browserName":"internet explorer",
