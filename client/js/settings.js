@@ -48,7 +48,7 @@ $(document).ready(function() {
   let companyData = JSON.parse(localStorage.getItem('currentCompany'));
   myCompanyId = companyData._id;
   $('#user-name').text(curUser.first_name + ' ' + curUser.last_name);
-  
+
   jQuery(function($) {
     $('#modal-phone').mask('(999) 999-9999');
   });

@@ -93,14 +93,14 @@ $(document).ready(function() {
         $('#time-input').removeClass('has-error');
         $('#time-msg').addClass('hidden');
         $('#other-msg').addClass('hidden');
-        
+
         if(message == '{"error":"Already Created"}') {
           $('#time-input').addClass('has-error');
           $('#time-msg').removeClass('hidden');
         } else {
           $('#other-msg').removeClass('hidden');
         }
-      }
+      },
     });
   }
 
@@ -147,9 +147,9 @@ $(document).ready(function() {
       $('#appt-provider-edit').val(appt.provider_name);
       $('#appt-datetimepicker-edit').datetimepicker({
         sideBySide: false,
-        minDate: Date.now()
+        minDate: Date.now(),
       });
-      $('#appt-datetimepicker-edit').data("DateTimePicker").date(new Date(appt.date));
+      $('#appt-datetimepicker-edit').data('DateTimePicker').date(new Date(appt.date));
   }
 
   $(document).on('click', '.delete-appt', function() {
