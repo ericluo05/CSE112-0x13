@@ -14,10 +14,6 @@ router.get('/settings', function(req, res) {
   res.sendFile(path.join(htmlPath, 'settings.html'));
 });
 
-router.get('/admin-dashboard', function(req, res) {
-  res.sendFile(path.join(htmlPath, 'admin-dashboard.html'));
-});
-
 router.get('/analytics_raw', function(req, res) {
   res.sendFile(path.join(htmlPath, 'analytics_raw.html'));
 });
@@ -54,9 +50,9 @@ router.get('/visitors', function(req, res) {
   res.sendFile(path.join(htmlPath, 'visitors.html'));
 });
 
-router.get('/404', function(req, res) {
-  res.sendFile(path.join(htmlPath, '404.html'));
-});
+// router.get('/404', function(req, res) {
+//   res.sendFile(path.join(htmlPath, '404.html'));
+// });
 
 router.get('/admin-settings', function(req, res) {
   res.sendFile(path.join(htmlPath, 'admin-settings.html'));

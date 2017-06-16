@@ -349,3 +349,16 @@ form.registration-form fieldset {
   font-size: 10pt;
   font-family: Arial;
 }
+
+.login-header {
+  padding: 17px !important;
+}
+
+.description {
+  margin-top: -10px !important;
+}
+
+#sign-up-logo {
+  margin-left: 10px !important;
+  margin-top: 10px !important;
+}

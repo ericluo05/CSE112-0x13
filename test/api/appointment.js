@@ -1,6 +1,3 @@
-/**
- * Created by kevingu on 2/21/16.
- */
 let request = require('supertest');
 let config = require('../../server/config/config');
 let Appointment = require('../../server/models/Appointment');

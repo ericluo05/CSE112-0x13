@@ -9,37 +9,39 @@ $(document).ready(function() {
   updateTable(companyInfo);
 
   $('#search-input').keyup(function() {
-    console.log($('#search-input').val());
-    if($('#search-input').val() != "")
-      companyInfo = updateCompanies($('#search-input').val());
-    else
-      companyInfo = getAllComps();
-    updateTable(companyInfo);
+    if($('#search-input').val().trim() != '') {
+        companyInfo = updateCompanies($('#search-input').val());
+        updateTable(companyInfo);
+    };
   });
 
-  /**
-     * Makes a get request for list of all companies that match the
-     * search input
-     *
-     * @param {String} input
-     * @return {Object} list of companies that match input string
-     */
   function updateCompanies(input) {
+    let trimmedInput = input.trim();
+    if(trimmedInput.length === 0)
+        return;
     let searchCompanies = [];
     $.ajax({
       type: 'GET',
-      url: '/api/companies/search/'+ input,
+      url: '/api/companies/search/'+ trimmedInput,
       data: $('#response').serialize(),
       async: false,
       dataType: 'json',
       success: function(response) {
+        let now = new Date(Date.now());
         for(let i = 0; i < response.length; i++) {
-          if(response[i].name != 'Emissary') {
+          if(response[i].email !== 'support@apptomatic.com') {
             let searchComp = {};
             searchComp.compId = response[i]._id;
             searchComp.name= response[i].name;
-            searchComp.employeeNum = getEmployeeNum(response[i]._id);
-            searchComp.subLength = getLength(response[i].paid_time.toString());
+            let sub_exp_date = new Date(response[i].sub_expiration);
+            let embedHtml ='';
+            if(sub_exp_date < now)
+              embedHtml = '<img class="svg-img" src="/images/icons/cross.svg">';
+            else
+              embedHtml = '<img class="svg-img" src="/images/icons/check.svg">';
+            searchComp.subscribed = embedHtml;
+            searchComp.revenue = '$'+response[i].revenue;
+            searchComp.total_num_subs = response[i].num_months_subscribed;
             searchCompanies.push(searchComp);
           }
         }
@@ -48,12 +50,6 @@ $(document).ready(function() {
     return searchCompanies;
   }
 
-  /**
-     * Updates the Handlebars template to display the newest
-     * company list
-     *
-     * @param {Object} data
-     */
   function updateTable(data) {
     let source = $('#company-list-template').html();
     let template = Handlebars.compile(source);
@@ -61,15 +57,9 @@ $(document).ready(function() {
     $('#company-list').html(compiledHtml);
   }
 
-  /**
-     * Makes a get request for list of all companies then uses data
-     * to get number of employees and subscription length
-     *
-     * @return {Object} list of companies w/ id, name, employee number,
-     * subscription length
-     */
   function getAllComps() {
     let companies = [];
+    let now = new Date(Date.now());
     $.ajax({
       type: 'GET',
       url: '/api/companies/',
@@ -78,12 +68,19 @@ $(document).ready(function() {
       dataType: 'json',
       success: function(response) {
         for(let i = 0; i < response.length; i++) {
-          if(response[i].name != 'Emissary') {
+          if(response[i].email != 'support@apptomatic.com') {
             let comp = {};
             comp.compId = response[i]._id;
             comp.name= response[i].name;
-            comp.employeeNum = getEmployeeNum(response[i]._id);
-            comp.subLength = getLength(response[i].paid_time.toString());
+            let sub_exp_date = new Date(response[i].sub_expiration);
+            let embedHtml ='';
+            if(sub_exp_date < now)
+              embedHtml = '<img class="svg-img" src="/images/icons/cross.svg">';
+            else
+              embedHtml = '<img class="svg-img" src="/images/icons/check.svg">';
+            comp.subscribed = embedHtml;
+            comp.revenue = '$'+response[i].revenue;
+            comp.total_num_subs = response[i].num_months_subscribed;
             companies.push(comp);
           }
         }
@@ -92,13 +89,6 @@ $(document).ready(function() {
     return companies;
   }
 
-  /**
-     * Makes a get request for list of all employees then uses data
-     * to count total number of employees
-     *
-     * @param {String} companyID
-     * @return {Number} total number of employees
-     */
   function getEmployeeNum(companyID) {
     let num;
     $.ajax({
@@ -144,7 +134,6 @@ $(document).ready(function() {
   }
 
   $('body').on('click', '.company-row', function() {
-    console.log($(this).attr('value'));
     $.ajax({
        type: 'GET',
        url: 'api/companies/' + $(this).attr('value'),
@@ -153,9 +142,12 @@ $(document).ready(function() {
        dataType: 'json',
        success: function(response) {
            localStorage.setItem('currentCompany', JSON.stringify(response));
+           window.location = 'company-dashboard.html';
+       },
+       error: function(response) {
+           alert('an error occurred, please try refreshing the page');
        },
     });
-    window.location = 'company-dashboard.html';
   });
 
   $('#logoutButton').on('click', function() {

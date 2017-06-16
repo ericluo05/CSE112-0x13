@@ -18,16 +18,16 @@ $(document).ready(function() {
   function updateInfo() {
     let closeModal = false;
     let newVals = grabFormValues();
-    if(newVals.first_name != "" || newVals.last_name != "" ||
-      newVals.email != "" || newVals.phone_number != "") {
+    if(newVals.first_name != '' || newVals.last_name != '' ||
+      newVals.email != '' || newVals.phone_number != '') {
       let editInfo = {};
-      if(newVals.first_name != "")
+      if(newVals.first_name != '')
         editInfo.first_name = newVals.first_name;
-      if(newVals.last_name != "")
+      if(newVals.last_name != '')
         editInfo.last_name = newVals.last_name;
-      if(newVals.email != "")
+      if(newVals.email != '')
         editInfo.email = newVals.email;
-      if(newVals.phone_number != "")
+      if(newVals.phone_number != '')
         editInfo.phone_number = newVals.phone_number;
       $.ajax({
         dataType: 'json',
@@ -36,8 +36,8 @@ $(document).ready(function() {
         url: 'api/employees/' + curUser._id,
         success: function(response) {
           console.log(response);
-          if(newVals.curr_pw == "" && newVals.new_pw == ""
-            && newVals.repeat_pw == "")
+          if(newVals.curr_pw == '' && newVals.new_pw == ''
+            && newVals.repeat_pw == '')
             $('#myModal').modal('hide');
           localStorage.setItem('currentUser', JSON.stringify(response));
           curUser = JSON.parse(localStorage.getItem('currentUser'));
@@ -46,7 +46,7 @@ $(document).ready(function() {
       });
     }
 
-    if(newVals.curr_pw != ""&&newVals.new_pw != ""&&newVals.repeat_pw != "") {
+    if(newVals.curr_pw != ''&&newVals.new_pw != ''&&newVals.repeat_pw != '') {
       if(newVals.new_pw == newVals.repeat_pw) {
         let editInfo = {};
         editInfo.currentpwd = newVals.curr_pw;
@@ -84,7 +84,7 @@ $(document).ready(function() {
               $('#new-pw').addClass('has-error');
               $('#new-pw-msg').removeClass('hidden');
             }
-          }
+          },
         });
       } else {
         $('#repeat-pw').addClass('has-error');

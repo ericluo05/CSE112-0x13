@@ -21,11 +21,154 @@ console.log(userEmail);
 console.log(userPhone);
 console.log(password);
 
-let testServer = 'http://localhost:3000'
+let testServer = 'http://localhost:3000';
+
+let width = 1280;
+let height = 800;
+
+let browserInit = function(client_) {
+  client_.resizeWindow(width, height);
+};
+
+let userInfo = {
+  email: userEmail,
+  password: password,
+  fullName: firstName + ' ' + lastName,
+};
+
+let adminInfo = {
+  email: 'peter@apptomatic.com',
+  password: 'admin',
+  fullName: 'Peter',
+};
+
+let formInfo = {
+  first: 'form_firstname',
+  last: 'form_lastname',
+  number: '1234567890',
+};
+
+let login = function(client_, user) {
+  client_.url(testServer + '/login').pause(newPageWaitTime);
+  client_.useXpath();
+  client_
+    .setValue('//input[@id="username"]',
+    user.email)
+    .pause(enterValueWaitTime);
+  client_
+    .setValue('//input[@id="password"]',
+    user.password)
+    .pause(enterValueWaitTime);
+  client_.click('//button[@id="loginButton"]')
+    .pause(1000);
+  client_.pause(newPageWaitTime);
+};
+
+let verifyCompanyName = function(client_, info) {
+  client_.assert.containsText('//div[@id="company-name"]/h1/span',
+    info.fullName);
+};
+
+let verifyMenu = function(client_) {
+  client_
+    .expect.element('//div[@class="page-container"'
+      + ' or @class="page-container sidebar-collapsed"]')
+    .to.be.present;
+  client_
+    .click('//div[@class="sidebar-collapse"]')
+    .pause(enterValueWaitTime);
+    client_
+      .expect.element('//div[@class="page-container"'
+        + ' or @class="page-container sidebar-collapsed"]')
+      .to.be.present;
+  client_
+    .click('//div[@class="sidebar-collapse"]')
+    .pause(enterValueWaitTime);
+
+  client_.getText('//ul[@id="main-menu"]/li[1]//span', function(res) {
+    if (res.value == 'Visitors') {
+      client_
+        .assert.containsText(
+          '//ul[@id="main-menu"]/li[1]//span',
+          'Visitors');
+      client_
+        .assert.containsText(
+          '//ul[@id="main-menu"]/li[2]//span',
+          'Employees');
+      client_
+        .assert.containsText(
+          '//ul[@id="main-menu"]/li[3]//span',
+          'Appointments');
+      client_
+        .assert.containsText(
+          '//ul[@id="main-menu"]/li[4]//span',
+          'Forms');
+      client_
+        .assert.containsText(
+          '//ul[@id="main-menu"]/li[5]//span',
+          'Settings');
+    } else {
+      client_
+        .assert.containsText(
+          '//ul[@id="main-menu"]/li[1]//span',
+          'Admin Panel');
+      client_
+        .assert.containsText(
+          '//ul[@id="main-menu"]/li[2]//span',
+          'Monitoring');
+      client_
+        .assert.containsText(
+          '//ul[@id="main-menu"]/li[3]//span',
+          'Settings');
+    }
+  });
+};
+
+let verifyDropdown = function(client_, info) {
+  client_
+    .expect.element('//div[@class="dropdown"]')
+    .to.be.present;
+
+  if (info.fullName != 'Peter') {
+    client_
+      .expect.element('//div[@class="dropdown"]//li[1]/a[@href="/checkin.html"]')
+      .to.be.present;
+  }
+
+  client_
+    .expect.element('//div[@class="dropdown"]//li[last()]/a[@id="logoutButton"]')
+    .to.be.present;
+};
+
+let verifyLogout = function(client_, info) {
+  client_
+    .click('//div[@class="dropdown"]')
+    .pause(newPageWaitTime);
+  client_
+    .click('//a[@id="logoutButton"]')
+    .pause(newPageWaitTime);
+  client_
+    .assert
+    .urlEquals(testServer + '/index');
+
+  if (info.fullName != 'Peter') {
+    client_
+      .url(testServer + '/visitors.html');
+  } else {
+    client_
+      .url(testServer + '/admin-panel.html');
+  }
+  client_.pause(newPageWaitTime);
+  client_
+    .assert
+    .urlEquals(testServer + '/login');
+};
+
 
 let test = {
   'tags': ['emmissary test'],
   'index.html - Site Element Existence': function(client) {
+    browserInit(client);
     client
       .url(testServer)
       .pause(newPageWaitTime);
@@ -37,7 +180,7 @@ let test = {
       .to.be.present.before(500);
     client.expect.element('//i[@class="entypo-right-open-mini"]')
       .to.be.present.before(500);
-    //client.expect.element('//a[@class="btn btn-secondary"]')
+    // client.expect.element('//a[@class="btn btn-secondary"]')
     //  .to.be.present.before(500);
 
     // client.expect.element('//section[@class="site-logo"]')
@@ -61,7 +204,8 @@ let test = {
 
     client.end();
   },
-  'signup.html - Site Element Eistence and Signup Test': function(client) {
+  'signup.html - Site Element Existence and Signup Test': function(client) {
+    browserInit(client);
     client
       .url(testServer + '/signup')
       .pause(newPageWaitTime);
@@ -155,13 +299,12 @@ let test = {
       password);
 
     client.pause(enterValueWaitTime);
-    client.click('//button[@id="submit-btn"]')
-      .pause(1000);
+    client.click('//button[@id="submit-btn"]').pause(newPageWaitTime);
 
-    client.pause(newPageWaitTime);
     client.end();
   },
-  'signin.html - Site Element Eistence and signin Test': function(client) {
+  'signin.html - Site Element Existence and signin Test': function(client) {
+    browserInit(client);
     client
       .url(testServer + '/login')
       .pause(newPageWaitTime);
@@ -176,11 +319,11 @@ let test = {
     //   'Create a company');
     //
     client.expect
-      //.element('//div[@class="input-group focused"]/input[@id="username"]')
+      // .element('//div[@class="input-group focused"]/input[@id="username"]')
       .element('//input[@id="username"]')
       .to.be.present;
     client
-      //.setValue('//div[@class="input-group focused"]/input[@id="username"]',
+      // .setValue('//div[@class="input-group focused"]/input[@id="username"]',
       .setValue('//input[@id="username"]',
       userEmail)
       .pause(enterValueWaitTime);
@@ -203,16 +346,19 @@ let test = {
     // AFTER LOGIN
 
 
-    client.assert.containsText('//div[@id="company-name"]/h1/span',
-      firstName + ' ' + lastName);
-    //client.pause(2000);
+    verifyCompanyName(client, userInfo);
+    verifyMenu(client);
+    verifyDropdown(client, userInfo);
+    // client.assert.containsText('//div[@id="company-name"]/h1/span',
+    //  userInfo.fullName);
+    // client.pause(2000);
 
-    client
-      .expect.element('//div[@class="dropdown"]')
-      .to.be.present;
-    client
-      .expect.element('//div[@class="dropdown"]/ul[@class="dropdown-menu"]')
-      .to.be.present;
+    // client
+    //   .expect.element('//div[@class="dropdown"]')
+    //   .to.be.present;
+    // client
+    //   .expect.element('//div[@class="dropdown"]/ul[@class="dropdown-menu"]')
+    //   .to.be.present;
     // client
     //   .assert
     //   .containsText('//div[@class="dropdown"]/ul[@class="dropdown-menu"]
@@ -223,31 +369,18 @@ let test = {
     //   .containsText('//div[@class="dropdown"]/ul[@class="dropdown-menu"]
     //  /li[2]/a',
     //   '                  Log Out ');
+    verifyLogout(client, userInfo);
     client.end();
   },
   'visitors - Site Element Existence Test': function(client) {
-    client.url(testServer + '/login').pause(newPageWaitTime);
-    client.useXpath();
-    client.verify.title('Appt-o-matic | Login');
-    client.expect.element('//div[@class="login-content"]/a[@class="logo"]')
-      .to.be.present;
-
-    client
-      .setValue('//input[@id="username"]',
-      userEmail)
-      .pause(enterValueWaitTime);
-    client
-      .setValue('//input[@id="password"]',
-      password)
-      .pause(enterValueWaitTime);
-    client.click('//button[@id="loginButton"]')
-      .pause(1000);
-    client.pause(newPageWaitTime);
+    browserInit(client);
+    login(client, userInfo);
 
     // AFTER LOGIN
-
     client.verify.title('Appt-o-matic | Visitors');
-
+    verifyCompanyName(client, userInfo);
+    verifyMenu(client);
+    verifyDropdown(client, userInfo);
     // visitor page content
     client
       .expect
@@ -289,27 +422,20 @@ let test = {
         + '/table//tr/th[4]',
       'Check-in Time');
 
-    //client.pause(2000);
+    // client.pause(2000);
+    verifyLogout(client, userInfo);
     client.end();
   },
   'employees - Site Element Existence Test': function(client) {
-    client.url(testServer + '/login').pause(newPageWaitTime);
-    client.useXpath();
-    client
-      .setValue('//input[@id="username"]',
-      userEmail)
-      .pause(enterValueWaitTime);
-    client
-      .setValue('//input[@id="password"]',
-      password)
-      .pause(enterValueWaitTime);
-    client.click('//button[@id="loginButton"]')
-      .pause(1000);
-    client.pause(newPageWaitTime);
+    browserInit(client);
+    login(client, userInfo);
 
     // AFTER LOGIN
     client.url(testServer + '/employees').pause(newPageWaitTime);
     client.verify.title('Appt-o-matic | Employees');
+    verifyCompanyName(client, userInfo);
+    verifyMenu(client);
+    verifyDropdown(client, userInfo);
 
     // employees page content
     client
@@ -352,27 +478,20 @@ let test = {
         + '/table//tr/th[4]',
       'Email');
 
-    //client.pause(2000);
+    // client.pause(2000);
+    verifyLogout(client, userInfo);
     client.end();
   },
   'appointment - Site Element Existence Test': function(client) {
-    client.url(testServer + '/login').pause(newPageWaitTime);
-    client.useXpath();
-    client
-      .setValue('//input[@id="username"]',
-      userEmail)
-      .pause(enterValueWaitTime);
-    client
-      .setValue('//input[@id="password"]',
-      password)
-      .pause(enterValueWaitTime);
-    client.click('//button[@id="loginButton"]')
-      .pause(1000);
-    client.pause(newPageWaitTime);
+    browserInit(client);
+    login(client, userInfo);
 
     // AFTER LOGIN
     client.url(testServer + '/appointments').pause(newPageWaitTime);
     client.verify.title('Appt-o-matic | Appointments');
+    verifyCompanyName(client, userInfo);
+    verifyMenu(client);
+    verifyDropdown(client, userInfo);
 
     // employees page content
     client
@@ -430,27 +549,20 @@ let test = {
         + '//div[@class="add-button"]')
       .to.be.present;
 
-    //client.pause(2000);
+    // client.pause(2000);
+    verifyLogout(client, userInfo);
     client.end();
   },
   'form-builder - Site Element Existence Test': function(client) {
-    client.url(testServer + '/login').pause(newPageWaitTime);
-    client.useXpath();
-    client
-      .setValue('//input[@id="username"]',
-      userEmail)
-      .pause(enterValueWaitTime);
-    client
-      .setValue('//input[@id="password"]',
-      password)
-      .pause(enterValueWaitTime);
-    client.click('//button[@id="loginButton"]')
-      .pause(1000);
-    client.pause(newPageWaitTime);
+    browserInit(client);
+    login(client, userInfo);
 
     // AFTER LOGIN
     client.url(testServer + '/form-builder').pause(newPageWaitTime);
     client.verify.title('Appt-o-matic | Forms');
+    verifyCompanyName(client, userInfo);
+    verifyMenu(client);
+    verifyDropdown(client, userInfo);
 
     // employees page content
     client
@@ -539,53 +651,191 @@ let test = {
         + '/div[last()]/button[@type="submit"]',
       'Submit');
 
-    // // // table content
-    // client
-    //   .assert
-    //   .containsText(
-    //   '//div[@class="appt-container"]/div/table//tr/th[1]',
-    //   'First Name');
-    //
-    // client
-    //   .assert
-    //   .containsText(
-    //   '//div[@class="appt-container"]/div/table//tr/th[2]',
-    //   'Last Name');
-    //
-    // client
-    //   .assert
-    //   .containsText(
-    //   '//div[@class="appt-container"]/div/table//tr/th[3]',
-    //   'Provider Name');
-    //
-    // client
-    //   .assert
-    //   .containsText(
-    //   '//div[@class="appt-container"]/div/table//tr/th[4]',
-    //   'Phone Number');
-    //
-    // client
-    //   .assert
-    //   .containsText(
-    //   '//div[@class="appt-container"]/div/table//tr/th[5]',
-    //   'Date');
-    //
-    // client
-    //   .assert
-    //   .containsText(
-    //   '//div[@class="appt-container"]/div/table//tr/th[6]',
-    //   'Time');
-    //
-    // client
-    //   .expect
-    //   .element(
-    //   '//div[@class="appt-container"]/div[@class="row"]
-    //    //div[@class="add-button"]')
-    //   .to.be.present;
-
-    //client.pause(2000);
+    verifyLogout(client, userInfo);
     client.end();
-  }
+  },
+  'settings - Site Element Existence Test': function(client) {
+    // Login
+    browserInit(client);
+    login(client, userInfo);
+
+    // Go to settings page
+    client.url(testServer + '/settings').pause(newPageWaitTime);
+
+    // Verify general UI elements
+    client.verify.title('Appt-o-matic | Settings');
+    verifyCompanyName(client, userInfo);
+    verifyMenu(client);
+    verifyDropdown(client, userInfo);
+
+    verifyLogout(client, userInfo);
+    client.end();
+  }, 'form - reservation test': function(client) {
+    browserInit(client);
+    login(client, userInfo);
+
+    client.url(testServer + '/checkin.html').pause(newPageWaitTime);
+
+    // clock
+    client
+      .expect.element('//h1[@id="clock"]')
+      .to.be.present;
+    client
+      .expect.element('//form[@class="check-in"]')
+      .to.be.present;
+    client
+      .expect.element('//div[@id="tap-to-check"]')
+      .to.be.present;
+
+    // click check in
+    client.click('//div[@id="tap-to-check"]').pause(newPageWaitTime);
+
+    // form appears
+    client
+      .expect.element('//div[@id="tap-to-check" and @class="hide"]')
+      .to.be.present;
+    client
+      .expect.element('//h1[@id="clock" and @class="hide"]')
+      .to.be.present;
+    client
+      .expect.element('//form[@class="check-in show"]')
+      .to.be.present;
+
+    // form has correct element
+    client
+      .expect.element('//input[@id="visitor-first" and @placeholder="First"]')
+      .to.be.present;
+    client
+      .expect.element('//input[@id="visitor-last" and @placeholder="Last"]')
+      .to.be.present;
+    client
+      .expect.element('//input[@id="visitor-number" and @placeholder="Phone Number"]')
+      .to.be.present;
+
+    // fill in form
+    client
+      .setValue(
+        '//input[@id="visitor-first" and @placeholder="First"]',
+        formInfo.first).pause(enterValueWaitTime);
+    client
+      .setValue(
+        '//input[@id="visitor-last" and @placeholder="Last"]',
+        formInfo.last).pause(enterValueWaitTime);
+    client
+      .setValue(
+        '//input[@id="visitor-number" and @placeholder="Phone Number"]',
+        formInfo.number).pause(enterValueWaitTime);
+
+    // submit form
+    client
+      .expect.element('//input[@type="submit"]')
+      .to.be.present;
+    client
+      .click('//input[@type="submit"]').pause(enterValueWaitTime);
+
+    // check form submitted
+    client
+      .url(testServer + '/visitors').pause(newPageWaitTime);
+    client
+      .assert.containsText(
+        '//tr[@class="patient-check-out"]/td[1]',
+        formInfo.first);
+    client
+      .assert.containsText(
+        '//tr[@class="patient-check-out"]/td[2]',
+        formInfo.last);
+
+    client.end();
+  }, 'Admin - Login and Logout Test': function(client) {
+    browserInit(client);
+    login(client, adminInfo);
+    verifyCompanyName(client, adminInfo);
+    verifyMenu(client);
+    verifyDropdown(client, adminInfo);
+
+    // logout
+    verifyLogout(client, adminInfo);
+    client.end();
+  }, 'Admin - admin-panel - Site Element Existence AND Logout Test': function(client) {
+    browserInit(client);
+    login(client, adminInfo);
+    client.verify.title('Appt-o-matic | Admin Panel');
+    verifyCompanyName(client, adminInfo);
+    verifyMenu(client);
+    verifyDropdown(client, adminInfo);
+
+    client
+      .assert
+      .containsText(
+        '//h1[@class="page-title"]',
+        'Admin Panel');
+
+    // search box
+    client
+      .expect.element('//div[@id="search-div"]')
+      .to.be.present;
+    client
+      .expect.element('//input[@id="search-input"]')
+      .to.be.present;
+
+    // result container
+    client
+      .expect.element('//div[@class="admin-panel-container"]')
+      .to.be.present;
+    // table
+    client
+      .expect.element('//table[@class="table"]')
+      .to.be.present;
+    client
+      .assert.containsText(
+        '//table//tr/th[1]',
+        'Company'
+      );
+    client
+      .assert.containsText(
+        '//table//tr/th[2]',
+        'Subscribed'
+      );
+    client
+      .assert.containsText(
+        '//table//tr/th[3]',
+        'Revenue'
+      );
+    client
+      .assert.containsText(
+        '//table//tr/th[4]',
+        '# of Months Subscribed'
+      );
+
+
+    // logout
+    verifyLogout(client, adminInfo);
+    client.end();
+  }, 'Admin - Monitoring - Site Element Existence AND Logout Test': function(client) {
+    browserInit(client);
+    login(client, adminInfo);
+    client.url(testServer + '/admin-monitoring.html').pause(newPageWaitTime);
+    client.verify.title('Appt-o-matic | Monitoring');
+    verifyCompanyName(client, adminInfo);
+    verifyMenu(client);
+    verifyDropdown(client, adminInfo);
+
+    // logout
+    verifyLogout(client, adminInfo);
+    client.end();
+  }, 'Admin - Settings - Site Element Existence AND Logout Test': function(client) {
+    browserInit(client);
+    login(client, adminInfo);
+    client.url(testServer + '/admin-settings.html').pause(newPageWaitTime);
+    client.verify.title('Appt-o-matic | Settings');
+    verifyCompanyName(client, adminInfo);
+    verifyMenu(client);
+    verifyDropdown(client, adminInfo);
+
+    // logout
+    verifyLogout(client, adminInfo);
+    client.end();
+  },
 };
 
 module.exports = test;

@@ -58,7 +58,7 @@ $(document).ready(function() {
         },
         error: function(response) {
           $('#other-msg').removeClass('hidden');
-        }
+        },
       });
     }
 
@@ -208,7 +208,7 @@ $(document).ready(function() {
             },
             error: function(response) {
               $('#other-msg-edit').removeClass('hidden');
-            }
+            },
         });
     });
 

@@ -93,14 +93,14 @@ $(document).ready(function() {
         $('#time-input').removeClass('has-error');
         $('#time-msg').addClass('hidden');
         $('#other-msg').addClass('hidden');
-        
+
         if(message == '{"error":"Already Created"}') {
           $('#time-input').addClass('has-error');
           $('#time-msg').removeClass('hidden');
         } else {
           $('#other-msg').removeClass('hidden');
         }
-      }
+      },
     });
   }
 
@@ -122,6 +122,7 @@ $(document).ready(function() {
 
   /**
    * grab updated data from edit appointment form and put it into an object
+   * @return updatedInfo
    */
   function grabEditFormValues() {
     let updatedInfo ={};
@@ -136,9 +137,7 @@ $(document).ready(function() {
   }
 
   /**
-   *  populate edit form with given appt
-   * @param appt
-   */
+   *  populate edit form with given appt */
   function setEditFormValues(appt) {
       $('#appt-id-edit').val(appt._id);
       $('#appt-first-edit').val(appt.first_name);
@@ -147,9 +146,9 @@ $(document).ready(function() {
       $('#appt-provider-edit').val(appt.provider_name);
       $('#appt-datetimepicker-edit').datetimepicker({
         sideBySide: false,
-        minDate: Date.now()
+        minDate: Date.now(),
       });
-      $('#appt-datetimepicker-edit').data("DateTimePicker").date(new Date(appt.date));
+      $('#appt-datetimepicker-edit').data('DateTimePicker').date(new Date(appt.date));
   }
 
   $(document).on('click', '.delete-appt', function() {
@@ -204,12 +203,6 @@ $(document).ready(function() {
       });
   });
 
-  /** ********* FUNCTIONS TO FORMAT JAVASCRIPT DATES *************/
-  /**
-  * function to format the date
-  * @param {Date} date
-  * @return {string}
-  **/
   function formatDate(date) {
     let d = new Date(Date.parse(date));
     let mm = d.getMonth() + 1;

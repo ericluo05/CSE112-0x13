@@ -18,17 +18,19 @@ let Schema = mongoose.Schema;
  *             in case of cancellation
  * @property {Number} num_employees number of registered employees
  */
-let companySchema = new Schema({
+let companySchema;
+companySchema = new Schema({
     email: {type: String, unique: true, index: true, required: true},
     name: {type: String, required: true},
     phone_number: {type: String, required: true},
-    paid_time: {type: Date, required: true},
+    paid_time: {type: Date, required: true, default: new Date(2000, 0, 1, 0, 0, 0, 0)},
     create_time: {type: Date, required: true, default: Date.now()},
-    sub_expiration: {type: Date, required: true, default: Date.now()},
+    sub_expiration: {
+        type: Date, required: true, default: Date.now()-10000},
     num_months_subscribed: {type: Number, required: true, default: 0},
     revenue: {type: Number, required: true, default: 0},
     num_employees: {type: Number, required: true, default: 0},
 }, {versionKey: false});
 
-// create the model for users and expose it to our app
+
 module.exports = mongoose.model('Company', companySchema);
